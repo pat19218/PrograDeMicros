@@ -13,7 +13,7 @@
 %PSECTS
 $build/default/production/Lab3/Lab_3.o
 resVect CODE 0 0 0 3 2
-code CODE 0 0 0 114 2
+code CODE 0 0 0 121 2
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -29,14 +29,14 @@ BANK0 20-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 114-1FFF 2
-ENTRY 114-1FFF 2
+CONST 121-1FFF 2
+ENTRY 121-1FFF 2
 IDLOC 2000-2003 2
-CODE 114-1FFF 2
+CODE 121-1FFF 2
 COMMON 70-7F 1
 EEDATA 2100-21FF 2
-STRCODE 114-1FFF 2
-STRING 114-1FFF 2
+STRCODE 121-1FFF 2
+STRING 121-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -75,6 +75,21 @@ $build/default/production/Lab3/Lab_3.o
 112 code CODE >75:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
 113 code CODE >76:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
 114 code CODE >82:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+114 code CODE >86:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+115 code CODE >87:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+116 code CODE >88:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+117 code CODE >89:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+118 code CODE >91:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+119 code CODE >97:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+119 code CODE >98:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11A code CODE >99:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11B code CODE >100:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11C code CODE >101:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11D code CODE >103:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11D code CODE >104:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11E code CODE >105:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11F code CODE >106:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+120 code CODE >107:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -87,7 +102,7 @@ $build/default/production/Lab3/Lab_3.o
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__Hspace_0 114 0 ABS 0 - -
+__Hspace_0 121 0 ABS 0 - -
 __Hspace_1 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -

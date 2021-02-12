@@ -2530,9 +2530,29 @@ ENDM
 
  loop:
 
+
+   ;parte 2 CONTADOR 2 conectado a display
+    btfsc PORTA, 6
+    call inc_porta
+    btfsc PORTA, 7
+    call dec_porta
+
+    goto loop
+
  ;------------------------------------------------------------------------------
  ; sub rutinas
  ;------------------------------------------------------------------------------
 
+ inc_porta: ; loop de incremento de bit por botonazo
+    btfsc PORTA, 6 ;
+    goto $-1
+    incf PORTA, F ;
+    return
+
+  dec_porta: ; loop de incremento de bit por botonazo
+    btfsc PORTA, 7 ;
+    goto $-1
+    decf PORTA, F ;
+    return
 
  END
