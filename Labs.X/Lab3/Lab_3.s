@@ -75,12 +75,22 @@ PROCESSOR 16F887
     clrf    PORTD 
     clrf    PORTC 
     
+    banksel OSCCON
+    bsf	    IRCF2   ;1MHZ = 100
+    bcf	    IRCF1
+    bcf	    IRCF0
+    bsf	    SCS	    ;reloj interno activo
+    
+    call    conf_tmr0
+    
+    
  ;------------------------------------------------------------------------------
  ;  loop principal
  ;------------------------------------------------------------------------------
  
  loop:
-    
+   ;parte 1
+   
     
    ;parte 2 CONTADOR 2 conectado a display
     btfsc   PORTA, 6	
@@ -94,6 +104,25 @@ PROCESSOR 16F887
  ;	sub rutinas
  ;------------------------------------------------------------------------------
  
+ conf_tmr0:
+    banksel TRISA
+    
+    bcf	    T0CS    ;usar el reloj interno
+    bcf	    PSA	    ;usar prescaler
+    bsf	    PS2
+    bsf	    PS1
+    bcf	    PS0	    ;PS = 110 /1:128
+    
+    banksel PORTA
+    call    reiniciar_tmr0
+    return
+ 
+reiniciar_tmr0:
+    movlw   0
+    movwf   TMR0
+    bcf	    T0IF
+    return
+    
  inc_porta:		; loop de incremento de bit por botonazo
     btfsc   PORTA, 6	;
     goto    $-1
