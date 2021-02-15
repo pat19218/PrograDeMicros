@@ -2525,12 +2525,13 @@ ENDM
     clrf PORTC
 
     banksel OSCCON
-    bsf ((OSCCON) and 07Fh), 6 ;1MHZ = 100
-    bcf ((OSCCON) and 07Fh), 5
-    bcf ((OSCCON) and 07Fh), 4
+    bcf ((OSCCON) and 07Fh), 6 ;500kHZ = 011
+    bsf ((OSCCON) and 07Fh), 5
+    bsf ((OSCCON) and 07Fh), 4
     bsf ((OSCCON) and 07Fh), 0 ;reloj interno activo
 
     call conf_tmr0
+    banksel PORTA
 
 
  ;------------------------------------------------------------------------------
@@ -2539,15 +2540,17 @@ ENDM
 
  loop:
    ;parte 1
+   btfsc ((INTCON) and 07Fh), 2
+   call inc_portc
 
 
    ;parte 2 CONTADOR 2 conectado a display
-    btfsc PORTA, 6
-    call inc_porta
-    btfsc PORTA, 7
-    call dec_porta
+   btfsc PORTA, 6
+   call inc_porta
+   btfsc PORTA, 7
+   call dec_porta
 
-    goto loop
+   goto loop
 
  ;------------------------------------------------------------------------------
  ; sub rutinas
@@ -2556,18 +2559,18 @@ ENDM
  conf_tmr0:
     banksel TRISA
 
-    bcf ((OPTION_REG) and 07Fh), 5 ;usar el reloj interno
+    bcf ((OPTION_REG) and 07Fh), 5 ;usar el reloj interno, temporizador
     bcf ((OPTION_REG) and 07Fh), 3 ;usar prescaler
     bsf ((OPTION_REG) and 07Fh), 2
     bsf ((OPTION_REG) and 07Fh), 1
-    bcf ((OPTION_REG) and 07Fh), 0 ;PS = 110 /1:128
+    bsf ((OPTION_REG) and 07Fh), 0 ;PS = 111 /1:256
 
     banksel PORTA
     call reiniciar_tmr0
     return
 
-reiniciar_tmr0:
-    movlw 0
+ reiniciar_tmr0:
+    movlw 12
     movwf TMR0
     bcf ((INTCON) and 07Fh), 2
     return
@@ -2582,6 +2585,11 @@ reiniciar_tmr0:
     btfsc PORTA, 7 ;
     goto $-1
     decf PORTA, F ;
+    return
+
+ inc_portc: ; Incremento puerto C y reseteo el timmer-0
+    call reiniciar_tmr0
+    incf PORTC, F ;
     return
 
  END
