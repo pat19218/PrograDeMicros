@@ -57,6 +57,8 @@ PROCESSOR 16F887
  ORG 100h   ;posicion para el código
  
 tabla: 
+    clrf    PCLATH
+    andwf   0x0F
     addwf   PCL
     retlw   11111100B	;0  posicion 0
     retlw   01100000B	;1  posicion 1
@@ -162,6 +164,9 @@ tabla:
     btfsc   PORTB, 0	
     goto    $-1
     incf    PORTA, F	
+    ;incf    cont, 0	;Guardo en W el incremento
+    ;call    tabla	;voy a la tabla en la posicion del cont y se guarda en w
+    ;movwf   PORTA	;el dato de w lo mando al puerto A
     return
     
   dec_porta:		; loop de incremento de bit por botonazo
