@@ -33,7 +33,13 @@ PROCESSOR 16F887
   CONFIG  BOR4V = BOR40V        ; Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
   CONFIG  WRT = OFF             ; Flash Program Memory Self Write Enable bits (Write protection off)
   
-     
+ ;------------------------------------------------------------------------------
+ ;  Variables
+ ;------------------------------------------------------------------------------
+ 
+ PSECT udata_bank0  ;common memory
+    cont:   DS 1 ;1 byte   
+    
  ;------------------------------------------------------------------------------
  ;  Vector reset
  ;------------------------------------------------------------------------------
@@ -42,6 +48,8 @@ PROCESSOR 16F887
  ORG 00h    ;  posición 0000h para el reset
  resetVec:
     PAGESEL main
+    movlw   0x01
+    movwf   cont
     goto main
     
     
