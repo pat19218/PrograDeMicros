@@ -10,7 +10,7 @@
 ;Hardware: LEDs en el puerto C,D y display puerto A Button en el puerto A
 ;
 ;Creado: 11 feb, 2021
-;Última modificación: 11 feb, 2021
+;Última modificación: 15 feb, 2021
 
 ;
 ; Configuration word 1
@@ -2506,10 +2506,11 @@ ENDM
     clrf ANSEL
     clrf ANSELH
 
-    banksel TRISA ;Puerto A pin 6 y 7 entradas el resto salidas
-    clrf TRISA
-    bsf TRISA, 6
-    bsf TRISA, 7
+    banksel TRISB ;Puerto B pin 0 y 1 entradas el Puert A salidas
+    clrf TRISB
+    bsf TRISB, 0
+    bsf TRISB, 1
+    clrf PORTA
 
     clrf TRISC ;Pines de salida, luego desabilito pines
     bsf TRISC, 4
@@ -2521,6 +2522,7 @@ ENDM
 
     banksel PORTA ;Me asegure que empiece en cero
     clrf PORTA
+    clrf PORTB
     clrf PORTD
     clrf PORTC
 
@@ -2539,16 +2541,19 @@ ENDM
  ;------------------------------------------------------------------------------
 
  loop:
-   ;parte 1
+   ;parte 1 contador 4 bits usando el timmer-0
    btfsc ((INTCON) and 07Fh), 2
    call inc_portc
 
 
    ;parte 2 CONTADOR 2 conectado a display
-   btfsc PORTA, 6
+   btfsc PORTB, 0
    call inc_porta
-   btfsc PORTA, 7
+   btfsc PORTB, 1
    call dec_porta
+
+   ;parte 3
+
 
    goto loop
 
@@ -2576,13 +2581,13 @@ ENDM
     return
 
  inc_porta: ; loop de incremento de bit por botonazo
-    btfsc PORTA, 6 ;
+    btfsc PORTB, 0 ;
     goto $-1
     incf PORTA, F ;
     return
 
   dec_porta: ; loop de incremento de bit por botonazo
-    btfsc PORTA, 7 ;
+    btfsc PORTB, 1 ;
     goto $-1
     decf PORTA, F ;
     return
