@@ -48,6 +48,25 @@ PROCESSOR 16F887
  PSECT code, delta=2, abs
  ORG 100h   ;posicion para el código
  
+tabla: 
+    addwf   PCL
+    retlw   11111100B	;0  posicion 0
+    retlw   01100000B	;1  posicion 1
+    retlw   11011010B	;2  posicion 2
+    retlw   11110010B	;3  posicion 3
+    retlw   01100110B	;4  posicion 4
+    retlw   10110110B	;5  posicion 5
+    retlw   10111110B	;6  posicion 6
+    retlw   11100000B	;7  posicion 7
+    retlw   11111110B	;8  posicion 8
+    retlw   11110110B	;9  posicion 9
+    retlw   11101110B	;A  posicion 10
+    retlw   00111110B	;B  posicion 11
+    retlw   10011100B	;C  posicion 12
+    retlw   01111010B	;D  posicion 13
+    retlw   10011110B	;E  posicion 14
+    retlw   10001110B	;F  posicion 15
+ 
  ;------------------------------------------------------------------------------
  ;  Configuracion microprcesador
  ;------------------------------------------------------------------------------
@@ -132,20 +151,20 @@ PROCESSOR 16F887
     return
     
  inc_porta:		; loop de incremento de bit por botonazo
-    btfsc   PORTB, 0	;
+    btfsc   PORTB, 0	
     goto    $-1
-    incf    PORTA, F	;
+    incf    PORTA, F	
     return
     
   dec_porta:		; loop de incremento de bit por botonazo
-    btfsc   PORTB, 1	;
+    btfsc   PORTB, 1	
     goto    $-1
-    decf    PORTA, F	;
+    decf    PORTA, F	
     return
   
  inc_portc:		; Incremento puerto C y reseteo el timmer-0
     call    reiniciar_tmr0
-    incf    PORTC, F	;
+    incf    PORTC, F	
     return
  
  END
