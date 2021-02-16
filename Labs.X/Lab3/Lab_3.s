@@ -7,7 +7,7 @@
 ;Hardware:	LEDs en el puerto C,D y display puerto A Button en el puerto A
 ;
 ;Creado: 11 feb, 2021
-;Última modificación: 15 feb, 2021
+;Última modificación: 16 feb, 2021
 
 ;//////////////////////////////////////////////////////////////////////////////
 ; Configuration word 1
@@ -39,7 +39,7 @@ PROCESSOR 16F887
  
  PSECT udata_bank0  ;common memory
     cont:   DS 1 ;1 byte   
-    
+
  ;------------------------------------------------------------------------------
  ;  Vector reset
  ;------------------------------------------------------------------------------
@@ -48,18 +48,16 @@ PROCESSOR 16F887
  ORG 00h    ;  posición 0000h para el reset
  resetVec:
     PAGESEL main
-    movlw   0x01
-    movwf   cont
     goto main
     
     
  PSECT code, delta=2, abs
  ORG 100h   ;posicion para el código
- 
 tabla: 
     clrf    PCLATH
-    andwf   0x0F
-    addwf   PCL
+    bsf	    PCLATH, 0	;PCLATH = 01
+    andwf   0x0f	;me aseguro q solo pasen 4 bits
+    addwf   PCL		;PC = PCL + PCLATH + w
     retlw   11111100B	;0  posicion 0
     retlw   01100000B	;1  posicion 1
     retlw   11011010B	;2  posicion 2
@@ -112,8 +110,10 @@ tabla:
     bsf	    IRCF0
     bsf	    SCS	    ;reloj interno activo
     
-    call    conf_tmr0
+    call    conf_tmr0 
     banksel PORTA
+    movlw   0x00
+    movwf   cont
     
     
  ;------------------------------------------------------------------------------
@@ -163,16 +163,19 @@ tabla:
  inc_porta:		; loop de incremento de bit por botonazo
     btfsc   PORTB, 0	
     goto    $-1
-    incf    PORTA, F	
-    ;incf    cont, 0	;Guardo en W el incremento
-    ;call    tabla	;voy a la tabla en la posicion del cont y se guarda en w
-    ;movwf   PORTA	;el dato de w lo mando al puerto A
+    incf    cont	;Aumento el valor de mi variable
+    movf    cont, W	;Guardo la variable en el registro W
+    call    tabla	;voy a la tabla en la posicion del cont y se guarda en w
+    movwf   PORTA	;el dato de w lo mando al puerto A
     return
     
   dec_porta:		; loop de incremento de bit por botonazo
     btfsc   PORTB, 1	
     goto    $-1
-    decf    PORTA, F	
+    decf    cont	;Disminuyo el valor de mi variable
+    movf    cont, W	;Guardo la variable en el registro W
+    call    tabla	;voy a la tabla en la posicion del cont y se guarda en w
+    movwf   PORTA	;el dato de w lo mando al puerto A
     return
   
  inc_portc:		; Incremento puerto C y reseteo el timmer-0
