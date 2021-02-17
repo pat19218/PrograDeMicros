@@ -2537,7 +2537,6 @@ tabla:
     clrf TRISB
     bsf TRISB, 0
     bsf TRISB, 1
-    clrf PORTA
 
     clrf TRISC ;Pines de salida, luego desabilito pines
     bsf TRISC, 4
@@ -2549,6 +2548,8 @@ tabla:
 
     banksel PORTA ;Me asegure que empiece en cero
     clrf PORTA
+    movlw 11111100B
+    movwf PORTA
     clrf PORTB
     clrf PORTD
     clrf PORTC
@@ -2588,7 +2589,7 @@ tabla:
    subwf PORTC, W ;PORTC - CONT = W
    btfsc STATUS, 2 ;chequeo la bandera de ((STATUS) and 07Fh), 2 -PAG31-
    call igualdad
-
+   nop
    goto loop
 
  ;------------------------------------------------------------------------------
