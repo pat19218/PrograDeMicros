@@ -96,7 +96,7 @@ tabla:
     bsf	    TRISC, 6
     bsf	    TRISC, 7
     
-    bcf	    TRISD, 0 ;Pin de salida puerto D
+    clrf    TRISD   ;Pin de salida puerto D
     
     banksel PORTA   ;Me asegure que empiece en cero
     clrf    PORTA
@@ -125,7 +125,6 @@ tabla:
    btfsc    T0IF
    call	    inc_portc
    
-    
    ;parte 2 CONTADOR 2 conectado a display
    btfsc   PORTB, 0	
    call    inc_porta	
@@ -133,8 +132,14 @@ tabla:
    call    dec_porta	
    
    ;parte 3
+   ;Si la resta es positiva => c=1 z=0
+   ;Si la resta es 0        => c=1 z=1
+   ;Si la resta es negativa => c=0 z=0
+   movlw   cont
+   subwf   PORTC, W	;PORTC - CONT = W
+   btfsc   STATUS, 2	;chequeo la bandera de ZERO -PAG31-
+   call	   igualdad
    
-    
    goto    loop
     
  ;------------------------------------------------------------------------------
@@ -143,13 +148,11 @@ tabla:
  
  conf_tmr0:
     banksel TRISA
-    
     bcf	    T0CS    ;usar el reloj interno, temporizador
     bcf	    PSA	    ;usar prescaler
     bsf	    PS2
     bsf	    PS1
     bsf	    PS0	    ;PS = 111 /1:256
-    
     banksel PORTA
     call    reiniciar_tmr0
     return
@@ -182,5 +185,11 @@ tabla:
     call    reiniciar_tmr0
     incf    PORTC, F	
     return
- 
+    
+ igualdad:
+    movlw   00000001B
+    movwf   PORTD
+    call    reiniciar_tmr0
+    return
+    
  END
