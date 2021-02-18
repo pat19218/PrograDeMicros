@@ -2546,6 +2546,8 @@ tabla:
 
     clrf TRISD ;Pin de salida puerto D
 
+    clrf TRISA ;Pin de salida puerto A
+
     banksel PORTA ;Me asegure que empiece en cero
     clrf PORTA
     movlw 11111100B
@@ -2585,11 +2587,12 @@ tabla:
    ;Si la resta es positiva => c=1 z=0
    ;Si la resta es 0 => c=1 z=1
    ;Si la resta es negativa => c=0 z=0
-   movlw cont
+   movwf cont, W
    subwf PORTC, W ;PORTC - CONT = W
    btfsc STATUS, 2 ;chequeo la bandera de ((STATUS) and 07Fh), 2 -PAG31-
    call igualdad
-   nop
+   btfss STATUS, 2
+   bcf PORTD, 0
    goto loop
 
  ;------------------------------------------------------------------------------
@@ -2637,9 +2640,8 @@ tabla:
     return
 
  igualdad:
-    movlw 00000001B
-    movwf PORTD
     call reiniciar_tmr0
+    bsf PORTD, 0
     return
 
  END
