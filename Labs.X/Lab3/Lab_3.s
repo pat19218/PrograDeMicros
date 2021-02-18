@@ -7,7 +7,7 @@
 ;Hardware:	LEDs en el puerto C,D y display puerto A Button en el puerto A
 ;
 ;Creado: 11 feb, 2021
-;Última modificación: 16 feb, 2021
+;Última modificación: 18 feb, 2021
 
 ;//////////////////////////////////////////////////////////////////////////////
 ; Configuration word 1
@@ -39,6 +39,8 @@ PROCESSOR 16F887
  
  PSECT udata_bank0  ;common memory
     cont:   DS 1 ;1 byte   
+ PSECT udata_bank0  ;common memory
+    cont_small:   DS 3 ;1 byte
 
  ;------------------------------------------------------------------------------
  ;  Vector reset
@@ -138,12 +140,16 @@ tabla:
    ;Si la resta es positiva => c=1 z=0
    ;Si la resta es 0        => c=1 z=1
    ;Si la resta es negativa => c=0 z=0
+   
    movwf   cont, W
    subwf   PORTC, W	;PORTC - CONT = W
+ 
+   
    btfsc   STATUS, 2	;chequeo la bandera de ZERO -PAG31-
    call	   igualdad
-   btfss   STATUS, 2
-   bcf	   PORTD, 0
+   btfsc   STATUS, 2
+   bcf	    PORTD, 0
+   
    goto    loop
     
  ;------------------------------------------------------------------------------
@@ -165,6 +171,8 @@ tabla:
     movlw   12
     movwf   TMR0
     bcf	    T0IF
+    btfsc   STATUS, 2
+    clrf    PORTC
     return
     
  inc_porta:		; loop de incremento de bit por botonazo
@@ -191,8 +199,13 @@ tabla:
     return
     
  igualdad:
+    bsf	    PORTD, 0
     call    reiniciar_tmr0
-    bsf   PORTD, 0
-    return
     
+    movlw   765		    ;valor inicial del contador
+    movwf   cont_small
+    decfsz  cont_small, 1   ;decrementar el contador
+    goto    $-1		    ;ejecutar línea anterior
+    return
+
  END

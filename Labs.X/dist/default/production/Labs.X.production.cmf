@@ -13,8 +13,8 @@
 %PSECTS
 $build/default/production/Lab3/Lab_3.o
 resVect CODE 0 0 0 3 2
-code CODE 0 0 0 167 2
-udata_bank0 BANK0 1 20 20 1 1
+code CODE 0 0 0 16D 2
+udata_bank0 BANK0 1 20 20 4 1
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -22,22 +22,22 @@ config CONFIG 4 2007 2007 2 2
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 21-6F 1
+RAM 24-6F 1
 RAM A0-EF 1
 RAM 110-16F 1
 RAM 190-1EF 1
-BANK0 21-6F 1
+BANK0 24-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 167-1FFF 2
-ENTRY 167-1FFF 2
+CONST 16D-1FFF 2
+ENTRY 16D-1FFF 2
 IDLOC 2000-2003 2
-CODE 167-1FFF 2
+CODE 16D-1FFF 2
 COMMON 70-7F 1
 EEDATA 2100-21FF 2
-STRCODE 167-1FFF 2
-STRING 167-1FFF 2
+STRCODE 16D-1FFF 2
+STRING 16D-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -52,116 +52,122 @@ STRING 167-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $build/default/production/Lab3/Lab_3.o
-0 resVect CODE >48:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-0 resVect CODE >49:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
 0 resVect CODE >50:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-2 resVect CODE >51:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-0 code CODE >55:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-100 code CODE >56:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-100 code CODE >57:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-101 code CODE >58:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-102 code CODE >59:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-103 code CODE >60:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-104 code CODE >61:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-105 code CODE >62:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-106 code CODE >63:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-107 code CODE >64:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-108 code CODE >65:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-109 code CODE >66:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-10A code CODE >67:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-10B code CODE >68:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-10C code CODE >69:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-10D code CODE >70:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-10E code CODE >71:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-10F code CODE >72:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-110 code CODE >73:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-111 code CODE >74:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-112 code CODE >75:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-113 code CODE >76:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-114 code CODE >82:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-114 code CODE >83:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-116 code CODE >84:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-117 code CODE >85:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-118 code CODE >87:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-11A code CODE >88:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-11B code CODE >89:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-11C code CODE >90:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-11D code CODE >92:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-11E code CODE >93:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-11F code CODE >94:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-120 code CODE >95:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-121 code CODE >96:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-122 code CODE >98:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-123 code CODE >100:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-124 code CODE >102:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-126 code CODE >103:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-127 code CODE >104:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-128 code CODE >105:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-129 code CODE >106:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-12A code CODE >107:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-12B code CODE >108:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-12C code CODE >110:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-12E code CODE >111:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-12F code CODE >112:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-130 code CODE >113:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-131 code CODE >114:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-132 code CODE >116:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-133 code CODE >117:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-135 code CODE >118:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-136 code CODE >119:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-137 code CODE >126:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+0 resVect CODE >51:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+0 resVect CODE >52:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+2 resVect CODE >53:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+0 code CODE >57:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+100 code CODE >58:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+100 code CODE >59:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+101 code CODE >60:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+102 code CODE >61:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+103 code CODE >62:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+104 code CODE >63:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+105 code CODE >64:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+106 code CODE >65:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+107 code CODE >66:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+108 code CODE >67:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+109 code CODE >68:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+10A code CODE >69:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+10B code CODE >70:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+10C code CODE >71:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+10D code CODE >72:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+10E code CODE >73:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+10F code CODE >74:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+110 code CODE >75:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+111 code CODE >76:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+112 code CODE >77:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+113 code CODE >78:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+114 code CODE >84:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+114 code CODE >85:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+116 code CODE >86:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+117 code CODE >87:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+118 code CODE >89:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11A code CODE >90:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11B code CODE >91:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11C code CODE >92:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11D code CODE >94:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11E code CODE >95:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+11F code CODE >96:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+120 code CODE >97:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+121 code CODE >98:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+122 code CODE >100:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+123 code CODE >102:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+124 code CODE >104:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+126 code CODE >105:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+127 code CODE >106:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+128 code CODE >107:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+129 code CODE >108:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+12A code CODE >109:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+12B code CODE >110:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+12C code CODE >112:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+12E code CODE >113:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+12F code CODE >114:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+130 code CODE >115:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+131 code CODE >116:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+132 code CODE >118:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+133 code CODE >119:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+135 code CODE >120:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+136 code CODE >121:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
 137 code CODE >128:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-138 code CODE >129:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-139 code CODE >132:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-13A code CODE >133:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-13B code CODE >134:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-13C code CODE >135:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-13D code CODE >141:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-13E code CODE >142:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-13F code CODE >143:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-140 code CODE >144:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-141 code CODE >145:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-142 code CODE >146:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-143 code CODE >147:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-144 code CODE >153:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-144 code CODE >154:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-146 code CODE >155:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-147 code CODE >156:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-148 code CODE >157:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-149 code CODE >158:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-14A code CODE >159:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-14B code CODE >160:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-14D code CODE >161:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-14E code CODE >162:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-14F code CODE >164:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-14F code CODE >165:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-150 code CODE >166:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-151 code CODE >167:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-152 code CODE >168:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-153 code CODE >170:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-153 code CODE >171:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-154 code CODE >172:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-155 code CODE >173:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-156 code CODE >174:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-157 code CODE >175:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-158 code CODE >176:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-159 code CODE >177:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-15A code CODE >179:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-15A code CODE >180:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-15B code CODE >181:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-15C code CODE >182:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-15D code CODE >183:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-15E code CODE >184:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-15F code CODE >185:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-160 code CODE >186:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-161 code CODE >188:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-161 code CODE >189:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-162 code CODE >190:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-163 code CODE >191:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-164 code CODE >193:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-164 code CODE >194:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-165 code CODE >195:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
-166 code CODE >196:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+137 code CODE >130:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+138 code CODE >131:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+139 code CODE >134:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+13A code CODE >135:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+13B code CODE >136:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+13C code CODE >137:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+13D code CODE >144:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+13E code CODE >145:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+13F code CODE >148:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+140 code CODE >149:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+141 code CODE >150:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+142 code CODE >151:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+143 code CODE >153:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+144 code CODE >159:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+144 code CODE >160:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+146 code CODE >161:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+147 code CODE >162:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+148 code CODE >163:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+149 code CODE >164:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+14A code CODE >165:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+14B code CODE >166:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+14D code CODE >167:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+14E code CODE >168:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+14F code CODE >170:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+14F code CODE >171:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+150 code CODE >172:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+151 code CODE >173:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+152 code CODE >174:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+153 code CODE >175:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+154 code CODE >176:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+155 code CODE >178:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+155 code CODE >179:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+156 code CODE >180:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+157 code CODE >181:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+158 code CODE >182:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+159 code CODE >183:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+15A code CODE >184:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+15B code CODE >185:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+15C code CODE >187:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+15C code CODE >188:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+15D code CODE >189:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+15E code CODE >190:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+15F code CODE >191:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+160 code CODE >192:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+161 code CODE >193:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+162 code CODE >194:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+163 code CODE >196:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+163 code CODE >197:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+164 code CODE >198:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+165 code CODE >199:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+166 code CODE >201:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+166 code CODE >202:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+167 code CODE >203:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+168 code CODE >205:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+169 code CODE >206:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+16A code CODE >207:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+16B code CODE >208:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
+16C code CODE >209:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Lab3/Lab_3.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -174,8 +180,8 @@ $build/default/production/Lab3/Lab_3.o
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__Hspace_0 167 0 ABS 0 - -
-__Hspace_1 21 0 ABS 0 - -
+__Hspace_0 16D 0 ABS 0 - -
+__Hspace_1 24 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __Hudata_bank0 0 0 ABS 0 udata_bank0 -
@@ -193,7 +199,7 @@ __Hdata 0 0 ABS 0 data -
 __Lcode 0 0 ABS 0 code -
 __Ldata 0 0 ABS 0 data -
 __S0 0 0 ABS 0 - -
-__S1 21 0 ABS 0 - -
+__S1 24 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 __HresVect 0 0 ABS 0 resVect -
 __Lconfig 0 0 CONFIG 4 config -
@@ -231,7 +237,7 @@ __Ludata_shr 0 0 ABS 0 udata_shr -
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-udata_bank0 1 20 20 1 1
+udata_bank0 1 20 20 4 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal
