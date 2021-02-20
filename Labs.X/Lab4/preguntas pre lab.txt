@@ -1,0 +1,14 @@
+q pasa con el PC cuando hay una interrupcion:
+	En el momento se le carga la ubicacion de interrupcion y tanto el PC como
+	el registro status son empujados al stack
+
+¿Para qué sirven los bits GIE, RBIE y T0IE?
+	-GIE (Global interrupt Enable), Indicamos que vamos a trabajar con interrupciones
+	-RBIE (Port Change Interrupt Enable bit), Activa/desactiva la interrupcion por cambio 
+						de estado en un pin del Puerto B
+	-T0IE(Timer0 Overflow Interrupt Flag bit), Indica cuando TMR0 tiene un overeflow
+
+¿Qué bits hay que configurar para habilitar los resistencias pull-up internas del
+PIC16F887?
+	Habilitar -RBPU = *OPTION_REG, 7*- (en 0 para q activen) e individualmente activar
+	el -WPUB(7:0)- (con 1 activo) ambos se encuentran en el banco 01
