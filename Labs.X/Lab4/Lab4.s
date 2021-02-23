@@ -36,13 +36,23 @@ PROCESSOR 16F887
   
   UP	EQU 0
   DOWN	EQU 1
-
+ ;------------------------------------------------------------------------------
+ ;  Macro
+ ;------------------------------------------------------------------------------
+  reiniciar_tmr0 macro
+    banksel PORTA
+    movlw   60
+    movwf   TMR0    ;ciclo de 50ms
+    bcf	    T0IF
+  endm
+  
  ;------------------------------------------------------------------------------
  ;  Variables
  ;------------------------------------------------------------------------------
  
  PSECT udata_bank0  ;common memory
-    cont:   DS 2 ;1 byte   
+    cont:   DS 1 ;1 byte   
+    segm:   DS 1 ;1 byte   
  PSECT udata_shr  ;common memory
     W_temp:	   DS 1 ;1 byte
     STATUS_temp:   DS 1 ;1 byte
@@ -70,6 +80,9 @@ PROCESSOR 16F887
     movwf   STATUS_temp
     
  isr:
+   btfsc   T0IF
+   call    T0_int
+    
    btfsc    RBIF
    call	    OC_int
    
@@ -82,6 +95,20 @@ PROCESSOR 16F887
  ;------------------------------------------------------------------------------
  ;	sub rutinas de interrupcion
  ;------------------------------------------------------------------------------
+ T0_int:
+  reiniciar_tmr0  ;50ms
+  incf    cont
+  movwf   cont, W
+  sublw   40	    ;50ms * 10 = 500ms
+  btfss   ZERO
+  goto    $+5
+  clrf    cont
+  incf    segm
+  movf	  segm, W
+  call	  tabla
+  movwf	  PORTD
+  return
+ 
  OC_int:
     banksel PORTB
     btfss   PORTB, UP
@@ -142,19 +169,26 @@ tabla:
     bsf	    WPUB, UP	    ;selecciono que pines
     bsf	    WPUB, DOWN    
     
+    banksel PORTA   ;Me asegure que empiece en cero
+    movlw   11111100B
+    movwf   PORTC
+    movwf   PORTD
+    movlw   0x00
+    movwf   cont
+    movwf   segm
+    
     banksel OSCCON
     bsf	    IRCF2   ;4MHZ = 110
     bsf	    IRCF1
     bcf	    IRCF0
     bsf	    SCS	    ;reloj interno activo
-
+    
+    call    conf_tmr0 
     call    conf_interrupt_oc
     call    conf_interrupt_ena
-   
     banksel PORTA
-    movlw   11111100B
-    movwf   PORTC
-    movwf   PORTD
+    clrf    PORTA
+    
     
     
     
@@ -163,12 +197,31 @@ tabla:
  ;------------------------------------------------------------------------------
  
  loop:
+    ;Parte 2, traduccion de contador hexadecimal a binario en display PORTC
+    movf    PORTA, W
+    call    tabla
+    movwf   PORTC
+    
+    ;Parte 3, contador a 1s usando TMR0
+    
    
   goto    loop
     
  ;------------------------------------------------------------------------------
  ;	sub rutinas
  ;------------------------------------------------------------------------------
+ 
+ conf_tmr0:
+    banksel TRISA
+    bcf	    T0CS    ;usar el reloj interno, temporizador
+    bcf	    PSA	    ;usar prescaler
+    bsf	    PS2
+    bsf	    PS1
+    bsf	    PS0	    ;PS = 111 /1:256
+    banksel PORTA
+    reiniciar_tmr0
+    return
+ 
  conf_interrupt_oc:
     banksel TRISB
     bsf	    IOCB, UP
@@ -181,6 +234,8 @@ tabla:
  
  conf_interrupt_ena:
     bsf	    GIE
+    bsf	    T0IE
+    bcf	    T0IF
     bsf	    RBIE
     bcf	    RBIF
     return

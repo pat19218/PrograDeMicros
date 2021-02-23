@@ -10,7 +10,7 @@
 ;Hardware: LEDs en el puerto A y displays puerto C y D Boton en el puerto B
 ;
 ;Creado: 19 feb, 2021
-;Última modificación: 19 feb, 2021
+;Última modificación: 23 feb, 2021
 
 ;
 ; Configuration word 1
@@ -2482,6 +2482,9 @@ ENDM
   CONFIG BOR4V = BOR40V ; Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
   CONFIG WRT = OFF ; Flash Program Memory Self Write Enable bits (Write protection off)
 
+
+  UP EQU 0
+  DOWN EQU 1
  ;------------------------------------------------------------------------------
  ; Macro
  ;------------------------------------------------------------------------------
@@ -2490,7 +2493,7 @@ ENDM
     movlw 60
     movwf TMR0 ;ciclo de 50ms
     bcf ((INTCON) and 07Fh), 2
-    endm
+  endm
 
  ;------------------------------------------------------------------------------
  ; Variables
@@ -2498,6 +2501,7 @@ ENDM
 
  PSECT udata_bank0 ;common memory
     cont: DS 1 ;1 byte
+    segm: DS 1 ;1 byte
  PSECT udata_shr ;common memory
     W_temp: DS 1 ;1 byte
     STATUS_temp: DS 1 ;1 byte
@@ -2525,8 +2529,11 @@ ENDM
     movwf STATUS_temp
 
  isr:
-    btfsc ((INTCON) and 07Fh), 2
-    call T0_int
+   btfsc ((INTCON) and 07Fh), 2
+   call T0_int
+
+   btfsc ((INTCON) and 07Fh), 0
+   call OC_int
 
  pop:
     swapf STATUS_temp, W
@@ -2538,14 +2545,26 @@ ENDM
  ; sub rutinas de interrupcion
  ;------------------------------------------------------------------------------
  T0_int:
-    reiniciar_tmr0 ;50ms
-    incf cont
-    movwf cont, W
-    sublw 20 ;50ms * 10 = 500ms
-    btfss ((STATUS) and 07Fh), 2
-    goto $+2
-    clrf cont
+  reiniciar_tmr0 ;50ms
+  incf cont
+  movwf cont, W
+  sublw 40 ;50ms * 10 = 500ms
+  btfss ((STATUS) and 07Fh), 2
+  goto $+5
+  clrf cont
+  incf segm
+  movf segm, W
+  call tabla
+  movwf PORTD
+  return
+
+ OC_int:
+    banksel PORTB
+    btfss PORTB, UP
     incf PORTA
+    btfss PORTB, DOWN
+    decf PORTA
+    bcf ((INTCON) and 07Fh), 0
 
     return
 
@@ -2579,13 +2598,12 @@ tabla:
 
  main:
     banksel ANSEL ;Selecciono el banco donde esta ANSEL
-    clrf ANSEL
+    clrf ANSEL ;I/O digitales
     clrf ANSELH
 
     banksel TRISB ;Puerto B pin 0 y 1 entradas
-    clrf TRISB
-    bsf TRISB, 0
-    bsf TRISB, 1
+    bsf TRISB, UP
+    bsf TRISB, DOWN
 
     clrf TRISC ;Pines de salida
     clrf TRISD ;Pin de salida puerto D
@@ -2595,13 +2613,18 @@ tabla:
     bsf TRISA, 5
     bsf TRISA, 6
     bsf TRISA, 7
+    ;conf. pull-up
+    bcf OPTION_REG, 7 ;habilito pull-up
+    bsf WPUB, UP ;selecciono que pines
+    bsf WPUB, DOWN
 
     banksel PORTA ;Me asegure que empiece en cero
-    clrf PORTA
-    clrf PORTB
     movlw 11111100B
     movwf PORTC
     movwf PORTD
+    movlw 0x00
+    movwf cont
+    movwf segm
 
     banksel OSCCON
     bsf ((OSCCON) and 07Fh), 6 ;4MHZ = 110
@@ -2610,10 +2633,12 @@ tabla:
     bsf ((OSCCON) and 07Fh), 0 ;reloj interno activo
 
     call conf_tmr0
+    call conf_interrupt_oc
     call conf_interrupt_ena
     banksel PORTA
-    movlw 0x00
-    movwf cont
+    clrf PORTA
+
+
 
 
  ;------------------------------------------------------------------------------
@@ -2621,7 +2646,13 @@ tabla:
  ;------------------------------------------------------------------------------
 
  loop:
-  nop
+    ;Parte 2, traduccion de contador hexadecimal a binario en display PORTC
+    movf PORTA, W
+    call tabla
+    movwf PORTC
+
+    ;Parte 3, contador a 1s usando TMR0
+
 
   goto loop
 
@@ -2640,11 +2671,22 @@ tabla:
     reiniciar_tmr0
     return
 
+ conf_interrupt_oc:
+    banksel TRISB
+    bsf IOCB, UP
+    bsf IOCB, DOWN
+
+    banksel PORTA
+    movf PORTB, W ;al leer termina condicion de ser distintos (mismatch)
+    bcf ((INTCON) and 07Fh), 0
+    return
 
  conf_interrupt_ena:
     bsf ((INTCON) and 07Fh), 7
     bsf ((INTCON) and 07Fh), 5
     bcf ((INTCON) and 07Fh), 2
+    bsf ((INTCON) and 07Fh), 3
+    bcf ((INTCON) and 07Fh), 0
     return
 
  END
