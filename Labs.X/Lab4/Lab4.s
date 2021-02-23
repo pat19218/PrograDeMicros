@@ -7,7 +7,7 @@
 ;Hardware:	LEDs en el puerto A y displays puerto C y D Boton en el puerto B
 ;
 ;Creado: 19 feb, 2021
-;Última modificación: 19 feb, 2021
+;Última modificación: 23 feb, 2021
 
 ;//////////////////////////////////////////////////////////////////////////////
 ; Configuration word 1
@@ -33,22 +33,25 @@ PROCESSOR 16F887
   CONFIG  BOR4V = BOR40V        ; Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
   CONFIG  WRT = OFF             ; Flash Program Memory Self Write Enable bits (Write protection off)
  
+  
+  UP	EQU 0
+  DOWN	EQU 1
  ;------------------------------------------------------------------------------
  ;  Macro
  ;------------------------------------------------------------------------------
-  reiniciar_tmr0 macro
-    banksel PORTA
-    movlw   60
-    movwf   TMR0    ;ciclo de 50ms
-    bcf	    T0IF
-    endm
-   
+  ;reiniciar_tmr0 macro
+    ;banksel PORTA
+    ;movlw   60
+    ;movwf   TMR0    ;ciclo de 50ms
+    ;bcf	    T0IF
+    ;endm
+   */
  ;------------------------------------------------------------------------------
  ;  Variables
  ;------------------------------------------------------------------------------
  
  PSECT udata_bank0  ;common memory
-    cont:   DS 1 ;1 byte   
+    cont:   DS 2 ;1 byte   
  PSECT udata_shr  ;common memory
     W_temp:	   DS 1 ;1 byte
     STATUS_temp:   DS 1 ;1 byte
@@ -76,9 +79,12 @@ PROCESSOR 16F887
     movwf   STATUS_temp
     
  isr:
-    btfsc   T0IF
-    call    T0_int
+   ;btfsc   T0IF
+   ;call    T0_int
     
+   btfsc    RBIF
+   call	    OC_int
+   
  pop:
     swapf   STATUS_temp, W
     movwf   STATUS
@@ -88,18 +94,28 @@ PROCESSOR 16F887
  ;------------------------------------------------------------------------------
  ;	sub rutinas de interrupcion
  ;------------------------------------------------------------------------------
- T0_int:
-    reiniciar_tmr0  ;50ms
-    incf    cont
-    movwf   cont, W
-    sublw   20	    ;50ms * 10 = 500ms
-    btfss    ZERO
-    goto    $+2
-    clrf    cont
+ ;T0_int:
+  ;  reiniciar_tmr0  ;50ms
+   ; incf    cont
+    ;movwf   cont, W
+    ;sublw   20	    ;50ms * 10 = 500ms
+    ;btfss    ZERO
+    ;goto    $+2
+    ;clrf    cont
+    ;incf    PORTA
+    ;
+    ;return
+ 
+ OC_int:
+    banksel PORTB
+    btfss   PORTB, UP
     incf    PORTA
+    btfss   PORTB, DOWN
+    decf    PORTA
+    bcf	    RBIF
     
     return
- 
+    
  PSECT code, delta=2, abs
  ORG 100h   ;posicion para el código
 tabla: 
@@ -130,13 +146,12 @@ tabla:
  
  main:
     banksel ANSEL   ;Selecciono el banco donde esta ANSEL
-    clrf    ANSEL
+    clrf    ANSEL   ;I/O digitales
     clrf    ANSELH
     
     banksel TRISB   ;Puerto B pin 0 y 1 entradas
-    clrf    TRISB
-    bsf	    TRISB, 0
-    bsf	    TRISB, 1
+    bsf	    TRISB, UP
+    bsf	    TRISB, DOWN
     
     clrf    TRISC   ;Pines de salida
     clrf    TRISD   ;Pin de salida puerto D
@@ -146,10 +161,14 @@ tabla:
     bsf	    TRISA, 5
     bsf	    TRISA, 6
     bsf	    TRISA, 7
+    ;conf. pull-up
+    bcf	    OPTION_REG, 7   ;habilito pull-up
+    bsf	    WPUB, UP	    ;selecciono que pines
+    bsf	    WPUB, DOWN    
     
     banksel PORTA   ;Me asegure que empiece en cero
-    clrf    PORTA
-    clrf    PORTB
+    ;clrf    PORTA
+    ;clrf    PORTB
     movlw   11111100B
     movwf   PORTC
     movwf   PORTD
@@ -160,11 +179,11 @@ tabla:
     bcf	    IRCF0
     bsf	    SCS	    ;reloj interno activo
     
-    call    conf_tmr0 
+    ;call    conf_tmr0 
+    call    conf_interrupt_oc
     call    conf_interrupt_ena
     banksel PORTA
-    movlw   0x00
-    movwf   cont
+    
     
     
  ;------------------------------------------------------------------------------
@@ -172,7 +191,7 @@ tabla:
  ;------------------------------------------------------------------------------
  
  loop:
-  nop
+  
    
   goto    loop
     
@@ -180,22 +199,33 @@ tabla:
  ;	sub rutinas
  ;------------------------------------------------------------------------------
  
- conf_tmr0:
-    banksel TRISA
-    bcf	    T0CS    ;usar el reloj interno, temporizador
-    bcf	    PSA	    ;usar prescaler
-    bsf	    PS2
-    bsf	    PS1
-    bsf	    PS0	    ;PS = 111 /1:256
-    banksel PORTA
-    reiniciar_tmr0
-    return
+ ;conf_tmr0:
+    ;banksel TRISA
+    ;bcf	    T0CS    ;usar el reloj interno, temporizador
+    ;bcf	    PSA	    ;usar prescaler
+    ;bsf	    PS2
+    ;bsf	    PS1
+    ;bsf	    PS0	    ;PS = 111 /1:256
+    ;banksel PORTA
+    ;reiniciar_tmr0
+    ;return
  
+ conf_interrupt_oc:
+    banksel TRISB
+    bsf	    IOCB, UP
+    bsf	    IOCB, DOWN
+    
+    banksel PORTA
+    movf    PORTB, W	;al leer termina condicion de ser distintos (mismatch)
+    bcf	    RBIF
+    return
  
  conf_interrupt_ena:
     bsf	    GIE
-    bsf	    T0IE
-    bcf	    T0IF
+    ;bsf	    T0IE
+    ;bcf	    T0IF
+    bsf	    RBIE
+    bcf	    RBIF
     return
  
  END
