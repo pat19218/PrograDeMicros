@@ -2549,11 +2549,12 @@ ENDM
   reiniciar_tmr0 ;50ms
   incf cont
   movwf cont, W
-  sublw 10 ;50ms * 10 = 500ms
+  sublw 20 ;50ms * 10 = 500ms
   btfss ((STATUS) and 07Fh), 2
   goto return_tm0
   clrf cont
   incf segm
+
  return_tm0:
   return
 
@@ -2629,7 +2630,6 @@ tabla:
     clrf PORTA
     movlw 11111100B
     movwf PORTC
-    clrf PORTD
     movlw 0x00
     movwf cont
     movwf segm
