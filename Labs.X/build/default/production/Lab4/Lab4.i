@@ -2490,7 +2490,7 @@ ENDM
  ;------------------------------------------------------------------------------
   reiniciar_tmr0 macro
     banksel PORTA
-    movlw 60
+    movlw 61
     movwf TMR0 ;ciclo de 50ms
     bcf ((INTCON) and 07Fh), 2
   endm
@@ -2500,7 +2500,7 @@ ENDM
  ;------------------------------------------------------------------------------
 
  PSECT udata_bank0 ;common memory
-    cont: DS 1 ;1 byte
+    cont: DS 2 ;1 byte
     segm: DS 1 ;1 byte
  PSECT udata_shr ;common memory
     W_temp: DS 1 ;1 byte
@@ -2548,14 +2548,12 @@ ENDM
   reiniciar_tmr0 ;50ms
   incf cont
   movwf cont, W
-  sublw 40 ;50ms * 10 = 500ms
+  sublw 10 ;50ms * 10 = 500ms
   btfss ((STATUS) and 07Fh), 2
-  goto $+5
+  goto return_tm0
   clrf cont
-  incf segm
-  movf segm, W
-  call tabla
-  movwf PORTD
+  incf PORTD
+ return_tm0:
   return
 
  OC_int:
@@ -2565,7 +2563,6 @@ ENDM
     btfss PORTB, DOWN
     decf PORTA
     bcf ((INTCON) and 07Fh), 0
-
     return
 
  PSECT code, delta=2, abs
@@ -2618,14 +2615,6 @@ tabla:
     bsf WPUB, UP ;selecciono que pines
     bsf WPUB, DOWN
 
-    banksel PORTA ;Me asegure que empiece en cero
-    movlw 11111100B
-    movwf PORTC
-    movwf PORTD
-    movlw 0x00
-    movwf cont
-    movwf segm
-
     banksel OSCCON
     bsf ((OSCCON) and 07Fh), 6 ;4MHZ = 110
     bsf ((OSCCON) and 07Fh), 5
@@ -2635,11 +2624,14 @@ tabla:
     call conf_tmr0
     call conf_interrupt_oc
     call conf_interrupt_ena
-    banksel PORTA
+    banksel PORTA ;Me asegure que empiece en cero
     clrf PORTA
-
-
-
+    movlw 11111100B
+    movwf PORTC
+    clrf PORTD
+    movlw 0x00
+    movwf cont
+    movwf segm
 
  ;------------------------------------------------------------------------------
  ; loop principal
@@ -2652,7 +2644,8 @@ tabla:
     movwf PORTC
 
     ;Parte 3, contador a 1s usando TMR0
-
+    ;btfsc ((INTCON) and 07Fh), 2
+    ;call inc_portD
 
   goto loop
 
@@ -2687,6 +2680,14 @@ tabla:
     bcf ((INTCON) and 07Fh), 2
     bsf ((INTCON) and 07Fh), 3
     bcf ((INTCON) and 07Fh), 0
+    return
+
+ inc_portD: ; loop de incremento de bit por botonazo
+    btfss ((INTCON) and 07Fh), 2
+    goto $+3
+    movf segm, W ;Guardo la variable en el registro W
+    call tabla ;voy a la tabla en la posicion del cont y se guarda en w
+    movwf PORTD ;el dato de w lo mando al puerto A
     return
 
  END

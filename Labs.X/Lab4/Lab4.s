@@ -41,7 +41,7 @@ PROCESSOR 16F887
  ;------------------------------------------------------------------------------
   reiniciar_tmr0 macro
     banksel PORTA
-    movlw   60
+    movlw   61
     movwf   TMR0    ;ciclo de 50ms
     bcf	    T0IF
   endm
@@ -51,7 +51,7 @@ PROCESSOR 16F887
  ;------------------------------------------------------------------------------
  
  PSECT udata_bank0  ;common memory
-    cont:   DS 1 ;1 byte   
+    cont:   DS 2 ;1 byte   
     segm:   DS 1 ;1 byte   
  PSECT udata_shr  ;common memory
     W_temp:	   DS 1 ;1 byte
@@ -99,14 +99,12 @@ PROCESSOR 16F887
   reiniciar_tmr0  ;50ms
   incf    cont
   movwf   cont, W
-  sublw   40	    ;50ms * 10 = 500ms
+  sublw   10	    ;50ms * 10 = 500ms
   btfss   ZERO
-  goto    $+5
+  goto    return_tm0
   clrf    cont
-  incf    segm
-  movf	  segm, W
-  call	  tabla
-  movwf	  PORTD
+  incf    PORTD
+ return_tm0:
   return
  
  OC_int:
@@ -116,7 +114,6 @@ PROCESSOR 16F887
     btfss   PORTB, DOWN
     decf    PORTA
     bcf	    RBIF
-    
     return
     
  PSECT code, delta=2, abs
@@ -169,14 +166,6 @@ tabla:
     bsf	    WPUB, UP	    ;selecciono que pines
     bsf	    WPUB, DOWN    
     
-    banksel PORTA   ;Me asegure que empiece en cero
-    movlw   11111100B
-    movwf   PORTC
-    movwf   PORTD
-    movlw   0x00
-    movwf   cont
-    movwf   segm
-    
     banksel OSCCON
     bsf	    IRCF2   ;4MHZ = 110
     bsf	    IRCF1
@@ -186,12 +175,15 @@ tabla:
     call    conf_tmr0 
     call    conf_interrupt_oc
     call    conf_interrupt_ena
-    banksel PORTA
+    banksel PORTA   ;Me asegure que empiece en cero
     clrf    PORTA
-    
-    
-    
-    
+    movlw   11111100B
+    movwf   PORTC
+    clrf    PORTD
+    movlw   0x00
+    movwf   cont
+    movwf   segm
+     
  ;------------------------------------------------------------------------------
  ;  loop principal
  ;------------------------------------------------------------------------------
@@ -203,7 +195,8 @@ tabla:
     movwf   PORTC
     
     ;Parte 3, contador a 1s usando TMR0
-    
+    ;btfsc   T0IF
+    ;call    inc_portD
    
   goto    loop
     
@@ -216,7 +209,7 @@ tabla:
     bcf	    T0CS    ;usar el reloj interno, temporizador
     bcf	    PSA	    ;usar prescaler
     bsf	    PS2
-    bsf	    PS1
+    bsf	    PS1 
     bsf	    PS0	    ;PS = 111 /1:256
     banksel PORTA
     reiniciar_tmr0
@@ -238,6 +231,14 @@ tabla:
     bcf	    T0IF
     bsf	    RBIE
     bcf	    RBIF
+    return
+    
+ inc_portD:		; loop de incremento de bit por botonazo
+    btfss   T0IF
+    goto    $+3
+    movf    segm, W	;Guardo la variable en el registro W
+    call    tabla	;voy a la tabla en la posicion del cont y se guarda en w
+    movwf   PORTD	;el dato de w lo mando al puerto A
     return
  
  END
