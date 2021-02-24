@@ -52,10 +52,11 @@ PROCESSOR 16F887
  
  PSECT udata_bank0  ;common memory
     cont:   DS 2 ;1 byte   
-    segm:   DS 1 ;1 byte   
+ 
  PSECT udata_shr  ;common memory
     W_temp:	   DS 1 ;1 byte
     STATUS_temp:   DS 1 ;1 byte
+    segm:	   DS 1 ;1 byte   
 
  ;------------------------------------------------------------------------------
  ;  Vector reset
@@ -103,7 +104,7 @@ PROCESSOR 16F887
   btfss   ZERO
   goto    return_tm0
   clrf    cont
-  incf    PORTD
+  incf    segm
  return_tm0:
   return
  
@@ -195,8 +196,7 @@ tabla:
     movwf   PORTC
     
     ;Parte 3, contador a 1s usando TMR0
-    ;btfsc   T0IF
-    ;call    inc_portD
+    call    inc_portD
    
   goto    loop
     
@@ -234,8 +234,6 @@ tabla:
     return
     
  inc_portD:		; loop de incremento de bit por botonazo
-    btfss   T0IF
-    goto    $+3
     movf    segm, W	;Guardo la variable en el registro W
     call    tabla	;voy a la tabla en la posicion del cont y se guarda en w
     movwf   PORTD	;el dato de w lo mando al puerto A
