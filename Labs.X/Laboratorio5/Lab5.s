@@ -1,13 +1,13 @@
-;Archivo:	Lab4.S
+;Archivo:	Lab5.S
 ;Dispositivo:	PIC16f887
 ;Autor:		Cristhofer Patzan
 ;Compilador:	pic-as (v2.30), MPLABX V5.45
 ;
-;Programa:	contador 4 bits por interrupciones y incr/decre del puerto
-;Hardware:	LEDs en el puerto A y displays puerto C y D Boton en el puerto B
+;Programa:	contador en portD usando IOC y 5 display multiplexado en portC
+;Hardware:	push button, leds, resistencias, display 7 seg cc y transistores
 ;
-;Creado: 19 feb, 2021
-;Última modificación: 23 feb, 2021
+;Creado: 28 feb, 2021
+;Última modificación: 28 feb, 2021
 
 ;//////////////////////////////////////////////////////////////////////////////
 ; Configuration word 1
@@ -33,9 +33,9 @@ PROCESSOR 16F887
   CONFIG  BOR4V = BOR40V        ; Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
   CONFIG  WRT = OFF             ; Flash Program Memory Self Write Enable bits (Write protection off)
  
-  
-  UP	EQU 0
-  DOWN	EQU 1
+
+ UP	EQU 0
+ DOWN	EQU 1
  ;------------------------------------------------------------------------------
  ;  Macro
  ;------------------------------------------------------------------------------
@@ -51,7 +51,11 @@ PROCESSOR 16F887
  ;------------------------------------------------------------------------------
  
  PSECT udata_bank0  ;common memory
-    cont:   DS 2 ;1 byte   
+    cont:	DS 2 ;1 byte   
+    var:	DS 1
+    banderas:	DS 1
+    nibble:	DS 2
+    display_var:DS 2
  
  PSECT udata_shr  ;common memory
     W_temp:	   DS 1 ;1 byte
@@ -98,25 +102,38 @@ PROCESSOR 16F887
  ;------------------------------------------------------------------------------
  T0_int:
   reiniciar_tmr0  ;50ms
-  incf    cont
-  movwf   cont, W
-  sublw   20	    ;50ms * 10 = 500ms
-  btfss   ZERO
-  goto    return_tm0
-  clrf    cont
-  incf    segm
+  clrf	PORTA
+  btfsc	banderas, 0
+  goto	display_1
   
- return_tm0:
+  display_0:
+    movf    display_var+0, W
+    movwf   PORTC
+    bsf	    PORTA, 4
+    goto    siguiente_display
+  display_1:
+    movf    display_var+1, W
+    movwf   PORTC
+    bsf	    PORTA, 3
+    goto    siguiente_display
+    
+  siguiente_display:
+    movlw   1
+    xorwf   banderas, F
+    
   return
  
  OC_int:
     banksel PORTB
     btfss   PORTB, UP
-    incf    PORTA
+    incf    PORTD
     btfss   PORTB, DOWN
-    decf    PORTA
+    decf    PORTD
     bcf	    RBIF
     return
+ ;------------------------------------------------------------------------------
+ ;	TABLA / INICIO DEL CODIGO 
+ ;------------------------------------------------------------------------------
     
  PSECT code, delta=2, abs
  ORG 100h   ;posicion para el código
@@ -151,19 +168,14 @@ tabla:
     clrf    ANSEL   ;I/O digitales
     clrf    ANSELH
     
-    banksel TRISB   ;Puerto B pin 0 y 1 entradas
+    banksel TRISA
+    clrf    TRISA
+    clrf    TRISC
+    clrf    TRISD
     bsf	    TRISB, UP
     bsf	    TRISB, DOWN
     
-    clrf    TRISC   ;Pines de salida
-    clrf    TRISD   ;Pin de salida puerto D
-    
-    clrf    TRISA   ;Pin de salida puerto A
-    bsf	    TRISA, 4 ;Desabilito pines
-    bsf	    TRISA, 5
-    bsf	    TRISA, 6
-    bsf	    TRISA, 7
-    ;conf. pull-up
+     ;conf. pull-up
     bcf	    OPTION_REG, 7   ;habilito pull-up
     bsf	    WPUB, UP	    ;selecciono que pines
     bsf	    WPUB, DOWN    
@@ -179,24 +191,22 @@ tabla:
     call    conf_interrupt_ena
     banksel PORTA   ;Me asegure que empiece en cero
     clrf    PORTA
-    movlw   11111100B
-    movwf   PORTC
-    movlw   0x00
-    movwf   cont
-    movwf   segm
-     
+    clrf    PORTC
+    clrf    PORTD
+   
  ;------------------------------------------------------------------------------
  ;  loop principal
  ;------------------------------------------------------------------------------
  
  loop:
-    ;Parte 2, traduccion de contador hexadecimal a binario en display PORTC
-    movf    PORTA, W
-    call    tabla
-    movwf   PORTC
     
-    ;Parte 3, contador a 1s usando TMR0
-    call    inc_portD
+    movf   PORTD, W
+    movwf   var
+    
+    call    separarar_nibbles
+    call    preparar_display
+    
+    
    
   goto    loop
     
@@ -211,7 +221,6 @@ tabla:
     bsf	    PS2
     bsf	    PS1 
     bsf	    PS0	    ;PS = 111 /1:256
-    banksel PORTA
     reiniciar_tmr0
     return
  
@@ -233,10 +242,21 @@ tabla:
     bcf	    RBIF
     return
     
- inc_portD:		; loop de incremento de bit por botonazo
-    movf    segm, W	;Guardo la variable en el registro W
-    call    tabla	;voy a la tabla en la posicion del cont y se guarda en w
-    movwf   PORTD	;el dato de w lo mando al puerto A
+ separarar_nibbles:
+    movf    var, W
+    andlw   0x0f
+    movwf   nibble
+    swapf   var, W
+    andlw   0x0f
+    movwf   nibble+1
     return
- 
- END
+    
+ preparar_display:
+    movf    nibble, W
+    call    tabla
+    movwf   display_var
+    movf    nibble+1, W
+    call    tabla
+    movwf   display_var+1
+    return
+END

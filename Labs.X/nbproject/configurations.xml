@@ -14,6 +14,7 @@
                    projectFiles="true">
       <itemPath>Lab3/Lab_3.s</itemPath>
       <itemPath>Lab4/Lab4.s</itemPath>
+      <itemPath>Laboratorio5/Lab5.s</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -65,6 +66,14 @@
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
       <item path="Lab3/Lab_3.s" ex="true" overriding="false">
+        <pic-as-assembler>
+        </pic-as-assembler>
+        <pic-as-global>
+        </pic-as-global>
+        <pic-as-linker>
+        </pic-as-linker>
+      </item>
+      <item path="Lab4/Lab4.s" ex="true" overriding="false">
       </item>
       <Simulator>
         <property key="codecoverage.enabled" value="Disable"/>
