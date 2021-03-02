@@ -42,7 +42,7 @@ PROCESSOR 16F887
   reiniciar_tmr0 macro
     banksel PORTA
     movlw   180
-    movwf   TMR0    ;ciclo de 50ms
+    movwf   TMR0    ;ciclo de 23ms
     bcf	    T0IF
   endm
   
