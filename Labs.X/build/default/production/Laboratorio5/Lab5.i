@@ -2490,7 +2490,7 @@ ENDM
  ;------------------------------------------------------------------------------
   reiniciar_tmr0 macro
     banksel PORTA
-    movlw 61
+    movlw 180
     movwf TMR0 ;ciclo de 50ms
     bcf ((INTCON) and 07Fh), 2
   endm
@@ -2556,43 +2556,53 @@ ENDM
  T0_int:
   reiniciar_tmr0 ;50ms
   clrf PORTA
-  btfsc banderas, 0
+
+  btfss banderas, 0
+  goto display_0
+
+  btfss banderas, 1
   goto display_1
 
+  btfss banderas, 2
+  goto display_5
+
+  btfss banderas, 3
+  goto display_4
+
+  btfss banderas, 4
+  goto display_3
+
   display_0:
+    bsf banderas, 0
     movf display_var+0, W
     movwf PORTC
     bsf PORTA, 4
-    goto siguiente_display
+    return
   display_1:
+    bsf banderas, 1
     movf display_var+1, W
     movwf PORTC
     bsf PORTA, 3
-    goto siguiente_display
+    return
 
  display_5:
+    bsf banderas, 2
     movf display_var+2, W
     movwf PORTC
     bsf PORTA, 0
     return
  display_4:
+    bsf banderas, 3
     movf display_var+3, W
     movwf PORTC
     bsf PORTA, 1
     return
  display_3:
+    clrf banderas
     movf display_var+4, W
     movwf PORTC
     bsf PORTA, 2
-    goto siguiente_display
-
-  siguiente_display:
-   incf banderas, F
-   movlw 6
-   subwf banderas, W
-   btfsc ((STATUS) and 07Fh), 2
-   clrf banderas
-   return
+    return
 
  OC_int:
     banksel PORTB
@@ -2702,7 +2712,7 @@ tabla:
     bcf ((OPTION_REG) and 07Fh), 3 ;usar prescaler
     bsf ((OPTION_REG) and 07Fh), 2
     bsf ((OPTION_REG) and 07Fh), 1
-    bsf ((OPTION_REG) and 07Fh), 0 ;PS = 111 /1:256
+    bcf ((OPTION_REG) and 07Fh), 0 ;PS = 110 /1:128
     reiniciar_tmr0
     return
 
