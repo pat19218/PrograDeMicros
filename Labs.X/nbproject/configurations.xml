@@ -73,7 +73,21 @@
         <pic-as-linker>
         </pic-as-linker>
       </item>
-      <item path="Lab4/Lab4.s" ex="true" overriding="false">
+      <item path="Lab4/Lab4.s" ex="false" overriding="false">
+        <pic-as-assembler>
+        </pic-as-assembler>
+        <pic-as-global>
+        </pic-as-global>
+        <pic-as-linker>
+        </pic-as-linker>
+      </item>
+      <item path="Laboratorio5/Lab5.s" ex="false" overriding="false">
+        <pic-as-assembler>
+        </pic-as-assembler>
+        <pic-as-global>
+        </pic-as-global>
+        <pic-as-linker>
+        </pic-as-linker>
       </item>
       <Simulator>
         <property key="codecoverage.enabled" value="Disable"/>

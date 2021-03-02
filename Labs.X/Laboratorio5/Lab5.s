@@ -51,11 +51,15 @@ PROCESSOR 16F887
  ;------------------------------------------------------------------------------
  
  PSECT udata_bank0  ;common memory
-    cont:	DS 2 ;1 byte   
+    centena:	DS 1 ;1 byte   
+    decena:	DS 1
+    unidad:	DS 1
+    dividendo:	DS 1
+    
     var:	DS 1
     banderas:	DS 1
     nibble:	DS 2
-    display_var:DS 2
+    display_var:DS 5
  
  PSECT udata_shr  ;common memory
     W_temp:	   DS 1 ;1 byte
@@ -117,11 +121,29 @@ PROCESSOR 16F887
     bsf	    PORTA, 3
     goto    siguiente_display
     
-  siguiente_display:
-    movlw   1
-    xorwf   banderas, F
+ display_5:
+    movf    display_var+2, W
+    movwf   PORTC
+    bsf	    PORTA, 0
+    return
+ display_4:
+    movf    display_var+3, W
+    movwf   PORTC
+    bsf	    PORTA, 1
+    return
+ display_3:
+    movf    display_var+4, W
+    movwf   PORTC
+    bsf	    PORTA, 2
+    goto    siguiente_display
     
-  return
+  siguiente_display:
+   incf     banderas, F
+   movlw    6
+   subwf    banderas, W
+   btfsc    ZERO
+   clrf     banderas
+   return
  
  OC_int:
     banksel PORTB
@@ -199,14 +221,25 @@ tabla:
  ;------------------------------------------------------------------------------
  
  loop:
-    
+    ;parte 2
     movf   PORTD, W
     movwf   var
-    
     call    separarar_nibbles
     call    preparar_display
     
+    ;parte 3
+    movf    PORTD, W
+    movwf   dividendo
     
+    call    dividir_100
+    movf    centena, W
+    
+    call    dividir_10
+    movf    decena, W
+
+    call    dividir_1
+    movf    unidad, W
+
    
   goto    loop
     
@@ -258,5 +291,59 @@ tabla:
     movf    nibble+1, W
     call    tabla
     movwf   display_var+1
+    
+    movf    centena, W
+    call    tabla
+    movwf   display_var+2
+    
+    movf    decena, W
+    call    tabla
+    movwf   display_var+3
+    
+    movf    unidad, W
+    call    tabla
+    movwf   display_var+4
     return
+    
+ dividir_100:
+   ;Si la resta es positiva => c=1 z=0
+   ;Si la resta es 0        => c=1 z=1
+   ;Si la resta es negativa => c=0 z=0
+    clrf    centena	;limpio mi variable
+    movlw   100	
+    subwf   dividendo, F; le resto 100 al dividendo
+    btfsc   CARRY	; si carry es 0 then 100 es mayor que el puerto
+    incf    centena	; si carry es 1 then 100 es menor que el puerto
+    btfsc   CARRY
+    goto    $-5 
+    movlw   100
+    addwf   dividendo, F
+    return
+ 
+ dividir_10:
+    clrf    decena
+    movlw   10
+    subwf   dividendo, F
+    btfsc   CARRY	; si carry es 0 then 10 es mayor que dividendo
+    incf    decena	; si carry es 1 then 10 es menor que dividendo
+    btfsc   CARRY
+    goto    $-5 
+    movlw   10
+    addwf   dividendo, F
+       
+    return
+  
+ dividir_1:
+    clrf    unidad
+    movlw   1
+    subwf   dividendo, F
+    btfsc   CARRY	; si carry es 0 then 100 es mayor que el residuo
+    incf    unidad	; si carry es 1 then 100 es menor que el residuo
+    btfsc   CARRY
+    goto    $-5 
+    movlw   1
+    addwf   dividendo, F
+    
+    return
+    
 END
