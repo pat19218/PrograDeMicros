@@ -143,8 +143,6 @@ tabla:
    
    movwf   cont, W
    subwf   PORTC, W	;PORTC - CONT = W
- 
-   
    btfsc   STATUS, 2	;chequeo la bandera de ZERO -PAG31-
    call	   igualdad
    btfsc   STATUS, 2

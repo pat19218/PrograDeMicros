@@ -73,7 +73,7 @@
         <pic-as-linker>
         </pic-as-linker>
       </item>
-      <item path="Lab4/Lab4.s" ex="false" overriding="false">
+      <item path="Lab4/Lab4.s" ex="true" overriding="false">
         <pic-as-assembler>
         </pic-as-assembler>
         <pic-as-global>
@@ -81,7 +81,7 @@
         <pic-as-linker>
         </pic-as-linker>
       </item>
-      <item path="Laboratorio5/Lab5.s" ex="false" overriding="false">
+      <item path="Laboratorio5/Lab5.s" ex="true" overriding="false">
         <pic-as-assembler>
         </pic-as-assembler>
         <pic-as-global>

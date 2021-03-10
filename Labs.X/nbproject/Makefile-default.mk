@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=Lab4/Lab4.s Laboratorio5/Lab5.s
+SOURCEFILES_QUOTED_IF_SPACED=
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Lab4/Lab4.o ${OBJECTDIR}/Laboratorio5/Lab5.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/Lab4/Lab4.o.d ${OBJECTDIR}/Laboratorio5/Lab5.o.d
+OBJECTFILES_QUOTED_IF_SPACED=
+POSSIBLE_DEPFILES=
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/Lab4/Lab4.o ${OBJECTDIR}/Laboratorio5/Lab5.o
+OBJECTFILES=
 
 # Source Files
-SOURCEFILES=Lab4/Lab4.s Laboratorio5/Lab5.s
+SOURCEFILES=
 
 
 
@@ -94,39 +94,7 @@ MP_PROCESSOR_OPTION=PIC16F887
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: pic-as-assembler
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/Lab4/Lab4.o: Lab4/Lab4.s  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/Lab4" 
-	@${RM} ${OBJECTDIR}/Lab4/Lab4.o 
-	${MP_AS} -mcpu=PIC16F887 -c \
-	-o ${OBJECTDIR}/Lab4/Lab4.o \
-	Lab4/Lab4.s \
-	 -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
-	
-${OBJECTDIR}/Laboratorio5/Lab5.o: Laboratorio5/Lab5.s  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/Laboratorio5" 
-	@${RM} ${OBJECTDIR}/Laboratorio5/Lab5.o 
-	${MP_AS} -mcpu=PIC16F887 -c \
-	-o ${OBJECTDIR}/Laboratorio5/Lab5.o \
-	Laboratorio5/Lab5.s \
-	 -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
-	
 else
-${OBJECTDIR}/Lab4/Lab4.o: Lab4/Lab4.s  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/Lab4" 
-	@${RM} ${OBJECTDIR}/Lab4/Lab4.o 
-	${MP_AS} -mcpu=PIC16F887 -c \
-	-o ${OBJECTDIR}/Lab4/Lab4.o \
-	Lab4/Lab4.s \
-	 -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
-	
-${OBJECTDIR}/Laboratorio5/Lab5.o: Laboratorio5/Lab5.s  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/Laboratorio5" 
-	@${RM} ${OBJECTDIR}/Laboratorio5/Lab5.o 
-	${MP_AS} -mcpu=PIC16F887 -c \
-	-o ${OBJECTDIR}/Laboratorio5/Lab5.o \
-	Laboratorio5/Lab5.s \
-	 -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
-	
 endif
 
 # ------------------------------------------------------------------------------------

@@ -10,7 +10,7 @@
 ;Hardware: push button, leds, resistencias, display 7 seg cc y transistores
 ;
 ;Creado: 08 de mar, 2021
-;Última modificación: 08 de mar, 2021
+;Última modificación: 09 de mar, 2021
 
 ;
 ; Configuration word 1
@@ -2495,18 +2495,29 @@ ENDM
     bcf ((INTCON) and 07Fh), 2
   endm
 
+  reiniciar_tmr1 macro
+    banksel PORTA
+    movlw 0xDC ;el timmer contara a cada 0.25 segundos
+    movwf TMR1L ;por lo que cargo 3036 en forma hexadecimal 0x0BDC
+    movlw 0x0B
+    movwf TMR1H
+    bcf PIR1, 0 ;bajo la bandera
+  endm
+
  ;------------------------------------------------------------------------------
  ; Variables
  ;------------------------------------------------------------------------------
 
  PSECT udata_bank0 ;common memory
-    decena: DS 1 ;1 byte
-    unidad: DS 1
-    dividendo: DS 1
+    tiempo1: DS 1 ;1 BYTE, 2 DECIMALES
+    tiempo2: DS 1 ;1 BYTE, 2 DECIMALES
+    tiempo3: DS 1 ;1 BYTE, 2 DECIMALES
+    tiempo: DS 1 ;registro de precargado
+    estado: DS 1 ;registro de modo operando
+    veces: DS 1 ;Segundos que aumento o diminuyo
 
-    var: DS 1
+    ;datos para cada display y seleccion de display
     banderas: DS 1
-    nibble: DS 2
     display_var:DS 5
 
  PSECT udata_shr ;common memory
@@ -2540,6 +2551,9 @@ ENDM
    btfsc ((INTCON) and 07Fh), 2
    call T0_int
 
+   btfsc PIR1, 0 ;((PIR1) and 07Fh), 0
+   call T1_int
+
    btfsc ((INTCON) and 07Fh), 0
    call OC_int
 
@@ -2563,52 +2577,78 @@ ENDM
   goto display_1
 
   btfss banderas, 2
-  goto display_5
+  goto display_2
 
   btfss banderas, 3
-  goto display_4
-
-  btfss banderas, 4
   goto display_3
 
+  btfss banderas, 4
+  goto display_4
+
+  btfss banderas, 5
+  goto display_5
+
+
+  ;para el semaforo 1
   display_0:
     bsf banderas, 0
     movf display_var+0, W
     movwf PORTC
-    bsf PORTA, 4
+    bsf PORTA, 1
     return
   display_1:
     bsf banderas, 1
     movf display_var+1, W
     movwf PORTC
-    bsf PORTA, 3
+    bsf PORTA, 0
     return
 
- display_5:
+  ;para el semaforo 2
+  display_2:
     bsf banderas, 2
     movf display_var+2, W
     movwf PORTC
-    bsf PORTA, 0
+    bsf PORTA, 3
     return
- display_4:
+  display_3:
     bsf banderas, 3
     movf display_var+3, W
-    movwf PORTC
-    bsf PORTA, 1
-    return
- display_3:
-    clrf banderas
-    movf display_var+4, W
     movwf PORTC
     bsf PORTA, 2
     return
 
+  ;para el semaforo 3
+  display_4:
+    bsf banderas, 4
+    movf display_var+4, W
+    movwf PORTC
+    bsf PORTA, 5
+    return
+ display_5:
+    ;bsf banderas, 5
+    clrf banderas
+    movf display_var+5, W
+    movwf PORTC
+    bsf PORTA, 4
+    return
+
+ T1_int:
+    incf veces
+    reiniciar_tmr1
+    return
+
  OC_int:
     banksel PORTB
+
+    btfss PORTB, MODO
+    incf estado
+
     btfss PORTB, UP
-    incf PORTD
+    incf tiempo
+
     btfss PORTB, DOWN
-    decf PORTD
+    decf tiempo
+
     bcf ((INTCON) and 07Fh), 0
     return
  ;------------------------------------------------------------------------------
@@ -2670,13 +2710,24 @@ tabla:
     bsf ((OSCCON) and 07Fh), 0 ;reloj interno activo
 
     call conf_tmr0
+    call conf_tmr1
     call conf_interrupt_oc
     call conf_interrupt_ena
+
     banksel PORTA ;Me asegure que empiece en cero
     clrf PORTA
     clrf PORTC
     clrf PORTD
     clrf PORTE
+    movlw 10
+    movwf tiempo1
+    movwf tiempo2
+    movwf tiempo3
+    movlw 1
+    movwf estado
+    movwf tiempo
+    movlw 11
+    movwf veces
 
  ;------------------------------------------------------------------------------
  ; loop principal
@@ -2684,12 +2735,113 @@ tabla:
 
  loop:
 
+    movlw 1
+    subwf estado, W
+    btfsc ((STATUS) and 07Fh), 2
+    goto default
 
-  goto loop
+    movlw 2
+    subwf estado, W
+    btfsc ((STATUS) and 07Fh), 2
+    goto confiS1
+
+    movlw 3
+    subwf estado, W
+    btfsc ((STATUS) and 07Fh), 2
+    goto confiS2
+
+    movlw 4
+    subwf estado, W
+    btfsc ((STATUS) and 07Fh), 2
+    goto confiS3
+
+    movlw 5
+    subwf estado, W
+    btfsc ((STATUS) and 07Fh), 2
+    goto decision
+
+    goto loop
+
+    default:
+ bsf PORTD,0 ;enciendo led verde del semaforo y los demas en rojo
+ bcf PORTD,1
+ bcf PORTD,2
+ bcf PORTD,3
+ bcf PORTD,4
+ bsf PORTD,5
+ bcf PORTE,0
+ bcf PORTE,1
+ bsf PORTE,2
+
+ movlw 3
+ subwf tiempo1, W
+ btfsc ((STATUS) and 07Fh), 2
+ call parpadeo
+
+ goto loop
+
+    confiS1:
+ bcf PORTD,0 ;primer semaforo
+ bsf PORTD,1
+ bsf PORTD,2
+ bcf PORTD,3 ;segundo semaforo
+ bcf PORTD,4
+ bsf PORTD,5
+ bcf PORTE,0 ;tercer semaforo
+ bcf PORTE,1
+ bsf PORTE,2
+ goto loop
+
+    confiS2:
+ bcf PORTD,0 ;primer semaforo
+ bcf PORTD,1
+ bsf PORTD,2
+ bcf PORTD,3 ;segundo semaforo
+ bsf PORTD,4
+ bsf PORTD,5
+ bcf PORTE,0 ;tercer semaforo
+ bcf PORTE,1
+ bsf PORTE,2
+
+ goto loop
+
+    confiS3:
+ bcf PORTD,0 ;primer semaforo
+ bcf PORTD,1
+ bsf PORTD,2
+ bcf PORTD,3 ;segundo semaforo
+ bcf PORTD,4
+ bsf PORTD,5
+ bcf PORTE,0 ;tercer semaforo
+ bsf PORTE,1
+ bsf PORTE,2
+
+ goto loop
+
+    decision:
+ bcf PORTD,0 ;primer semaforo
+ bsf PORTD,1
+ bsf PORTD,2
+ bcf PORTD,3 ;segundo semaforo
+ bsf PORTD,4
+ bsf PORTD,5
+ bcf PORTE,0 ;tercer semaforo
+ bsf PORTE,1
+ bsf PORTE,2
+
+ btfsc PORTB, UP
+ call cargar
+ btfss PORTB, DOWN
+ call retachar
+
+ goto loop
+
 
  ;------------------------------------------------------------------------------
  ; sub rutinas
  ;------------------------------------------------------------------------------
+ parpadeo:
+
 
  conf_tmr0:
     banksel TRISA
@@ -2705,6 +2857,7 @@ tabla:
     banksel TRISB
     bsf IOCB, UP
     bsf IOCB, DOWN
+    bsf IOCB, MODO
 
     banksel PORTA
     movf PORTB, W ;al leer termina condicion de ser distintos (mismatch)
@@ -2713,66 +2866,40 @@ tabla:
 
  conf_interrupt_ena:
     bsf ((INTCON) and 07Fh), 7
+
     bsf ((INTCON) and 07Fh), 5
     bcf ((INTCON) and 07Fh), 2
+
+    bsf PIE1, 0
+    bcf PIR1, 0 ;((PIR1) and 07Fh), 0
+
     bsf ((INTCON) and 07Fh), 3
     bcf ((INTCON) and 07Fh), 0
     return
 
- separarar_nibbles:
-    movf var, W
-    andlw 0x0f
-    movwf nibble
-    swapf var, W
-    andlw 0x0f
-    movwf nibble+1
-    return
+ conf_tmr1:
+    banksel TRISA
+    bsf PIE1, 0 ;enable del timer1
 
- preparar_display:
-    movf nibble, W
-    call tabla
-    movwf display_var
-    movf nibble+1, W
-    call tabla
-    movwf display_var+1
+    banksel T1CON
+    bcf T1CON, 1 ;TEMPORIZADOR
 
+    bsf T1CON, 5
+    bsf T1CON, 4 ;pre escaler 1:8
 
+    bcf T1CON, 3 ;((PORTC) and 07Fh), 0
+    bcf T1CON, 2 ;sincronizacion
 
+    bsf T1CON, 0 ;timmer 1 ON
 
-
-    movf decena, W
-    call tabla
-    movwf display_var+3
-
-    movf unidad, W
-    call tabla
-    movwf display_var+4
-    return
-
- dividir_10:
-    clrf decena
-    movlw 10
-    subwf dividendo, F
-    btfsc ((STATUS) and 07Fh), 0 ; si carry es 0 then 10 es mayor que dividendo
-    incf decena ; si carry es 1 then 10 es menor que dividendo
-    btfsc ((STATUS) and 07Fh), 0
-    goto $-5
-    movlw 10
-    addwf dividendo, F
+    reiniciar_tmr1
 
     return
 
- dividir_1:
-    clrf unidad
+ cargar:
+    return
+ retachar:
     movlw 1
-    subwf dividendo, F
-    btfsc ((STATUS) and 07Fh), 0 ; si carry es 0 then 100 es mayor que el residuo
-    incf unidad ; si carry es 1 then 100 es menor que el residuo
-    btfsc ((STATUS) and 07Fh), 0
-    goto $-5
-    movlw 1
-    addwf dividendo, F
-
+    movwf estado
     return
-
 END

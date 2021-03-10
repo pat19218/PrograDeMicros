@@ -102,7 +102,6 @@ PROCESSOR 16F887
   movwf   cont, W
   sublw   20	    ;50ms * 10 = 500ms
   btfss   ZERO
-  goto    return_tm0
   clrf    cont
   incf    segm
   
