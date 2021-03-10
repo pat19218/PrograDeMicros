@@ -48,7 +48,7 @@ PROCESSOR 16F887
   
   reiniciar_tmr1 macro
     banksel PORTA
-    movlw   0xDC    ;el timmer contara a cada 0.25 segundos
+    movlw   0xDC    ;el timmer contara a cada 0.50 segundos
     movwf   TMR1L   ;por lo que cargo 3036 en forma hexadecimal 0x0BDC
     movlw   0x0B
     movwf   TMR1H
@@ -66,6 +66,8 @@ PROCESSOR 16F887
     tiempo:	   DS 1	;registro de precargado
     estado:	   DS 1 ;registro de modo operando
     cont:	   DS 1 ;Segundos que aumento o diminuyo
+    segundos:	   DS 1 ;cuenta los segundos
+    delay:	   DS 6
     
     ;datos para cada display y seleccion de display
     banderas:	DS 1
@@ -184,14 +186,14 @@ PROCESSOR 16F887
     return
 
  T1_int: 
-    reiniciar_tmr1  ;25ms
+    reiniciar_tmr1  ;50ms
     incf    cont
     movwf   cont, W
-    sublw   4	    ;25ms * 4 = 1s
+    sublw   2	    ;50ms * 2 = 1s
     btfss   ZERO
     goto    return_tm0
-    clrf    cont
-    incf    segm
+    clrf    cont	;si ha pasado un segundo then incrementa la variable
+    incf    segundos	;para indicar los segundo transcurridos
  return_tm0:
     return
     
@@ -262,9 +264,9 @@ tabla:
     bsf	    WPUB, MODO
     
     banksel OSCCON
-    bsf	    IRCF2   ;8MHZ = 111
+    bsf	    IRCF2   ;4MHZ = 110
     bsf	    IRCF1
-    bsf	    IRCF0
+    bcf	    IRCF0
     bsf	    SCS	    ;reloj interno activo
     
     call    conf_tmr0 
@@ -277,6 +279,8 @@ tabla:
     clrf    PORTC
     clrf    PORTD
     clrf    PORTE
+    movlw   0
+    movwf   segundos
     movlw   10
     movwf   tiempo1
     movwf   tiempo2
@@ -284,8 +288,7 @@ tabla:
     movlw   1
     movwf   estado
     movwf   tiempo
-    movlw   11
-    movwf   veces
+
    
  ;------------------------------------------------------------------------------
  ;  loop principal
@@ -324,17 +327,18 @@ tabla:
 	bsf	PORTD,0	;enciendo led verde del semaforo y los demas en rojo
 	bcf	PORTD,1
 	bcf	PORTD,2
-	bcf	PORTD,3
+	bcf	PORTD,3	;semaforo 2
 	bcf	PORTD,4
 	bsf	PORTD,5
-	bcf	PORTE,0
+	bcf	PORTE,0	;semaforo 3
 	bcf	PORTE,1
 	bsf	PORTE,2
 	
-	movlw	3
+	movwf	segundos, W
 	subwf	tiempo1, W
 	btfsc	ZERO
 	call	parpadeo
+	call	delay_small
 	
 	goto    loop
 
@@ -400,7 +404,37 @@ tabla:
  ;------------------------------------------------------------------------------
  parpadeo:
     
- 
+    bcf	    PORTD, 0
+    movlw   1530		;valor inicial del contador
+    movwf   delay
+    decfsz  delay, 1	;decrementar el contador
+    goto    $-1		;ejecutar línea anterior
+    bsf	    PORTD, 0
+    movlw   1530		;valor inicial del contador
+    movwf   delay
+    decfsz  delay, 1	;decrementar el contador
+    goto    $-1		;ejecutar línea anterior
+    bcf	    PORTD, 0
+    movlw   1530		;valor inicial del contador
+    movwf   delay
+    decfsz  delay, 1	;decrementar el contador
+    goto    $-1		;ejecutar línea anterior
+    bsf	    PORTD, 0
+    movlw   1530		;valor inicial del contador
+    movwf   delay
+    decfsz  delay, 1	;decrementar el contador
+    goto    $-1		;ejecutar línea anterior
+    bcf	    PORTD, 0
+    ;clrf    segundos
+    return
+    
+ delay_small:
+    movlw   1530		;valor inicial del contador
+    movwf   delay
+    decfsz  delay, 1	;decrementar el contador
+    goto    $-1		;ejecutar línea anterior
+    return
+    
  conf_tmr0:
     banksel TRISA
     bcf	    T0CS    ;usar el reloj interno, temporizador
