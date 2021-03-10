@@ -65,7 +65,7 @@ PROCESSOR 16F887
     tiempo3:	   DS 1 ;1 BYTE, 2 DECIMALES
     tiempo:	   DS 1	;registro de precargado
     estado:	   DS 1 ;registro de modo operando
-    veces:	   DS 1 ;Segundos que aumento o diminuyo
+    cont:	   DS 1 ;Segundos que aumento o diminuyo
     
     ;datos para cada display y seleccion de display
     banderas:	DS 1
@@ -183,9 +183,16 @@ PROCESSOR 16F887
     bsf	    PORTA, 4
     return
 
- T1_int:
-    incf    veces
-    reiniciar_tmr1
+ T1_int: 
+    reiniciar_tmr1  ;25ms
+    incf    cont
+    movwf   cont, W
+    sublw   4	    ;25ms * 4 = 1s
+    btfss   ZERO
+    goto    return_tm0
+    clrf    cont
+    incf    segm
+ return_tm0:
     return
     
  OC_int:
@@ -255,9 +262,9 @@ tabla:
     bsf	    WPUB, MODO
     
     banksel OSCCON
-    bsf	    IRCF2   ;4MHZ = 110
+    bsf	    IRCF2   ;8MHZ = 111
     bsf	    IRCF1
-    bcf	    IRCF0
+    bsf	    IRCF0
     bsf	    SCS	    ;reloj interno activo
     
     call    conf_tmr0 
@@ -380,7 +387,7 @@ tabla:
 	bsf	PORTE,1
 	bsf	PORTE,2
 	
-	btfsc	PORTB, UP
+	btfss	PORTB, UP
 	call	cargar
 	btfss	PORTB, DOWN
 	call	retachar

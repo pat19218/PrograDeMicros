@@ -100,8 +100,9 @@ PROCESSOR 16F887
   reiniciar_tmr0  ;50ms
   incf    cont
   movwf   cont, W
-  sublw   20	    ;50ms * 10 = 500ms
+  sublw   20	    ;50ms * 20 = 500ms
   btfss   ZERO
+  goto	  return_tm0
   clrf    cont
   incf    segm
   
