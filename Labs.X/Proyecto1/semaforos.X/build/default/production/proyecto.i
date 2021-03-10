@@ -2516,9 +2516,9 @@ ENDM
     estado: DS 1 ;registro de modo operando
     cont: DS 1 ;Segundos que aumento o diminuyo
     segundos: DS 1 ;cuenta los segundos
-    cont_big: DS 1
-    cont_small: DS 1
-    semaforo: DS 1
+    cont_big: DS 1 ;primer delay
+    cont_small: DS 1 ;segundo delay
+    semaforo: DS 1 ;indica manera en encenderse los semaforos(next state)
 
     ;datos para cada display y seleccion de display
     banderas: DS 1
@@ -2571,27 +2571,20 @@ ENDM
  ; sub rutinas de interrupcion
  ;------------------------------------------------------------------------------
  T0_int:
-  reiniciar_tmr0 ;50ms
+  reiniciar_tmr0 ;23ms
   clrf PORTA
-
-  btfss banderas, 0
+  btfss banderas, 0 ;chequeo turno del display
   goto display_0
-
-  btfss banderas, 1
+  btfss banderas, 1 ;chequeo turno del display
   goto display_1
-
-  btfss banderas, 2
+  btfss banderas, 2 ;chequeo turno del display
   goto display_2
-
-  btfss banderas, 3
+  btfss banderas, 3 ;chequeo turno del display
   goto display_3
-
-  btfss banderas, 4
+  btfss banderas, 4 ;chequeo turno del display
   goto display_4
-
-  btfss banderas, 5
+  btfss banderas, 5 ;chequeo turno del display
   goto display_5
-
 
   ;para el semaforo 1
   display_0:
@@ -2642,10 +2635,10 @@ ENDM
     movwf cont, W
     sublw 2 ;50ms * 2 = 1s
     btfss ((STATUS) and 07Fh), 2
-    goto return_tm0
+    goto return_tm1
     clrf cont ;si ha pasado un segundo then incrementa la variable
     incf segundos ;para indicar los segundo transcurridos
- return_tm0:
+ return_tm1:
     return
 
  OC_int:
@@ -2728,7 +2721,7 @@ tabla:
     clrf PORTE
     clrf segundos
     clrf semaforo
-    movlw 5
+    movlw 10
     movwf tiempo1
     movwf tiempo2
     movwf tiempo3
@@ -2773,8 +2766,11 @@ tabla:
  btfss semaforo, 0
  call parte1
 
- btfss semaforo, 1
+ btfsc semaforo, 1
  call parte2
+
+ btfsc semaforo, 2
+ call parte3
 
  goto loop
 
@@ -2816,60 +2812,40 @@ tabla:
  ;------------------------------------------------------------------------------
 
  parte1:
-    movlw 00100001B
+    movlw 00100001B ;estado del primer y segundo semaforo
     movwf PORTD
-    movlw 00000100B
+    movlw 00000100B ;estado del segundo semaforo
     movwf PORTE
-    movwf tiempo1, W
-    subwf segundos, W
+    movwf segundos, W ;le resto los segundo trascurridos al tiempo definido
+    subwf tiempo1, W
     btfsc STATUS, 2 ;((STATUS) and 07Fh), 2
     call parpadeo1
-    call delay_small
-    call delay_small
     return
 
  parte2:
-    bcf PORTD,0 ;enciendo led verde del semaforo y los demas en rojo
-    bsf PORTD,1
-    bcf PORTD,2
-    bcf PORTD,3 ;semaforo 2
-    bcf PORTD,4
-    bsf PORTD,5
-    bcf PORTE,0 ;semaforo 3
-    bcf PORTE,1
-    bsf PORTE,2
-    clrf segundos
+    movlw 00100010B
+    movwf PORTD
+    movlw 00000100B
+    movwf PORTE
     movlw 3
     subwf segundos, W
     btfsc ((STATUS) and 07Fh), 2
+    call siguiente2
+    return
+ siguiente2:
+    bcf semaforo, 1
+    bsf semaforo, 2
+    return
+ parte3:
+    movlw 00001100B ;estado del primer y segundo semaforo
+    movwf PORTD
+    movlw 00000100B ;estado del segundo semaforo
+    movwf PORTE
+    movwf segundos, W ;le resto los segundo trascurridos al tiempo definido
+    subwf tiempo2, W
+    btfsc STATUS, 2 ;((STATUS) and 07Fh), 2
     call parpadeo2
-    call delay_small
-    call delay_small
-
     return
- parpadeo2:
-    bcf PORTD, 3
-    call delay
-    call delay
-    bsf PORTD, 3
-    call delay
-    call delay
-    bcf PORTD, 3
-    call delay
-    call delay
-    bsf PORTD, 3
-    call delay
-    call delay
-    bcf PORTD, 3
-    call delay
-    call delay
-    bsf PORTD, 3
-    call delay
-    call delay
-    bcf PORTD, 3
-    bsf semaforo, 1
-    return
-
  parpadeo1:
     bcf PORTD, 0
     call delay
@@ -2891,6 +2867,31 @@ tabla:
     call delay
     bcf PORTD, 0
     bsf semaforo, 0
+    bsf semaforo, 1
+    clrf segundos
+    return
+ parpadeo2:
+    bcf PORTD, 3
+    call delay
+    call delay
+    bsf PORTD, 3
+    call delay
+    call delay
+    bcf PORTD, 3
+    call delay
+    call delay
+    bsf PORTD, 3
+    call delay
+    call delay
+    bcf PORTD, 3
+    call delay
+    call delay
+    bsf PORTD, 3
+    call delay
+    call delay
+    bcf PORTD, 3
+    bcf semaforo, 2
+    clrf segundos
     return
  delay:
     movlw 255 ;valor inicial
