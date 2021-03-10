@@ -41,7 +41,7 @@ PROCESSOR 16F887
  ;------------------------------------------------------------------------------
   reiniciar_tmr0 macro
     banksel PORTA
-    movlw   180
+    movlw   230
     movwf   TMR0    ;ciclo de 23ms
     bcf	    T0IF
   endm
@@ -63,6 +63,9 @@ PROCESSOR 16F887
     tiempo1:	   DS 1 ;1 BYTE, 2 DECIMALES
     tiempo2:	   DS 1 ;1 BYTE, 2 DECIMALES
     tiempo3:	   DS 1 ;1 BYTE, 2 DECIMALES
+    pretiempo1:	   DS 1 ;1 BYTE, 2 DECIMALES
+    pretiempo2:	   DS 1 ;1 BYTE, 2 DECIMALES
+    pretiempo3:	   DS 1 ;1 BYTE, 2 DECIMALES
     tiempo:	   DS 1	;registro de precargado
     estado:	   DS 1 ;registro de modo operando
     cont:	   DS 1 ;Segundos que aumento o diminuyo
@@ -71,9 +74,13 @@ PROCESSOR 16F887
     cont_small:	   DS 1	;segundo delay
     semaforo:	   DS 1	;indica manera en encenderse los semaforos(next state)
     
+    decena:	   DS 1
+    unidad:	   DS 1
+    dividendo:	   DS 1
+    
     ;datos para cada display y seleccion de display
-    banderas:	DS 1
-    display_var:DS 5
+    banderas:	   DS 1
+    display_var:   DS 7
  
  PSECT udata_shr  ;common memory
     W_temp:	   DS 1 ;1 byte
@@ -136,7 +143,10 @@ PROCESSOR 16F887
   goto	display_4
   btfss	banderas, 5 ;chequeo turno del display
   goto	display_5
-  
+  btfss	banderas, 6 ;chequeo turno del display de confi. tiempo
+  goto	display_6
+  btfss	banderas, 7 ;chequeo turno del display de confi. tiemp
+  goto	display_7
   ;para el semaforo 1
   display_0:
     bsf	    banderas, 0
@@ -173,11 +183,24 @@ PROCESSOR 16F887
     bsf	    PORTA, 5
     return
  display_5:
-    ;bsf     banderas, 5
-    clrf    banderas
+    bsf     banderas, 5
     movf    display_var+5, W
     movwf   PORTC
     bsf	    PORTA, 4
+    return
+   
+    ;ver tiempo a modificar
+ display_6:
+    bsf	    banderas, 6
+    movf    display_var+7, W
+    movwf   PORTC
+    bsf	    PORTA, 7
+    return
+ display_7:
+    clrf    banderas
+    movf    display_var+6, W
+    movwf   PORTC
+    bsf	    PORTA, 6
     return
 
  T1_int: 
@@ -202,9 +225,25 @@ PROCESSOR 16F887
     decf    estado
     btfss   PORTB, UP
     incf    tiempo
+    movlw   21
+    subwf   tiempo, W
+    btfsc   ZERO
+    goto    min
     btfss   PORTB, DOWN
     decf    tiempo
+    movlw   9
+    subwf   tiempo, W
+    btfsc   ZERO
+    goto    max
     bcf	    RBIF
+    return
+  min:
+    movlw   10
+    movwf   tiempo
+    return
+  max:
+    movlw   20
+    movwf   tiempo
     return
  ;------------------------------------------------------------------------------
  ;	TABLA / INICIO DEL CODIGO 
@@ -276,7 +315,10 @@ tabla:
     clrf    PORTE
     clrf    segundos
     clrf    semaforo
-    movlw   10
+    clrf    pretiempo1
+    clrf    pretiempo2
+    clrf    pretiempo3
+    movlw   5
     movwf   tiempo1
     movwf   tiempo2
     movwf   tiempo3
@@ -291,32 +333,33 @@ tabla:
  
  loop:
     
-    movlw   1
+    movlw   1		;chequeo en que estado va a estar operando
     subwf   estado, W
     btfsc   ZERO
-    goto    default
+    goto    default	;Semaforos normal
     
     movlw   2
     subwf   estado, W
     btfsc   ZERO
-    goto    confiS1
+    goto    confiS1	;Configurar el tiempo del semaforo 1
     
     movlw   3
     subwf   estado, W
     btfsc   ZERO
-    goto    confiS2
+    goto    confiS2	;Configurar el tiempo del semaforo 2
     
     movlw   4
     subwf   estado, W
     btfsc   ZERO
-    goto    confiS3
+    goto    confiS3	;Configurar el tiempo del semaforo 3
     
     movlw   5
     subwf   estado, W
     btfsc   ZERO
-    goto    decision
+    goto    decision	;Acepto los tiempos precargados
     goto    loop
     
+    ;Los semaforos funcionan con normalidad segun tiempo1, tiempo2, tiempo3
     default:
 	btfss	semaforo, 0 ;primer secuencia, semaforo 1 da via segun el time1
 	call	parte1	
@@ -339,10 +382,22 @@ tabla:
 	goto    loop
 
     confiS1:
-	movlw	000100110B
-	movwf	PORTD
+	movlw	000100110B  ;Pongo los semaforos de este modo para indicar que
+	movwf	PORTD	    ;lo estan configurando
 	movlw	000000100B
 	movwf	PORTE
+	movf	tiempo, W
+	movwf	pretiempo1
+	
+	movf	tiempo, W
+	movwf	dividendo
+	
+	call    dividir_10
+	movf    decena, W
+	movf	dividendo
+	movwf	unidad
+	
+	call    preparar_display
 	goto    loop
 
     confiS2:
@@ -350,6 +405,8 @@ tabla:
 	movwf	PORTD
 	movlw	000000100B
 	movwf	PORTE
+	movf	tiempo, W
+	movwf	pretiempo2
 	goto    loop
 
     confiS3:
@@ -357,6 +414,8 @@ tabla:
 	movwf	PORTD
 	movlw	000000110B
 	movwf	PORTE
+	movf	tiempo, W
+	movwf	pretiempo3
 	goto    loop
 
     decision:
@@ -540,6 +599,18 @@ parte5:
     goto    $-1		    ;ejecutar línea anterior
     return
  
+ dividir_10:
+    clrf    decena
+    movlw   10
+    subwf   dividendo, F
+    btfsc   CARRY	; si carry es 0 then 10 es mayor que dividendo
+    incf    decena	; si carry es 1 then 10 es menor que dividendo
+    btfsc   CARRY
+    goto    $-5 
+    movlw   10
+    addwf   dividendo, F
+       
+    return
     
  conf_tmr0:
     banksel TRISA
@@ -584,13 +655,36 @@ parte5:
     reiniciar_tmr1
     return
     
- cargar:
+ preparar_display:
+    movf    decena, W
+    call    tabla
+    movwf   display_var+6
     
+    movf    unidad, W
+    call    tabla
+    movwf   display_var+7
+    return
+    
+ cargar:
+    decf    tiempo
+    movf    pretiempo1, W
+    movwf   tiempo1, F
+    movf    pretiempo2, W
+    movwf   tiempo2, F
+    movf    pretiempo3, W
+    movwf   tiempo3, F
+    movlw   00000001B
+    movwf   estado
+    clrf    semaforo
+    clrf    segundos
     return
     
  retachar:
-    movlw   1
+    movlw   00000001B
     movwf   estado
+    incf    tiempo
+    clrf    semaforo
+    clrf    segundos
     return
 END
 
