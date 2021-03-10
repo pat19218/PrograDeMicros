@@ -196,6 +196,10 @@ PROCESSOR 16F887
     banksel PORTB
     btfss   PORTB, MODO
     incf    estado
+    movlw   6
+    subwf   estado, W
+    btfsc   ZERO
+    decf    estado
     btfss   PORTB, UP
     incf    tiempo
     btfss   PORTB, DOWN
@@ -314,14 +318,23 @@ tabla:
     goto    loop
     
     default:
-	btfss	semaforo, 0
-	call	parte1
+	btfss	semaforo, 0 ;primer secuencia, semaforo 1 da via segun el time1
+	call	parte1	
 	
-	btfsc	semaforo, 1
-	call	parte2	
+	btfsc	semaforo, 1 ;luz amarilla durante 3 segundos
+	call	parte2		
 	
-	btfsc	semaforo, 2
+	btfsc	semaforo, 2 ;2da secuencia, semaforo 2 da via segun el time2
 	call	parte3	
+	
+	btfsc	semaforo, 3 ;luz amarilla durante 3 segundos
+	call	parte4	
+	
+	btfsc	semaforo, 4 ;3ra secuencia, semaforo 3 da via segun el time1
+	call	parte5	
+	
+	btfsc	semaforo, 5 ;luz amarilla durante 3 segundos
+	call	parte6	
 	
 	goto    loop
 
@@ -387,6 +400,7 @@ tabla:
     bcf	    semaforo, 1
     bsf	    semaforo, 2
     return
+    
  parte3:
     movlw   00001100B	;estado del primer y segundo semaforo
     movwf   PORTD
@@ -397,6 +411,48 @@ tabla:
     btfsc   STATUS, 2	;ZERO
     call    parpadeo2
     return
+    
+ parte4:
+    movlw   00010100B
+    movwf   PORTD
+    movlw   00000100B
+    movwf   PORTE   
+    movlw   3
+    subwf   segundos, W
+    btfsc   ZERO
+    call    siguiente3
+    return
+ siguiente3:
+    bcf	    semaforo, 3
+    bsf	    semaforo, 4
+    return
+ 
+parte5:
+    movlw   00100100B	;estado del primer y segundo semaforo
+    movwf   PORTD
+    movlw   00000001B	;estado del segundo semaforo
+    movwf   PORTE
+    movwf   segundos, W	;le resto los segundo trascurridos al tiempo definido
+    subwf   tiempo3, W
+    btfsc   STATUS, 2	;ZERO
+    call    parpadeo3
+    return
+    
+ parte6:
+    movlw   00100100B
+    movwf   PORTD
+    movlw   00000010B
+    movwf   PORTE   
+    movlw   3
+    subwf   segundos, W
+    btfsc   ZERO
+    call    siguiente4
+    return
+ siguiente4:
+    bcf	    semaforo, 5
+    bcf	    semaforo, 0
+    return
+    
  parpadeo1:
     bcf	    PORTD, 0
     call    delay
@@ -442,8 +498,34 @@ tabla:
     call    delay
     bcf	    PORTD, 3
     bcf	    semaforo, 2
+    bsf	    semaforo, 3
     clrf    segundos
     return
+ parpadeo3:
+    bcf	    PORTE, 0
+    call    delay
+    call    delay
+    bsf	    PORTE, 0
+    call    delay
+    call    delay
+    bcf	    PORTE, 0
+    call    delay
+    call    delay
+    bsf	    PORTE, 0
+    call    delay
+    call    delay
+    bcf	    PORTE, 0
+    call    delay
+    call    delay
+    bsf	    PORTE, 0
+    call    delay
+    call    delay
+    bcf	    PORTE, 0
+    bcf	    semaforo, 4
+    bsf	    semaforo, 5
+    clrf    segundos
+    return
+    
  delay:
     movlw   255		    ;valor inicial
     movwf   cont_big	    
@@ -451,7 +533,6 @@ tabla:
     decfsz  cont_big, 1	    ;decrementar el contador
     goto    $-2		    ;ejecutar dos líneas atrás
     return
-
  delay_small:
     movlw   255		    ;valor inicial del contador
     movwf   cont_small
@@ -504,6 +585,7 @@ tabla:
     return
     
  cargar:
+    
     return
     
  retachar:
