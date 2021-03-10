@@ -2516,7 +2516,9 @@ ENDM
     estado: DS 1 ;registro de modo operando
     cont: DS 1 ;Segundos que aumento o diminuyo
     segundos: DS 1 ;cuenta los segundos
-    delay: DS 6
+    cont_big: DS 1
+    cont_small: DS 1
+    semaforo: DS 1
 
     ;datos para cada display y seleccion de display
     banderas: DS 1
@@ -2648,16 +2650,12 @@ ENDM
 
  OC_int:
     banksel PORTB
-
     btfss PORTB, MODO
     incf estado
-
     btfss PORTB, UP
     incf tiempo
-
     btfss PORTB, DOWN
     decf tiempo
-
     bcf ((INTCON) and 07Fh), 0
     return
  ;------------------------------------------------------------------------------
@@ -2728,9 +2726,9 @@ tabla:
     clrf PORTC
     clrf PORTD
     clrf PORTE
-    movlw 0
-    movwf segundos
-    movlw 10
+    clrf segundos
+    clrf semaforo
+    movlw 5
     movwf tiempo1
     movwf tiempo2
     movwf tiempo3
@@ -2769,120 +2767,146 @@ tabla:
     subwf estado, W
     btfsc ((STATUS) and 07Fh), 2
     goto decision
-
     goto loop
 
     default:
- bsf PORTD,0 ;enciendo led verde del semaforo y los demas en rojo
- bcf PORTD,1
- bcf PORTD,2
- bcf PORTD,3 ;semaforo 2
- bcf PORTD,4
- bsf PORTD,5
- bcf PORTE,0 ;semaforo 3
- bcf PORTE,1
- bsf PORTE,2
+ btfss semaforo, 0
+ call parte1
 
- movwf segundos, W
- subwf tiempo1, W
- btfsc ((STATUS) and 07Fh), 2
- call parpadeo
- call delay_small
+ btfss semaforo, 1
+ call parte2
 
  goto loop
 
     confiS1:
- bcf PORTD,0 ;primer semaforo
- bsf PORTD,1
- bsf PORTD,2
- bcf PORTD,3 ;segundo semaforo
- bcf PORTD,4
- bsf PORTD,5
- bcf PORTE,0 ;tercer semaforo
- bcf PORTE,1
- bsf PORTE,2
+ movlw 000100110B
+ movwf PORTD
+ movlw 000000100B
+ movwf PORTE
  goto loop
 
     confiS2:
- bcf PORTD,0 ;primer semaforo
- bcf PORTD,1
- bsf PORTD,2
- bcf PORTD,3 ;segundo semaforo
- bsf PORTD,4
- bsf PORTD,5
- bcf PORTE,0 ;tercer semaforo
- bcf PORTE,1
- bsf PORTE,2
-
+ movlw 000110100B
+ movwf PORTD
+ movlw 000000100B
+ movwf PORTE
  goto loop
 
     confiS3:
- bcf PORTD,0 ;primer semaforo
- bcf PORTD,1
- bsf PORTD,2
- bcf PORTD,3 ;segundo semaforo
- bcf PORTD,4
- bsf PORTD,5
- bcf PORTE,0 ;tercer semaforo
- bsf PORTE,1
- bsf PORTE,2
-
+ movlw 000100100B
+ movwf PORTD
+ movlw 000000110B
+ movwf PORTE
  goto loop
 
     decision:
- bcf PORTD,0 ;primer semaforo
- bsf PORTD,1
- bsf PORTD,2
- bcf PORTD,3 ;segundo semaforo
- bsf PORTD,4
- bsf PORTD,5
- bcf PORTE,0 ;tercer semaforo
- bsf PORTE,1
- bsf PORTE,2
-
+ movlw 000110110B
+ movwf PORTD
+ movlw 000000110B
+ movwf PORTE
  btfss PORTB, UP
  call cargar
  btfss PORTB, DOWN
  call retachar
-
  goto loop
 
 
  ;------------------------------------------------------------------------------
  ; sub rutinas
  ;------------------------------------------------------------------------------
- parpadeo:
 
+ parte1:
+    movlw 00100001B
+    movwf PORTD
+    movlw 00000100B
+    movwf PORTE
+    movwf tiempo1, W
+    subwf segundos, W
+    btfsc STATUS, 2 ;((STATUS) and 07Fh), 2
+    call parpadeo1
+    call delay_small
+    call delay_small
+    return
+
+ parte2:
+    bcf PORTD,0 ;enciendo led verde del semaforo y los demas en rojo
+    bsf PORTD,1
+    bcf PORTD,2
+    bcf PORTD,3 ;semaforo 2
+    bcf PORTD,4
+    bsf PORTD,5
+    bcf PORTE,0 ;semaforo 3
+    bcf PORTE,1
+    bsf PORTE,2
+    clrf segundos
+    movlw 3
+    subwf segundos, W
+    btfsc ((STATUS) and 07Fh), 2
+    call parpadeo2
+    call delay_small
+    call delay_small
+
+    return
+ parpadeo2:
+    bcf PORTD, 3
+    call delay
+    call delay
+    bsf PORTD, 3
+    call delay
+    call delay
+    bcf PORTD, 3
+    call delay
+    call delay
+    bsf PORTD, 3
+    call delay
+    call delay
+    bcf PORTD, 3
+    call delay
+    call delay
+    bsf PORTD, 3
+    call delay
+    call delay
+    bcf PORTD, 3
+    bsf semaforo, 1
+    return
+
+ parpadeo1:
     bcf PORTD, 0
-    movlw 1530 ;valor inicial del contador
-    movwf delay
-    decfsz delay, 1 ;decrementar el contador
-    goto $-1 ;ejecutar línea anterior
+    call delay
+    call delay
     bsf PORTD, 0
-    movlw 1530 ;valor inicial del contador
-    movwf delay
-    decfsz delay, 1 ;decrementar el contador
-    goto $-1 ;ejecutar línea anterior
+    call delay
+    call delay
     bcf PORTD, 0
-    movlw 1530 ;valor inicial del contador
-    movwf delay
-    decfsz delay, 1 ;decrementar el contador
-    goto $-1 ;ejecutar línea anterior
+    call delay
+    call delay
     bsf PORTD, 0
-    movlw 1530 ;valor inicial del contador
-    movwf delay
-    decfsz delay, 1 ;decrementar el contador
-    goto $-1 ;ejecutar línea anterior
+    call delay
+    call delay
     bcf PORTD, 0
-    ;clrf segundos
+    call delay
+    call delay
+    bsf PORTD, 0
+    call delay
+    call delay
+    bcf PORTD, 0
+    bsf semaforo, 0
+    return
+ delay:
+    movlw 255 ;valor inicial
+    movwf cont_big
+    call delay_small ;rutina de delay
+    decfsz cont_big, 1 ;decrementar el contador
+    goto $-2 ;ejecutar dos líneas atrás
     return
 
  delay_small:
-    movlw 1530 ;valor inicial del contador
-    movwf delay
-    decfsz delay, 1 ;decrementar el contador
+    movlw 255 ;valor inicial del contador
+    movwf cont_small
+    decfsz cont_small, 1 ;decrementar el contador
     goto $-1 ;ejecutar línea anterior
     return
+
 
  conf_tmr0:
     banksel TRISA
@@ -2899,7 +2923,6 @@ tabla:
     bsf IOCB, UP
     bsf IOCB, DOWN
     bsf IOCB, MODO
-
     banksel PORTA
     movf PORTB, W ;al leer termina condicion de ser distintos (mismatch)
     bcf ((INTCON) and 07Fh), 0
@@ -2907,13 +2930,10 @@ tabla:
 
  conf_interrupt_ena:
     bsf ((INTCON) and 07Fh), 7
-
     bsf ((INTCON) and 07Fh), 5
     bcf ((INTCON) and 07Fh), 2
-
     bsf PIE1, 0
     bcf PIR1, 0 ;((PIR1) and 07Fh), 0
-
     bsf ((INTCON) and 07Fh), 3
     bcf ((INTCON) and 07Fh), 0
     return
@@ -2921,24 +2941,19 @@ tabla:
  conf_tmr1:
     banksel TRISA
     bsf PIE1, 0 ;enable del timer1
-
     banksel T1CON
     bcf T1CON, 1 ;TEMPORIZADOR
-
     bsf T1CON, 5
     bsf T1CON, 4 ;pre escaler 1:8
-
     bcf T1CON, 3 ;((PORTC) and 07Fh), 0
     bcf T1CON, 2 ;sincronizacion
-
     bsf T1CON, 0 ;timmer 1 ON
-
     reiniciar_tmr1
-
     return
 
  cargar:
     return
+
  retachar:
     movlw 1
     movwf estado
