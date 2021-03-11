@@ -2670,16 +2670,20 @@ ENDM
     incf estado
     movlw 6
     subwf estado, W
-    btfsc ((STATUS) and 07Fh), 2
-    decf estado
+    btfss ((STATUS) and 07Fh), 2
+    goto $+3
+    movlw 2
+    movwf estado
+
     btfss PORTB, UP
-    incf tiempo
+    incf tiempo, F
     movlw 21
     subwf tiempo, W
     btfsc ((STATUS) and 07Fh), 2
     goto min
+
     btfss PORTB, DOWN
-    decf tiempo
+    decf tiempo, F
     movlw 9
     subwf tiempo, W
     btfsc ((STATUS) and 07Fh), 2
@@ -2773,6 +2777,7 @@ tabla:
     movwf tiempo3
     movlw 1
     movwf estado
+    movlw 10
     movwf tiempo
 
 
@@ -2782,90 +2787,60 @@ tabla:
 
  loop:
 
-    movlw 1 ;chequeo en que estado va a estar operando
-    subwf estado, W
-    btfsc ((STATUS) and 07Fh), 2
-    goto default ;Semaforos normal
+    btfss semaforo, 0 ;primer secuencia, semaforo 1 da via segun el time1
+    call parte1
+    btfsc semaforo, 1 ;luz amarilla durante 3 segundos
+    call parte2
+    btfsc semaforo, 2 ;2da secuencia, semaforo 2 da via segun el time2
+    call parte3
+    btfsc semaforo, 3 ;luz amarilla durante 3 segundos
+    call parte4
+    btfsc semaforo, 4 ;3ra secuencia, semaforo 3 da via segun el time1
+    call parte5
+    btfsc semaforo, 5 ;luz amarilla durante 3 segundos
+    call parte6
 
     movlw 2
     subwf estado, W
     btfsc ((STATUS) and 07Fh), 2
-    goto confiS1 ;Configurar el tiempo del semaforo 1
+    call confiS1 ;Configurar el tiempo del semaforo 1
 
     movlw 3
     subwf estado, W
     btfsc ((STATUS) and 07Fh), 2
-    goto confiS2 ;Configurar el tiempo del semaforo 2
+    call confiS2 ;Configurar el tiempo del semaforo 2
 
     movlw 4
     subwf estado, W
     btfsc ((STATUS) and 07Fh), 2
-    goto confiS3 ;Configurar el tiempo del semaforo 3
+    call confiS3 ;Configurar el tiempo del semaforo 3
 
     movlw 5
     subwf estado, W
     btfsc ((STATUS) and 07Fh), 2
-    goto decision ;Acepto los tiempos precargados
+    call decision ;Acepto los tiempos precargados
+
     goto loop
 
-    ;Los semaforos funcionan con normalidad segun tiempo1, tiempo2, tiempo3
-    default:
- btfss semaforo, 0 ;primer secuencia, semaforo 1 da via segun el time1
- call parte1
-
- btfsc semaforo, 1 ;luz amarilla durante 3 segundos
- call parte2
-
- btfsc semaforo, 2 ;2da secuencia, semaforo 2 da via segun el time2
- call parte3
-
- btfsc semaforo, 3 ;luz amarilla durante 3 segundos
- call parte4
-
- btfsc semaforo, 4 ;3ra secuencia, semaforo 3 da via segun el time1
- call parte5
-
- btfsc semaforo, 5 ;luz amarilla durante 3 segundos
- call parte6
-
- goto loop
-
     confiS1:
- movlw 000100110B ;Pongo los semaforos de este modo para indicar que
- movwf PORTD ;lo estan configurando
- movlw 000000100B
- movwf PORTE
  movf tiempo, W
- movwf pretiempo1
-
- movf tiempo, W
- movwf dividendo
-
- call dividir_10
- movf decena, W
- movf dividendo
- movwf unidad
+ movwf pretiempo1 ;tomo el valor actual y lo guardo temporalmente
+ movf pretiempo1, W
+ movwf dividendo ;dividiendo tiene el valor que se piensa subir
+ call dividir_10 ;analizo cuantas decenas tiene ese valor
 
  call preparar_display
- goto loop
+ return
 
     confiS2:
- movlw 000110100B
- movwf PORTD
- movlw 000000100B
- movwf PORTE
  movf tiempo, W
  movwf pretiempo2
- goto loop
+ return
 
     confiS3:
- movlw 000100100B
- movwf PORTD
- movlw 000000110B
- movwf PORTE
  movf tiempo, W
  movwf pretiempo3
- goto loop
+ return
 
     decision:
  movlw 000110110B
@@ -2876,7 +2851,7 @@ tabla:
  call cargar
  btfss PORTB, DOWN
  call retachar
- goto loop
+ return
 
 
  ;------------------------------------------------------------------------------
@@ -3058,7 +3033,16 @@ parte5:
     goto $-5
     movlw 10
     addwf dividendo, F
+    return
 
+  preparar_display:
+    movf decena, W
+    call tabla
+    movwf display_var+6
+
+    movf dividendo, W
+    call tabla
+    movwf display_var+7
     return
 
  conf_tmr0:
@@ -3104,15 +3088,6 @@ parte5:
     reiniciar_tmr1
     return
 
- preparar_display:
-    movf decena, W
-    call tabla
-    movwf display_var+6
-
-    movf unidad, W
-    call tabla
-    movwf display_var+7
-    return
 
  cargar:
     decf tiempo
