@@ -378,10 +378,10 @@ tabla:
 	movwf	pretiempo1	;tomo el valor actual y lo guardo temporalmente
 	movf	pretiempo1, W
 	movwf	dividendo	;dividiendo tiene el valor que se piensa subir
-	call    dividir_10	;analizo cuantas decenas tiene ese valor
-		
-	call    preparar_display
-	return
+	goto    dividir_10	;analizo cuantas decenas tiene ese valor
+	con1:
+	goto    preparar_display;mando los datos correspondientes a cada display
+	
 
     confiS2:
 	movf	tiempo, W
@@ -584,7 +584,7 @@ parte5:
     goto    $-5 
     movlw   10
     addwf   dividendo, F
-    return
+    goto    con1
     
   preparar_display:
     movf    decena, W
