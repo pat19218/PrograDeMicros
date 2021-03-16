@@ -2526,6 +2526,7 @@ ENDM
     decena: DS 1
     unidad: DS 1
     dividendo: DS 1
+    var: DS 6 ;displays, valor del tiempo en semaforo
 
     ;datos para cada display y seleccion de display
     banderas: DS 1
@@ -2693,10 +2694,12 @@ ENDM
   min:
     movlw 10
     movwf tiempo
+    bcf ((INTCON) and 07Fh), 0
     return
   max:
     movlw 20
     movwf tiempo
+    bcf ((INTCON) and 07Fh), 0
     return
  ;------------------------------------------------------------------------------
  ; TABLA / INICIO DEL CODIGO
@@ -2707,7 +2710,6 @@ ENDM
 tabla:
     clrf PCLATH
     bsf PCLATH, 0 ;PCLATH = 01
-    andwf 0x0f ;me aseguro q solo pasen 4 bits
     addwf PCL ;PC = PCL + PCLATH + w
     retlw 11111100B ;0 posicion 0
     retlw 01100000B ;1 posicion 1
@@ -2775,6 +2777,12 @@ tabla:
     movwf tiempo1
     movwf tiempo2
     movwf tiempo3
+    movf tiempo1, W
+    movwf var
+    movf tiempo2, W
+    movwf var+1
+    movf tiempo3, W
+    movwf var+2
     movlw 1
     movwf estado
     movlw 10
@@ -2786,6 +2794,21 @@ tabla:
  ;------------------------------------------------------------------------------
 
  loop:
+
+    movf var, W
+    movwf dividendo
+    call dividir_10
+    call preparar_display1
+
+    movf var+1, W
+    movwf dividendo
+    call dividir_10
+    call preparar_display2
+
+    movf var+2, W
+    movwf dividendo
+    call dividir_10
+    call preparar_display3
 
     btfss semaforo, 0 ;primer secuencia, semaforo 1 da via segun el time1
     call parte1
@@ -2827,19 +2850,26 @@ tabla:
  movwf pretiempo1 ;tomo el valor actual y lo guardo temporalmente
  movf pretiempo1, W
  movwf dividendo ;dividiendo tiene el valor que se piensa subir
- goto dividir_10 ;analizo cuantas decenas tiene ese valor
- con1:
- goto preparar_display;mando los datos correspondientes a cada display
-
+ call dividir_10 ;analizo cuantas decenas tiene ese valor
+ call preparar_display;mando los datos correspondientes a cada display
+ return
 
     confiS2:
  movf tiempo, W
  movwf pretiempo2
+ movf pretiempo2, W
+ movwf dividendo ;dividiendo tiene el valor que se piensa subir
+ call dividir_10 ;analizo cuantas decenas tiene ese valor
+ call preparar_display;mando los datos correspondientes a cada display
  return
 
     confiS3:
  movf tiempo, W
  movwf pretiempo3
+ movf pretiempo3, W
+ movwf dividendo ;dividiendo tiene el valor que se piensa subir
+ call dividir_10 ;analizo cuantas decenas tiene ese valor
+ call preparar_display;mando los datos correspondientes a cada display
  return
 
     decision:
@@ -2867,6 +2897,10 @@ tabla:
     subwf tiempo1, W
     btfsc STATUS, 2 ;((STATUS) and 07Fh), 2
     call parpadeo1
+    movf segundos, W
+    subwf 1
+    btfsc ((STATUS) and 07Fh), 2
+    decf var
     return
 
  parte2:
@@ -3033,8 +3067,35 @@ parte5:
     goto $-5
     movlw 10
     addwf dividendo, F
-    goto con1
+    return
 
+  preparar_display1:
+    movf decena, W
+    call tabla
+    movwf display_var+1
+
+    movf dividendo, W
+    call tabla
+    movwf display_var
+    return
+  preparar_display2:
+    movf decena, W
+    call tabla
+    movwf display_var+3
+
+    movf dividendo, W
+    call tabla
+    movwf display_var+2
+    return
+   preparar_display3:
+    movf decena, W
+    call tabla
+    movwf display_var+5
+
+    movf dividendo, W
+    call tabla
+    movwf display_var+4
+    return
   preparar_display:
     movf decena, W
     call tabla
