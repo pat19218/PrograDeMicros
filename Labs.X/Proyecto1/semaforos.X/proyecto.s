@@ -42,7 +42,7 @@ PROCESSOR 16F887
   reiniciar_tmr0 macro
     banksel PORTA
     movlw   230
-    movwf   TMR0    ;ciclo de 23ms
+    movwf   TMR0    ;ciclo de 3ms
     bcf	    T0IF
   endm
   
@@ -77,7 +77,8 @@ PROCESSOR 16F887
     decena:	   DS 1
     unidad:	   DS 1
     dividendo:	   DS 1
-    var:	   DS 6	;displays, valor del tiempo en semaforo
+    var:	   DS 3	;displays, valor del tiempo en semaforo
+    resta:	   DS 1
     
     ;datos para cada display y seleccion de display
     banderas:	   DS 1
@@ -130,7 +131,7 @@ PROCESSOR 16F887
  ;	sub rutinas de interrupcion
  ;------------------------------------------------------------------------------
  T0_int:
-  reiniciar_tmr0  ;23ms
+  reiniciar_tmr0  ;3ms
   clrf	PORTA
   btfss	banderas, 0 ;chequeo turno del display
   goto	display_0
@@ -213,6 +214,22 @@ PROCESSOR 16F887
     goto    return_tm1
     clrf    cont	;si ha pasado un segundo then incrementa la variable
     incf    segundos	;para indicar los segundo transcurridos
+    
+    btfss   resta, 0
+    decf    var
+    btfsc   ZERO
+    bsf	    resta, 0
+    
+    btfss   resta, 1
+    decf    var+1
+    btfsc   ZERO
+    bsf	    resta, 1
+    
+    btfss   resta, 2
+    decf    var+2
+    btfsc   ZERO
+    bsf	    resta, 2
+    
  return_tm1:
     return
     
@@ -338,6 +355,8 @@ tabla:
     movwf   estado
     movlw   10
     movwf   tiempo
+    movlw   11111110B
+    movwf   resta
 
    
  ;------------------------------------------------------------------------------
@@ -448,10 +467,6 @@ tabla:
     subwf   tiempo1, W
     btfsc   STATUS, 2	;ZERO
     call    parpadeo1
-    movf    segundos, W
-    subwf   1
-    btfsc   ZERO
-    decf    var
     return
     
  parte2:
@@ -467,6 +482,11 @@ tabla:
  siguiente2:
     bcf	    semaforo, 1
     bsf	    semaforo, 2
+    movf    tiempo2, W
+    movwf   var+1, F
+    movlw   11111101B
+    movwf   resta
+    clrf    segundos
     return
     
  parte3:
@@ -493,6 +513,11 @@ tabla:
  siguiente3:
     bcf	    semaforo, 3
     bsf	    semaforo, 4
+    movf    tiempo3, W
+    movwf   var+2, F
+    movlw   11111011B
+    movwf   resta
+    clrf    segundos
     return
  
 parte5:
@@ -519,6 +544,11 @@ parte5:
  siguiente4:
     bcf	    semaforo, 5
     bcf	    semaforo, 0
+    movf    tiempo1, W
+    movwf   var, F
+    movlw   11111110B
+    movwf   resta
+    clrf    segundos
     return
     
  parpadeo1:
@@ -705,10 +735,13 @@ parte5:
     decf    tiempo
     movf    pretiempo1, W
     movwf   tiempo1, F
+    movwf   var
     movf    pretiempo2, W
     movwf   tiempo2, F
+    movwf   var+1
     movf    pretiempo3, W
     movwf   tiempo3, F
+    movwf   var+2
     movlw   00000001B
     movwf   estado
     clrf    semaforo
@@ -719,6 +752,12 @@ parte5:
     movlw   00000001B
     movwf   estado
     incf    tiempo
+    movf    tiempo1, W
+    movwf   var
+    movf    tiempo2, W
+    movwf   var+1
+    movf    tiempo3, W
+    movwf   var+2
     clrf    semaforo
     clrf    segundos
     return
