@@ -73,7 +73,7 @@ PROCESSOR 16F887
     cont_big:	   DS 1 ;primer delay
     cont_small:	   DS 1	;segundo delay
     semaforo:	   DS 1	;indica manera en encenderse los semaforos(next state)
-    op:		   DS 1
+    op:		   DS 1	;indica en que momento desactivo la secuencia
     
     decena:	   DS 1
     unidad:	   DS 1
@@ -82,7 +82,7 @@ PROCESSOR 16F887
     resta:	   DS 1
     
     ;datos para cada display y seleccion de display
-    banderas:	   DS 1
+    banderas:	   DS 1	
     display_var:   DS 7
  
  PSECT udata_shr  ;common memory
@@ -216,8 +216,8 @@ PROCESSOR 16F887
     clrf    cont	;si ha pasado un segundo then incrementa la variable
     incf    segundos	;para indicar los segundo transcurridos
     
-    btfss   resta, 0
-    decf    var
+    btfss   resta, 0	;me asegure de decrementar el tiempo solo hasta cero
+    decf    var		;asi me aseguro de que no falle el codigo
     btfsc   ZERO
     bsf	    resta, 0
     
@@ -237,24 +237,24 @@ PROCESSOR 16F887
  OC_int:
     banksel PORTB
     btfss   PORTB, MODO
-    incf    estado
+    incf    estado	;selecciono el modo por el push button
     movlw   6
-    subwf   estado, W
-    btfss   ZERO
+    subwf   estado, W	;me aseguro que si llega a la ultima opcion y se 
+    btfss   ZERO	;presiona, regrese a la confi 1
     goto    $+3
     movlw   2
     movwf   estado
     
-    btfss   PORTB, UP
+    btfss   PORTB, UP	;incremento el tiempo de configuración
     incf    tiempo, F
-    movlw   21
+    movlw   21		;me aseguro que solo llegue hasta 20 y luego de sea 10
     subwf   tiempo, W
     btfsc   ZERO
     goto    min
     
     btfss   PORTB, DOWN
     decf    tiempo, F
-    movlw   9
+    movlw   9		;me aseguro que solo llegue a 10 y luego sea 20
     subwf   tiempo, W
     btfsc   ZERO
     goto    max
@@ -369,8 +369,8 @@ tabla:
  
  loop:
     
-    movf    var, W
-    movwf   dividendo
+    movf    var, W		;le asigno los tiempos respectivos a cada
+    movwf   dividendo		;display del semaforo indicado
     call    dividir_10
     call    preparar_display1
     
@@ -384,21 +384,8 @@ tabla:
     call    dividir_10
     call    preparar_display3
     
-;    btfss   semaforo, 0 ;primer secuencia, semaforo 1 da via segun el time1
-;    call    parte1	
-;    btfsc   semaforo, 1 ;luz amarilla durante 3 segundos
-;    call    parte2		
-;    btfsc   semaforo, 2 ;2da secuencia, semaforo 2 da via segun el time2
-;    call    parte3	
-;    btfsc   semaforo, 3 ;luz amarilla durante 3 segundos
-;    call    parte4	
-;    btfsc   semaforo, 4 ;3ra secuencia, semaforo 3 da via segun el time1
-;    call    parte5	
-;    btfsc   semaforo, 5 ;luz amarilla durante 3 segundos
-;    call    parte6	
-
     btfss   op, 0
-    call    default	;Configurar el tiempo del semaforo 1
+    call    default	;Semaforo funcionando normal
     
     movlw   2
     subwf   estado, W
@@ -474,15 +461,15 @@ tabla:
 	return
 
     decision:
-	bsf	op, 0
-	bcf	PORTB, 3
-	bcf	PORTB, 4
-	bcf	PORTB, 5
-	movlw	000110110B
+	bsf	op, 0	    ;desactivo el semaforo
+	bsf	PORTB, 3
+	bsf	PORTB, 4
+	bsf	PORTB, 5
+	movlw	000110110B  ;indicacion de semafotos
 	movwf	PORTD
 	movlw	000000110B
 	movwf	PORTE
-	btfss	PORTB, UP
+	btfss	PORTB, UP   ;selecion
 	call	cargar
 	btfss	PORTB, DOWN
 	call	retachar
@@ -505,7 +492,7 @@ tabla:
     return
     
  parte2:
-    movlw   00100010B
+    movlw   00100010B	;luz amarilla
     movwf   PORTD
     movlw   00000100B
     movwf   PORTE   
@@ -515,7 +502,7 @@ tabla:
     call    siguiente2
     return
  siguiente2:
-    bcf	    semaforo, 1
+    bcf	    semaforo, 1	;habilito el siguiente semaforo y desabilito el actual
     bsf	    semaforo, 2
     movf    tiempo2, W
     movwf   var+1, F
@@ -536,7 +523,7 @@ tabla:
     return
     
  parte4:
-    movlw   00010100B
+    movlw   00010100B	;luz amarilla
     movwf   PORTD
     movlw   00000100B
     movwf   PORTE   
@@ -546,7 +533,7 @@ tabla:
     call    siguiente3
     return
  siguiente3:
-    bcf	    semaforo, 3
+    bcf	    semaforo, 3	;habilito el siguiente semafor y desactivo el actual
     bsf	    semaforo, 4
     movf    tiempo3, W
     movwf   var+2, F
@@ -589,21 +576,15 @@ parte5:
  parpadeo1:
     bcf	    PORTD, 0
     call    delay
-    call    delay
     bsf	    PORTD, 0
-    call    delay
     call    delay
     bcf	    PORTD, 0
     call    delay
-    call    delay
     bsf	    PORTD, 0
-    call    delay
     call    delay
     bcf	    PORTD, 0
     call    delay
-    call    delay
     bsf	    PORTD, 0
-    call    delay
     call    delay
     bcf	    PORTD, 0
     bsf	    semaforo, 0
@@ -613,21 +594,15 @@ parte5:
  parpadeo2:
     bcf	    PORTD, 3
     call    delay
-    call    delay
     bsf	    PORTD, 3
-    call    delay
     call    delay
     bcf	    PORTD, 3
     call    delay
-    call    delay
     bsf	    PORTD, 3
-    call    delay
     call    delay
     bcf	    PORTD, 3
     call    delay
-    call    delay
     bsf	    PORTD, 3
-    call    delay
     call    delay
     bcf	    PORTD, 3
     bcf	    semaforo, 2
@@ -637,21 +612,15 @@ parte5:
  parpadeo3:
     bcf	    PORTE, 0
     call    delay
-    call    delay
     bsf	    PORTE, 0
-    call    delay
     call    delay
     bcf	    PORTE, 0
     call    delay
-    call    delay
     bsf	    PORTE, 0
-    call    delay
     call    delay
     bcf	    PORTE, 0
     call    delay
-    call    delay
     bsf	    PORTE, 0
-    call    delay
     call    delay
     bcf	    PORTE, 0
     bcf	    semaforo, 4
@@ -686,7 +655,7 @@ parte5:
     return
     
   preparar_display1:
-    movf    decena, W
+    movf    decena, W	    ;traduzco el binario a decimal de los display 
     call    tabla
     movwf   display_var+1
     
@@ -695,7 +664,7 @@ parte5:
     movwf   display_var
     return
   preparar_display2:
-    movf    decena, W
+    movf    decena, W	    ;traduzco el binario a decimal de los display 
     call    tabla
     movwf   display_var+3
     
@@ -704,7 +673,7 @@ parte5:
     movwf   display_var+2 
     return
    preparar_display3:
-    movf    decena, W
+    movf    decena, W	    ;traduzco el binario a decimal de los display 
     call    tabla
     movwf   display_var+5
     
@@ -713,7 +682,7 @@ parte5:
     movwf   display_var+4 
     return   
   preparar_display:
-    movf    decena, W
+    movf    decena, W	;traduzco el binario a decimal de los display 
     call    tabla
     movwf   display_var+6
     
@@ -767,7 +736,7 @@ parte5:
     
     
  cargar:
-    decf    tiempo
+    decf    tiempo	    ;paso los pretiempo al tiempo de cada semaforo
     movf    pretiempo1, W
     movwf   tiempo1, F
     movwf   var
@@ -779,13 +748,18 @@ parte5:
     movwf   var+2
     movlw   00000001B
     movwf   estado
-    bcf	    op, 0
+    bcf	    op, 0	;activo secuencia del semaforo y apago leds de confi.
+    bcf	PORTB, 3
+    bcf	PORTB, 4
+    bcf	PORTB, 5
+    movlw   0000110B
+    movwf   resta
     clrf    semaforo
     clrf    segundos
     return
     
  retachar:
-    movlw   00000001B
+    movlw   00000001B	;simplemente regreso a la rutina normal sin cargar nada
     movwf   estado
     incf    tiempo
     movf    tiempo1, W
@@ -795,6 +769,11 @@ parte5:
     movf    tiempo3, W
     movwf   var+2
     bcf	    op, 0
+    bcf	PORTB, 3
+    bcf	PORTB, 4
+    bcf	PORTB, 5
+    movlw   0000110B
+    movwf   resta
     clrf    semaforo
     clrf    segundos
     return
