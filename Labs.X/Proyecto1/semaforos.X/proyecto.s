@@ -73,6 +73,7 @@ PROCESSOR 16F887
     cont_big:	   DS 1 ;primer delay
     cont_small:	   DS 1	;segundo delay
     semaforo:	   DS 1	;indica manera en encenderse los semaforos(next state)
+    op:		   DS 1
     
     decena:	   DS 1
     unidad:	   DS 1
@@ -310,6 +311,7 @@ tabla:
     clrf    TRISC
     clrf    TRISD
     clrf    TRISE
+    clrf    TRISB
     bsf	    TRISB, UP
     bsf	    TRISB, DOWN
     bsf	    TRISB, MODO
@@ -336,11 +338,13 @@ tabla:
     clrf    PORTC
     clrf    PORTD
     clrf    PORTE
+    clrf    PORTB
     clrf    segundos
     clrf    semaforo
     clrf    pretiempo1
     clrf    pretiempo2
     clrf    pretiempo3
+    clrf    op
     movlw   5
     movwf   tiempo1
     movwf   tiempo2
@@ -380,18 +384,21 @@ tabla:
     call    dividir_10
     call    preparar_display3
     
-    btfss   semaforo, 0 ;primer secuencia, semaforo 1 da via segun el time1
-    call    parte1	
-    btfsc   semaforo, 1 ;luz amarilla durante 3 segundos
-    call    parte2		
-    btfsc   semaforo, 2 ;2da secuencia, semaforo 2 da via segun el time2
-    call    parte3	
-    btfsc   semaforo, 3 ;luz amarilla durante 3 segundos
-    call    parte4	
-    btfsc   semaforo, 4 ;3ra secuencia, semaforo 3 da via segun el time1
-    call    parte5	
-    btfsc   semaforo, 5 ;luz amarilla durante 3 segundos
-    call    parte6	
+;    btfss   semaforo, 0 ;primer secuencia, semaforo 1 da via segun el time1
+;    call    parte1	
+;    btfsc   semaforo, 1 ;luz amarilla durante 3 segundos
+;    call    parte2		
+;    btfsc   semaforo, 2 ;2da secuencia, semaforo 2 da via segun el time2
+;    call    parte3	
+;    btfsc   semaforo, 3 ;luz amarilla durante 3 segundos
+;    call    parte4	
+;    btfsc   semaforo, 4 ;3ra secuencia, semaforo 3 da via segun el time1
+;    call    parte5	
+;    btfsc   semaforo, 5 ;luz amarilla durante 3 segundos
+;    call    parte6	
+
+    btfss   op, 0
+    call    default	;Configurar el tiempo del semaforo 1
     
     movlw   2
     subwf   estado, W
@@ -415,7 +422,25 @@ tabla:
     
     goto    loop
     
+    default:
+	btfss   semaforo, 0 ;primer secuencia, semaforo 1 da via segun el time1
+	call    parte1	
+	btfsc   semaforo, 1 ;luz amarilla durante 3 segundos
+	call    parte2		
+	btfsc   semaforo, 2 ;2da secuencia, semaforo 2 da via segun el time2
+	call    parte3	
+	btfsc   semaforo, 3 ;luz amarilla durante 3 segundos
+	call    parte4	
+	btfsc   semaforo, 4 ;3ra secuencia, semaforo 3 da via segun el time1
+	call    parte5	
+	btfsc   semaforo, 5 ;luz amarilla durante 3 segundos
+	call    parte6	
+	return
+	
     confiS1:
+	bsf	PORTB, 3
+	bcf	PORTB, 4
+	bcf	PORTB, 5
 	movf	tiempo, W
 	movwf	pretiempo1	;tomo el valor actual y lo guardo temporalmente
 	movf	pretiempo1, W
@@ -425,6 +450,9 @@ tabla:
 	return
 
     confiS2:
+	bcf	PORTB, 3
+	bsf	PORTB, 4
+	bcf	PORTB, 5
 	movf	tiempo, W
 	movwf	pretiempo2
 	movf	pretiempo2, W
@@ -434,6 +462,9 @@ tabla:
 	return
 
     confiS3:
+	bcf	PORTB, 3
+	bcf	PORTB, 4
+	bsf	PORTB, 5
 	movf	tiempo, W
 	movwf	pretiempo3
 	movf	pretiempo3, W
@@ -443,6 +474,10 @@ tabla:
 	return
 
     decision:
+	bsf	op, 0
+	bcf	PORTB, 3
+	bcf	PORTB, 4
+	bcf	PORTB, 5
 	movlw	000110110B
 	movwf	PORTD
 	movlw	000000110B
@@ -744,6 +779,7 @@ parte5:
     movwf   var+2
     movlw   00000001B
     movwf   estado
+    bcf	    op, 0
     clrf    semaforo
     clrf    segundos
     return
@@ -758,6 +794,7 @@ parte5:
     movwf   var+1
     movf    tiempo3, W
     movwf   var+2
+    bcf	    op, 0
     clrf    semaforo
     clrf    segundos
     return
