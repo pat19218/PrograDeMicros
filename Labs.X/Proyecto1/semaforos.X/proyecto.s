@@ -210,7 +210,7 @@ PROCESSOR 16F887
     reiniciar_tmr1  ;50ms
     incf    cont
     movwf   cont, W
-    sublw   2	    ;50ms * 2 = 1s
+    sublw   2	    ;500ms * 2 = 1s
     btfss   ZERO
     goto    return_tm1
     clrf    cont	;si ha pasado un segundo then incrementa la variable
@@ -752,6 +752,8 @@ parte5:
     bcf	PORTB, 3
     bcf	PORTB, 4
     bcf	PORTB, 5
+    clrf    display_var+7
+    clrf    display_var+6
     movlw   0000110B
     movwf   resta
     clrf    semaforo
@@ -772,6 +774,8 @@ parte5:
     bcf	PORTB, 3
     bcf	PORTB, 4
     bcf	PORTB, 5
+    clrf    display_var+7
+    clrf    display_var+6
     movlw   0000110B
     movwf   resta
     clrf    semaforo

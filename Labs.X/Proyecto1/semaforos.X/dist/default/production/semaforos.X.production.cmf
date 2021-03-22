@@ -13,7 +13,7 @@
 %PSECTS
 $build/default/production/proyecto.o
 resVect CODE 0 0 0 3 2
-code CODE 0 0 0 2AE 2
+code CODE 0 0 0 2B2 2
 intVect CODE 0 0 0 8B 2
 udata_bank0 BANK0 1 20 20 1D 1
 udata_shr COMMON 1 70 70 3 1
@@ -32,14 +32,14 @@ BANK0 3D-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 2AE-1FFF 2
-ENTRY 2AE-1FFF 2
+CONST 2B2-1FFF 2
+ENTRY 2B2-1FFF 2
 IDLOC 2000-2003 2
-CODE 2AE-1FFF 2
+CODE 2B2-1FFF 2
 COMMON 73-7F 1
 EEDATA 2100-21FF 2
-STRCODE 2AE-1FFF 2
-STRING 2AE-1FFF 2
+STRCODE 2B2-1FFF 2
+STRING 2B2-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -626,9 +626,9 @@ F intVect CODE >128:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto
 299 code CODE >757:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
 29A code CODE >758:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
 29B code CODE >759:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
-29C code CODE >761:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
-29C code CODE >762:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
-29D code CODE >763:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
+29C code CODE >760:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
+29D code CODE >761:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
+29E code CODE >763:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
 29E code CODE >764:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
 29F code CODE >765:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
 2A0 code CODE >766:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
@@ -645,6 +645,10 @@ F intVect CODE >128:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto
 2AB code CODE >777:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
 2AC code CODE >778:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
 2AD code CODE >779:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
+2AE code CODE >780:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
+2AF code CODE >781:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
+2B0 code CODE >782:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
+2B1 code CODE >783:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto1\semaforos.X\proyecto.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -657,7 +661,7 @@ F intVect CODE >128:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Proyecto
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__Hspace_0 2AE 0 ABS 0 - -
+__Hspace_0 2B2 0 ABS 0 - -
 __Hspace_1 73 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -

@@ -3201,6 +3201,8 @@ parte5:
     bcf PORTB, 3
     bcf PORTB, 4
     bcf PORTB, 5
+    clrf display_var+7
+    clrf display_var+6
     movlw 0000110B
     movwf resta
     clrf semaforo
@@ -3221,6 +3223,8 @@ parte5:
     bcf PORTB, 3
     bcf PORTB, 4
     bcf PORTB, 5
+    clrf display_var+7
+    clrf display_var+6
     movlw 0000110B
     movwf resta
     clrf semaforo
