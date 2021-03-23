@@ -2707,13 +2707,15 @@ tabla:
     goto $-5
     movlw 10
     addwf dividendo, F
+
+    movlw 10
+    subwf decena, W
+    btfsc ((STATUS) and 07Fh), 2
+    clrf decena
     return
 
   preparar_display1:
-    movlw 10
-    subwf decena, W
-    btfss ((STATUS) and 07Fh), 2
-    clrf decena
+
     movf decena, W ;traduzco el binario a decimal de los display
     call tabla
     movwf display_var+1
