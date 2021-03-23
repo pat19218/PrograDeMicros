@@ -1,4 +1,4 @@
-;Archivo:	proyecto.S
+;Archivo:	Lab6.S
 ;Dispositivo:	PIC16f887
 ;Autor:		Cristhofer Patzan
 ;Compilador:	pic-as (v2.30), MPLABX V5.45
@@ -7,7 +7,7 @@
 ;Hardware:  push button, leds, resistencias, display 7 seg cc y transistores
 ;
 ;Creado: 08 de mar, 2021
-;Última modificación: 22 de mar, 2021
+;Última modificación: 09 de mar, 2021
 
 ;//////////////////////////////////////////////////////////////////////////////
 ; Configuration word 1
