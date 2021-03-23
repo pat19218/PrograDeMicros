@@ -1,16 +1,16 @@
-# 1 "Laboratorio5/Lab5.s"
+# 1 "Labo6/Lab6.s"
 # 1 "<built-in>" 1
-# 1 "Laboratorio5/Lab5.s" 2
-;Archivo: Lab5.S
+# 1 "Labo6/Lab6.s" 2
+;Archivo: Lab6.S
 ;Dispositivo: PIC16f887
 ;Autor: Cristhofer Patzan
 ;Compilador: pic-as (v2.30), MPLABX V5.45
 ;
-;Programa: contador en portD usando IOC y 5 display multiplexado en portC
+;Programa: 3semaforos con indicador de tiempo y opcion a configurar los tiempos
 ;Hardware: push button, leds, resistencias, display 7 seg cc y transistores
 ;
-;Creado: 28 feb, 2021
-;Última modificación: 28 feb, 2021
+;Creado: 23 de mar, 2021
+;Última modificación: 23 de mar, 2021
 
 ;
 ; Configuration word 1
@@ -2464,7 +2464,7 @@ stk_offset SET 0
 auto_size SET 0
 ENDM
 # 7 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\xc.inc" 2 3
-# 19 "Laboratorio5/Lab5.s" 2
+# 19 "Labo6/Lab6.s" 2
 
 ; CONFIG1
   CONFIG FOSC = INTRC_NOCLKOUT ; Oscillator Selection bits (INTOSCIO oscillator: I/O function on ((PORTA) and 07Fh), 6/OSC2/CLKOUT pin, I/O function on ((PORTA) and 07Fh), 7/OSC1/CLKIN)
@@ -2482,17 +2482,23 @@ ENDM
   CONFIG BOR4V = BOR40V ; Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
   CONFIG WRT = OFF ; Flash Program Memory Self Write Enable bits (Write protection off)
 
-
- UP EQU 0
- DOWN EQU 1
  ;------------------------------------------------------------------------------
  ; Macro
  ;------------------------------------------------------------------------------
   reiniciar_tmr0 macro
     banksel PORTA
-    movlw 180
-    movwf TMR0 ;ciclo de 50ms
+    movlw 230
+    movwf TMR0 ;ciclo de 3ms
     bcf ((INTCON) and 07Fh), 2
+  endm
+
+  reiniciar_tmr1 macro
+    banksel PORTA
+    movlw 0xDC ;el timmer contara a cada 0.50 segundos
+    movwf TMR1L ;por lo que cargo 3036 en forma hexadecimal 0x0BDC
+    movlw 0x0B
+    movwf TMR1H
+    bcf PIR1, 0 ;bajo la bandera
   endm
 
  ;------------------------------------------------------------------------------
@@ -2500,15 +2506,18 @@ ENDM
  ;------------------------------------------------------------------------------
 
  PSECT udata_bank0 ;common memory
-    centena: DS 1 ;1 byte
+    tiempo: DS 1 ;registro de precargado
+    cont: DS 1 ;Segundos que aumento o diminuyo
+    segundos: DS 1 ;cuenta los segundos
+
     decena: DS 1
     unidad: DS 1
     dividendo: DS 1
+    resta: DS 1
 
-    var: DS 1
+    ;datos para cada display y seleccion de display
     banderas: DS 1
-    nibble: DS 2
-    display_var:DS 5
+    display_var: DS 2
 
  PSECT udata_shr ;common memory
     W_temp: DS 1 ;1 byte
@@ -2541,8 +2550,8 @@ ENDM
    btfsc ((INTCON) and 07Fh), 2
    call T0_int
 
-   btfsc ((INTCON) and 07Fh), 0
-   call OC_int
+   btfsc PIR1, 0 ;((PIR1) and 07Fh), 0
+   call T1_int
 
  pop:
     swapf STATUS_temp, W
@@ -2554,64 +2563,41 @@ ENDM
  ; sub rutinas de interrupcion
  ;------------------------------------------------------------------------------
  T0_int:
-  reiniciar_tmr0 ;50ms
-  clrf PORTA
-
-  btfss banderas, 0
+  reiniciar_tmr0 ;3ms
+  clrf PORTD
+  btfss banderas, 0 ;chequeo turno del display
   goto display_0
-
-  btfss banderas, 1
+  btfss banderas, 1 ;chequeo turno del display
   goto display_1
 
-  btfss banderas, 2
-  goto display_5
-
-  btfss banderas, 3
-  goto display_4
-
-  btfss banderas, 4
-  goto display_3
-
+  ;para el semaforo 1
   display_0:
     bsf banderas, 0
     movf display_var+0, W
     movwf PORTC
-    bsf PORTA, 4
+    bsf PORTD, 1
     return
   display_1:
-    bsf banderas, 1
+    clrf banderas, 1
     movf display_var+1, W
     movwf PORTC
-    bsf PORTA, 3
+    bsf PORTD, 0
     return
 
- display_5:
-    bsf banderas, 2
-    movf display_var+2, W
-    movwf PORTC
-    bsf PORTA, 0
-    return
- display_4:
-    bsf banderas, 3
-    movf display_var+3, W
-    movwf PORTC
-    bsf PORTA, 1
-    return
- display_3:
-    clrf banderas
-    movf display_var+4, W
-    movwf PORTC
-    bsf PORTA, 2
+ T1_int:
+    reiniciar_tmr1 ;500ms
+    incf cont
+    movwf cont, W
+    sublw 2 ;500ms * 2 = 1s
+    btfss ((STATUS) and 07Fh), 2
+    goto return_tm1
+    clrf cont ;si ha pasado un segundo then incrementa la variable
+    incf segundos ;para indicar los segundo transcurridos
+    incf PORTA
+ return_tm1:
     return
 
- OC_int:
-    banksel PORTB
-    btfss PORTB, UP
-    incf PORTD
-    btfss PORTB, DOWN
-    decf PORTD
-    bcf ((INTCON) and 07Fh), 0
-    return
+
  ;------------------------------------------------------------------------------
  ; TABLA / INICIO DEL CODIGO
  ;------------------------------------------------------------------------------
@@ -2621,7 +2607,6 @@ ENDM
 tabla:
     clrf PCLATH
     bsf PCLATH, 0 ;PCLATH = 01
-    andwf 0x0f ;me aseguro q solo pasen 4 bits
     addwf PCL ;PC = PCL + PCLATH + w
     retlw 11111100B ;0 posicion 0
     retlw 01100000B ;1 posicion 1
@@ -2653,13 +2638,6 @@ tabla:
     clrf TRISA
     clrf TRISC
     clrf TRISD
-    bsf TRISB, UP
-    bsf TRISB, DOWN
-
-     ;conf. pull-up
-    bcf OPTION_REG, 7 ;habilito pull-up
-    bsf WPUB, UP ;selecciono que pines
-    bsf WPUB, DOWN
 
     banksel OSCCON
     bsf ((OSCCON) and 07Fh), 6 ;4MHZ = 110
@@ -2668,43 +2646,51 @@ tabla:
     bsf ((OSCCON) and 07Fh), 0 ;reloj interno activo
 
     call conf_tmr0
-    call conf_interrupt_oc
+    call conf_tmr1
     call conf_interrupt_ena
+
     banksel PORTA ;Me asegure que empiece en cero
     clrf PORTA
     clrf PORTC
     clrf PORTD
+    clrf segundos
+
 
  ;------------------------------------------------------------------------------
  ; loop principal
  ;------------------------------------------------------------------------------
 
  loop:
-    ;parte 2
-    movf PORTD, W
-    movwf var
-    call separarar_nibbles
-    call preparar_display
-
-    ;parte 3
-    movf PORTD, W
+    movf segundos, W
     movwf dividendo
-
-    call dividir_100
-    movf centena, W
-
     call dividir_10
-    movf decena, W
+    call preparar_display1
 
-    call dividir_1
-    movf unidad, W
-
-
-  goto loop
-
+    goto loop
  ;------------------------------------------------------------------------------
  ; sub rutinas
  ;------------------------------------------------------------------------------
+ dividir_10:
+    clrf decena
+    movlw 10
+    subwf dividendo, F
+    btfsc ((STATUS) and 07Fh), 0 ; si carry es 0 then 10 es mayor que dividendo
+    incf decena ; si carry es 1 then 10 es menor que dividendo
+    btfsc ((STATUS) and 07Fh), 0
+    goto $-5
+    movlw 10
+    addwf dividendo, F
+    return
+
+  preparar_display1:
+    movf decena, W ;traduzco el binario a decimal de los display
+    call tabla
+    movwf display_var+1
+
+    movf dividendo, W
+    call tabla
+    movwf display_var
+    return
 
  conf_tmr0:
     banksel TRISA
@@ -2716,93 +2702,25 @@ tabla:
     reiniciar_tmr0
     return
 
- conf_interrupt_oc:
-    banksel TRISB
-    bsf IOCB, UP
-    bsf IOCB, DOWN
-
-    banksel PORTA
-    movf PORTB, W ;al leer termina condicion de ser distintos (mismatch)
-    bcf ((INTCON) and 07Fh), 0
-    return
-
  conf_interrupt_ena:
     bsf ((INTCON) and 07Fh), 7
     bsf ((INTCON) and 07Fh), 5
     bcf ((INTCON) and 07Fh), 2
-    bsf ((INTCON) and 07Fh), 3
-    bcf ((INTCON) and 07Fh), 0
+    bsf PIE1, 0
+    bcf PIR1, 0 ;((PIR1) and 07Fh), 0
     return
 
- separarar_nibbles:
-    movf var, W
-    andlw 0x0f
-    movwf nibble
-    swapf var, W
-    andlw 0x0f
-    movwf nibble+1
-    return
-
- preparar_display:
-    movf nibble, W
-    call tabla
-    movwf display_var
-    movf nibble+1, W
-    call tabla
-    movwf display_var+1
-
-    movf centena, W
-    call tabla
-    movwf display_var+2
-
-    movf decena, W
-    call tabla
-    movwf display_var+3
-
-    movf unidad, W
-    call tabla
-    movwf display_var+4
-    return
-
- dividir_100:
-   ;Si la resta es positiva => c=1 z=0
-   ;Si la resta es 0 => c=1 z=1
-   ;Si la resta es negativa => c=0 z=0
-    clrf centena ;limpio mi variable
-    movlw 100
-    subwf dividendo, F; le resto 100 al dividendo
-    btfsc ((STATUS) and 07Fh), 0 ; si carry es 0 then 100 es mayor que el puerto
-    incf centena ; si carry es 1 then 100 es menor que el puerto
-    btfsc ((STATUS) and 07Fh), 0
-    goto $-5
-    movlw 100
-    addwf dividendo, F
-    return
-
- dividir_10:
-    clrf decena
-    movlw 10
-    subwf dividendo, F
-    btfsc ((STATUS) and 07Fh), 0 ; si carry es 0 then 10 es mayor que dividendo
-    incf decena ; si carry es 1 then 10 es menor que dividendo
-    btfsc ((STATUS) and 07Fh), 0
-    goto $-5
-    movlw 10
-    addwf dividendo, F
-
-    return
-
- dividir_1:
-    clrf unidad
-    movlw 1
-    subwf dividendo, F
-    btfsc ((STATUS) and 07Fh), 0 ; si carry es 0 then 100 es mayor que el residuo
-    incf unidad ; si carry es 1 then 100 es menor que el residuo
-    btfsc ((STATUS) and 07Fh), 0
-    goto $-5
-    movlw 1
-    addwf dividendo, F
-
+ conf_tmr1:
+    banksel TRISA
+    bsf PIE1, 0 ;enable del timer1
+    banksel T1CON
+    bcf T1CON, 1 ;TEMPORIZADOR
+    bsf T1CON, 5
+    bsf T1CON, 4 ;pre escaler 1:8
+    bcf T1CON, 3 ;((PORTC) and 07Fh), 0
+    bcf T1CON, 2 ;sincronizacion
+    bsf T1CON, 0 ;timmer 1 ON
+    reiniciar_tmr1
     return
 
 END

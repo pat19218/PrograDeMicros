@@ -6,8 +6,8 @@
 ;Programa:  3semaforos con indicador de tiempo y opcion a configurar los tiempos
 ;Hardware:  push button, leds, resistencias, display 7 seg cc y transistores
 ;
-;Creado: 08 de mar, 2021
-;Última modificación: 09 de mar, 2021
+;Creado: 23 de mar, 2021
+;Última modificación: 23 de mar, 2021
 
 ;//////////////////////////////////////////////////////////////////////////////
 ; Configuration word 1
@@ -33,9 +33,6 @@ PROCESSOR 16F887
   CONFIG  BOR4V = BOR40V        ; Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
   CONFIG  WRT = OFF             ; Flash Program Memory Self Write Enable bits (Write protection off)
  
- MODO	EQU 0
- UP	EQU 1
- DOWN	EQU 2
  ;------------------------------------------------------------------------------
  ;  Macro
  ;------------------------------------------------------------------------------
@@ -60,30 +57,18 @@ PROCESSOR 16F887
  ;------------------------------------------------------------------------------
  
  PSECT udata_bank0  ;common memory
-    tiempo1:	   DS 1 ;1 BYTE, 2 DECIMALES
-    tiempo2:	   DS 1 ;1 BYTE, 2 DECIMALES
-    tiempo3:	   DS 1 ;1 BYTE, 2 DECIMALES
-    pretiempo1:	   DS 1 ;1 BYTE, 2 DECIMALES
-    pretiempo2:	   DS 1 ;1 BYTE, 2 DECIMALES
-    pretiempo3:	   DS 1 ;1 BYTE, 2 DECIMALES
     tiempo:	   DS 1	;registro de precargado
-    estado:	   DS 1 ;registro de modo operando
     cont:	   DS 1 ;Segundos que aumento o diminuyo
     segundos:	   DS 1 ;cuenta los segundos
-    cont_big:	   DS 1 ;primer delay
-    cont_small:	   DS 1	;segundo delay
-    semaforo:	   DS 1	;indica manera en encenderse los semaforos(next state)
-    op:		   DS 1	;indica en que momento desactivo la secuencia
     
     decena:	   DS 1
     unidad:	   DS 1
     dividendo:	   DS 1
-    var:	   DS 3	;displays, valor del tiempo en semaforo
     resta:	   DS 1
     
     ;datos para cada display y seleccion de display
     banderas:	   DS 1	
-    display_var:   DS 7
+    display_var:   DS 2
  
  PSECT udata_shr  ;common memory
     W_temp:	   DS 1 ;1 byte
@@ -118,10 +103,7 @@ PROCESSOR 16F887
    
    btfsc   PIR1, 0  ;TMR1IF
    call    T1_int
-    
-   btfsc    RBIF
-   call	    OC_int
-   
+
  pop:
     swapf   STATUS_temp, W
     movwf   STATUS
@@ -133,81 +115,28 @@ PROCESSOR 16F887
  ;------------------------------------------------------------------------------
  T0_int:
   reiniciar_tmr0  ;3ms
-  clrf	PORTA
+  clrf	PORTD
   btfss	banderas, 0 ;chequeo turno del display
   goto	display_0
   btfss	banderas, 1 ;chequeo turno del display
   goto	display_1
-  btfss	banderas, 2 ;chequeo turno del display
-  goto	display_2
-  btfss	banderas, 3 ;chequeo turno del display
-  goto	display_3
-  btfss	banderas, 4 ;chequeo turno del display
-  goto	display_4
-  btfss	banderas, 5 ;chequeo turno del display
-  goto	display_5
-  btfss	banderas, 6 ;chequeo turno del display de confi. tiempo
-  goto	display_6
-  btfss	banderas, 7 ;chequeo turno del display de confi. tiemp
-  goto	display_7
+  
   ;para el semaforo 1
   display_0:
     bsf	    banderas, 0
     movf    display_var+0, W
     movwf   PORTC
-    bsf	    PORTA, 1
+    bsf	    PORTD, 1
     return
   display_1:
-    bsf	    banderas, 1
+    clrf    banderas, 1
     movf    display_var+1, W
     movwf   PORTC
-    bsf	    PORTA, 0
-    return
-    
-  ;para el semaforo 2  
-  display_2:
-    bsf	    banderas, 2
-    movf    display_var+2, W
-    movwf   PORTC
-    bsf	    PORTA, 3
-    return
-  display_3:
-    bsf	    banderas, 3
-    movf    display_var+3, W
-    movwf   PORTC
-    bsf	    PORTA, 2
-    return
-
-  ;para el semaforo 3
-  display_4:
-    bsf	    banderas, 4
-    movf    display_var+4, W
-    movwf   PORTC
-    bsf	    PORTA, 5
-    return
- display_5:
-    bsf     banderas, 5
-    movf    display_var+5, W
-    movwf   PORTC
-    bsf	    PORTA, 4
-    return
-   
-    ;ver tiempo a modificar
- display_6:
-    bsf	    banderas, 6
-    movf    display_var+7, W
-    movwf   PORTC
-    bsf	    PORTA, 7
-    return
- display_7:
-    clrf    banderas
-    movf    display_var+6, W
-    movwf   PORTC
-    bsf	    PORTA, 6
+    bsf	    PORTD, 0
     return
 
  T1_int: 
-    reiniciar_tmr1  ;50ms
+    reiniciar_tmr1  ;500ms
     incf    cont
     movwf   cont, W
     sublw   2	    ;500ms * 2 = 1s
@@ -215,61 +144,11 @@ PROCESSOR 16F887
     goto    return_tm1
     clrf    cont	;si ha pasado un segundo then incrementa la variable
     incf    segundos	;para indicar los segundo transcurridos
-    
-    btfss   resta, 0	;me asegure de decrementar el tiempo solo hasta cero
-    decf    var		;asi me aseguro de que no falle el codigo
-    btfsc   ZERO
-    bsf	    resta, 0
-    
-    btfss   resta, 1
-    decf    var+1
-    btfsc   ZERO
-    bsf	    resta, 1
-    
-    btfss   resta, 2
-    decf    var+2
-    btfsc   ZERO
-    bsf	    resta, 2
-    
+    incf    PORTA
  return_tm1:
     return
     
- OC_int:
-    banksel PORTB
-    btfss   PORTB, MODO
-    incf    estado	;selecciono el modo por el push button
-    movlw   6
-    subwf   estado, W	;me aseguro que si llega a la ultima opcion y se 
-    btfss   ZERO	;presiona, regrese a la confi 1
-    goto    $+3
-    movlw   2
-    movwf   estado
-    
-    btfss   PORTB, UP	;incremento el tiempo de configuración
-    incf    tiempo, F
-    movlw   21		;me aseguro que solo llegue hasta 20 y luego de sea 10
-    subwf   tiempo, W
-    btfsc   ZERO
-    goto    min
-    
-    btfss   PORTB, DOWN
-    decf    tiempo, F
-    movlw   9		;me aseguro que solo llegue a 10 y luego sea 20
-    subwf   tiempo, W
-    btfsc   ZERO
-    goto    max
-    bcf	    RBIF
-    return
-  min:
-    movlw   10
-    movwf   tiempo
-    bcf	    RBIF
-    return
-  max:
-    movlw   20
-    movwf   tiempo
-    bcf	    RBIF
-    return
+
  ;------------------------------------------------------------------------------
  ;	TABLA / INICIO DEL CODIGO 
  ;------------------------------------------------------------------------------
@@ -310,18 +189,7 @@ tabla:
     clrf    TRISA
     clrf    TRISC
     clrf    TRISD
-    clrf    TRISE
-    clrf    TRISB
-    bsf	    TRISB, UP
-    bsf	    TRISB, DOWN
-    bsf	    TRISB, MODO
-    
-     ;conf. pull-up
-    bcf	    OPTION_REG, 7   ;habilito pull-up
-    bsf	    WPUB, UP	    ;selecciono que pines
-    bsf	    WPUB, DOWN
-    bsf	    WPUB, MODO
-    
+   
     banksel OSCCON
     bsf	    IRCF2   ;4MHZ = 110
     bsf	    IRCF1
@@ -330,37 +198,13 @@ tabla:
     
     call    conf_tmr0 
     call    conf_tmr1
-    call    conf_interrupt_oc
     call    conf_interrupt_ena
     
     banksel PORTA   ;Me asegure que empiece en cero
     clrf    PORTA
     clrf    PORTC
     clrf    PORTD
-    clrf    PORTE
-    clrf    PORTB
     clrf    segundos
-    clrf    semaforo
-    clrf    pretiempo1
-    clrf    pretiempo2
-    clrf    pretiempo3
-    clrf    op
-    movlw   5
-    movwf   tiempo1
-    movwf   tiempo2
-    movwf   tiempo3
-    movf    tiempo1, W
-    movwf   var
-    movf    tiempo2, W
-    movwf   var+1
-    movf    tiempo3, W
-    movwf   var+2
-    movlw   1
-    movwf   estado
-    movlw   10
-    movwf   tiempo
-    movlw   11111110B
-    movwf   resta
 
    
  ;------------------------------------------------------------------------------
@@ -368,280 +212,15 @@ tabla:
  ;------------------------------------------------------------------------------
  
  loop:
-    
-    movf    var, W		;le asigno los tiempos respectivos a cada
-    movwf   dividendo		;display del semaforo indicado
+    movf    segundos, W
+    movwf   dividendo
     call    dividir_10
     call    preparar_display1
     
-    movf    var+1, W
-    movwf   dividendo
-    call    dividir_10
-    call    preparar_display2
-    
-    movf    var+2, W
-    movwf   dividendo
-    call    dividir_10
-    call    preparar_display3
-    
-    btfss   op, 0
-    call    default	;Semaforo funcionando normal
-    
-    movlw   2
-    subwf   estado, W
-    btfsc   ZERO
-    call    confiS1	;Configurar el tiempo del semaforo 1
-    
-    movlw   3
-    subwf   estado, W
-    btfsc   ZERO
-    call    confiS2	;Configurar el tiempo del semaforo 2
-    
-    movlw   4
-    subwf   estado, W
-    btfsc   ZERO
-    call    confiS3	;Configurar el tiempo del semaforo 3
-    
-    movlw   5
-    subwf   estado, W
-    btfsc   ZERO
-    call    decision	;Acepto los tiempos precargados
-    
-    goto    loop
-    
-    default:
-	btfss   semaforo, 0 ;primer secuencia, semaforo 1 da via segun el time1
-	call    parte1	
-	btfsc   semaforo, 1 ;luz amarilla durante 3 segundos
-	call    parte2		
-	btfsc   semaforo, 2 ;2da secuencia, semaforo 2 da via segun el time2
-	call    parte3	
-	btfsc   semaforo, 3 ;luz amarilla durante 3 segundos
-	call    parte4	
-	btfsc   semaforo, 4 ;3ra secuencia, semaforo 3 da via segun el time1
-	call    parte5	
-	btfsc   semaforo, 5 ;luz amarilla durante 3 segundos
-	call    parte6	
-	return
-	
-    confiS1:
-	bsf	PORTB, 3
-	bcf	PORTB, 4
-	bcf	PORTB, 5
-	movf	tiempo, W
-	movwf	pretiempo1	;tomo el valor actual y lo guardo temporalmente
-	movf	pretiempo1, W
-	movwf	dividendo	;dividiendo tiene el valor que se piensa subir
-	call    dividir_10	;analizo cuantas decenas tiene ese valor
-	call    preparar_display;mando los datos correspondientes a cada display
-	return
-
-    confiS2:
-	bcf	PORTB, 3
-	bsf	PORTB, 4
-	bcf	PORTB, 5
-	movf	tiempo, W
-	movwf	pretiempo2
-	movf	pretiempo2, W
-	movwf	dividendo	;dividiendo tiene el valor que se piensa subir
-	call    dividir_10	;analizo cuantas decenas tiene ese valor
-	call    preparar_display;mando los datos correspondientes a cada display
-	return
-
-    confiS3:
-	bcf	PORTB, 3
-	bcf	PORTB, 4
-	bsf	PORTB, 5
-	movf	tiempo, W
-	movwf	pretiempo3
-	movf	pretiempo3, W
-	movwf	dividendo	;dividiendo tiene el valor que se piensa subir
-	call    dividir_10	;analizo cuantas decenas tiene ese valor
-	call    preparar_display;mando los datos correspondientes a cada display
-	return
-
-    decision:
-	bsf	op, 0	    ;desactivo el semaforo
-	bsf	PORTB, 3
-	bsf	PORTB, 4
-	bsf	PORTB, 5
-	movlw	000110110B  ;indicacion de semafotos
-	movwf	PORTD
-	movlw	000000110B
-	movwf	PORTE
-	btfss	PORTB, UP   ;selecion
-	call	cargar
-	btfss	PORTB, DOWN
-	call	retachar
-	return
-
-
+    goto loop
  ;------------------------------------------------------------------------------
- ;	sub rutinas
+ ;				sub rutinas
  ;------------------------------------------------------------------------------
-  
- parte1:
-    movlw   00100001B	;estado del primer y segundo semaforo
-    movwf   PORTD
-    movlw   00000100B	;estado del segundo semaforo
-    movwf   PORTE
-    movwf   segundos, W	;le resto los segundo trascurridos al tiempo definido
-    subwf   tiempo1, W
-    btfsc   STATUS, 2	;ZERO
-    call    parpadeo1
-    return
-    
- parte2:
-    movlw   00100010B	;luz amarilla
-    movwf   PORTD
-    movlw   00000100B
-    movwf   PORTE   
-    movlw   3
-    subwf   segundos, W
-    btfsc   ZERO
-    call    siguiente2
-    return
- siguiente2:
-    bcf	    semaforo, 1	;habilito el siguiente semaforo y desabilito el actual
-    bsf	    semaforo, 2
-    movf    tiempo2, W
-    movwf   var+1, F
-    movlw   11111101B
-    movwf   resta
-    clrf    segundos
-    return
-    
- parte3:
-    movlw   00001100B	;estado del primer y segundo semaforo
-    movwf   PORTD
-    movlw   00000100B	;estado del segundo semaforo
-    movwf   PORTE
-    movwf   segundos, W	;le resto los segundo trascurridos al tiempo definido
-    subwf   tiempo2, W
-    btfsc   STATUS, 2	;ZERO
-    call    parpadeo2
-    return
-    
- parte4:
-    movlw   00010100B	;luz amarilla
-    movwf   PORTD
-    movlw   00000100B
-    movwf   PORTE   
-    movlw   3
-    subwf   segundos, W
-    btfsc   ZERO
-    call    siguiente3
-    return
- siguiente3:
-    bcf	    semaforo, 3	;habilito el siguiente semafor y desactivo el actual
-    bsf	    semaforo, 4
-    movf    tiempo3, W
-    movwf   var+2, F
-    movlw   11111011B
-    movwf   resta
-    clrf    segundos
-    return
- 
-parte5:
-    movlw   00100100B	;estado del primer y segundo semaforo
-    movwf   PORTD
-    movlw   00000001B	;estado del segundo semaforo
-    movwf   PORTE
-    movwf   segundos, W	;le resto los segundo trascurridos al tiempo definido
-    subwf   tiempo3, W
-    btfsc   STATUS, 2	;ZERO
-    call    parpadeo3
-    return
-    
- parte6:
-    movlw   00100100B
-    movwf   PORTD
-    movlw   00000010B
-    movwf   PORTE   
-    movlw   3
-    subwf   segundos, W
-    btfsc   ZERO
-    call    siguiente4
-    return
- siguiente4:
-    bcf	    semaforo, 5
-    bcf	    semaforo, 0
-    movf    tiempo1, W
-    movwf   var, F
-    movlw   11111110B
-    movwf   resta
-    clrf    segundos
-    return
-    
- parpadeo1:
-    bcf	    PORTD, 0
-    call    delay
-    bsf	    PORTD, 0
-    call    delay
-    bcf	    PORTD, 0
-    call    delay
-    bsf	    PORTD, 0
-    call    delay
-    bcf	    PORTD, 0
-    call    delay
-    bsf	    PORTD, 0
-    call    delay
-    bcf	    PORTD, 0
-    bsf	    semaforo, 0
-    bsf	    semaforo, 1
-    clrf    segundos
-    return
- parpadeo2:
-    bcf	    PORTD, 3
-    call    delay
-    bsf	    PORTD, 3
-    call    delay
-    bcf	    PORTD, 3
-    call    delay
-    bsf	    PORTD, 3
-    call    delay
-    bcf	    PORTD, 3
-    call    delay
-    bsf	    PORTD, 3
-    call    delay
-    bcf	    PORTD, 3
-    bcf	    semaforo, 2
-    bsf	    semaforo, 3
-    clrf    segundos
-    return
- parpadeo3:
-    bcf	    PORTE, 0
-    call    delay
-    bsf	    PORTE, 0
-    call    delay
-    bcf	    PORTE, 0
-    call    delay
-    bsf	    PORTE, 0
-    call    delay
-    bcf	    PORTE, 0
-    call    delay
-    bsf	    PORTE, 0
-    call    delay
-    bcf	    PORTE, 0
-    bcf	    semaforo, 4
-    bsf	    semaforo, 5
-    clrf    segundos
-    return
-    
- delay:
-    movlw   255		    ;valor inicial
-    movwf   cont_big	    
-    call    delay_small	    ;rutina de delay
-    decfsz  cont_big, 1	    ;decrementar el contador
-    goto    $-2		    ;ejecutar dos líneas atrás
-    return
- delay_small:
-    movlw   255		    ;valor inicial del contador
-    movwf   cont_small
-    decfsz  cont_small, 1   ;decrementar el contador
-    goto    $-1		    ;ejecutar línea anterior
-    return
- 
  dividir_10:
     clrf    decena
     movlw   10
@@ -663,33 +242,6 @@ parte5:
     call    tabla
     movwf   display_var
     return
-  preparar_display2:
-    movf    decena, W	    ;traduzco el binario a decimal de los display 
-    call    tabla
-    movwf   display_var+3
-    
-    movf    dividendo, W
-    call    tabla
-    movwf   display_var+2 
-    return
-   preparar_display3:
-    movf    decena, W	    ;traduzco el binario a decimal de los display 
-    call    tabla
-    movwf   display_var+5
-    
-    movf    dividendo, W
-    call    tabla
-    movwf   display_var+4 
-    return   
-  preparar_display:
-    movf    decena, W	;traduzco el binario a decimal de los display 
-    call    tabla
-    movwf   display_var+6
-    
-    movf    dividendo, W
-    call    tabla
-    movwf   display_var+7
-    return
     
  conf_tmr0:
     banksel TRISA
@@ -701,24 +253,12 @@ parte5:
     reiniciar_tmr0
     return
  
- conf_interrupt_oc:
-    banksel TRISB
-    bsf	    IOCB, UP
-    bsf	    IOCB, DOWN
-    bsf	    IOCB, MODO
-    banksel PORTA
-    movf    PORTB, W	;al leer termina condicion de ser distintos (mismatch)
-    bcf	    RBIF
-    return
- 
  conf_interrupt_ena:
     bsf	    GIE
     bsf	    T0IE
     bcf	    T0IF
     bsf	    PIE1, 0 
     bcf	    PIR1, 0 ;TMR1IF
-    bsf	    RBIE
-    bcf	    RBIF
     return
     
  conf_tmr1:
@@ -733,54 +273,7 @@ parte5:
     bsf	    T1CON, 0	;timmer 1 ON
     reiniciar_tmr1
     return
-    
-    
- cargar:
-    decf    tiempo	    ;paso los pretiempo al tiempo de cada semaforo
-    movf    pretiempo1, W
-    movwf   tiempo1, F
-    movwf   var
-    movf    pretiempo2, W
-    movwf   tiempo2, F
-    movwf   var+1
-    movf    pretiempo3, W
-    movwf   tiempo3, F
-    movwf   var+2
-    movlw   00000001B
-    movwf   estado
-    bcf	    op, 0	;activo secuencia del semaforo y apago leds de confi.
-    bcf	PORTB, 3
-    bcf	PORTB, 4
-    bcf	PORTB, 5
-    clrf    display_var+7
-    clrf    display_var+6
-    movlw   0000110B
-    movwf   resta
-    clrf    semaforo
-    clrf    segundos
-    return
-    
- retachar:
-    movlw   00000001B	;simplemente regreso a la rutina normal sin cargar nada
-    movwf   estado
-    incf    tiempo
-    movf    tiempo1, W
-    movwf   var
-    movf    tiempo2, W
-    movwf   var+1
-    movf    tiempo3, W
-    movwf   var+2
-    bcf	    op, 0
-    bcf	PORTB, 3
-    bcf	PORTB, 4
-    bcf	PORTB, 5
-    clrf    display_var+7
-    clrf    display_var+6
-    movlw   0000110B
-    movwf   resta
-    clrf    semaforo
-    clrf    segundos
-    return
+
 END
 
 
