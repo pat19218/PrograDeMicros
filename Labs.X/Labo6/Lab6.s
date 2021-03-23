@@ -58,7 +58,8 @@ PROCESSOR 16F887
  
  PSECT udata_bank0  ;common memory
     tiempo:	   DS 1	;registro de precargado
-    cont:	   DS 1 ;Segundos que aumento o diminuyo
+    cont:	   DS 1 ;Segundos que aumento
+    cont2:	   DS 1 ;para 250ms
     segundos:	   DS 1 ;cuenta los segundos
     
     decena:	   DS 1
@@ -98,11 +99,14 @@ PROCESSOR 16F887
     movwf   STATUS_temp
     
  isr:
-   btfsc   T0IF
+   btfsc   T0IF	    ;TMR0IF
    call    T0_int
    
    btfsc   PIR1, 0  ;TMR1IF
    call    T1_int
+   
+   btfsc   PIR1, 1  ;TMR2IF
+   call    T2_int
 
  pop:
     swapf   STATUS_temp, W
@@ -118,18 +122,21 @@ PROCESSOR 16F887
   clrf	PORTD
   btfss	banderas, 0 ;chequeo turno del display
   goto	display_0
-  btfss	banderas, 1 ;chequeo turno del display
   goto	display_1
   
   ;para el semaforo 1
   display_0:
+    btfss   PORTA, 0
+    return
     bsf	    banderas, 0
     movf    display_var+0, W
     movwf   PORTC
     bsf	    PORTD, 1
     return
   display_1:
-    clrf    banderas, 1
+    btfss   PORTA, 0
+    return
+    bcf	    banderas, 0
     movf    display_var+1, W
     movwf   PORTC
     bsf	    PORTD, 0
@@ -144,11 +151,29 @@ PROCESSOR 16F887
     goto    return_tm1
     clrf    cont	;si ha pasado un segundo then incrementa la variable
     incf    segundos	;para indicar los segundo transcurridos
-    incf    PORTA
  return_tm1:
     return
     
-
+ T2_int:
+    clrf    TMR2    ;Bajo banderas
+    bcf	    PIR1, 1 ; TMR2IF
+    
+    incf    cont2
+    movwf   cont2, W
+    sublw   5	    ;25ms * 10 = 250ms
+    btfss   ZERO
+    goto    return_tm2	;si no ha pasado el segundo solo regresa
+    clrf    cont2	;si ha pasado un segundo then incrementa la variable
+    
+    btfsc   PORTA, 0
+    goto    next
+    bsf	    PORTA, 0
+    
+return_tm2:   
+    return
+next:
+    bcf	    PORTA,0
+    return
  ;------------------------------------------------------------------------------
  ;	TABLA / INICIO DEL CODIGO 
  ;------------------------------------------------------------------------------
@@ -197,13 +222,15 @@ tabla:
     bsf	    SCS	    ;reloj interno activo
     
     call    conf_tmr0 
-    call    conf_tmr1
+    call    conf_tmr1 
+    call    conf_tmr2
     call    conf_interrupt_ena
     
     banksel PORTA   ;Me asegure que empiece en cero
     clrf    PORTA
     clrf    PORTC
     clrf    PORTD
+    clrf    banderas
     clrf    segundos
 
    
@@ -234,6 +261,10 @@ tabla:
     return
     
   preparar_display1:
+    movlw   10
+    subwf   decena, W
+    btfss   ZERO    
+    clrf    decena
     movf    decena, W	    ;traduzco el binario a decimal de los display 
     call    tabla
     movwf   display_var+1
@@ -258,7 +289,9 @@ tabla:
     bsf	    T0IE
     bcf	    T0IF
     bsf	    PIE1, 0 
+    bsf	    PIE1, 1  ;TMR2IE
     bcf	    PIR1, 0 ;TMR1IF
+    bcf	    PIR1, 1 ;TMR2IF
     return
     
  conf_tmr1:
@@ -273,7 +306,18 @@ tabla:
     bsf	    T1CON, 0	;timmer 1 ON
     reiniciar_tmr1
     return
-
+ conf_tmr2:
+    BANKSEL PORTA
+    movlw   11111111B	;Configuracion del tmr2
+    movwf   T2CON
+    BANKSEL TRISA
+    movlw   98		;valor a comparar, cuenta a cada 0.025s
+    movwf   PR2
+    BANKSEL PORTA
+    clrf    TMR2
+    bcf	    PIR1, 1 ;TRM2IF
+    
+    return
 END
 
 
