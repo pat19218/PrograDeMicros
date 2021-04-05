@@ -74,6 +74,7 @@ PROCESSOR 16F887
     cont_small:	   DS 1	;segundo delay
     semaforo:	   DS 1	;indica manera en encenderse los semaforos(next state)
     op:		   DS 1	;indica en que momento desactivo la secuencia
+    parpadea:	   DS 1
     
     decena:	   DS 1
     unidad:	   DS 1
@@ -232,6 +233,8 @@ PROCESSOR 16F887
     bsf	    resta, 2
     
  return_tm1:
+    movlw   1
+    xorwf   segm, F
     return
     
  OC_int:
@@ -345,7 +348,7 @@ tabla:
     clrf    pretiempo2
     clrf    pretiempo3
     clrf    op
-    movlw   5
+    movlw   9
     movwf   tiempo1
     movwf   tiempo2
     movwf   tiempo3
@@ -361,6 +364,8 @@ tabla:
     movwf   tiempo
     movlw   11111110B
     movwf   resta
+    movlw   11111111B
+    movwf   parpadea
 
    
  ;------------------------------------------------------------------------------
@@ -412,14 +417,20 @@ tabla:
     default:
 	btfss   semaforo, 0 ;primer secuencia, semaforo 1 da via segun el time1
 	call    parte1	
+	btfss	parpadea, 0 ;la luz parpadea durante 3 segundos
+	call	parpadeo1
 	btfsc   semaforo, 1 ;luz amarilla durante 3 segundos
 	call    parte2		
 	btfsc   semaforo, 2 ;2da secuencia, semaforo 2 da via segun el time2
 	call    parte3	
+	btfss	parpadea, 1 ;la luz parpadea durante 3 segundos
+	call	parpadeo2
 	btfsc   semaforo, 3 ;luz amarilla durante 3 segundos
 	call    parte4	
 	btfsc   semaforo, 4 ;3ra secuencia, semaforo 3 da via segun el time1
 	call    parte5	
+	btfss	parpadea, 2 ;la luz parpadea durante 3 segundos
+	call	parpadeo3
 	btfsc   semaforo, 5 ;luz amarilla durante 3 segundos
 	call    parte6	
 	return
@@ -485,10 +496,12 @@ tabla:
     movwf   PORTD
     movlw   00000100B	;estado del segundo semaforo
     movwf   PORTE
-    movwf   segundos, W	;le resto los segundo trascurridos al tiempo definido
-    subwf   tiempo1, W
-    btfsc   STATUS, 2	;ZERO
-    call    parpadeo1
+    movlw   6	;le resto los segundo trascurridos al tiempo definido
+    subwf   var, W
+    btfss   STATUS, 2	;ZERO
+    return
+    bcf	    parpadea, 0
+    bsf	    semaforo, 0	    
     return
     
  parte2:
@@ -504,6 +517,7 @@ tabla:
  siguiente2:
     bcf	    semaforo, 1	;habilito el siguiente semaforo y desabilito el actual
     bsf	    semaforo, 2
+    
     movf    tiempo2, W
     movwf   var+1, F
     movlw   11111101B
@@ -516,10 +530,12 @@ tabla:
     movwf   PORTD
     movlw   00000100B	;estado del segundo semaforo
     movwf   PORTE
-    movwf   segundos, W	;le resto los segundo trascurridos al tiempo definido
-    subwf   tiempo2, W
-    btfsc   STATUS, 2	;ZERO
-    call    parpadeo2
+    movlw   6	;le resto los segundo trascurridos al tiempo definido
+    subwf   var+1, W
+    btfss   STATUS, 2	;ZERO
+    return
+    bcf	    parpadea, 1
+    bcf	    semaforo, 2	 
     return
     
  parte4:
@@ -547,10 +563,14 @@ parte5:
     movwf   PORTD
     movlw   00000001B	;estado del segundo semaforo
     movwf   PORTE
-    movwf   segundos, W	;le resto los segundo trascurridos al tiempo definido
-    subwf   tiempo3, W
-    btfsc   STATUS, 2	;ZERO
-    call    parpadeo3
+    
+    movlw   6	;le resto los segundo trascurridos al tiempo definido
+    subwf   var+2, W
+    btfss   STATUS, 2	;ZERO
+    return
+    bcf	    parpadea, 2
+    bcf	    semaforo, 4	 
+    
     return
     
  parte6:
@@ -574,74 +594,48 @@ parte5:
     return
     
  parpadeo1:
+    btfss   segm, 0
     bcf	    PORTD, 0
-    call    delay
+    btfsc   segm, 0
     bsf	    PORTD, 0
-    call    delay
-    bcf	    PORTD, 0
-    call    delay
-    bsf	    PORTD, 0
-    call    delay
-    bcf	    PORTD, 0
-    call    delay
-    bsf	    PORTD, 0
-    call    delay
-    bcf	    PORTD, 0
-    bsf	    semaforo, 0
+    
+    movlw   3
+    subwf   var, W
+    btfss   ZERO
+    return
+    bsf	    parpadea, 0
     bsf	    semaforo, 1
     clrf    segundos
     return
  parpadeo2:
+    btfss   segm, 0
     bcf	    PORTD, 3
-    call    delay
+    btfsc   segm, 0
     bsf	    PORTD, 3
-    call    delay
-    bcf	    PORTD, 3
-    call    delay
-    bsf	    PORTD, 3
-    call    delay
-    bcf	    PORTD, 3
-    call    delay
-    bsf	    PORTD, 3
-    call    delay
-    bcf	    PORTD, 3
-    bcf	    semaforo, 2
+    
+    movlw   3
+    subwf   var+1, W
+    btfss   ZERO
+    return
+    bsf	    parpadea, 1
     bsf	    semaforo, 3
     clrf    segundos
     return
  parpadeo3:
+    btfss   segm, 0
     bcf	    PORTE, 0
-    call    delay
+    btfsc   segm, 0
     bsf	    PORTE, 0
-    call    delay
-    bcf	    PORTE, 0
-    call    delay
-    bsf	    PORTE, 0
-    call    delay
-    bcf	    PORTE, 0
-    call    delay
-    bsf	    PORTE, 0
-    call    delay
-    bcf	    PORTE, 0
-    bcf	    semaforo, 4
+
+    movlw   3
+    subwf   var+2, W
+    btfss   ZERO
+    return
+    bsf	    parpadea, 2
     bsf	    semaforo, 5
     clrf    segundos
     return
-    
- delay:
-    movlw   255		    ;valor inicial
-    movwf   cont_big	    
-    call    delay_small	    ;rutina de delay
-    decfsz  cont_big, 1	    ;decrementar el contador
-    goto    $-2		    ;ejecutar dos líneas atrás
-    return
- delay_small:
-    movlw   255		    ;valor inicial del contador
-    movwf   cont_small
-    decfsz  cont_small, 1   ;decrementar el contador
-    goto    $-1		    ;ejecutar línea anterior
-    return
- 
+  
  dividir_10:
     clrf    decena
     movlw   10

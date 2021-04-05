@@ -357,3 +357,28 @@ tabla:
     return
     
 END
+    
+    
+     parte1:
+    movlw   00100001B	;estado del primer y segundo semaforo
+    movwf   PORTD
+    movlw   00000100B	;estado del segundo semaforo
+    movwf   PORTE
+    movlw   6	;le resto los segundo trascurridos al tiempo definido
+    subwf   var, W
+    btfss   STATUS, 2	;ZERO
+    return
+    bcf	    parpadea, 0
+    bsf	    semaforo, 0	    
+    return
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
