@@ -1,0 +1,173 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F887 ]
+[d frameptr 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"48 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Laboratorio7\LAB7.X\lab7.c
+[v _isr isr `II(v  1 e 1 0 ]
+"89
+[v _main main `(v  1 e 1 0 ]
+"59 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
+"166
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"228
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"290
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"352
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
+[s S29 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INTF 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INTE 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"482
+[s S38 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+[u S43 . 1 `S29 1 . 1 0 `S38 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES43  1 e 1 @11 ]
+[s S72 . 1 `uc 1 PS 1 0 :3:0 
+`uc 1 PSA 1 0 :1:3 
+`uc 1 T0SE 1 0 :1:4 
+`uc 1 T0CS 1 0 :1:5 
+`uc 1 INTEDG 1 0 :1:6 
+`uc 1 nRBPU 1 0 :1:7 
+]
+"1366
+[s S79 . 1 `uc 1 PS0 1 0 :1:0 
+`uc 1 PS1 1 0 :1:1 
+`uc 1 PS2 1 0 :1:2 
+]
+[u S83 . 1 `S72 1 . 1 0 `S79 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES83  1 e 1 @129 ]
+"1416
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"1478
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1540
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"1602
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+[s S124 . 1 `uc 1 SCS 1 0 :1:0 
+`uc 1 LTS 1 0 :1:1 
+`uc 1 HTS 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+]
+"1882
+[s S130 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+[u S135 . 1 `S124 1 . 1 0 `S130 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES135  1 e 1 @143 ]
+[s S98 . 1 `uc 1 WPUB 1 0 :8:0 
+]
+"2366
+[s S100 . 1 `uc 1 WPUB0 1 0 :1:0 
+`uc 1 WPUB1 1 0 :1:1 
+`uc 1 WPUB2 1 0 :1:2 
+`uc 1 WPUB3 1 0 :1:3 
+`uc 1 WPUB4 1 0 :1:4 
+`uc 1 WPUB5 1 0 :1:5 
+`uc 1 WPUB6 1 0 :1:6 
+`uc 1 WPUB7 1 0 :1:7 
+]
+[u S109 . 1 `S98 1 . 1 0 `S100 1 . 1 0 ]
+[v _WPUBbits WPUBbits `VES109  1 e 1 @149 ]
+[s S150 . 1 `uc 1 IOCB 1 0 :8:0 
+]
+"2436
+[s S152 . 1 `uc 1 IOCB0 1 0 :1:0 
+`uc 1 IOCB1 1 0 :1:1 
+`uc 1 IOCB2 1 0 :1:2 
+`uc 1 IOCB3 1 0 :1:3 
+`uc 1 IOCB4 1 0 :1:4 
+`uc 1 IOCB5 1 0 :1:5 
+`uc 1 IOCB6 1 0 :1:6 
+`uc 1 IOCB7 1 0 :1:7 
+]
+[u S161 . 1 `S150 1 . 1 0 `S152 1 . 1 0 ]
+[v _IOCBbits IOCBbits `VES161  1 e 1 @150 ]
+"3387
+[v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
+"3449
+[v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
+"4103
+[v _RB0 RB0 `VEb  1 e 0 @48 ]
+"4106
+[v _RB1 RB1 `VEb  1 e 0 @49 ]
+"4118
+[v _RB5 RB5 `VEb  1 e 0 @53 ]
+"4121
+[v _RB6 RB6 `VEb  1 e 0 @54 ]
+"4124
+[v _RB7 RB7 `VEb  1 e 0 @55 ]
+"4130
+[v _RBIF RBIF `VEb  1 e 0 @88 ]
+"4322
+[v _T0IF T0IF `VEb  1 e 0 @90 ]
+"38 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Laboratorio7\LAB7.X\lab7.c
+[v _centena centena `i  1 e 2 0 ]
+[v _decena decena `i  1 e 2 0 ]
+[v _unidad unidad `i  1 e 2 0 ]
+"40
+[v _num_display num_display `DC[10]uc  1 e 10 0 ]
+"43
+[v _dividendo dividendo `i  1 e 2 0 ]
+"44
+[v _turno turno `i  1 e 2 0 ]
+"89
+[v _main main `(v  1 e 1 0 ]
+{
+"145
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 13 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 12 ]
+[v ___awdiv@counter counter `uc  1 a 1 11 ]
+"5
+[v ___awdiv@divisor divisor `i  1 p 2 6 ]
+[v ___awdiv@dividend dividend `i  1 p 2 8 ]
+"41
+} 0
+"48 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\Laboratorio7\LAB7.X\lab7.c
+[v _isr isr `II(v  1 e 1 0 ]
+{
+"85
+} 0
