@@ -93,7 +93,7 @@ void __interrupt()isr(void) {
 
 //----------------------configuracion microprocesador---------------------------
 
-void main(void) {
+void main(void){
 
     ANSEL = 0x00; //No hay i/o analogicas
     ANSELH = 0x00;
