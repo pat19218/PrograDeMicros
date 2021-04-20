@@ -8,7 +8,7 @@
  * Hardware: Pic 16f887, transistores, resistencias, leds, displays 7 seg,button
  * 
  * Created on 19 de abril de 2021, 16:37
- * Last modification on 
+ * Last modification on 19 de abril de 2021, 20:33
  */
 
 // PIC16F887 Configuration Bit Settings
@@ -50,7 +50,6 @@ const char num_display[] = {0xFC, 0x60, 0xDA, 0xF2, 0x66,
                             0xB6, 0xBE, 0xE0, 0xFE, 0xF6};
                           //  5     6     7    8     9
 
-char resultado; //8 bits
 
 //---------------------------interrupciones-------------------------------------
 
