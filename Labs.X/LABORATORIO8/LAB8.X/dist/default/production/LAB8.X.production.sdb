@@ -17,9 +17,9 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"54 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO8\LAB8.X\laba8.c
+"57 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO8\LAB8.X\laba8.c
 [v _isr isr `II(v  1 e 1 0 ]
-"85
+"88
 [v _main main `(v  1 e 1 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -48,7 +48,32 @@
 ]
 [u S41 . 1 `S27 1 . 1 0 `S36 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES41  1 e 1 @11 ]
-[s S92 . 1 `uc 1 PS 1 0 :3:0 
+"1238
+[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
+[s S81 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+`uc 1 ADCS 1 0 :2:6 
+]
+"1276
+[s S86 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 ADCS0 1 0 :1:6 
+`uc 1 ADCS1 1 0 :1:7 
+]
+[s S95 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S98 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[u S101 . 1 `S81 1 . 1 0 `S86 1 . 1 0 `S95 1 . 1 0 `S98 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES101  1 e 1 @31 ]
+[s S159 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -56,34 +81,43 @@
 `uc 1 nRBPU 1 0 :1:7 
 ]
 "1366
-[s S99 . 1 `uc 1 PS0 1 0 :1:0 
+[s S166 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 ]
-[u S103 . 1 `S92 1 . 1 0 `S99 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES103  1 e 1 @129 ]
+[u S170 . 1 `S159 1 . 1 0 `S166 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES170  1 e 1 @129 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
-"1478
-[v _TRISB TRISB `VEuc  1 e 1 @134 ]
 "1540
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-[s S66 . 1 `uc 1 SCS 1 0 :1:0 
+"1664
+[v _TRISE TRISE `VEuc  1 e 1 @137 ]
+[s S133 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S72 . 1 `uc 1 . 1 0 :4:0 
+[s S139 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S77 . 1 `S66 1 . 1 0 `S72 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES77  1 e 1 @143 ]
+[u S144 . 1 `S133 1 . 1 0 `S139 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES144  1 e 1 @143 ]
+[s S66 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 VCFG0 1 0 :1:4 
+`uc 1 VCFG1 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"2991
+[u S72 . 1 `S66 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES72  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
@@ -96,20 +130,20 @@
 [v _RD2 RD2 `VEb  1 e 0 @66 ]
 "4322
 [v _T0IF T0IF `VEb  1 e 0 @90 ]
-"44 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO8\LAB8.X\laba8.c
+"45 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO8\LAB8.X\laba8.c
 [v _centena centena `uc  1 e 1 0 ]
 [v _decena decena `uc  1 e 1 0 ]
 [v _unidad unidad `uc  1 e 1 0 ]
 "46
-[v _num_display num_display `DC[10]uc  1 e 10 0 ]
-"49
 [v _dividendo dividendo `uc  1 e 1 0 ]
-"50
+"47
 [v _turno turno `uc  1 e 1 0 ]
-"85
+"49
+[v _num_display num_display `DC[10]uc  1 e 10 0 ]
+"88
 [v _main main `(v  1 e 1 0 ]
 {
-"131
+"160
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -147,8 +181,8 @@
 [v ___awdiv@dividend dividend `i  1 p 2 8 ]
 "41
 } 0
-"54 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO8\LAB8.X\laba8.c
+"57 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO8\LAB8.X\laba8.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"82
+"85
 } 0

@@ -38,16 +38,19 @@
 #include <stdint.h>
 
 //--------------------------directivas del compilador---------------------------
-#define _tmr0_value 100;
+#define _tmr0_value 100
+#define _XTAL_FREQ 8000000 //__delay_ms(x)
 
 //---------------------------variables------------------------------------------
 char centena, decena, unidad;
+char dividendo, divisor;
+char turno;
                           // 0     1    2     3     4
 const char num_display[] = {0xFC, 0x60, 0xDA, 0xF2, 0x66,
                             0xB6, 0xBE, 0xE0, 0xFE, 0xF6};
                           //  5     6     7    8     9
-char dividendo, divisor;
-char turno;
+
+char resultado; //8 bits
 
 //---------------------------interrupciones-------------------------------------
 
@@ -84,14 +87,23 @@ void __interrupt()isr(void){
 
 void main(void){
 
-    ANSEL = 0x00; //No hay i/o analogicas
+    ANSEL = 0b01100000; // hay i/o analogicas AN5 y AN6
     ANSELH = 0x00;
 
     TRISA = 0x00; // PORTA todo salida
-    TRISB = 0b00000011; // PORTB todo salida a excepcion de los primeros 2 bits
     TRISC = 0x00; // PORTC todo salida
     TRISD = 0x00; // PORTD todo salida
-
+    TRISE = 0b0011; // primeros 2 pines como entrada analogicas
+    
+    ADCON1bits.ADFM = 0;    //Justificado a la izquierda
+    ADCON1bits.VCFG0 = 0;   //voltaje de 0V-5V
+    ADCON1bits.VCFG1 = 0;
+    ADCON0bits.ADCS0 = 0;   //Fosc/32
+    ADCON0bits.ADCS1 = 1;
+    ADCON0bits.CHS = 5; //canal 5
+    __delay_us(100);
+    ADCON0bits.ADON = 1;    //activo el modulo
+    
     OSCCONbits.IRCF2 = 1; //Config. de oscilacion
     OSCCONbits.IRCF1 = 1; //Pre-escaler a 8MHz (111))
     OSCCONbits.IRCF0 = 1;
@@ -108,6 +120,9 @@ void main(void){
     INTCONbits.T0IE = 1; //activo interrupciones por timmer 0
     INTCONbits.T0IF = 0; //bajo la bandera
 
+    
+    ADCON0bits.GO = 1;  
+    
     PORTA = 0; // Estado inicial de los pines
     PORTB = 0; // Estado inicial de los pines
     PORTC = 0; // Estado inicial de los pines
@@ -120,8 +135,22 @@ void main(void){
 
     //------------------------------loop principal----------------------------------
     while (1) {
-
-        dividendo = PORTA;                          //copy el valor
+        
+        if(ADCON0bits.GO == 0){
+            
+            if(ADCON0bits.CHS == 6){
+                PORTA = ADRESH;
+                ADCON0bits.CHS = 5;
+            }
+            else if(ADCON0bits.CHS == 5){
+                dividendo = ADRESH;
+                ADCON0bits.CHS = 6;
+            }
+            __delay_us(50);     //con 6 micros segundos será suficiente se dejo
+                                //en 50 por fallos de software en proteus
+            ADCON0bits.GO = 1;
+        }
+        
         centena = dividendo / 100;                  //saco centenas
         decena = (dividendo - (100 * centena))/10;  //saco decenas
         unidad = dividendo - (100 * centena) - (decena * 10);   //saco unidades

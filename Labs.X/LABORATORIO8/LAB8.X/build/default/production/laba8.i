@@ -2650,13 +2650,16 @@ typedef uint16_t uintptr_t;
 
 
 
+
 char centena, decena, unidad;
+char dividendo, divisor;
+char turno;
 
 const char num_display[] = {0xFC, 0x60, 0xDA, 0xF2, 0x66,
                             0xB6, 0xBE, 0xE0, 0xFE, 0xF6};
 
-char dividendo, divisor;
-char turno;
+
+char resultado;
 
 
 
@@ -2686,20 +2689,29 @@ void __attribute__((picinterrupt((""))))isr(void){
         }
 
         INTCONbits.T0IF = 0;
-        TMR0 = 100;;
+        TMR0 = 100;
     }
 }
 
 
 void main(void){
 
-    ANSEL = 0x00;
+    ANSEL = 0b01100000;
     ANSELH = 0x00;
 
     TRISA = 0x00;
-    TRISB = 0b00000011;
     TRISC = 0x00;
     TRISD = 0x00;
+    TRISE = 0b0011;
+
+    ADCON1bits.ADFM = 0;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;
+    ADCON0bits.ADCS0 = 0;
+    ADCON0bits.ADCS1 = 1;
+    ADCON0bits.CHS = 5;
+    _delay((unsigned long)((100)*(8000000/4000000.0)));
+    ADCON0bits.ADON = 1;
 
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
@@ -2717,6 +2729,9 @@ void main(void){
     INTCONbits.T0IE = 1;
     INTCONbits.T0IF = 0;
 
+
+    ADCON0bits.GO = 1;
+
     PORTA = 0;
     PORTB = 0;
     PORTC = 0;
@@ -2730,7 +2745,21 @@ void main(void){
 
     while (1) {
 
-        dividendo = PORTA;
+        if(ADCON0bits.GO == 0){
+
+            if(ADCON0bits.CHS == 6){
+                PORTA = ADRESH;
+                ADCON0bits.CHS = 5;
+            }
+            else if(ADCON0bits.CHS == 5){
+                dividendo = ADRESH;
+                ADCON0bits.CHS = 6;
+            }
+            _delay((unsigned long)((50)*(8000000/4000000.0)));
+
+            ADCON0bits.GO = 1;
+        }
+
         centena = dividendo / 100;
         decena = (dividendo - (100 * centena))/10;
         unidad = dividendo - (100 * centena) - (decena * 10);
