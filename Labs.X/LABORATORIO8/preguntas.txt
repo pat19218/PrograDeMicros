@@ -1,0 +1,13 @@
+1) Tiene un modulo con 13 canales
+2) El modulo es el encargado de digitalizar el voltaje analogico, mientras
+   que los canales son cuantas entradas analogicas diferentes se pueden tener
+3)Es la cantidad de tiempo requerido para que el capacitor se estabilice
+4)Depende, para saber el valor más pequeño hay que aplicar la formula
+  (VrefN - VregN)/1025
+	donde:
+		VrefN: Voltaje más alto
+		VrefN: Voltaje más bajo
+5)Escoger en que registro se guardará la mayor cantidad de bits, de escoger
+  justificado a la derecha, en el seguendo registro estaran los primeros 2 MSB
+  al ser justificado a la izquierda los ultipo 2 LSB estaran en el primer registro
+
