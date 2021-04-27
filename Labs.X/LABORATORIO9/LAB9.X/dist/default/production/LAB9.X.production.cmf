@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\isaac\AppData\Local\Temp\sfpk.o
+$C:\Users\isaac\AppData\Local\Temp\sdo0.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -70,12 +70,12 @@ STRING CC-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\LAB9.X.production.o
-F cinit CODE >501:C:\Users\isaac\AppData\Local\Temp\sfpk.s
-F cinit CODE >504:C:\Users\isaac\AppData\Local\Temp\sfpk.s
-F cinit CODE >515:C:\Users\isaac\AppData\Local\Temp\sfpk.s
-10 cinit CODE >521:C:\Users\isaac\AppData\Local\Temp\sfpk.s
-10 cinit CODE >523:C:\Users\isaac\AppData\Local\Temp\sfpk.s
-11 cinit CODE >524:C:\Users\isaac\AppData\Local\Temp\sfpk.s
+F cinit CODE >501:C:\Users\isaac\AppData\Local\Temp\sdo0.s
+F cinit CODE >504:C:\Users\isaac\AppData\Local\Temp\sdo0.s
+F cinit CODE >515:C:\Users\isaac\AppData\Local\Temp\sdo0.s
+10 cinit CODE >521:C:\Users\isaac\AppData\Local\Temp\sdo0.s
+10 cinit CODE >523:C:\Users\isaac\AppData\Local\Temp\sdo0.s
+11 cinit CODE >524:C:\Users\isaac\AppData\Local\Temp\sdo0.s
 4 intentry CODE >54:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO9\LAB9.X\LABO9.c
 97 text1 CODE >54:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO9\LAB9.X\LABO9.c
 97 text1 CODE >56:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO9\LAB9.X\LABO9.c
@@ -157,19 +157,19 @@ __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\sfpk.o
+___sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\sdo0.o
 _main 28 0 CODE 0 maintext dist/default/production\LAB9.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\LAB9.X.production.o
-start 18 0 CODE 0 init C:\Users\isaac\AppData\Local\Temp\sfpk.o
+start 18 0 CODE 0 init C:\Users\isaac\AppData\Local\Temp\sdo0.o
 __size_of_main 0 0 ABS 0 - dist/default/production\LAB9.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sfpk.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sfpk.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sfpk.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sfpk.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sfpk.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sfpk.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sdo0.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sdo0.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sdo0.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sdo0.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sdo0.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sdo0.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\LAB9.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\LAB9.X.production.o
@@ -180,13 +180,13 @@ _ANSELH 189 0 ABS 0 - dist/default/production\LAB9.X.production.o
 _CCPR1L 15 0 ABS 0 - dist/default/production\LAB9.X.production.o
 _CCPR2L 1B 0 ABS 0 - dist/default/production\LAB9.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\sfpk.o
-___stacklo 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\sfpk.o
+___stackhi 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\sdo0.o
+___stacklo 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\sdo0.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\LAB9.X.production.o
 _TRISCbits 87 0 ABS 0 - dist/default/production\LAB9.X.production.o
 _TRISDbits 88 0 ABS 0 - dist/default/production\LAB9.X.production.o
 __end_of_num_display 198 0 STRING 0 strings dist/default/production\LAB9.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\sfpk.o
+___int_sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\sdo0.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -231,7 +231,7 @@ saved_w 7E 0 ABS 0 - dist/default/production\LAB9.X.production.o
 __end_of_isr 178 0 CODE 0 text1 dist/default/production\LAB9.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
 __stringtab 178 0 STRING 0 strings dist/default/production\LAB9.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\isaac\AppData\Local\Temp\sfpk.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\isaac\AppData\Local\Temp\sdo0.o
 _PIE1bits 8C 0 ABS 0 - dist/default/production\LAB9.X.production.o
 __pmaintext 28 0 CODE 0 maintext dist/default/production\LAB9.X.production.o
 __Lcommon 0 0 ABS 0 common -

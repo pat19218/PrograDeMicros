@@ -1,14 +1,14 @@
 /*
- * File:   lab8.c
+ * File:   lab9.c
  * Dispositivo:	PIC16f887
  * Author: isaac
  * Compilador:	pic-as (v2.30), MPLABX V5.45
  * 
- * Programa: Valor binario y decimal de diferentes entradas analogicas
- * Hardware: Pic 16f887, transistores, resistencias, leds, displays 7 seg,button
+ * Programa: Controlar 2 servo con potenciometro
+ * Hardware: Pic 16f887, potenciometro, servomotor
  * 
- * Created on 19 de abril de 2021, 16:37
- * Last modification on 19 de abril de 2021, 20:33
+ * Created on 26 de abril de 2021, 13:00
+ * Last modification on 26 de abril de 2021, 19:19
  */
 
 // PIC16F887 Configuration Bit Settings
@@ -83,7 +83,7 @@ void main(void){
     ADCON1bits.VCFG0 = 0;   //voltaje de 0V-5V
     ADCON1bits.VCFG1 = 0;
     ADCON0bits.ADCS = 0b10; //Fosc/32
-    ADCON0bits.CHS = 0;     //canal 5
+    ADCON0bits.CHS = 0;     //canal 0
     __delay_us(50);
     ADCON0bits.ADON = 1;    //activo el modulo
     
