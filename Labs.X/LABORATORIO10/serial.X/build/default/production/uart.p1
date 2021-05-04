@@ -400,11 +400,27 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "46 uart.c
-[; ;uart.c: 46: const char num = 97;
-[v _num `Cuc ~T0 @X0 1 e ]
+[; ;uart.c: 46: const char num[] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108};
+[v _num `Cuc ~T0 @X0 -> 12 `i e ]
 [i _num
+:U ..
 -> -> 97 `i `uc
+-> -> 98 `i `uc
+-> -> 99 `i `uc
+-> -> 100 `i `uc
+-> -> 101 `i `uc
+-> -> 102 `i `uc
+-> -> 103 `i `uc
+-> -> 104 `i `uc
+-> -> 105 `i `uc
+-> -> 106 `i `uc
+-> -> 107 `i `uc
+-> -> 108 `i `uc
+..
 ]
+"47
+[; ;uart.c: 47: char espacio;
+[v _espacio `uc ~T0 @X0 1 e ]
 [v $root$_isr `(v ~T0 @X0 0 e ]
 "50
 [; ;uart.c: 50: void __attribute__((picinterrupt((""))))isr(void){
@@ -453,8 +469,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;uart.c: 68:     PORTB = 0x00;
 [e = _PORTB -> -> 0 `i `uc ]
 "70
-[; ;uart.c: 70:     OSCCONbits.IRCF = 0b100 ;
-[e = . . _OSCCONbits 0 4 -> -> 4 `i `uc ]
+[; ;uart.c: 70:     OSCCONbits.IRCF = 0b111 ;
+[e = . . _OSCCONbits 0 4 -> -> 7 `i `uc ]
 "71
 [; ;uart.c: 71:     OSCCONbits.SCS = 1;
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
@@ -468,8 +484,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;uart.c: 76:     BAUDCTLbits.BRG16 = 1;
 [e = . . _BAUDCTLbits 0 3 -> -> 1 `i `uc ]
 "78
-[; ;uart.c: 78:     SPBRG = 25;
-[e = _SPBRG -> -> 25 `i `uc ]
+[; ;uart.c: 78:     SPBRG = 207;
+[e = _SPBRG -> -> 207 `i `uc ]
 "79
 [; ;uart.c: 79:     SPBRGH = 0;
 [e = _SPBRGH -> -> 0 `i `uc ]
@@ -497,34 +513,51 @@ Version 4.0 HI-TECH Software Intermediate Code
 "90
 [; ;uart.c: 90:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"92
+[; ;uart.c: 92:     espacio = 0;
+[e = _espacio -> -> 0 `i `uc ]
 "96
 [; ;uart.c: 96:     while (1) {
 [e :U 142 ]
 {
 "97
-[; ;uart.c: 97:         _delay((unsigned long)((500)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+[; ;uart.c: 97:         _delay((unsigned long)((500)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "99
 [; ;uart.c: 99:         if(PIR1bits.TXIF){
 [e $ ! != -> . . _PIR1bits 0 4 `i -> 0 `i 144  ]
 {
 "100
-[; ;uart.c: 100:             TXREG = num;
-[e = _TXREG -> _num `uc ]
+[; ;uart.c: 100:             TXREG = num[espacio];
+[e = _TXREG -> *U + &U _num * -> _espacio `ux -> -> # *U &U _num `ui `ux `uc ]
+"101
+[; ;uart.c: 101:             espacio++;
+[e ++ _espacio -> -> 1 `i `uc ]
 "102
-[; ;uart.c: 102:         }
+[; ;uart.c: 102:             if(espacio == 12){
+[e $ ! == -> _espacio `i -> 12 `i 145  ]
+{
+"103
+[; ;uart.c: 103:                 espacio = 0;
+[e = _espacio -> -> 0 `i `uc ]
+"104
+[; ;uart.c: 104:             }
+}
+[e :U 145 ]
+"105
+[; ;uart.c: 105:         }
 }
 [e :U 144 ]
-"104
-[; ;uart.c: 104:     }
+"107
+[; ;uart.c: 107:     }
 }
 [e :U 141 ]
 [e $U 142  ]
 [e :U 143 ]
-"105
-[; ;uart.c: 105:     return;
+"108
+[; ;uart.c: 108:     return;
 [e $UE 140  ]
-"106
-[; ;uart.c: 106: }
+"109
+[; ;uart.c: 109: }
 [e :UE 140 ]
 }

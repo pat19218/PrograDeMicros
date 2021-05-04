@@ -39,12 +39,12 @@
 
 //--------------------------directivas del compilador---------------------------
 
-#define _XTAL_FREQ 1000000 //__delay_ms(x)
+#define _XTAL_FREQ 8000000 //__delay_ms(x)
 
 //---------------------------variables------------------------------------------
-                          
-const char num = 97;                        
-
+                  //a   b   c     d   e   f     g    h    i   j    k   l
+const char num[] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108};                        
+char espacio;
 //---------------------------interrupciones-------------------------------------
 
 void __interrupt()isr(void){
@@ -67,7 +67,7 @@ void main(void){
     PORTA = 0x00;
     PORTB = 0x00;
     
-    OSCCONbits.IRCF = 0b100 ;  // config. de oscilador interno
+    OSCCONbits.IRCF = 0b111 ;  // config. de oscilador interno
     OSCCONbits.SCS = 1;         //reloj interno
 
                                 //Confi. serial comunication
@@ -75,8 +75,8 @@ void main(void){
     TXSTAbits.BRGH = 1;     //high speed
     BAUDCTLbits.BRG16 = 1;  //uso los 16 bits
     
-    SPBRG = 25;             
-    SPBRGH = 0;             
+    SPBRG = 207;   //revisar tabla BAUD RATES FOR ASYNCHRONOUS MODES (CONTINUED)       
+    SPBRGH = 0;    //pagina 168 del datasheet del 2009         
     
     RCSTAbits.SPEN = 1;     //enciendo el modulo
     RCSTAbits.RX9 = 0;      //No trabajo a 9 bits
@@ -89,7 +89,7 @@ void main(void){
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
     
- 
+    espacio = 0;
 
 
     //------------------------------loop principal----------------------------------
@@ -97,8 +97,11 @@ void main(void){
         __delay_ms(500);
         
         if(PIR1bits.TXIF){
-            TXREG = num; //num_display[0];       //cada 500ms mando un dato
-          
+            TXREG = num[espacio]; //num_display[0];       //cada 500ms mando un dato
+            espacio++;
+            if(espacio == 12){
+                espacio = 0;
+            }
         }
         
     }

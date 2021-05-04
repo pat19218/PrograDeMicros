@@ -2652,8 +2652,8 @@ typedef uint16_t uintptr_t;
 
 
 
-const char num = 97;
-
+const char num[] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108};
+char espacio;
 
 
 void __attribute__((picinterrupt((""))))isr(void){
@@ -2676,7 +2676,7 @@ void main(void){
     PORTA = 0x00;
     PORTB = 0x00;
 
-    OSCCONbits.IRCF = 0b100 ;
+    OSCCONbits.IRCF = 0b111 ;
     OSCCONbits.SCS = 1;
 
 
@@ -2684,7 +2684,7 @@ void main(void){
     TXSTAbits.BRGH = 1;
     BAUDCTLbits.BRG16 = 1;
 
-    SPBRG = 25;
+    SPBRG = 207;
     SPBRGH = 0;
 
     RCSTAbits.SPEN = 1;
@@ -2698,16 +2698,19 @@ void main(void){
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
 
-
+    espacio = 0;
 
 
 
     while (1) {
-        _delay((unsigned long)((500)*(1000000/4000.0)));
+        _delay((unsigned long)((500)*(8000000/4000.0)));
 
         if(PIR1bits.TXIF){
-            TXREG = num;
-
+            TXREG = num[espacio];
+            espacio++;
+            if(espacio == 12){
+                espacio = 0;
+            }
         }
 
     }

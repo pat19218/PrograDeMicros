@@ -141,10 +141,14 @@
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-"59 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+"46 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+[v _num num `DC[12]uc  1 e 12 0 ]
+"47
+[v _espacio espacio `uc  1 e 1 0 ]
+"59
 [v _main main `(v  1 e 1 0 ]
 {
-"106
+"109
 } 0
 "50
 [v _isr isr `II(v  1 e 1 0 ]
