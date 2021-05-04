@@ -47,25 +47,10 @@ char USART_Rx();
 void USART_Cadena(char *str);
 
 //---------------------------variables------------------------------------------
-//                       //a   b   c     d   e   f     g    h    i   j    k   
-//const char caracter[] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 
-//                         108, 109, 110, 111, 112, 113, 114, 115, 116, 117,
-//                       //l    m     n   ñ    o    p     q    r    s    t
-//                         118, 119, 120, 121, 122, 123};
-//                       //u     v     w   x    y    z
-//char espacio;
 
 char valor;
 char loop;
 //---------------------------interrupciones-------------------------------------
-
-//void __interrupt()isr(void){
-//    
-//    if(PIR1bits.RCIF){  //chequeo si recibo datos
-//        PORTB = RCREG;  //lo paso al puerto B
-//    }
-//
-//}
 
 void main(void){
 
@@ -94,17 +79,20 @@ void main(void){
     RCSTAbits.CREN = 1;     //activo recepción
     TXSTAbits.TXEN = 1;     //activo transmision 
     
-                            //confi. interrupciones
-//    PIR1bits.RCIF = 0;      //INTERRUPCION POR RECEPCIÓN DE DATOS
-//    PIE1bits.RCIE = 1; 
-//    INTCONbits.PEIE = 1;
-//    INTCONbits.GIE = 1;
-//    
-   // espacio = 0;
-    
+
 
     //------------------------------loop principal----------------------------------
     while (1) {
+        USART_Cadena(" Que accion desea ejecutar? ");
+        TXREG = '\n';
+        USART_Cadena(" 1) Desplegar cadena de caracteres ");
+        TXREG = '\n';
+        USART_Cadena(" 2) Cambiar PORTA ");
+        TXREG = '\n';
+        USART_Cadena(" 3) Cambiar PORTB ");
+        TXREG = '\n';
+        
+        while(PIR1bits.RCIF == 0);
         
         if(PIR1bits.RCIF){//chequeo si recibo datos
             
@@ -117,36 +105,29 @@ void main(void){
                         
                 case ('2'):
                     loop = 1;
-                    USART_Cadena(" Ingresa un caracter para el puerto A");
+                    USART_Cadena(" Ingresa un caracter para el puerto A: ");
                     while(loop){
                         if(PIR1bits.RCIF){
                             PORTA = USART_Rx();  //lo paso al puerto A
                             loop = 0;
                         }
                     }
-                    
+                    USART_Cadena(" Listo ");
                     break;
                         
                 case ('3'):
                     loop = 1;
-                    USART_Cadena(" Ingresa un caracter para el puerto B");
+                    USART_Cadena(" Ingresa un caracter para el puerto B: ");
                     while(loop){
                         if(PIR1bits.RCIF){
                             PORTB = USART_Rx();  //lo paso al puerto A
                             loop = 0;
                         }
                     }                       
+                    USART_Cadena(" Listo ");
                     break;
             }
         }
-//        if(PIR1bits.TXIF){
-//            
-//            TXREG = caracter[espacio]; //cada 500ms mando un dato
-//            espacio++;
-//            if(espacio == 27){
-//                espacio = 0;
-//            }
-//        }
         __delay_ms(10);
     }
     

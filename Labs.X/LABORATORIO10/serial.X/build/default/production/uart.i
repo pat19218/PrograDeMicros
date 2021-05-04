@@ -2654,10 +2654,13 @@ typedef uint16_t uintptr_t;
 void USART_Tx(char data);
 char USART_Rx();
 void USART_Cadena(char *str);
-# 58 "uart.c"
+
+
+
 char valor;
 char loop;
-# 70 "uart.c"
+
+
 void main(void){
 
     ANSEL = 0X00;
@@ -2684,8 +2687,21 @@ void main(void){
     RCSTAbits.RX9 = 0;
     RCSTAbits.CREN = 1;
     TXSTAbits.TXEN = 1;
-# 107 "uart.c"
+
+
+
+
     while (1) {
+        USART_Cadena(" Que accion desea ejecutar? ");
+        TXREG = '\n';
+        USART_Cadena(" 1) Desplegar cadena de caracteres ");
+        TXREG = '\n';
+        USART_Cadena(" 2) Cambiar PORTA ");
+        TXREG = '\n';
+        USART_Cadena(" 3) Cambiar PORTB ");
+        TXREG = '\n';
+
+        while(PIR1bits.RCIF == 0);
 
         if(PIR1bits.RCIF){
 
@@ -2698,29 +2714,29 @@ void main(void){
 
                 case ('2'):
                     loop = 1;
-                    USART_Cadena(" Ingresa un caracter para el puerto A");
+                    USART_Cadena(" Ingresa un caracter para el puerto A: ");
                     while(loop){
                         if(PIR1bits.RCIF){
                             PORTA = USART_Rx();
                             loop = 0;
                         }
                     }
-
+                    USART_Cadena(" Listo ");
                     break;
 
                 case ('3'):
                     loop = 1;
-                    USART_Cadena(" Ingresa un caracter para el puerto B");
+                    USART_Cadena(" Ingresa un caracter para el puerto B: ");
                     while(loop){
                         if(PIR1bits.RCIF){
                             PORTB = USART_Rx();
                             loop = 0;
                         }
                     }
+                    USART_Cadena(" Listo ");
                     break;
             }
         }
-# 150 "uart.c"
         _delay((unsigned long)((10)*(8000000/4000.0)));
     }
 

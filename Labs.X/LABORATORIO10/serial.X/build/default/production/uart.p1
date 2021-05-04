@@ -92,6 +92,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1068
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1068: extern volatile RCSTAbits_t RCSTAbits __attribute__((address(0x018)));
 [v _RCSTAbits `VS36 ~T0 @X0 0 e@24 ]
+"47 uart.c
+[; ;uart.c: 47: void USART_Cadena(char *str);
+[v _USART_Cadena `(v ~T0 @X0 0 ef1`*uc ]
+"1133 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1133: extern volatile unsigned char TXREG __attribute__((address(0x019)));
+[v _TXREG `Vuc ~T0 @X0 0 e@25 ]
 "543
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 543:     struct {
 [s S19 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -106,17 +112,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "46 uart.c
 [; ;uart.c: 46: char USART_Rx();
 [v _USART_Rx `(uc ~T0 @X0 0 e? ]
-"47
-[; ;uart.c: 47: void USART_Cadena(char *str);
-[v _USART_Cadena `(v ~T0 @X0 0 ef1`*uc ]
 [v F1256 `(v ~T0 @X0 1 tf1`ul ]
 "92 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
 [v __delay `JF1256 ~T0 @X0 0 e ]
 [p i __delay ]
-"1133 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1133: extern volatile unsigned char TXREG __attribute__((address(0x019)));
-[v _TXREG `Vuc ~T0 @X0 0 e@25 ]
-"1140
+"1140 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1140: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
 [v _RCREG `Vuc ~T0 @X0 0 e@26 ]
 "18 uart.c
@@ -377,267 +377,310 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"58 uart.c
-[; ;uart.c: 58: char valor;
+"51 uart.c
+[; ;uart.c: 51: char valor;
 [v _valor `uc ~T0 @X0 1 e ]
-"59
-[; ;uart.c: 59: char loop;
+"52
+[; ;uart.c: 52: char loop;
 [v _loop `uc ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"70
-[; ;uart.c: 70: void main(void){
+"55
+[; ;uart.c: 55: void main(void){
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"72
-[; ;uart.c: 72:     ANSEL = 0X00;
+"57
+[; ;uart.c: 57:     ANSEL = 0X00;
 [e = _ANSEL -> -> 0 `i `uc ]
-"73
-[; ;uart.c: 73:     ANSELH = 0x00;
+"58
+[; ;uart.c: 58:     ANSELH = 0x00;
 [e = _ANSELH -> -> 0 `i `uc ]
-"75
-[; ;uart.c: 75:     TRISA = 0x00;
+"60
+[; ;uart.c: 60:     TRISA = 0x00;
 [e = _TRISA -> -> 0 `i `uc ]
-"76
-[; ;uart.c: 76:     TRISB = 0x00;
+"61
+[; ;uart.c: 61:     TRISB = 0x00;
 [e = _TRISB -> -> 0 `i `uc ]
-"78
-[; ;uart.c: 78:     PORTA = 0x00;
+"63
+[; ;uart.c: 63:     PORTA = 0x00;
 [e = _PORTA -> -> 0 `i `uc ]
-"79
-[; ;uart.c: 79:     PORTB = 0x00;
+"64
+[; ;uart.c: 64:     PORTB = 0x00;
 [e = _PORTB -> -> 0 `i `uc ]
-"81
-[; ;uart.c: 81:     OSCCONbits.IRCF = 0b111 ;
+"66
+[; ;uart.c: 66:     OSCCONbits.IRCF = 0b111 ;
 [e = . . _OSCCONbits 0 4 -> -> 7 `i `uc ]
-"82
-[; ;uart.c: 82:     OSCCONbits.SCS = 1;
+"67
+[; ;uart.c: 67:     OSCCONbits.SCS = 1;
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"85
-[; ;uart.c: 85:     TXSTAbits.SYNC = 0;
+"70
+[; ;uart.c: 70:     TXSTAbits.SYNC = 0;
 [e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
-"86
-[; ;uart.c: 86:     TXSTAbits.BRGH = 1;
+"71
+[; ;uart.c: 71:     TXSTAbits.BRGH = 1;
 [e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
-"87
-[; ;uart.c: 87:     BAUDCTLbits.BRG16 = 1;
+"72
+[; ;uart.c: 72:     BAUDCTLbits.BRG16 = 1;
 [e = . . _BAUDCTLbits 0 3 -> -> 1 `i `uc ]
-"89
-[; ;uart.c: 89:     SPBRG = 207;
+"74
+[; ;uart.c: 74:     SPBRG = 207;
 [e = _SPBRG -> -> 207 `i `uc ]
-"90
-[; ;uart.c: 90:     SPBRGH = 0;
+"75
+[; ;uart.c: 75:     SPBRGH = 0;
 [e = _SPBRGH -> -> 0 `i `uc ]
-"92
-[; ;uart.c: 92:     RCSTAbits.SPEN = 1;
+"77
+[; ;uart.c: 77:     RCSTAbits.SPEN = 1;
 [e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-"93
-[; ;uart.c: 93:     RCSTAbits.RX9 = 0;
+"78
+[; ;uart.c: 78:     RCSTAbits.RX9 = 0;
 [e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
-"94
-[; ;uart.c: 94:     RCSTAbits.CREN = 1;
+"79
+[; ;uart.c: 79:     RCSTAbits.CREN = 1;
 [e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-"95
-[; ;uart.c: 95:     TXSTAbits.TXEN = 1;
+"80
+[; ;uart.c: 80:     TXSTAbits.TXEN = 1;
 [e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-"107
-[; ;uart.c: 107:     while (1) {
+"85
+[; ;uart.c: 85:     while (1) {
 [e :U 140 ]
 {
+"86
+[; ;uart.c: 86:         USART_Cadena(" Que accion desea ejecutar? ");
+[e ( _USART_Cadena (1 :s 1C ]
+"87
+[; ;uart.c: 87:         TXREG = '\n';
+[e = _TXREG -> -> 10 `ui `uc ]
+"88
+[; ;uart.c: 88:         USART_Cadena(" 1) Desplegar cadena de caracteres ");
+[e ( _USART_Cadena (1 :s 2C ]
+"89
+[; ;uart.c: 89:         TXREG = '\n';
+[e = _TXREG -> -> 10 `ui `uc ]
+"90
+[; ;uart.c: 90:         USART_Cadena(" 2) Cambiar PORTA ");
+[e ( _USART_Cadena (1 :s 3C ]
+"91
+[; ;uart.c: 91:         TXREG = '\n';
+[e = _TXREG -> -> 10 `ui `uc ]
+"92
+[; ;uart.c: 92:         USART_Cadena(" 3) Cambiar PORTB ");
+[e ( _USART_Cadena (1 :s 4C ]
+"93
+[; ;uart.c: 93:         TXREG = '\n';
+[e = _TXREG -> -> 10 `ui `uc ]
+"95
+[; ;uart.c: 95:         while(PIR1bits.RCIF == 0);
+[e $U 142  ]
+[e :U 143 ]
+[e :U 142 ]
+[e $ == -> . . _PIR1bits 0 5 `i -> 0 `i 143  ]
+[e :U 144 ]
+"97
+[; ;uart.c: 97:         if(PIR1bits.RCIF){
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 145  ]
+{
+"99
+[; ;uart.c: 99:             valor = USART_Rx();
+[e = _valor ( _USART_Rx ..  ]
+"101
+[; ;uart.c: 101:             switch(valor){
+[e $U 147  ]
+{
+"102
+[; ;uart.c: 102:                 case ('1'):
+[e :U 148 ]
+"103
+[; ;uart.c: 103:                     USART_Cadena(" Hello fck wrld ");
+[e ( _USART_Cadena (1 :s 5C ]
+"104
+[; ;uart.c: 104:                     break;
+[e $U 146  ]
+"106
+[; ;uart.c: 106:                 case ('2'):
+[e :U 149 ]
+"107
+[; ;uart.c: 107:                     loop = 1;
+[e = _loop -> -> 1 `i `uc ]
+"108
+[; ;uart.c: 108:                     USART_Cadena(" Ingresa un caracter para el puerto A: ");
+[e ( _USART_Cadena (1 :s 6C ]
 "109
-[; ;uart.c: 109:         if(PIR1bits.RCIF){
-[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 142  ]
+[; ;uart.c: 109:                     while(loop){
+[e $U 150  ]
+[e :U 151 ]
+{
+"110
+[; ;uart.c: 110:                         if(PIR1bits.RCIF){
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 153  ]
 {
 "111
-[; ;uart.c: 111:             valor = USART_Rx();
-[e = _valor ( _USART_Rx ..  ]
+[; ;uart.c: 111:                             PORTA = USART_Rx();
+[e = _PORTA -> ( _USART_Rx ..  `uc ]
+"112
+[; ;uart.c: 112:                             loop = 0;
+[e = _loop -> -> 0 `i `uc ]
 "113
-[; ;uart.c: 113:             switch(valor){
-[e $U 144  ]
-{
+[; ;uart.c: 113:                         }
+}
+[e :U 153 ]
 "114
-[; ;uart.c: 114:                 case ('1'):
-[e :U 145 ]
+[; ;uart.c: 114:                     }
+}
+[e :U 150 ]
+"109
+[; ;uart.c: 109:                     while(loop){
+[e $ != -> _loop `i -> 0 `i 151  ]
+[e :U 152 ]
 "115
-[; ;uart.c: 115:                     USART_Cadena(" Hello fck wrld ");
-[e ( _USART_Cadena (1 :s 1C ]
+[; ;uart.c: 115:                     USART_Cadena(" Listo ");
+[e ( _USART_Cadena (1 :s 7C ]
 "116
 [; ;uart.c: 116:                     break;
-[e $U 143  ]
+[e $U 146  ]
 "118
-[; ;uart.c: 118:                 case ('2'):
-[e :U 146 ]
+[; ;uart.c: 118:                 case ('3'):
+[e :U 154 ]
 "119
 [; ;uart.c: 119:                     loop = 1;
 [e = _loop -> -> 1 `i `uc ]
 "120
-[; ;uart.c: 120:                     USART_Cadena(" Ingresa un caracter para el puerto A");
-[e ( _USART_Cadena (1 :s 2C ]
+[; ;uart.c: 120:                     USART_Cadena(" Ingresa un caracter para el puerto B: ");
+[e ( _USART_Cadena (1 :s 8C ]
 "121
 [; ;uart.c: 121:                     while(loop){
-[e $U 147  ]
-[e :U 148 ]
+[e $U 155  ]
+[e :U 156 ]
 {
 "122
 [; ;uart.c: 122:                         if(PIR1bits.RCIF){
-[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 150  ]
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 158  ]
 {
 "123
-[; ;uart.c: 123:                             PORTA = USART_Rx();
-[e = _PORTA -> ( _USART_Rx ..  `uc ]
+[; ;uart.c: 123:                             PORTB = USART_Rx();
+[e = _PORTB -> ( _USART_Rx ..  `uc ]
 "124
 [; ;uart.c: 124:                             loop = 0;
 [e = _loop -> -> 0 `i `uc ]
 "125
 [; ;uart.c: 125:                         }
 }
-[e :U 150 ]
+[e :U 158 ]
 "126
 [; ;uart.c: 126:                     }
 }
-[e :U 147 ]
+[e :U 155 ]
 "121
 [; ;uart.c: 121:                     while(loop){
-[e $ != -> _loop `i -> 0 `i 148  ]
-[e :U 149 ]
+[e $ != -> _loop `i -> 0 `i 156  ]
+[e :U 157 ]
+"127
+[; ;uart.c: 127:                     USART_Cadena(" Listo ");
+[e ( _USART_Cadena (1 :s 9C ]
 "128
 [; ;uart.c: 128:                     break;
-[e $U 143  ]
+[e $U 146  ]
+"129
+[; ;uart.c: 129:             }
+}
+[e $U 146  ]
+[e :U 147 ]
+[e [\ -> _valor `i , $ -> -> 49 `ui `i 148
+ , $ -> -> 50 `ui `i 149
+ , $ -> -> 51 `ui `i 154
+ 146 ]
+[e :U 146 ]
 "130
-[; ;uart.c: 130:                 case ('3'):
-[e :U 151 ]
+[; ;uart.c: 130:         }
+}
+[e :U 145 ]
 "131
-[; ;uart.c: 131:                     loop = 1;
-[e = _loop -> -> 1 `i `uc ]
-"132
-[; ;uart.c: 132:                     USART_Cadena(" Ingresa un caracter para el puerto B");
-[e ( _USART_Cadena (1 :s 3C ]
-"133
-[; ;uart.c: 133:                     while(loop){
-[e $U 152  ]
-[e :U 153 ]
-{
-"134
-[; ;uart.c: 134:                         if(PIR1bits.RCIF){
-[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 155  ]
-{
-"135
-[; ;uart.c: 135:                             PORTB = USART_Rx();
-[e = _PORTB -> ( _USART_Rx ..  `uc ]
-"136
-[; ;uart.c: 136:                             loop = 0;
-[e = _loop -> -> 0 `i `uc ]
-"137
-[; ;uart.c: 137:                         }
-}
-[e :U 155 ]
-"138
-[; ;uart.c: 138:                     }
-}
-[e :U 152 ]
-"133
-[; ;uart.c: 133:                     while(loop){
-[e $ != -> _loop `i -> 0 `i 153  ]
-[e :U 154 ]
-"139
-[; ;uart.c: 139:                     break;
-[e $U 143  ]
-"140
-[; ;uart.c: 140:             }
-}
-[e $U 143  ]
-[e :U 144 ]
-[e [\ -> _valor `i , $ -> -> 49 `ui `i 145
- , $ -> -> 50 `ui `i 146
- , $ -> -> 51 `ui `i 151
- 143 ]
-[e :U 143 ]
-"141
-[; ;uart.c: 141:         }
-}
-[e :U 142 ]
-"150
-[; ;uart.c: 150:         _delay((unsigned long)((10)*(8000000/4000.0)));
+[; ;uart.c: 131:         _delay((unsigned long)((10)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"151
-[; ;uart.c: 151:     }
+"132
+[; ;uart.c: 132:     }
 }
 [e :U 139 ]
 [e $U 140  ]
 [e :U 141 ]
-"153
-[; ;uart.c: 153:     return;
+"134
+[; ;uart.c: 134:     return;
 [e $UE 138  ]
-"154
-[; ;uart.c: 154: }
+"135
+[; ;uart.c: 135: }
 [e :UE 138 ]
 }
-"157
-[; ;uart.c: 157:     void USART_Tx(char data){
+"138
+[; ;uart.c: 138:     void USART_Tx(char data){
 [v _USART_Tx `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _USART_Tx ]
 [v _data `uc ~T0 @X0 1 r1 ]
 [f ]
-"158
-[; ;uart.c: 158:         while(TXSTAbits.TRMT == 0);
-[e $U 157  ]
-[e :U 158 ]
-[e :U 157 ]
-[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 158  ]
-[e :U 159 ]
-"159
-[; ;uart.c: 159:         TXREG = data;
+"139
+[; ;uart.c: 139:         while(TXSTAbits.TRMT == 0);
+[e $U 160  ]
+[e :U 161 ]
+[e :U 160 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 161  ]
+[e :U 162 ]
+"140
+[; ;uart.c: 140:         TXREG = data;
 [e = _TXREG -> _data `uc ]
-"160
-[; ;uart.c: 160:     }
-[e :UE 156 ]
+"141
+[; ;uart.c: 141:     }
+[e :UE 159 ]
 }
-"162
-[; ;uart.c: 162:     char USART_Rx(){
+"143
+[; ;uart.c: 143:     char USART_Rx(){
 [v _USART_Rx `(uc ~T0 @X0 1 ef ]
 {
 [e :U _USART_Rx ]
 [f ]
-"163
-[; ;uart.c: 163:         return RCREG;
+"144
+[; ;uart.c: 144:         return RCREG;
 [e ) -> _RCREG `uc ]
-[e $UE 160  ]
-"164
-[; ;uart.c: 164:        }
-[e :UE 160 ]
+[e $UE 163  ]
+"145
+[; ;uart.c: 145:        }
+[e :UE 163 ]
 }
-"166
-[; ;uart.c: 166:     void USART_Cadena(char *str){
+"147
+[; ;uart.c: 147:     void USART_Cadena(char *str){
 [v _USART_Cadena `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _USART_Cadena ]
 [v _str `*uc ~T0 @X0 1 r1 ]
 [f ]
-"167
-[; ;uart.c: 167:         while(*str != '\0'){
-[e $U 162  ]
-[e :U 163 ]
+"148
+[; ;uart.c: 148:         while(*str != '\0'){
+[e $U 165  ]
+[e :U 166 ]
 {
-"168
-[; ;uart.c: 168:             USART_Tx(*str);
+"149
+[; ;uart.c: 149:             USART_Tx(*str);
 [e ( _USART_Tx (1 *U _str ]
-"169
-[; ;uart.c: 169:             str++;
+"150
+[; ;uart.c: 150:             str++;
 [e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
-"170
-[; ;uart.c: 170:         }
+"151
+[; ;uart.c: 151:         }
 }
-[e :U 162 ]
-"167
-[; ;uart.c: 167:         while(*str != '\0'){
-[e $ != -> *U _str `ui -> 0 `ui 163  ]
-[e :U 164 ]
-"171
-[; ;uart.c: 171:     }
-[e :UE 161 ]
+[e :U 165 ]
+"148
+[; ;uart.c: 148:         while(*str != '\0'){
+[e $ != -> *U _str `ui -> 0 `ui 166  ]
+[e :U 167 ]
+"152
+[; ;uart.c: 152:     }
+[e :UE 164 ]
 }
-[a 3C 32 73 110 103 114 101 115 97 32 117 110 32 99 97 114 97 99 116 101 114 32 112 97 114 97 32 101 108 32 112 117 101 114 116 111 32 66 0 ]
-[a 2C 32 73 110 103 114 101 115 97 32 117 110 32 99 97 114 97 99 116 101 114 32 112 97 114 97 32 101 108 32 112 117 101 114 116 111 32 65 0 ]
-[a 1C 32 72 101 108 108 111 32 102 99 107 32 119 114 108 100 32 0 ]
+[a 2C 32 49 41 32 68 101 115 112 108 101 103 97 114 32 99 97 100 101 110 97 32 100 101 32 99 97 114 97 99 116 101 114 101 115 32 0 ]
+[a 7C 32 76 105 115 116 111 32 0 ]
+[a 9C 32 76 105 115 116 111 32 0 ]
+[a 5C 32 72 101 108 108 111 32 102 99 107 32 119 114 108 100 32 0 ]
+[a 4C 32 51 41 32 67 97 109 98 105 97 114 32 80 79 82 84 66 32 0 ]
+[a 3C 32 50 41 32 67 97 109 98 105 97 114 32 80 79 82 84 65 32 0 ]
+[a 1C 32 81 117 101 32 97 99 99 105 111 110 32 100 101 115 101 97 32 101 106 101 99 117 116 97 114 63 32 0 ]
+[a 8C 32 73 110 103 114 101 115 97 32 117 110 32 99 97 114 97 99 116 101 114 32 112 97 114 97 32 101 108 32 112 117 101 114 116 111 32 66 58 32 0 ]
+[a 6C 32 73 110 103 114 101 115 97 32 117 110 32 99 97 114 97 99 116 101 114 32 112 97 114 97 32 101 108 32 112 117 101 114 116 111 32 65 58 32 0 ]
