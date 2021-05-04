@@ -490,72 +490,72 @@ Version 4.0 HI-TECH Software Intermediate Code
 "81
 [; ;uart.c: 81:     RCSTAbits.CREN = 1;
 [e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-"83
-[; ;uart.c: 83:     TXSTAbits.TXEN = 1;
+"82
+[; ;uart.c: 82:     TXSTAbits.TXEN = 1;
 [e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-"86
-[; ;uart.c: 86:     PIR1bits.RCIF = 0;
+"85
+[; ;uart.c: 85:     PIR1bits.RCIF = 0;
 [e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-"87
-[; ;uart.c: 87:     PIE1bits.RCIE = 1;
+"86
+[; ;uart.c: 86:     PIE1bits.RCIE = 1;
 [e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
-"88
-[; ;uart.c: 88:     INTCONbits.PEIE = 1;
+"87
+[; ;uart.c: 87:     INTCONbits.PEIE = 1;
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"89
-[; ;uart.c: 89:     INTCONbits.GIE = 1;
+"88
+[; ;uart.c: 88:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"91
-[; ;uart.c: 91:     espacio = 0;
+"90
+[; ;uart.c: 90:     espacio = 0;
 [e = _espacio -> -> 0 `i `uc ]
-"92
-[; ;uart.c: 92:     PORTA = 0;
+"91
+[; ;uart.c: 91:     PORTA = 0;
 [e = _PORTA -> -> 0 `i `uc ]
-"93
-[; ;uart.c: 93:     PORTB = 0;
+"92
+[; ;uart.c: 92:     PORTB = 0;
 [e = _PORTB -> -> 0 `i `uc ]
-"97
-[; ;uart.c: 97:     while (1) {
+"96
+[; ;uart.c: 96:     while (1) {
 [e :U 142 ]
 {
-"98
-[; ;uart.c: 98:         _delay((unsigned long)((500)*(8000000/4000.0)));
+"97
+[; ;uart.c: 97:         _delay((unsigned long)((500)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"100
-[; ;uart.c: 100:         if(PIR1bits.TXIF){
+"99
+[; ;uart.c: 99:         if(PIR1bits.TXIF){
 [e $ ! != -> . . _PIR1bits 0 4 `i -> 0 `i 144  ]
 {
-"101
-[; ;uart.c: 101:             TXREG = num_display[espacio];
+"100
+[; ;uart.c: 100:             TXREG = num_display[espacio];
 [e = _TXREG -> *U + &U _num_display * -> _espacio `ux -> -> # *U &U _num_display `ui `ux `uc ]
-"102
-[; ;uart.c: 102:             espacio++;
+"101
+[; ;uart.c: 101:             espacio++;
 [e ++ _espacio -> -> 1 `i `uc ]
-"103
-[; ;uart.c: 103:             if(espacio == 10){
+"102
+[; ;uart.c: 102:             if(espacio == 10){
 [e $ ! == -> _espacio `i -> 10 `i 145  ]
 {
-"104
-[; ;uart.c: 104:                 espacio = 0;
+"103
+[; ;uart.c: 103:                 espacio = 0;
 [e = _espacio -> -> 0 `i `uc ]
-"105
-[; ;uart.c: 105:             }
+"104
+[; ;uart.c: 104:             }
 }
 [e :U 145 ]
-"106
-[; ;uart.c: 106:         }
+"105
+[; ;uart.c: 105:         }
 }
 [e :U 144 ]
-"108
-[; ;uart.c: 108:     }
+"107
+[; ;uart.c: 107:     }
 }
 [e :U 141 ]
 [e $U 142  ]
 [e :U 143 ]
-"109
-[; ;uart.c: 109:     return;
+"108
+[; ;uart.c: 108:     return;
 [e $UE 140  ]
-"110
-[; ;uart.c: 110: }
+"109
+[; ;uart.c: 109: }
 [e :UE 140 ]
 }

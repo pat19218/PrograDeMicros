@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Tue May 04 08:48:44 2021
+                                                                                               Tue May 04 08:54:36 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -407,47 +407,47 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    393  002D  1618               	bsf	24,4	;volatile
    394  002E                     l724:
    395                           
-   396                           ;uart.c: 83:     TXSTAbits.TXEN = 1;
+   396                           ;uart.c: 82:     TXSTAbits.TXEN = 1;
    397  002E  1683               	bsf	3,5	;RP0=1, select bank1
    398  002F  1303               	bcf	3,6	;RP1=0, select bank1
    399  0030  1698               	bsf	24,5	;volatile
    400  0031                     l726:
    401                           
-   402                           ;uart.c: 86:     PIR1bits.RCIF = 0;
+   402                           ;uart.c: 85:     PIR1bits.RCIF = 0;
    403  0031  1283               	bcf	3,5	;RP0=0, select bank0
    404  0032  1303               	bcf	3,6	;RP1=0, select bank0
    405  0033  128C               	bcf	12,5	;volatile
    406  0034                     l728:
    407                           
-   408                           ;uart.c: 87:     PIE1bits.RCIE = 1;
+   408                           ;uart.c: 86:     PIE1bits.RCIE = 1;
    409  0034  1683               	bsf	3,5	;RP0=1, select bank1
    410  0035  1303               	bcf	3,6	;RP1=0, select bank1
    411  0036  168C               	bsf	12,5	;volatile
    412  0037                     l730:
    413                           
-   414                           ;uart.c: 88:     INTCONbits.PEIE = 1;
+   414                           ;uart.c: 87:     INTCONbits.PEIE = 1;
    415  0037  170B               	bsf	11,6	;volatile
    416  0038                     l732:
    417                           
-   418                           ;uart.c: 89:     INTCONbits.GIE = 1;
+   418                           ;uart.c: 88:     INTCONbits.GIE = 1;
    419  0038  178B               	bsf	11,7	;volatile
    420  0039                     l734:
    421                           
-   422                           ;uart.c: 91:     espacio = 0;
+   422                           ;uart.c: 90:     espacio = 0;
    423  0039  01F5               	clrf	_espacio
    424  003A                     l736:
    425                           
-   426                           ;uart.c: 92:     PORTA = 0;
+   426                           ;uart.c: 91:     PORTA = 0;
    427  003A  1283               	bcf	3,5	;RP0=0, select bank0
    428  003B  1303               	bcf	3,6	;RP1=0, select bank0
    429  003C  0185               	clrf	5	;volatile
    430  003D                     l738:
    431                           
-   432                           ;uart.c: 93:     PORTB = 0;
+   432                           ;uart.c: 92:     PORTB = 0;
    433  003D  0186               	clrf	6	;volatile
    434  003E                     l740:
    435                           
-   436                           ;uart.c: 98:         _delay((unsigned long)((500)*(8000000/4000.0)));
+   436                           ;uart.c: 97:         _delay((unsigned long)((500)*(8000000/4000.0)));
    437  003E  3006               	movlw	6
    438  003F  00F4               	movwf	??_main+2
    439  0040  3013               	movlw	19
@@ -464,7 +464,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    450  004A  284B               	nop2
    451  004B                     l742:
    452                           
-   453                           ;uart.c: 100:         if(PIR1bits.TXIF){
+   453                           ;uart.c: 99:         if(PIR1bits.TXIF){
    454  004B  1283               	bcf	3,5	;RP0=0, select bank0
    455  004C  1303               	bcf	3,6	;RP1=0, select bank0
    456  004D  1E0C               	btfss	12,4	;volatile
@@ -475,7 +475,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    461  0051                     u40:
    462  0051                     l744:
    463                           
-   464                           ;uart.c: 101:             TXREG = num_display[espacio];
+   464                           ;uart.c: 100:             TXREG = num_display[espacio];
    465  0051  0875               	movf	_espacio,w
    466  0052  3E01               	addlw	low ((_num_display-__stringbase)| (0+32768))
    467  0053  0084               	movwf	4
@@ -483,14 +483,14 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    469  0059  0099               	movwf	25	;volatile
    470  005A                     l746:
    471                           
-   472                           ;uart.c: 102:             espacio++;
+   472                           ;uart.c: 101:             espacio++;
    473  005A  3001               	movlw	1
    474  005B  00F2               	movwf	??_main
    475  005C  0872               	movf	??_main,w
    476  005D  07F5               	addwf	_espacio,f
    477  005E                     l748:
    478                           
-   479                           ;uart.c: 103:             if(espacio == 10){
+   479                           ;uart.c: 102:             if(espacio == 10){
    480  005E  300A               	movlw	10
    481  005F  0675               	xorwf	_espacio,w
    482  0060  1D03               	btfss	3,2
@@ -501,7 +501,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    487  0064                     u50:
    488  0064                     l750:
    489                           
-   490                           ;uart.c: 104:                 espacio = 0;
+   490                           ;uart.c: 103:                 espacio = 0;
    491  0064  01F5               	clrf	_espacio
    492  0065  283E               	goto	l740
    493  0066  120A  118A  280C   	ljmp	start
@@ -733,7 +733,7 @@ DATA                 0      0       6      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Tue May 04 08:48:44 2021
+Symbol Table                                                                                   Tue May 04 08:54:36 2021
 
                       pc 0002                       u40 0051                       u41 0050  
                      u50 0064                       u51 0063                       u67 0044  

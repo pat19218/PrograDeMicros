@@ -76,11 +76,10 @@ void main(void){
     SPBRG = 25;             
     SPBRGH = 0;             
     
-    RCSTAbits.SPEN = 1;     //activo transmisión
+    RCSTAbits.SPEN = 1;     //enciendo el modulo
     RCSTAbits.RX9 = 0;      //No trabajo a 9 bits
     RCSTAbits.CREN = 1;     //activo recepción
-    
-    TXSTAbits.TXEN = 1;      
+    TXSTAbits.TXEN = 1;     //activo transmision 
     
                             //confi. interrupciones
     PIR1bits.RCIF = 0;      //INTERRUPCION POR RECEPCIÓN DE DATOS

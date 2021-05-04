@@ -2688,7 +2688,6 @@ void main(void){
     RCSTAbits.SPEN = 1;
     RCSTAbits.RX9 = 0;
     RCSTAbits.CREN = 1;
-
     TXSTAbits.TXEN = 1;
 
 
