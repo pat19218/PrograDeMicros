@@ -1,0 +1,11 @@
+1)Como lo indica su nombre, la comunicación sincrona ocurre al mismo tiempo, esto quiere 
+  decir que su frecuencia de clocks debe estar sincronizada. A diferencia de la asincrona
+  la cual no importa a la frecuencia a la que trabaja el uC y el modulo de comunicación.
+
+2)El rango de baudios, es la cantidad de unidades de datos que se pueden transmitir en un segundo.
+  Un baudio puede transmitir varios bits por segundo, importante no confundirlo con "bits por segundo"  
+
+3)Son caracteres a base de 2 bytes, estos conforman todo el abecedario latino y numeros, además de, 
+  caracteres reservados para funciones especiales.
+
+  
