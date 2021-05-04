@@ -79,7 +79,7 @@ void main(void){
     RCSTAbits.CREN = 1;     //activo recepción
     TXSTAbits.TXEN = 1;     //activo transmision 
    
-    //------------------------------loop principal----------------------------------
+//------------------------------loop principal----------------------------------
     while (1) {
         USART_Cadena("\r Que accion desea ejecutar? \r");
         USART_Cadena(" 1) Desplegar cadena de caracteres \r");
