@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Tue May 04 16:32:18 2021
+                                                                                               Tue May 04 16:34:09 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -541,7 +541,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    527 ;;
    528 ;; *************** function _main *****************
    529 ;; Defined at:
-   530 ;;		line 55 in file "uart.c"
+   530 ;;		line 56 in file "uart.c"
    531 ;; Parameters:    Size  Location     Type
    532 ;;		None
    533 ;; Auto vars:     Size  Location     Type
@@ -577,107 +577,107 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    563                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
    564                           
    565                           
-   566                           ;uart.c: 57:     ANSEL = 0X00;
+   566                           ;uart.c: 58:     ANSEL = 0X00;
    567  0747  1683               	bsf	3,5	;RP0=1, select bank3
    568  0748  1703               	bsf	3,6	;RP1=1, select bank3
    569  0749  0188               	clrf	8	;volatile
    570                           
-   571                           ;uart.c: 58:     ANSELH = 0x00;
+   571                           ;uart.c: 59:     ANSELH = 0x00;
    572  074A  0189               	clrf	9	;volatile
    573                           
-   574                           ;uart.c: 60:     TRISA = 0x00;
+   574                           ;uart.c: 61:     TRISA = 0x00;
    575  074B  1683               	bsf	3,5	;RP0=1, select bank1
    576  074C  1303               	bcf	3,6	;RP1=0, select bank1
    577  074D  0185               	clrf	5	;volatile
    578                           
-   579                           ;uart.c: 61:     TRISB = 0x00;
+   579                           ;uart.c: 62:     TRISB = 0x00;
    580  074E  0186               	clrf	6	;volatile
    581                           
-   582                           ;uart.c: 63:     PORTA = 0x00;
+   582                           ;uart.c: 64:     PORTA = 0x00;
    583  074F  1283               	bcf	3,5	;RP0=0, select bank0
    584  0750  1303               	bcf	3,6	;RP1=0, select bank0
    585  0751  0185               	clrf	5	;volatile
    586                           
-   587                           ;uart.c: 64:     PORTB = 0x00;
+   587                           ;uart.c: 65:     PORTB = 0x00;
    588  0752  0186               	clrf	6	;volatile
    589  0753                     l793:
    590                           
-   591                           ;uart.c: 66:     OSCCONbits.IRCF = 0b111 ;
+   591                           ;uart.c: 67:     OSCCONbits.IRCF = 0b111 ;
    592  0753  3070               	movlw	112
    593  0754  1683               	bsf	3,5	;RP0=1, select bank1
    594  0755  1303               	bcf	3,6	;RP1=0, select bank1
    595  0756  048F               	iorwf	15,f	;volatile
    596  0757                     l795:
    597                           
-   598                           ;uart.c: 67:     OSCCONbits.SCS = 1;
+   598                           ;uart.c: 68:     OSCCONbits.SCS = 1;
    599  0757  140F               	bsf	15,0	;volatile
    600  0758                     l797:
    601                           
-   602                           ;uart.c: 70:     TXSTAbits.SYNC = 0;
+   602                           ;uart.c: 71:     TXSTAbits.SYNC = 0;
    603  0758  1218               	bcf	24,4	;volatile
    604  0759                     l799:
    605                           
-   606                           ;uart.c: 71:     TXSTAbits.BRGH = 1;
+   606                           ;uart.c: 72:     TXSTAbits.BRGH = 1;
    607  0759  1518               	bsf	24,2	;volatile
    608  075A                     l801:
    609                           
-   610                           ;uart.c: 72:     BAUDCTLbits.BRG16 = 1;
+   610                           ;uart.c: 73:     BAUDCTLbits.BRG16 = 1;
    611  075A  1683               	bsf	3,5	;RP0=1, select bank3
    612  075B  1703               	bsf	3,6	;RP1=1, select bank3
    613  075C  1587               	bsf	7,3	;volatile
    614  075D                     l803:
    615                           
-   616                           ;uart.c: 74:     SPBRG = 207;
+   616                           ;uart.c: 75:     SPBRG = 207;
    617  075D  30CF               	movlw	207
    618  075E  1683               	bsf	3,5	;RP0=1, select bank1
    619  075F  1303               	bcf	3,6	;RP1=0, select bank1
    620  0760  0099               	movwf	25	;volatile
    621  0761                     l805:
    622                           
-   623                           ;uart.c: 75:     SPBRGH = 0;
+   623                           ;uart.c: 76:     SPBRGH = 0;
    624  0761  019A               	clrf	26	;volatile
    625  0762                     l807:
    626                           
-   627                           ;uart.c: 77:     RCSTAbits.SPEN = 1;
+   627                           ;uart.c: 78:     RCSTAbits.SPEN = 1;
    628  0762  1283               	bcf	3,5	;RP0=0, select bank0
    629  0763  1303               	bcf	3,6	;RP1=0, select bank0
    630  0764  1798               	bsf	24,7	;volatile
    631  0765                     l809:
    632                           
-   633                           ;uart.c: 78:     RCSTAbits.RX9 = 0;
+   633                           ;uart.c: 79:     RCSTAbits.RX9 = 0;
    634  0765  1318               	bcf	24,6	;volatile
    635  0766                     l811:
    636                           
-   637                           ;uart.c: 79:     RCSTAbits.CREN = 1;
+   637                           ;uart.c: 80:     RCSTAbits.CREN = 1;
    638  0766  1618               	bsf	24,4	;volatile
    639  0767                     l813:
    640                           
-   641                           ;uart.c: 80:     TXSTAbits.TXEN = 1;
+   641                           ;uart.c: 81:     TXSTAbits.TXEN = 1;
    642  0767  1683               	bsf	3,5	;RP0=1, select bank1
    643  0768  1303               	bcf	3,6	;RP1=0, select bank1
    644  0769  1698               	bsf	24,5	;volatile
    645  076A                     l815:
    646                           
-   647                           ;uart.c: 86:         USART_Cadena("\r Que accion desea ejecutar? \r");
+   647                           ;uart.c: 87:         USART_Cadena("\r Que accion desea ejecutar? \r");
    648  076A  3076               	movlw	(low ((STR_1-__stringbase)| (0+32768)))& (0+255)
    649  076B  120A  118A  2728  120A  118A  	fcall	_USART_Cadena
    650  0770                     l817:
    651                           
-   652                           ;uart.c: 87:         USART_Cadena(" 1) Desplegar cadena de caracteres \r");
+   652                           ;uart.c: 88:         USART_Cadena(" 1) Desplegar cadena de caracteres \r");
    653  0770  3051               	movlw	(low ((STR_2-__stringbase)| (0+32768)))& (0+255)
    654  0771  120A  118A  2728  120A  118A  	fcall	_USART_Cadena
    655  0776                     l819:
    656                           
-   657                           ;uart.c: 88:         USART_Cadena(" 2) Cambiar PORTA \r");
+   657                           ;uart.c: 89:         USART_Cadena(" 2) Cambiar PORTA \r");
    658  0776  30AB               	movlw	(low ((STR_3-__stringbase)| (0+32768)))& (0+255)
    659  0777  120A  118A  2728  120A  118A  	fcall	_USART_Cadena
    660  077C                     l821:
    661                           
-   662                           ;uart.c: 89:         USART_Cadena(" 3) Cambiar PORTB \r \r");
+   662                           ;uart.c: 90:         USART_Cadena(" 3) Cambiar PORTB \r \r");
    663  077C  3095               	movlw	(low ((STR_4-__stringbase)| (0+32768)))& (0+255)
    664  077D  120A  118A  2728  120A  118A  	fcall	_USART_Cadena
    665  0782                     l44:	
-   666                           ;uart.c: 92:         while(PIR1bits.RCIF == 0);
+   666                           ;uart.c: 93:         while(PIR1bits.RCIF == 0);
    667                           
    668  0782  1283               	bcf	3,5	;RP0=0, select bank0
    669  0783  1303               	bcf	3,6	;RP1=0, select bank0
@@ -689,47 +689,47 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    675  0788                     u90:
    676  0788                     l823:
    677                           
-   678                           ;uart.c: 94:         valor = USART_Rx();
+   678                           ;uart.c: 95:         valor = USART_Rx();
    679  0788  120A  118A  2718  120A  118A  	fcall	_USART_Rx
    680  078D  00F3               	movwf	??_main
    681  078E  0873               	movf	??_main,w
    682  078F  00F6               	movwf	_valor
    683                           
-   684                           ;uart.c: 96:         switch(valor){
+   684                           ;uart.c: 97:         switch(valor){
    685  0790  2FE4               	goto	l851
    686  0791                     l825:
    687                           
-   688                           ;uart.c: 98:                 USART_Cadena(" Hello fck wrld ");
+   688                           ;uart.c: 99:                 USART_Cadena(" Hello fck wrld ");
    689  0791  30BF               	movlw	(low ((STR_5-__stringbase)| (0+32768)))& (0+255)
    690  0792  120A  118A  2728  120A  118A  	fcall	_USART_Cadena
    691  0797                     l827:
    692                           
-   693                           ;uart.c: 99:                 TXREG = '\r';
+   693                           ;uart.c: 100:                 TXREG = '\r';
    694  0797  300D               	movlw	13
    695  0798  1283               	bcf	3,5	;RP0=0, select bank0
    696  0799  1303               	bcf	3,6	;RP1=0, select bank0
    697  079A  0099               	movwf	25	;volatile
    698                           
-   699                           ;uart.c: 100:                 break;
+   699                           ;uart.c: 101:                 break;
    700  079B  2F6A               	goto	l815
    701  079C                     l50:	
-   702                           ;uart.c: 102:             case ('2'):
+   702                           ;uart.c: 103:             case ('2'):
    703                           
    704                           
-   705                           ;uart.c: 103:                 loop = 1;
+   705                           ;uart.c: 104:                 loop = 1;
    706  079C  01F5               	clrf	_loop
    707  079D  0AF5               	incf	_loop,f
    708  079E                     l829:
    709                           
-   710                           ;uart.c: 104:                 USART_Cadena(" Ingresa un caracter para el puerto A: ");
+   710                           ;uart.c: 105:                 USART_Cadena(" Ingresa un caracter para el puerto A: ");
    711  079E  3001               	movlw	(low ((STR_6-__stringbase)| (0+32768)))& (0+255)
    712  079F  120A  118A  2728  120A  118A  	fcall	_USART_Cadena
    713                           
-   714                           ;uart.c: 105:                 while(loop){
+   714                           ;uart.c: 106:                 while(loop){
    715  07A4  2FB4               	goto	l835
    716  07A5                     l52:
    717                           
-   718                           ;uart.c: 106:                     if(PIR1bits.RCIF){
+   718                           ;uart.c: 107:                     if(PIR1bits.RCIF){
    719  07A5  1283               	bcf	3,5	;RP0=0, select bank0
    720  07A6  1303               	bcf	3,6	;RP1=0, select bank0
    721  07A7  1E8C               	btfss	12,5	;volatile
@@ -740,18 +740,18 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    726  07AB                     u100:
    727  07AB                     l831:
    728                           
-   729                           ;uart.c: 107:                         PORTA = USART_Rx();
+   729                           ;uart.c: 108:                         PORTA = USART_Rx();
    730  07AB  120A  118A  2718  120A  118A  	fcall	_USART_Rx
    731  07B0  1283               	bcf	3,5	;RP0=0, select bank0
    732  07B1  1303               	bcf	3,6	;RP1=0, select bank0
    733  07B2  0085               	movwf	5	;volatile
    734  07B3                     l833:
    735                           
-   736                           ;uart.c: 108:                         loop = 0;
+   736                           ;uart.c: 109:                         loop = 0;
    737  07B3  01F5               	clrf	_loop
    738  07B4                     l835:
    739                           
-   740                           ;uart.c: 105:                 while(loop){
+   740                           ;uart.c: 106:                 while(loop){
    741  07B4  0875               	movf	_loop,w
    742  07B5  1D03               	btfss	3,2
    743  07B6  2FB8               	goto	u111
@@ -761,30 +761,30 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    747  07B9                     u110:
    748  07B9                     l837:
    749                           
-   750                           ;uart.c: 111:                 USART_Cadena("\r Listo \r");
+   750                           ;uart.c: 112:                 USART_Cadena("\r Listo \r");
    751  07B9  30D0               	movlw	(low ((STR_7-__stringbase)| (0+32768)))& (0+255)
    752  07BA  120A  118A  2728  120A  118A  	fcall	_USART_Cadena
    753                           
-   754                           ;uart.c: 112:                 break;
+   754                           ;uart.c: 113:                 break;
    755  07BF  2F6A               	goto	l815
    756  07C0                     l55:	
-   757                           ;uart.c: 114:             case ('3'):
+   757                           ;uart.c: 115:             case ('3'):
    758                           
    759                           
-   760                           ;uart.c: 115:                 loop = 1;
+   760                           ;uart.c: 116:                 loop = 1;
    761  07C0  01F5               	clrf	_loop
    762  07C1  0AF5               	incf	_loop,f
    763  07C2                     l839:
    764                           
-   765                           ;uart.c: 116:                 USART_Cadena(" Ingresa un caracter para el puerto B: ");
+   765                           ;uart.c: 117:                 USART_Cadena(" Ingresa un caracter para el puerto B: ");
    766  07C2  3029               	movlw	(low ((STR_8-__stringbase)| (0+32768)))& (0+255)
    767  07C3  120A  118A  2728  120A  118A  	fcall	_USART_Cadena
    768                           
-   769                           ;uart.c: 117:                 while(loop){
+   769                           ;uart.c: 118:                 while(loop){
    770  07C8  2FD8               	goto	l845
    771  07C9                     l57:
    772                           
-   773                           ;uart.c: 118:                     if(PIR1bits.RCIF){
+   773                           ;uart.c: 119:                     if(PIR1bits.RCIF){
    774  07C9  1283               	bcf	3,5	;RP0=0, select bank0
    775  07CA  1303               	bcf	3,6	;RP1=0, select bank0
    776  07CB  1E8C               	btfss	12,5	;volatile
@@ -795,18 +795,18 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    781  07CF                     u120:
    782  07CF                     l841:
    783                           
-   784                           ;uart.c: 119:                         PORTB = USART_Rx();
+   784                           ;uart.c: 120:                         PORTB = USART_Rx();
    785  07CF  120A  118A  2718  120A  118A  	fcall	_USART_Rx
    786  07D4  1283               	bcf	3,5	;RP0=0, select bank0
    787  07D5  1303               	bcf	3,6	;RP1=0, select bank0
    788  07D6  0086               	movwf	6	;volatile
    789  07D7                     l843:
    790                           
-   791                           ;uart.c: 120:                         loop = 0;
+   791                           ;uart.c: 121:                         loop = 0;
    792  07D7  01F5               	clrf	_loop
    793  07D8                     l845:
    794                           
-   795                           ;uart.c: 117:                 while(loop){
+   795                           ;uart.c: 118:                 while(loop){
    796  07D8  0875               	movf	_loop,w
    797  07D9  1D03               	btfss	3,2
    798  07DA  2FDC               	goto	u131
@@ -816,11 +816,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    802  07DD                     u130:
    803  07DD                     l847:
    804                           
-   805                           ;uart.c: 123:                 USART_Cadena("\r Listo \r");
+   805                           ;uart.c: 124:                 USART_Cadena("\r Listo \r");
    806  07DD  30D0               	movlw	(low ((STR_7-__stringbase)| (0+32768)))& (0+255)
    807  07DE  120A  118A  2728  120A  118A  	fcall	_USART_Cadena
    808                           
-   809                           ;uart.c: 124:                 break;
+   809                           ;uart.c: 125:                 break;
    810  07E3  2F6A               	goto	l815
    811  07E4                     l851:
    812  07E4  0876               	movf	_valor,w
@@ -870,7 +870,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    855  0718                     __ptext1:	
    856 ;; *************** function _USART_Rx *****************
    857 ;; Defined at:
-   858 ;;		line 137 in file "uart.c"
+   858 ;;		line 138 in file "uart.c"
    859 ;; Parameters:    Size  Location     Type
    860 ;;		None
    861 ;; Auto vars:     Size  Location     Type
@@ -905,7 +905,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    890                           ; Regs used in _USART_Rx: [wreg]
    891                           
    892                           
-   893                           ;uart.c: 138:         return RCREG;
+   893                           ;uart.c: 139:         return RCREG;
    894  0718  1283               	bcf	3,5	;RP0=0, select bank0
    895  0719  1303               	bcf	3,6	;RP1=0, select bank0
    896  071A  081A               	movf	26,w	;volatile
@@ -917,7 +917,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    902  0728                     __ptext2:	
    903 ;; *************** function _USART_Cadena *****************
    904 ;; Defined at:
-   905 ;;		line 141 in file "uart.c"
+   905 ;;		line 142 in file "uart.c"
    906 ;; Parameters:    Size  Location     Type
    907 ;;  str             1    wreg     PTR unsigned char 
    908 ;;		 -> STR_9(10), STR_8(40), STR_7(10), STR_6(40), 
@@ -961,25 +961,25 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    946  0728  00F2               	movwf	USART_Cadena@str
    947  0729                     l783:
    948                           
-   949                           ;uart.c: 142:         while(*str != '\0'){
+   949                           ;uart.c: 143:         while(*str != '\0'){
    950  0729  2F3A               	goto	l789
    951  072A                     l785:
    952                           
-   953                           ;uart.c: 143:             USART_Tx(*str);
+   953                           ;uart.c: 144:             USART_Tx(*str);
    954  072A  0872               	movf	USART_Cadena@str,w
    955  072B  0084               	movwf	4
    956  072C  120A  118A  2003  120A  118A  	fcall	stringdir
    957  0731  120A  118A  271C  120A  118A  	fcall	_USART_Tx
    958  0736                     l787:
    959                           
-   960                           ;uart.c: 144:             str++;
+   960                           ;uart.c: 145:             str++;
    961  0736  3001               	movlw	1
    962  0737  00F1               	movwf	??_USART_Cadena
    963  0738  0871               	movf	??_USART_Cadena,w
    964  0739  07F2               	addwf	USART_Cadena@str,f
    965  073A                     l789:
    966                           
-   967                           ;uart.c: 142:         while(*str != '\0'){
+   967                           ;uart.c: 143:         while(*str != '\0'){
    968  073A  0872               	movf	USART_Cadena@str,w
    969  073B  0084               	movwf	4
    970  073C  120A  118A  2003  120A  118A  	fcall	stringdir
@@ -998,7 +998,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    983  071C                     __ptext3:	
    984 ;; *************** function _USART_Tx *****************
    985 ;; Defined at:
-   986 ;;		line 132 in file "uart.c"
+   986 ;;		line 133 in file "uart.c"
    987 ;; Parameters:    Size  Location     Type
    988 ;;  data            1    wreg     unsigned char 
    989 ;; Auto vars:     Size  Location     Type
@@ -1035,7 +1035,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1020  071C  00F0               	movwf	USART_Tx@data
   1021  071D                     l669:
   1022  071D                     l65:	
-  1023                           ;uart.c: 133:         while(TXSTAbits.TRMT == 0);
+  1023                           ;uart.c: 134:         while(TXSTAbits.TRMT == 0);
   1024                           
   1025  071D  1683               	bsf	3,5	;RP0=1, select bank1
   1026  071E  1303               	bcf	3,6	;RP1=0, select bank1
@@ -1047,7 +1047,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1032  0723                     u10:
   1033  0723                     l671:
   1034                           
-  1035                           ;uart.c: 134:         TXREG = data;
+  1035                           ;uart.c: 135:         TXREG = data;
   1036  0723  0870               	movf	USART_Tx@data,w
   1037  0724  1283               	bcf	3,5	;RP0=0, select bank0
   1038  0725  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1198,7 +1198,7 @@ DATA                 0      0       7      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Tue May 04 16:32:18 2021
+Symbol Table                                                                                   Tue May 04 16:34:09 2021
 
                       pc 0002                       l50 079C                       l52 07A5  
                      l44 0782                       l71 071B                       l55 07C0  

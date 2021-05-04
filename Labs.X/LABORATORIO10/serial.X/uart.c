@@ -8,7 +8,7 @@
  * Hardware: Pic 16f887, leds, resistencias, terminal serial.
  * 
  * Created on 04 de mayo de 2021, 8:16
- * Last modification on 04 de mayo de 2021, 19:19
+ * Last modification on 04 de mayo de 2021, 16:34
  */
 
 // PIC16F887 Configuration Bit Settings
@@ -50,6 +50,7 @@ void USART_Cadena(char *str);
 
 char valor;
 char loop;
+
 //---------------------------interrupciones-------------------------------------
 
 void main(void){

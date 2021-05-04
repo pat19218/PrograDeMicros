@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\serial.X.production.sym \
   --cmf=dist/default/production\serial.X.production.cmf -z -Q16F887 \
-  -oC:\Users\isaac\AppData\Local\Temp\scmc.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\isaac\AppData\Local\Temp\sgjc.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/serial.X.production.map -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\isaac\AppData\Local\Temp\scmc.o \
+  -pfunctab=ENTRY -k C:\Users\isaac\AppData\Local\Temp\sgjc.o \
   dist/default/production\serial.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\isaac\AppData\Local\Temp\scmc.o
+C:\Users\isaac\AppData\Local\Temp\sgjc.o
                 end_init                              0        0        3        0       0
                 config                             2007     2007        2        0       4
 dist/default/production\serial.X.production.o
@@ -276,7 +276,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 55 in file "uart.c"
+		line 56 in file "uart.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -306,7 +306,7 @@ Total ram usage:        2 bytes
 
  *************** function _USART_Rx *****************
  Defined at:
-		line 137 in file "uart.c"
+		line 138 in file "uart.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -335,7 +335,7 @@ Total ram usage:        0 bytes
 
  *************** function _USART_Cadena *****************
  Defined at:
-		line 141 in file "uart.c"
+		line 142 in file "uart.c"
  Parameters:    Size  Location     Type
   str             1    wreg     PTR unsigned char 
 		 -> STR_9(10), STR_8(40), STR_7(10), STR_6(40), 
@@ -371,7 +371,7 @@ Total ram usage:        2 bytes
 
  *************** function _USART_Tx *****************
  Defined at:
-		line 132 in file "uart.c"
+		line 133 in file "uart.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type

@@ -2661,6 +2661,7 @@ char valor;
 char loop;
 
 
+
 void main(void){
 
     ANSEL = 0X00;
