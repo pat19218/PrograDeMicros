@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\serial.X.production.sym \
   --cmf=dist/default/production\serial.X.production.cmf -z -Q16F887 \
-  -oC:\Users\isaac\AppData\Local\Temp\sfjc.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\isaac\AppData\Local\Temp\s9p0.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/serial.X.production.map -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -17,8 +17,8 @@ Linker command line:
   -ACONFIG=02007h-02008h -DCONFIG=2 -AIDLOC=02000h-02003h -DIDLOC=2 \
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
-  -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\isaac\AppData\Local\Temp\sfjc.o \
+  -preset_vec=00h,intentry,init,end_init -ppowerup=CODE -pcinit=CODE \
+  -pfunctab=ENTRY -k C:\Users\isaac\AppData\Local\Temp\s9p0.o \
   dist/default/production\serial.X.production.o 
 
 Object code version is 3.11
@@ -28,35 +28,35 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\isaac\AppData\Local\Temp\sfjc.o
-                end_init                              C        C        3        8       0
-                reset_vec                             0        0        3        0       0
+C:\Users\isaac\AppData\Local\Temp\s9p0.o
+                end_init                              0        0        3        0       0
                 config                             2007     2007        2        0       4
 dist/default/production\serial.X.production.o
-                cinit                                 F        F        5        8       0
-                intentry                              4        4        8        8       0
+                cinit                               7FA      7FA        6      FF4       0
                 config                             2007     2007        2        0       4
-                text1                                7C       7C        F       F8       0
-                maintext                             14       14       56        8       0
+                text3                               73A      73A        C      E74       0
+                text2                               746      746       1F      E8C       0
+                text1                               736      736        4      E6C       0
+                maintext                            765      765       95      ECA       0
                 cstackCOMMON                         70       70        5       70       1
-                bssCOMMON                            75       75        1       70       1
-                strings                              6A       6A       12       D4       0
+                bssCOMMON                            75       75        2       70       1
+                strings                               3        3       63        6       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
 
         CLASS   CODE           
-                end_init                              C        C        3         0
-                cinit                                 F        F        5         0
-                intentry                              4        4        8         0
-                reset_vec                             0        0        3         0
-                text1                                7C       7C        F         0
-                maintext                             14       14       56         0
+                end_init                              0        0        3         0
+                cinit                               7FA      7FA        6         0
+                text3                               73A      73A        C         0
+                text2                               746      746       1F         0
+                text1                               736      736        4         0
+                maintext                            765      765       95         0
 
         CLASS   STRCODE        
 
         CLASS   STRING         
-                strings                              6A       6A       12         0
+                strings                               3        3       63         0
 
         CLASS   CONST          
 
@@ -64,7 +64,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 
         CLASS   COMMON         
                 cstackCOMMON                         70       70        5         1
-                bssCOMMON                            75       75        1         1
+                bssCOMMON                            75       75        2         1
 
         CLASS   BANK0          
 
@@ -99,10 +99,13 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  000066  00006A         8       0  CODE        2
-                cstackCOMMON                   000070  000006  000076        70       1  COMMON      1
-                strings                        00006A  000012  00007C        D4       0  STRING      2
-                text1                          00007C  00000F  00008B        F8       0  CODE        2
+                strings                        000003  000063  000066         6       0  STRING      2
+                cstackCOMMON                   000070  000007  000077        70       1  COMMON      1
+                text1                          000736  000004  00073A       E6C       0  CODE        2
+                text3                          00073A  00000C  000746       E74       0  CODE        2
+                text2                          000746  00001F  000765       E8C       0  CODE        2
+                maintext                       000765  000095  0007FA       ECA       0  CODE        2
+                cinit                          0007FA  000006  000800       FF4       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
@@ -112,14 +115,14 @@ UNUSED ADDRESS RANGES
         BANK1            00A0-00EF             50           1
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
-        CODE             0003-0003              1           2
-                         008B-1FFF            800
-        COMMON           0076-007D              8           1
-        CONST            0003-0003              1           2
-                         008B-1FFF            100
+        CODE             0066-0735            6D0           2
+                         0800-1FFF            800
+        COMMON           0077-007D              7           1
+        CONST            0066-0735            100           2
+                         0800-1FFF            100
         EEDATA           2100-21FF            100           2
-        ENTRY            0003-0003              1           2
-                         008B-1FFF            100
+        ENTRY            0066-0735            100           2
+                         0800-1FFF            100
         IDLOC            2000-2003              4           2
         RAM              0020-006F             50           1
                          00A0-00EF             50
@@ -130,19 +133,19 @@ UNUSED ADDRESS RANGES
         SFR2             0100-010F             10           1
         SFR3             0180-018F             10           1
         STACK            0110-016F             60           1
-        STRCODE          0003-0003              1           2
-                         008B-1FFF           1F75
-        STRING           0003-0003              1           2
-                         008B-1FFF            100
+        STRCODE          0066-0735            6D0           2
+                         0800-1FFF           1800
+        STRING           0066-0735            100           2
+                         0800-1FFF            100
 
                                   Symbol Table
 
+USART_Cadena@str         cstackCOMMON 0072
+USART_Tx@data            cstackCOMMON 0070
 _ANSEL                   (abs)        0188
 _ANSELH                  (abs)        0189
 _BAUDCTLbits             (abs)        0187
-_INTCONbits              (abs)        000B
 _OSCCONbits              (abs)        008F
-_PIE1bits                (abs)        008C
 _PIR1bits                (abs)        000C
 _PORTA                   (abs)        0005
 _PORTB                   (abs)        0006
@@ -154,33 +157,36 @@ _TRISA                   (abs)        0085
 _TRISB                   (abs)        0086
 _TXREG                   (abs)        0019
 _TXSTAbits               (abs)        0098
+_USART_Cadena            text2        0746
+_USART_Rx                text1        0736
+_USART_Tx                text3        073A
 __Habs1                  abs1         0000
 __Hbank0                 bank0        0000
 __Hbank1                 bank1        0000
 __Hbank2                 bank2        0000
 __Hbank3                 bank3        0000
 __HbssCOMMON             bssCOMMON    0000
-__Hcinit                 cinit        0014
+__Hcinit                 cinit        0800
 __Hclrtext               clrtext      0000
 __Hcode                  code         0000
 __Hcommon                common       0000
 __Hconfig                config       2009
 __HcstackCOMMON          cstackCOMMON 0000
 __Heeprom_data           eeprom_data  0000
-__Hend_init              end_init     000F
+__Hend_init              end_init     0003
 __Hfunctab               functab      0000
-__Hinit                  init         000C
-__Hintentry              intentry     000C
+__Hinit                  init         0000
+__Hintentry              intentry     0000
 __Hmaintext              maintext     0000
 __Hpowerup               powerup      0000
 __Hram                   ram          0000
-__Hreset_vec             reset_vec    0003
+__Hreset_vec             reset_vec    0000
 __Hsfr0                  sfr0         0000
 __Hsfr1                  sfr1         0000
 __Hsfr2                  sfr2         0000
 __Hsfr3                  sfr3         0000
-__Hspace_0               (abs)        008B
-__Hspace_1               (abs)        0076
+__Hspace_0               (abs)        0800
+__Hspace_1               (abs)        0077
 __Hspace_2               (abs)        0000
 __Hspace_3               (abs)        0000
 __Hspace_4               (abs)        4010
@@ -193,17 +199,17 @@ __Lbank1                 bank1        0000
 __Lbank2                 bank2        0000
 __Lbank3                 bank3        0000
 __LbssCOMMON             bssCOMMON    0000
-__Lcinit                 cinit        000F
+__Lcinit                 cinit        07FA
 __Lclrtext               clrtext      0000
 __Lcode                  code         0000
 __Lcommon                common       0000
 __Lconfig                config       0000
 __LcstackCOMMON          cstackCOMMON 0000
 __Leeprom_data           eeprom_data  0000
-__Lend_init              end_init     000C
+__Lend_init              end_init     0000
 __Lfunctab               functab      0000
-__Linit                  init         000C
-__Lintentry              intentry     0004
+__Linit                  init         0000
+__Lintentry              intentry     0000
 __Lmaintext              maintext     0000
 __Lpowerup               powerup      0000
 __Lram                   ram          0000
@@ -220,8 +226,8 @@ __Lspace_4               (abs)        0000
 __Lstack                 stack        0000
 __Lstrings               strings      0000
 __Ltext                  text         0000
-__S0                     (abs)        008B
-__S1                     (abs)        0076
+__S0                     (abs)        0800
+__S1                     (abs)        0077
 __S2                     (abs)        0000
 __S3                     (abs)        0000
 ___int_sp                stack        0000
@@ -229,29 +235,31 @@ ___latbits               (abs)        0002
 ___sp                    stack        0000
 ___stackhi               (abs)        0000
 ___stacklo               (abs)        0000
-__end_of__initialization cinit        0010
-__end_of__stringtab      strings      0070
-__end_of_isr             text1        008B
-__end_of_main            maintext     006A
-__end_of_num             strings      007C
-__initialization         cinit        000F
+__end_of_USART_Cadena    text2        0765
+__end_of_USART_Rx        text1        073A
+__end_of_USART_Tx        text3        0746
+__end_of__initialization cinit        07FC
+__end_of__stringtab      strings      0009
+__end_of_main            maintext     07FA
+__initialization         cinit        07FA
 __pbssCOMMON             bssCOMMON    0075
 __pcstackCOMMON          cstackCOMMON 0070
-__pintentry              intentry     0004
-__pmaintext              maintext     0014
-__pstrings               strings      006A
-__ptext1                 text1        007C
-__size_of_isr            (abs)        0000
+__pmaintext              maintext     0765
+__pstrings               strings      0003
+__ptext1                 text1        0736
+__ptext2                 text2        0746
+__ptext3                 text3        073A
+__size_of_USART_Cadena   (abs)        0000
+__size_of_USART_Rx       (abs)        0000
+__size_of_USART_Tx       (abs)        0000
 __size_of_main           (abs)        0000
-__stringbase             strings      006F
-__stringtab              strings      006A
-_espacio                 bssCOMMON    0075
-_isr                     text1        007C
-_main                    maintext     0014
-_num                     strings      0070
+__stringbase             strings      0008
+__stringtab              strings      0003
+_loop                    bssCOMMON    0075
+_main                    maintext     0765
+_valor                   bssCOMMON    0076
 btemp                    (abs)        007E
-end_of_initialization    cinit        0010
-interrupt_function       intentry     0004
+end_of_initialization    cinit        07FC
 intlevel0                functab      0000
 intlevel1                functab      0000
 intlevel2                functab      0000
@@ -259,9 +267,8 @@ intlevel3                functab      0000
 intlevel4                functab      0000
 intlevel5                functab      0000
 reset_vec                reset_vec    0000
-saved_w                  (abs)        007E
-start                    init         000C
-start_initialization     cinit        000F
+start                    init         0000
+start_initialization     cinit        07FA
 wtemp0                   (abs)        007E
 
 
@@ -269,7 +276,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 59 in file "uart.c"
+		line 70 in file "uart.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -277,37 +284,7 @@ FUNCTION INFORMATION:
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
-		wreg, fsr0l, fsr0h, status,2, status,0, pclath
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-      Params:         0       0       0       0       0
-      Locals:         0       0       0       0       0
-      Temps:          3       0       0       0       0
-      Totals:         3       0       0       0       0
-Total ram usage:        3 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    1
- This function calls:
-		Nothing
- This function is called by:
-		Startup code after reset
- This function uses a non-reentrant model
-
-
- *************** function _isr *****************
- Defined at:
-		line 50 in file "uart.c"
- Parameters:    Size  Location     Type
-		None
- Auto vars:     Size  Location     Type
-		None
- Return value:  Size  Location     Type
-                  1    wreg      void 
- Registers used:
-		wreg
+		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -318,11 +295,102 @@ Total ram usage:        3 bytes
       Temps:          2       0       0       0       0
       Totals:         2       0       0       0       0
 Total ram usage:        2 bytes
+ Hardware stack levels required when called:    2
+ This function calls:
+		_USART_Cadena
+		_USART_Rx
+ This function is called by:
+		Startup code after reset
+ This function uses a non-reentrant model
+
+
+ *************** function _USART_Rx *****************
+ Defined at:
+		line 162 in file "uart.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+      Params:         0       0       0       0       0
+      Locals:         0       0       0       0       0
+      Temps:          0       0       0       0       0
+      Totals:         0       0       0       0       0
+Total ram usage:        0 bytes
  Hardware stack levels used:    1
  This function calls:
 		Nothing
  This function is called by:
-		Interrupt level 1
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _USART_Cadena *****************
+ Defined at:
+		line 166 in file "uart.c"
+ Parameters:    Size  Location     Type
+  str             1    wreg     PTR unsigned char 
+		 -> STR_3(38), STR_2(38), STR_1(17), 
+ Auto vars:     Size  Location     Type
+  str             1    2[COMMON] PTR unsigned char 
+		 -> STR_3(38), STR_2(38), STR_1(17), 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+      Params:         0       0       0       0       0
+      Locals:         1       0       0       0       0
+      Temps:          1       0       0       0       0
+      Totals:         2       0       0       0       0
+Total ram usage:        2 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_USART_Tx
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _USART_Tx *****************
+ Defined at:
+		line 157 in file "uart.c"
+ Parameters:    Size  Location     Type
+  data            1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  data            1    0[COMMON] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+      Params:         0       0       0       0       0
+      Locals:         1       0       0       0       0
+      Temps:          0       0       0       0       0
+      Totals:         1       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_USART_Cadena
  This function uses a non-reentrant model
 
 
@@ -331,15 +399,16 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 uart.c
-		_main          		CODE           	0014	0000	86
-		_isr           		CODE           	007C	0000	15
+		_USART_Rx      		CODE           	0736	0000	4
+		_main          		CODE           	0765	0000	149
+		_USART_Tx      		CODE           	073A	0000	12
+		_USART_Cadena  		CODE           	0746	0000	31
 
-uart.c estimated size: 101
+uart.c estimated size: 196
 
 shared
-		__stringtab    		STRING         	006A	0000	6
-		_num           		STRING         	0070	0000	12
-		__initialization		CODE           	000F	0000	1
+		__stringtab    		STRING         	0003	0000	6
+		__initialization		CODE           	07FA	0000	2
 
-shared estimated size: 19
+shared estimated size: 8
 

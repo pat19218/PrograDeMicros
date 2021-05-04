@@ -41,20 +41,31 @@
 
 #define _XTAL_FREQ 8000000 //__delay_ms(x)
 
+//--------------------------funciones-------------------------------------------
+void USART_Tx(char data);
+char USART_Rx();
+void USART_Cadena(char *str);
+
 //---------------------------variables------------------------------------------
-                  //a   b   c     d   e   f     g    h    i   j    k   l
-const char num[] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108};                        
-char espacio;
+//                       //a   b   c     d   e   f     g    h    i   j    k   
+//const char caracter[] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 
+//                         108, 109, 110, 111, 112, 113, 114, 115, 116, 117,
+//                       //l    m     n   ñ    o    p     q    r    s    t
+//                         118, 119, 120, 121, 122, 123};
+//                       //u     v     w   x    y    z
+//char espacio;
+
+char valor;
+char loop;
 //---------------------------interrupciones-------------------------------------
 
-void __interrupt()isr(void){
-    
-    if(PIR1bits.RCIF){  //chequeo si recibo datos
-        PORTB = RCREG;  //lo paso al puerto B
-    }
-
-}
-
+//void __interrupt()isr(void){
+//    
+//    if(PIR1bits.RCIF){  //chequeo si recibo datos
+//        PORTB = RCREG;  //lo paso al puerto B
+//    }
+//
+//}
 
 void main(void){
 
@@ -70,12 +81,12 @@ void main(void){
     OSCCONbits.IRCF = 0b111 ;  // config. de oscilador interno
     OSCCONbits.SCS = 1;         //reloj interno
 
-                                //Confi. serial comunication
+                            //Confi. serial comunication
     TXSTAbits.SYNC = 0;     //asincrono
     TXSTAbits.BRGH = 1;     //high speed
     BAUDCTLbits.BRG16 = 1;  //uso los 16 bits
-    
-    SPBRG = 207;   //revisar tabla BAUD RATES FOR ASYNCHRONOUS MODES (CONTINUED)       
+   
+    SPBRG = 207;   //revisar tabla BAUD RATES FOR ASYNCHRONOUS MODES (CONTINUED)                      
     SPBRGH = 0;    //pagina 168 del datasheet del 2009         
     
     RCSTAbits.SPEN = 1;     //enciendo el modulo
@@ -84,26 +95,77 @@ void main(void){
     TXSTAbits.TXEN = 1;     //activo transmision 
     
                             //confi. interrupciones
-    PIR1bits.RCIF = 0;      //INTERRUPCION POR RECEPCIÓN DE DATOS
-    PIE1bits.RCIE = 1; 
-    INTCONbits.PEIE = 1;
-    INTCONbits.GIE = 1;
+//    PIR1bits.RCIF = 0;      //INTERRUPCION POR RECEPCIÓN DE DATOS
+//    PIE1bits.RCIE = 1; 
+//    INTCONbits.PEIE = 1;
+//    INTCONbits.GIE = 1;
+//    
+   // espacio = 0;
     
-    espacio = 0;
-
 
     //------------------------------loop principal----------------------------------
     while (1) {
-        __delay_ms(500);
         
-        if(PIR1bits.TXIF){
-            TXREG = num[espacio]; //num_display[0];       //cada 500ms mando un dato
-            espacio++;
-            if(espacio == 12){
-                espacio = 0;
+        if(PIR1bits.RCIF){//chequeo si recibo datos
+            
+            valor = USART_Rx();
+            
+            switch(valor){
+                case ('1'):
+                    USART_Cadena(" Hello fck wrld ");
+                    break;
+                        
+                case ('2'):
+                    loop = 1;
+                    USART_Cadena(" Ingresa un caracter para el puerto A");
+                    while(loop){
+                        if(PIR1bits.RCIF){
+                            PORTA = USART_Rx();  //lo paso al puerto A
+                            loop = 0;
+                        }
+                    }
+                    
+                    break;
+                        
+                case ('3'):
+                    loop = 1;
+                    USART_Cadena(" Ingresa un caracter para el puerto B");
+                    while(loop){
+                        if(PIR1bits.RCIF){
+                            PORTB = USART_Rx();  //lo paso al puerto A
+                            loop = 0;
+                        }
+                    }                       
+                    break;
             }
         }
-        
+//        if(PIR1bits.TXIF){
+//            
+//            TXREG = caracter[espacio]; //cada 500ms mando un dato
+//            espacio++;
+//            if(espacio == 27){
+//                espacio = 0;
+//            }
+//        }
+        __delay_ms(10);
     }
+    
     return;     //end
 }
+
+
+    void USART_Tx(char data){
+        while(TXSTAbits.TRMT == 0);
+        TXREG = data;
+    }
+
+    char USART_Rx(){
+        return RCREG; 
+       }
+
+    void USART_Cadena(char *str){
+        while(*str != '\0'){
+            USART_Tx(*str);
+            str++;
+        }
+    }

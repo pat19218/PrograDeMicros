@@ -2651,20 +2651,13 @@ typedef uint16_t uintptr_t;
 
 
 
-
-const char num[] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108};
-char espacio;
-
-
-void __attribute__((picinterrupt((""))))isr(void){
-
-    if(PIR1bits.RCIF){
-        PORTB = RCREG;
-    }
-
-}
-
-
+void USART_Tx(char data);
+char USART_Rx();
+void USART_Cadena(char *str);
+# 58 "uart.c"
+char valor;
+char loop;
+# 70 "uart.c"
 void main(void){
 
     ANSEL = 0X00;
@@ -2691,28 +2684,62 @@ void main(void){
     RCSTAbits.RX9 = 0;
     RCSTAbits.CREN = 1;
     TXSTAbits.TXEN = 1;
-
-
-    PIR1bits.RCIF = 0;
-    PIE1bits.RCIE = 1;
-    INTCONbits.PEIE = 1;
-    INTCONbits.GIE = 1;
-
-    espacio = 0;
-
-
-
+# 107 "uart.c"
     while (1) {
-        _delay((unsigned long)((500)*(8000000/4000.0)));
 
-        if(PIR1bits.TXIF){
-            TXREG = num[espacio];
-            espacio++;
-            if(espacio == 12){
-                espacio = 0;
+        if(PIR1bits.RCIF){
+
+            valor = USART_Rx();
+
+            switch(valor){
+                case ('1'):
+                    USART_Cadena(" Hello fck wrld ");
+                    break;
+
+                case ('2'):
+                    loop = 1;
+                    USART_Cadena(" Ingresa un caracter para el puerto A");
+                    while(loop){
+                        if(PIR1bits.RCIF){
+                            PORTA = USART_Rx();
+                            loop = 0;
+                        }
+                    }
+
+                    break;
+
+                case ('3'):
+                    loop = 1;
+                    USART_Cadena(" Ingresa un caracter para el puerto B");
+                    while(loop){
+                        if(PIR1bits.RCIF){
+                            PORTB = USART_Rx();
+                            loop = 0;
+                        }
+                    }
+                    break;
             }
         }
-
+# 150 "uart.c"
+        _delay((unsigned long)((10)*(8000000/4000.0)));
     }
+
     return;
 }
+
+
+    void USART_Tx(char data){
+        while(TXSTAbits.TRMT == 0);
+        TXREG = data;
+    }
+
+    char USART_Rx(){
+        return RCREG;
+       }
+
+    void USART_Cadena(char *str){
+        while(*str != '\0'){
+            USART_Tx(*str);
+            str++;
+        }
+    }

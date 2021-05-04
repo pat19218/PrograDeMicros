@@ -11,32 +11,19 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"50 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-[v _isr isr `II(v  1 e 1 0 ]
-"59
+"70 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
 [v _main main `(v  1 e 1 0 ]
+"157
+[v _USART_Tx USART_Tx `(v  1 e 1 0 ]
+"162
+[v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
+"166
+[v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 "166 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
 "228
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-[s S197 . 1 `uc 1 RBIF 1 0 :1:0 
-`uc 1 INTF 1 0 :1:1 
-`uc 1 T0IF 1 0 :1:2 
-`uc 1 RBIE 1 0 :1:3 
-`uc 1 INTE 1 0 :1:4 
-`uc 1 T0IE 1 0 :1:5 
-`uc 1 PEIE 1 0 :1:6 
-`uc 1 GIE 1 0 :1:7 
-]
-"482
-[s S206 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 TMR0IF 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 TMR0IE 1 0 :1:5 
-]
-[u S211 . 1 `S197 1 . 1 0 `S206 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES211  1 e 1 @11 ]
-[s S22 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S158 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -45,9 +32,9 @@
 `uc 1 ADIF 1 0 :1:6 
 ]
 "553
-[u S30 . 1 `S22 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES30  1 e 1 @12 ]
-[s S134 . 1 `uc 1 RX9D 1 0 :1:0 
+[u S166 . 1 `S158 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES166  1 e 1 @12 ]
+[s S114 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -57,18 +44,18 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "1068
-[s S143 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S123 . 1 `uc 1 RCD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S147 . 1 `uc 1 . 1 0 :6:0 
+[s S127 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 nRC8 1 0 :1:6 
 ]
-[s S150 . 1 `uc 1 . 1 0 :6:0 
+[s S130 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[u S153 . 1 `S134 1 . 1 0 `S143 1 . 1 0 `S147 1 . 1 0 `S150 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES153  1 e 1 @24 ]
+[u S133 . 1 `S114 1 . 1 0 `S123 1 . 1 0 `S127 1 . 1 0 `S130 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES133  1 e 1 @24 ]
 "1133
 [v _TXREG TXREG `VEuc  1 e 1 @25 ]
 "1140
@@ -77,32 +64,21 @@
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S178 . 1 `uc 1 TMR1IE 1 0 :1:0 
-`uc 1 TMR2IE 1 0 :1:1 
-`uc 1 CCP1IE 1 0 :1:2 
-`uc 1 SSPIE 1 0 :1:3 
-`uc 1 TXIE 1 0 :1:4 
-`uc 1 RCIE 1 0 :1:5 
-`uc 1 ADIE 1 0 :1:6 
-]
-"1718
-[u S186 . 1 `S178 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES186  1 e 1 @140 ]
-[s S48 . 1 `uc 1 SCS 1 0 :1:0 
+[s S28 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S54 . 1 `uc 1 . 1 0 :4:0 
+[s S34 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S59 . 1 `S48 1 . 1 0 `S54 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES59  1 e 1 @143 ]
-[s S74 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S39 . 1 `S28 1 . 1 0 `S34 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES39  1 e 1 @143 ]
+[s S54 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -112,20 +88,20 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "2582
-[s S83 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S63 . 1 `uc 1 TXD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 nTX8 1 0 :1:6 
 ]
-[s S87 . 1 `uc 1 . 1 0 :6:0 
+[s S67 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[u S90 . 1 `S74 1 . 1 0 `S83 1 . 1 0 `S87 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES90  1 e 1 @152 ]
+[u S70 . 1 `S54 1 . 1 0 `S63 1 . 1 0 `S67 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES70  1 e 1 @152 ]
 "2642
 [v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
 "2704
 [v _SPBRGH SPBRGH `VEuc  1 e 1 @154 ]
-[s S111 . 1 `uc 1 ABDEN 1 0 :1:0 
+[s S91 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -135,23 +111,39 @@
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "3352
-[u S120 . 1 `S111 1 . 1 0 ]
-[v _BAUDCTLbits BAUDCTLbits `VES120  1 e 1 @391 ]
+[u S100 . 1 `S91 1 . 1 0 ]
+[v _BAUDCTLbits BAUDCTLbits `VES100  1 e 1 @391 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-"46 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-[v _num num `DC[12]uc  1 e 12 0 ]
-"47
-[v _espacio espacio `uc  1 e 1 0 ]
+"58 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+[v _valor valor `uc  1 e 1 0 ]
 "59
+[v _loop loop `uc  1 e 1 0 ]
+"70
 [v _main main `(v  1 e 1 0 ]
 {
-"109
+"154
 } 0
-"50
-[v _isr isr `II(v  1 e 1 0 ]
+"162
+[v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
 {
-"56
+"164
+} 0
+"166
+[v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
+{
+[v USART_Cadena@str str `*.24uc  1 a 1 wreg ]
+[v USART_Cadena@str str `*.24uc  1 a 1 wreg ]
+[v USART_Cadena@str str `*.24uc  1 a 1 2 ]
+"171
+} 0
+"157
+[v _USART_Tx USART_Tx `(v  1 e 1 0 ]
+{
+[v USART_Tx@data data `uc  1 a 1 wreg ]
+[v USART_Tx@data data `uc  1 a 1 wreg ]
+[v USART_Tx@data data `uc  1 a 1 0 ]
+"160
 } 0
