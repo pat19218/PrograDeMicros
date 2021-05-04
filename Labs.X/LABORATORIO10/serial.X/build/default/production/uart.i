@@ -2658,7 +2658,6 @@ void USART_Cadena(char *str);
 
 
 char valor;
-char loop;
 
 
 
@@ -2690,14 +2689,11 @@ void main(void){
     TXSTAbits.TXEN = 1;
 
 
-
-
     while (1) {
         USART_Cadena("\r Que accion desea ejecutar? \r");
         USART_Cadena(" 1) Desplegar cadena de caracteres \r");
         USART_Cadena(" 2) Cambiar PORTA \r");
         USART_Cadena(" 3) Cambiar PORTB \r \r");
-
 
         while(PIR1bits.RCIF == 0);
 
@@ -2705,31 +2701,20 @@ void main(void){
 
         switch(valor){
             case ('1'):
-                USART_Cadena(" Hello fck wrld ");
-                TXREG = '\r';
+                USART_Cadena(" Hello fck wrld \r");
                 break;
 
             case ('2'):
-                loop = 1;
                 USART_Cadena(" Ingresa un caracter para el puerto A: ");
-                while(loop){
-                    if(PIR1bits.RCIF){
-                        PORTA = USART_Rx();
-                        loop = 0;
-                    }
-                }
+                while(PIR1bits.RCIF == 0);
+                PORTA = USART_Rx();
                 USART_Cadena("\r Listo \r");
                 break;
 
             case ('3'):
-                loop = 1;
                 USART_Cadena(" Ingresa un caracter para el puerto B: ");
-                while(loop){
-                    if(PIR1bits.RCIF){
-                        PORTB = USART_Rx();
-                        loop = 0;
-                    }
-                }
+                while(PIR1bits.RCIF == 0);
+                PORTB = USART_Rx();
                 USART_Cadena("\r Listo \r");
                 break;
         }

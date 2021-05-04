@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\serial.X.production.sym \
   --cmf=dist/default/production\serial.X.production.cmf -z -Q16F887 \
-  -oC:\Users\isaac\AppData\Local\Temp\sgjc.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\isaac\AppData\Local\Temp\s6t0.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/serial.X.production.map -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\isaac\AppData\Local\Temp\sgjc.o \
+  -pfunctab=ENTRY -k C:\Users\isaac\AppData\Local\Temp\s6t0.o \
   dist/default/production\serial.X.production.o 
 
 Object code version is 3.11
@@ -28,35 +28,35 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\isaac\AppData\Local\Temp\sgjc.o
+C:\Users\isaac\AppData\Local\Temp\s6t0.o
                 end_init                              0        0        3        0       0
                 config                             2007     2007        2        0       4
 dist/default/production\serial.X.production.o
-                cinit                               7FA      7FA        6      FF4       0
+                cinit                               7FB      7FB        5      FF6       0
                 config                             2007     2007        2        0       4
-                text3                               71C      71C        C      E38       0
-                text2                               728      728       1F      E50       0
-                text1                               718      718        4      E30       0
-                maintext                            747      747       B3      E8E       0
+                text3                               733      733        C      E66       0
+                text2                               73F      73F       1F      E7E       0
+                text1                               72F      72F        4      E5E       0
+                maintext                            75E      75E       9D      EBC       0
                 cstackCOMMON                         70       70        5       70       1
-                bssCOMMON                            75       75        2       70       1
-                strings                               3        3       DF        6       0
+                bssCOMMON                            75       75        1       70       1
+                strings                               3        3       E0        6       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
 
         CLASS   CODE           
                 end_init                              0        0        3         0
-                cinit                               7FA      7FA        6         0
-                text3                               71C      71C        C         0
-                text2                               728      728       1F         0
-                text1                               718      718        4         0
-                maintext                            747      747       B3         0
+                cinit                               7FB      7FB        5         0
+                text3                               733      733        C         0
+                text2                               73F      73F       1F         0
+                text1                               72F      72F        4         0
+                maintext                            75E      75E       9D         0
 
         CLASS   STRCODE        
 
         CLASS   STRING         
-                strings                               3        3       DF         0
+                strings                               3        3       E0         0
 
         CLASS   CONST          
 
@@ -64,7 +64,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 
         CLASS   COMMON         
                 cstackCOMMON                         70       70        5         1
-                bssCOMMON                            75       75        2         1
+                bssCOMMON                            75       75        1         1
 
         CLASS   BANK0          
 
@@ -99,13 +99,13 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                strings                        000003  0000DF  0000E2         6       0  STRING      2
-                cstackCOMMON                   000070  000007  000077        70       1  COMMON      1
-                text1                          000718  000004  00071C       E30       0  CODE        2
-                text3                          00071C  00000C  000728       E38       0  CODE        2
-                text2                          000728  00001F  000747       E50       0  CODE        2
-                maintext                       000747  0000B3  0007FA       E8E       0  CODE        2
-                cinit                          0007FA  000006  000800       FF4       0  CODE        2
+                strings                        000003  0000E0  0000E3         6       0  STRING      2
+                cstackCOMMON                   000070  000006  000076        70       1  COMMON      1
+                text1                          00072F  000004  000733       E5E       0  CODE        2
+                text3                          000733  00000C  00073F       E66       0  CODE        2
+                text2                          00073F  00001F  00075E       E7E       0  CODE        2
+                maintext                       00075E  00009D  0007FB       EBC       0  CODE        2
+                cinit                          0007FB  000005  000800       FF6       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
@@ -115,13 +115,13 @@ UNUSED ADDRESS RANGES
         BANK1            00A0-00EF             50           1
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
-        CODE             00E2-0717            636           2
+        CODE             00E3-072E            64C           2
                          0800-1FFF            800
-        COMMON           0077-007D              7           1
-        CONST            00E2-0717            100           2
+        COMMON           0076-007D              8           1
+        CONST            00E3-072E            100           2
                          0800-1FFF            100
         EEDATA           2100-21FF            100           2
-        ENTRY            00E2-0717            100           2
+        ENTRY            00E3-072E            100           2
                          0800-1FFF            100
         IDLOC            2000-2003              4           2
         RAM              0020-006F             50           1
@@ -133,9 +133,9 @@ UNUSED ADDRESS RANGES
         SFR2             0100-010F             10           1
         SFR3             0180-018F             10           1
         STACK            0110-016F             60           1
-        STRCODE          00E2-0717            636           2
+        STRCODE          00E3-072E            64C           2
                          0800-1FFF           1800
-        STRING           00E2-0717            100           2
+        STRING           00E3-072E            100           2
                          0800-1FFF            100
 
                                   Symbol Table
@@ -157,9 +157,9 @@ _TRISA                   (abs)        0085
 _TRISB                   (abs)        0086
 _TXREG                   (abs)        0019
 _TXSTAbits               (abs)        0098
-_USART_Cadena            text2        0728
-_USART_Rx                text1        0718
-_USART_Tx                text3        071C
+_USART_Cadena            text2        073F
+_USART_Rx                text1        072F
+_USART_Tx                text3        0733
 __Habs1                  abs1         0000
 __Hbank0                 bank0        0000
 __Hbank1                 bank1        0000
@@ -186,7 +186,7 @@ __Hsfr1                  sfr1         0000
 __Hsfr2                  sfr2         0000
 __Hsfr3                  sfr3         0000
 __Hspace_0               (abs)        0800
-__Hspace_1               (abs)        0077
+__Hspace_1               (abs)        0076
 __Hspace_2               (abs)        0000
 __Hspace_3               (abs)        0000
 __Hspace_4               (abs)        4010
@@ -199,7 +199,7 @@ __Lbank1                 bank1        0000
 __Lbank2                 bank2        0000
 __Lbank3                 bank3        0000
 __LbssCOMMON             bssCOMMON    0000
-__Lcinit                 cinit        07FA
+__Lcinit                 cinit        07FB
 __Lclrtext               clrtext      0000
 __Lcode                  code         0000
 __Lcommon                common       0000
@@ -227,7 +227,7 @@ __Lstack                 stack        0000
 __Lstrings               strings      0000
 __Ltext                  text         0000
 __S0                     (abs)        0800
-__S1                     (abs)        0077
+__S1                     (abs)        0076
 __S2                     (abs)        0000
 __S3                     (abs)        0000
 ___int_sp                stack        0000
@@ -235,29 +235,28 @@ ___latbits               (abs)        0002
 ___sp                    stack        0000
 ___stackhi               (abs)        0000
 ___stacklo               (abs)        0000
-__end_of_USART_Cadena    text2        0747
-__end_of_USART_Rx        text1        071C
-__end_of_USART_Tx        text3        0728
+__end_of_USART_Cadena    text2        075E
+__end_of_USART_Rx        text1        0733
+__end_of_USART_Tx        text3        073F
 __end_of__initialization cinit        07FC
 __end_of__stringtab      strings      0009
-__end_of_main            maintext     07FA
-__initialization         cinit        07FA
+__end_of_main            maintext     07FB
+__initialization         cinit        07FB
 __pbssCOMMON             bssCOMMON    0075
 __pcstackCOMMON          cstackCOMMON 0070
-__pmaintext              maintext     0747
+__pmaintext              maintext     075E
 __pstrings               strings      0003
-__ptext1                 text1        0718
-__ptext2                 text2        0728
-__ptext3                 text3        071C
+__ptext1                 text1        072F
+__ptext2                 text2        073F
+__ptext3                 text3        0733
 __size_of_USART_Cadena   (abs)        0000
 __size_of_USART_Rx       (abs)        0000
 __size_of_USART_Tx       (abs)        0000
 __size_of_main           (abs)        0000
 __stringbase             strings      0008
 __stringtab              strings      0003
-_loop                    bssCOMMON    0075
-_main                    maintext     0747
-_valor                   bssCOMMON    0076
+_main                    maintext     075E
+_valor                   bssCOMMON    0075
 btemp                    (abs)        007E
 end_of_initialization    cinit        07FC
 intlevel0                functab      0000
@@ -268,7 +267,7 @@ intlevel4                functab      0000
 intlevel5                functab      0000
 reset_vec                reset_vec    0000
 start                    init         0000
-start_initialization     cinit        07FA
+start_initialization     cinit        07FB
 wtemp0                   (abs)        007E
 
 
@@ -276,7 +275,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 56 in file "uart.c"
+		line 55 in file "uart.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -306,7 +305,7 @@ Total ram usage:        2 bytes
 
  *************** function _USART_Rx *****************
  Defined at:
-		line 138 in file "uart.c"
+		line 123 in file "uart.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -335,16 +334,16 @@ Total ram usage:        0 bytes
 
  *************** function _USART_Cadena *****************
  Defined at:
-		line 142 in file "uart.c"
+		line 127 in file "uart.c"
  Parameters:    Size  Location     Type
   str             1    wreg     PTR unsigned char 
 		 -> STR_9(10), STR_8(40), STR_7(10), STR_6(40), 
-		 -> STR_5(17), STR_4(22), STR_3(20), STR_2(37), 
+		 -> STR_5(18), STR_4(22), STR_3(20), STR_2(37), 
 		 -> STR_1(31), 
  Auto vars:     Size  Location     Type
   str             1    2[COMMON] PTR unsigned char 
 		 -> STR_9(10), STR_8(40), STR_7(10), STR_6(40), 
-		 -> STR_5(17), STR_4(22), STR_3(20), STR_2(37), 
+		 -> STR_5(18), STR_4(22), STR_3(20), STR_2(37), 
 		 -> STR_1(31), 
  Return value:  Size  Location     Type
                   1    wreg      void 
@@ -371,7 +370,7 @@ Total ram usage:        2 bytes
 
  *************** function _USART_Tx *****************
  Defined at:
-		line 133 in file "uart.c"
+		line 118 in file "uart.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -403,16 +402,16 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 uart.c
-		_USART_Rx      		CODE           	0718	0000	4
-		_main          		CODE           	0747	0000	179
-		_USART_Tx      		CODE           	071C	0000	12
-		_USART_Cadena  		CODE           	0728	0000	31
+		_USART_Rx      		CODE           	072F	0000	4
+		_main          		CODE           	075E	0000	157
+		_USART_Tx      		CODE           	0733	0000	12
+		_USART_Cadena  		CODE           	073F	0000	31
 
-uart.c estimated size: 226
+uart.c estimated size: 204
 
 shared
 		__stringtab    		STRING         	0003	0000	6
-		__initialization		CODE           	07FA	0000	2
+		__initialization		CODE           	07FB	0000	1
 
-shared estimated size: 8
+shared estimated size: 7
 
