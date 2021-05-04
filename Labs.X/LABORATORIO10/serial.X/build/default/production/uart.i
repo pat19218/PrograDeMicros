@@ -2692,14 +2692,11 @@ void main(void){
 
 
     while (1) {
-        USART_Cadena(" Que accion desea ejecutar? ");
-        TXREG = '\n';
-        USART_Cadena(" 1) Desplegar cadena de caracteres ");
-        TXREG = '\n';
-        USART_Cadena(" 2) Cambiar PORTA ");
-        TXREG = '\n';
-        USART_Cadena(" 3) Cambiar PORTB ");
-        TXREG = '\n';
+        USART_Cadena("\r Que accion desea ejecutar? \r");
+        USART_Cadena(" 1) Desplegar cadena de caracteres \r");
+        USART_Cadena(" 2) Cambiar PORTA \r");
+        USART_Cadena(" 3) Cambiar PORTB \r \r");
+
 
         while(PIR1bits.RCIF == 0);
 
@@ -2710,6 +2707,7 @@ void main(void){
             switch(valor){
                 case ('1'):
                     USART_Cadena(" Hello fck wrld ");
+                    TXREG = '\r';
                     break;
 
                 case ('2'):
@@ -2721,7 +2719,9 @@ void main(void){
                             loop = 0;
                         }
                     }
+                    TXREG = '\r';
                     USART_Cadena(" Listo ");
+                    TXREG = '\r';
                     break;
 
                 case ('3'):
@@ -2731,13 +2731,15 @@ void main(void){
                         if(PIR1bits.RCIF){
                             PORTB = USART_Rx();
                             loop = 0;
+
                         }
                     }
+                    TXREG = '\r';
                     USART_Cadena(" Listo ");
+                    TXREG = '\r';
                     break;
             }
         }
-        _delay((unsigned long)((10)*(8000000/4000.0)));
     }
 
     return;
