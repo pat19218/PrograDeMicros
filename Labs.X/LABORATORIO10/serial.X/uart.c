@@ -23,7 +23,7 @@
 #pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
 #pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
 #pragma config IESO = OFF       // Internal External Switchover bit (Internal/External Switchover mode is disabled)
-#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is disabled)
+#pragma config FCMEN = ON      // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is disabled)
 #pragma config LVP = ON         // Low Voltage Programming Enable bit (RB3/PGM pin has PGM function, low voltage programming enabled)
 
 // CONFIG2
@@ -39,13 +39,12 @@
 
 //--------------------------directivas del compilador---------------------------
 
-#define _XTAL_FREQ 8000000 //__delay_ms(x)
+#define _XTAL_FREQ 1000000 //__delay_ms(x)
 
 //---------------------------variables------------------------------------------
                           
-const char num_display[] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106};
-                          
-char espacio;
+const char num = 97;                        
+
 //---------------------------interrupciones-------------------------------------
 
 void __interrupt()isr(void){
@@ -65,7 +64,10 @@ void main(void){
     TRISA = 0x00; // PORTA todo salida
     TRISB = 0x00; // PORTB todo salida
     
-    OSCCONbits.IRCF = 0b0111 ;  // config. de oscilador interno
+    PORTA = 0x00;
+    PORTB = 0x00;
+    
+    OSCCONbits.IRCF = 0b100 ;  // config. de oscilador interno
     OSCCONbits.SCS = 1;         //reloj interno
 
                                 //Confi. serial comunication
@@ -87,9 +89,7 @@ void main(void){
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
     
-    espacio = 0;
-    PORTA = 0;
-    PORTB = 0;
+ 
 
 
     //------------------------------loop principal----------------------------------
@@ -97,11 +97,8 @@ void main(void){
         __delay_ms(500);
         
         if(PIR1bits.TXIF){
-            TXREG = num_display[espacio];       //cada 500ms mando un dato
-            espacio++;
-            if(espacio == 10){
-                espacio = 0;
-            }
+            TXREG = num; //num_display[0];       //cada 500ms mando un dato
+          
         }
         
     }

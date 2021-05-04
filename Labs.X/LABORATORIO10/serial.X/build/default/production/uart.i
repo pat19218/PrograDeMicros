@@ -16,7 +16,7 @@
 #pragma config CPD = OFF
 #pragma config BOREN = OFF
 #pragma config IESO = OFF
-#pragma config FCMEN = OFF
+#pragma config FCMEN = ON
 #pragma config LVP = ON
 
 
@@ -2652,9 +2652,8 @@ typedef uint16_t uintptr_t;
 
 
 
-const char num_display[] = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106};
+const char num = 97;
 
-char espacio;
 
 
 void __attribute__((picinterrupt((""))))isr(void){
@@ -2674,7 +2673,10 @@ void main(void){
     TRISA = 0x00;
     TRISB = 0x00;
 
-    OSCCONbits.IRCF = 0b0111 ;
+    PORTA = 0x00;
+    PORTB = 0x00;
+
+    OSCCONbits.IRCF = 0b100 ;
     OSCCONbits.SCS = 1;
 
 
@@ -2696,21 +2698,16 @@ void main(void){
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
 
-    espacio = 0;
-    PORTA = 0;
-    PORTB = 0;
+
 
 
 
     while (1) {
-        _delay((unsigned long)((500)*(8000000/4000.0)));
+        _delay((unsigned long)((500)*(1000000/4000.0)));
 
         if(PIR1bits.TXIF){
-            TXREG = num_display[espacio];
-            espacio++;
-            if(espacio == 10){
-                espacio = 0;
-            }
+            TXREG = num;
+
         }
 
     }
