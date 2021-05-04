@@ -2700,45 +2700,37 @@ void main(void){
 
         while(PIR1bits.RCIF == 0);
 
-        if(PIR1bits.RCIF){
+        valor = USART_Rx();
 
-            valor = USART_Rx();
+        switch(valor){
+            case ('1'):
+                USART_Cadena(" Hello fck wrld ");
+                TXREG = '\r';
+                break;
 
-            switch(valor){
-                case ('1'):
-                    USART_Cadena(" Hello fck wrld ");
-                    TXREG = '\r';
-                    break;
-
-                case ('2'):
-                    loop = 1;
-                    USART_Cadena(" Ingresa un caracter para el puerto A: ");
-                    while(loop){
-                        if(PIR1bits.RCIF){
-                            PORTA = USART_Rx();
-                            loop = 0;
-                        }
+            case ('2'):
+                loop = 1;
+                USART_Cadena(" Ingresa un caracter para el puerto A: ");
+                while(loop){
+                    if(PIR1bits.RCIF){
+                        PORTA = USART_Rx();
+                        loop = 0;
                     }
-                    TXREG = '\r';
-                    USART_Cadena(" Listo ");
-                    TXREG = '\r';
-                    break;
+                }
+                USART_Cadena("\r Listo \r");
+                break;
 
-                case ('3'):
-                    loop = 1;
-                    USART_Cadena(" Ingresa un caracter para el puerto B: ");
-                    while(loop){
-                        if(PIR1bits.RCIF){
-                            PORTB = USART_Rx();
-                            loop = 0;
-
-                        }
+            case ('3'):
+                loop = 1;
+                USART_Cadena(" Ingresa un caracter para el puerto B: ");
+                while(loop){
+                    if(PIR1bits.RCIF){
+                        PORTB = USART_Rx();
+                        loop = 0;
                     }
-                    TXREG = '\r';
-                    USART_Cadena(" Listo ");
-                    TXREG = '\r';
-                    break;
-            }
+                }
+                USART_Cadena("\r Listo \r");
+                break;
         }
     }
 

@@ -89,47 +89,39 @@ void main(void){
         USART_Cadena(" 3) Cambiar PORTB \r \r");
         
         
-        while(PIR1bits.RCIF == 0);
+        while(PIR1bits.RCIF == 0);  //espero a que envien un dato
         
-        if(PIR1bits.RCIF){//chequeo si recibo datos
-            
-            valor = USART_Rx();
-            
-            switch(valor){
-                case ('1'):
-                    USART_Cadena(" Hello fck wrld ");
-                    TXREG = '\r';
-                    break;
+        valor = USART_Rx();
+          
+        switch(valor){
+            case ('1'):
+                USART_Cadena(" Hello fck wrld ");
+                TXREG = '\r';
+                break;
                         
-                case ('2'):
-                    loop = 1;
-                    USART_Cadena(" Ingresa un caracter para el puerto A: ");
-                    while(loop){
-                        if(PIR1bits.RCIF){
-                            PORTA = USART_Rx();  //lo paso al puerto A
-                            loop = 0;
-                        }
+            case ('2'):
+                loop = 1;
+                USART_Cadena(" Ingresa un caracter para el puerto A: ");
+                while(loop){
+                    if(PIR1bits.RCIF){
+                        PORTA = USART_Rx();  //lo paso al puerto A
+                        loop = 0;
                     }
-                    TXREG = '\r';
-                    USART_Cadena(" Listo ");
-                    TXREG = '\r';
-                    break;
+                }
+                USART_Cadena("\r Listo \r");
+                break;
                         
-                case ('3'):
-                    loop = 1;
-                    USART_Cadena(" Ingresa un caracter para el puerto B: ");
-                    while(loop){
-                        if(PIR1bits.RCIF){
-                            PORTB = USART_Rx();  //lo paso al puerto A
-                            loop = 0;
-                            
-                        }
-                    }                       
-                    TXREG = '\r';
-                    USART_Cadena(" Listo ");
-                    TXREG = '\r';
-                    break;
-            }
+            case ('3'):
+                loop = 1;
+                USART_Cadena(" Ingresa un caracter para el puerto B: ");
+                while(loop){
+                    if(PIR1bits.RCIF){
+                        PORTB = USART_Rx();  //lo paso al puerto A
+                        loop = 0;
+                    }
+                }                       
+                USART_Cadena("\r Listo \r");
+                break;
         }
     }
     

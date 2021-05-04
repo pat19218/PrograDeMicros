@@ -13,11 +13,11 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "55 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
 [v _main main `(v  1 e 1 0 ]
-"140
+"132
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
-"145
+"137
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
-"149
+"141
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 "166 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -124,26 +124,26 @@
 "55
 [v _main main `(v  1 e 1 0 ]
 {
-"137
+"129
 } 0
-"145
+"137
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
 {
-"147
+"139
 } 0
-"149
+"141
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 {
 [v USART_Cadena@str str `*.24uc  1 a 1 wreg ]
 [v USART_Cadena@str str `*.24uc  1 a 1 wreg ]
 [v USART_Cadena@str str `*.24uc  1 a 1 2 ]
-"154
+"146
 } 0
-"140
+"132
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
 {
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 0 ]
-"143
+"135
 } 0

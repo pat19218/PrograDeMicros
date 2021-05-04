@@ -11,17 +11,17 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\isaac\AppData\Local\Temp\sams.o
+$C:\Users\isaac\AppData\Local\Temp\scmc.o
 end_init CODE 0 0 0 3 2
 config CONFIG 4 2007 2007 2 2
 $dist/default/production\serial.X.production.o
 cinit CODE 0 7FA 7FA 6 2
-text1 CODE 0 70C 70C 4 2
-text2 CODE 0 71C 71C 1F 2
-text3 CODE 0 710 710 C 2
-maintext CODE 0 73B 73B BF 2
+text1 CODE 0 718 718 4 2
+text2 CODE 0 728 728 1F 2
+text3 CODE 0 71C 71C C 2
+maintext CODE 0 747 747 B3 2
 cstackCOMMON COMMON 1 70 70 5 1
-strings STRING 0 3 3 DD 2
+strings STRING 0 3 3 DF 2
 bssCOMMON COMMON 1 75 75 2 1
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
@@ -38,13 +38,13 @@ BANK0 20-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST E0-70B 2
+CONST E2-717 2
 CONST 800-1FFF 2
-ENTRY E0-70B 2
+ENTRY E2-717 2
 ENTRY 800-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
-CODE E0-70B 2
+CODE E2-717 2
 CODE 800-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
@@ -52,9 +52,9 @@ SFR2 100-10F 1
 SFR3 180-18F 1
 COMMON 77-7D 1
 EEDATA 2100-21FF 2
-STRCODE E0-70B 2
+STRCODE E2-717 2
 STRCODE 800-1FFF 2
-STRING E0-70B 2
+STRING E2-717 2
 STRING 800-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
@@ -70,76 +70,75 @@ STRING 800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\serial.X.production.o
-7FA cinit CODE >717:C:\Users\isaac\AppData\Local\Temp\sams.s
-7FA cinit CODE >720:C:\Users\isaac\AppData\Local\Temp\sams.s
-7FA cinit CODE >734:C:\Users\isaac\AppData\Local\Temp\sams.s
-7FB cinit CODE >735:C:\Users\isaac\AppData\Local\Temp\sams.s
-7FC cinit CODE >741:C:\Users\isaac\AppData\Local\Temp\sams.s
-7FC cinit CODE >743:C:\Users\isaac\AppData\Local\Temp\sams.s
-7FD cinit CODE >744:C:\Users\isaac\AppData\Local\Temp\sams.s
-710 text3 CODE >140:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-711 text3 CODE >141:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-717 text3 CODE >142:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-71B text3 CODE >143:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-71C text2 CODE >149:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-71D text2 CODE >150:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-71E text2 CODE >151:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-72A text2 CODE >152:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-72E text2 CODE >150:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-73A text2 CODE >154:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-70C text1 CODE >145:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-70C text1 CODE >146:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-70F text1 CODE >147:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-73B maintext CODE >55:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-73B maintext CODE >57:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-73E maintext CODE >58:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-73F maintext CODE >60:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-742 maintext CODE >61:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-743 maintext CODE >63:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-746 maintext CODE >64:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-747 maintext CODE >66:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-74B maintext CODE >67:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-74C maintext CODE >70:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-74D maintext CODE >71:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-74E maintext CODE >72:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-751 maintext CODE >74:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-755 maintext CODE >75:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-756 maintext CODE >77:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-759 maintext CODE >78:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-75A maintext CODE >79:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-75B maintext CODE >80:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-75E maintext CODE >86:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-764 maintext CODE >87:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-76A maintext CODE >88:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-770 maintext CODE >89:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-776 maintext CODE >92:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-77C maintext CODE >94:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-780 maintext CODE >96:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-788 maintext CODE >98:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-789 maintext CODE >100:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-78F maintext CODE >101:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-793 maintext CODE >102:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-794 maintext CODE >104:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-794 maintext CODE >105:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-796 maintext CODE >106:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-79C maintext CODE >107:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-79D maintext CODE >108:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7A3 maintext CODE >109:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7AB maintext CODE >110:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7AC maintext CODE >107:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7B1 maintext CODE >113:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7B5 maintext CODE >114:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7BC maintext CODE >118:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7BC maintext CODE >119:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7BE maintext CODE >120:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7C4 maintext CODE >121:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7C5 maintext CODE >122:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7CB maintext CODE >123:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7D3 maintext CODE >124:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7D4 maintext CODE >121:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7D9 maintext CODE >128:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7DD maintext CODE >129:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
-7E4 maintext CODE >132:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7FA cinit CODE >719:C:\Users\isaac\AppData\Local\Temp\scmc.s
+7FA cinit CODE >722:C:\Users\isaac\AppData\Local\Temp\scmc.s
+7FA cinit CODE >736:C:\Users\isaac\AppData\Local\Temp\scmc.s
+7FB cinit CODE >737:C:\Users\isaac\AppData\Local\Temp\scmc.s
+7FC cinit CODE >743:C:\Users\isaac\AppData\Local\Temp\scmc.s
+7FC cinit CODE >745:C:\Users\isaac\AppData\Local\Temp\scmc.s
+7FD cinit CODE >746:C:\Users\isaac\AppData\Local\Temp\scmc.s
+71C text3 CODE >132:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+71D text3 CODE >133:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+723 text3 CODE >134:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+727 text3 CODE >135:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+728 text2 CODE >141:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+729 text2 CODE >142:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+72A text2 CODE >143:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+736 text2 CODE >144:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+73A text2 CODE >142:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+746 text2 CODE >146:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+718 text1 CODE >137:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+718 text1 CODE >138:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+71B text1 CODE >139:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+747 maintext CODE >55:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+747 maintext CODE >57:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+74A maintext CODE >58:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+74B maintext CODE >60:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+74E maintext CODE >61:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+74F maintext CODE >63:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+752 maintext CODE >64:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+753 maintext CODE >66:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+757 maintext CODE >67:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+758 maintext CODE >70:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+759 maintext CODE >71:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+75A maintext CODE >72:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+75D maintext CODE >74:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+761 maintext CODE >75:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+762 maintext CODE >77:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+765 maintext CODE >78:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+766 maintext CODE >79:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+767 maintext CODE >80:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+76A maintext CODE >86:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+770 maintext CODE >87:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+776 maintext CODE >88:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+77C maintext CODE >89:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+782 maintext CODE >92:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+788 maintext CODE >94:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+790 maintext CODE >96:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+791 maintext CODE >98:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+797 maintext CODE >99:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+79B maintext CODE >100:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+79C maintext CODE >102:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+79C maintext CODE >103:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+79E maintext CODE >104:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7A4 maintext CODE >105:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7A5 maintext CODE >106:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7AB maintext CODE >107:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7B3 maintext CODE >108:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7B4 maintext CODE >105:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7B9 maintext CODE >111:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7BF maintext CODE >112:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7C0 maintext CODE >114:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7C0 maintext CODE >115:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7C2 maintext CODE >116:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7C8 maintext CODE >117:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7C9 maintext CODE >118:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7CF maintext CODE >119:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7D7 maintext CODE >120:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7D8 maintext CODE >117:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7DD maintext CODE >123:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7E3 maintext CODE >124:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
+7E4 maintext CODE >125:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\LABORATORIO10\serial.X\uart.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -160,40 +159,40 @@ __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\sams.o
+___sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\scmc.o
 _loop 75 0 COMMON 1 bssCOMMON dist/default/production\serial.X.production.o
-_main E76 0 CODE 0 maintext dist/default/production\serial.X.production.o
+_main E8E 0 CODE 0 maintext dist/default/production\serial.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\serial.X.production.o
-start 0 0 CODE 0 init C:\Users\isaac\AppData\Local\Temp\sams.o
+start 0 0 CODE 0 init C:\Users\isaac\AppData\Local\Temp\scmc.o
 __size_of_USART_Rx 0 0 ABS 0 - dist/default/production\serial.X.production.o
 __size_of_USART_Tx 0 0 ABS 0 - dist/default/production\serial.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production\serial.X.production.o
 USART_Tx@data 70 0 COMMON 1 cstackCOMMON dist/default/production\serial.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sams.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sams.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sams.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sams.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sams.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\sams.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\scmc.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\scmc.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\scmc.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\scmc.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\scmc.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\scmc.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\serial.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\serial.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
-_USART_Rx E18 0 CODE 0 text1 dist/default/production\serial.X.production.o
-_USART_Tx E20 0 CODE 0 text3 dist/default/production\serial.X.production.o
+_USART_Rx E30 0 CODE 0 text1 dist/default/production\serial.X.production.o
+_USART_Tx E38 0 CODE 0 text3 dist/default/production\serial.X.production.o
 _ANSELH 189 0 ABS 0 - dist/default/production\serial.X.production.o
-__end_of_USART_Rx E20 0 CODE 0 text1 dist/default/production\serial.X.production.o
-__end_of_USART_Tx E38 0 CODE 0 text3 dist/default/production\serial.X.production.o
+__end_of_USART_Rx E38 0 CODE 0 text1 dist/default/production\serial.X.production.o
+__end_of_USART_Tx E50 0 CODE 0 text3 dist/default/production\serial.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\sams.o
-___stacklo 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\sams.o
+___stackhi 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\scmc.o
+___stacklo 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\scmc.o
 _BAUDCTLbits 187 0 ABS 0 - dist/default/production\serial.X.production.o
 start_initialization FF4 0 CODE 0 cinit dist/default/production\serial.X.production.o
 _SPBRGH 9A 0 ABS 0 - dist/default/production\serial.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\sams.o
+___int_sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\scmc.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -204,7 +203,7 @@ __stringbase 10 0 STRING 0 strings dist/default/production\serial.X.production.o
 __Hmaintext 0 0 ABS 0 maintext -
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 4012 0 CONFIG 4 config -
-_USART_Cadena E38 0 CODE 0 text2 dist/default/production\serial.X.production.o
+_USART_Cadena E50 0 CODE 0 text2 dist/default/production\serial.X.production.o
 __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
@@ -235,10 +234,10 @@ __S3 0 0 ABS 0 - -
 __size_of_USART_Cadena 0 0 ABS 0 - dist/default/production\serial.X.production.o
 __Lintentry 0 0 CODE 0 intentry -
 __stringtab 6 0 STRING 0 strings dist/default/production\serial.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\isaac\AppData\Local\Temp\sams.o
-__end_of_USART_Cadena E76 0 CODE 0 text2 dist/default/production\serial.X.production.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\isaac\AppData\Local\Temp\scmc.o
+__end_of_USART_Cadena E8E 0 CODE 0 text2 dist/default/production\serial.X.production.o
 _RCSTAbits 18 0 ABS 0 - dist/default/production\serial.X.production.o
-__pmaintext E76 0 CODE 0 maintext dist/default/production\serial.X.production.o
+__pmaintext E8E 0 CODE 0 maintext dist/default/production\serial.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
 USART_Cadena@str 72 0 COMMON 1 cstackCOMMON dist/default/production\serial.X.production.o
@@ -256,9 +255,9 @@ end_of_initialization FF8 0 CODE 0 cinit dist/default/production\serial.X.produc
 __Hintentry 0 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 0 0 CODE 0 reset_vec -
-__ptext1 E18 0 CODE 0 text1 dist/default/production\serial.X.production.o
-__ptext2 E38 0 CODE 0 text2 dist/default/production\serial.X.production.o
-__ptext3 E20 0 CODE 0 text3 dist/default/production\serial.X.production.o
+__ptext1 E30 0 CODE 0 text1 dist/default/production\serial.X.production.o
+__ptext2 E50 0 CODE 0 text2 dist/default/production\serial.X.production.o
+__ptext3 E38 0 CODE 0 text3 dist/default/production\serial.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
@@ -308,13 +307,13 @@ __pstrings 6 0 STRING 0 strings dist/default/production\serial.X.production.o
 # All other numeric quantities are in decimal.
 %SEGMENTS
 cinit 0 7FA FF4 6 2
-text1 0 70C E18 4 2
-text2 0 71C E38 1F 2
-text3 0 710 E20 C 2
-maintext 0 73B E76 BF 2
+text1 0 718 E30 4 2
+text2 0 728 E50 1F 2
+text3 0 71C E38 C 2
+maintext 0 747 E8E B3 2
 cstackCOMMON 1 70 70 7 1
 reset_vec 0 0 0 3 2
-strings 0 3 6 DD 2
+strings 0 3 6 DF 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal
