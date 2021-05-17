@@ -45,12 +45,29 @@
 
 
 //---------------------------interrupciones-------------------------------------
-//
-//void __interrupt()isr(void) {
-//
-//  
-//
-//}
+
+void __interrupt()isr(void) {
+    if (T0IF == 1) { //INTERRUPCION POR TIMMER0
+            if(!RB0){
+                RD0 = 1;
+                RD1 = 1;
+                __delay_ms(2);
+                RD1 = 0;
+                TMR0 = 70;  //POSICION 0°
+                INTCONbits.T0IF = 0; //bajo la bandera
+            }
+            else{
+                RD0 = 0;
+                RD1 = 1;
+                __delay_ms(1);
+                RD1 = 0;
+                TMR0 = 74;  //POSICION 180°
+                INTCONbits.T0IF = 0; //bajo la bandera
+            }            
+        }
+  
+
+}
 
 //----------------------configuracion microprocesador---------------------------
 
@@ -76,8 +93,8 @@ void main(void) {
     OPTION_REGbits.PS = 0b111;  //PS = 111 / 1:256
     TMR0 = 78;                  //Reinicio del timmer
 
-    INTCONbits.GIE = 0; //habilito interrupciones
-    INTCONbits.T0IE = 1; //activo interrupciones por timmer 0
+    INTCONbits.GIE = 1; //habilito interrupciones
+    INTCONbits.T0IE = 1; //desactivo interrupciones por timmer 0
     INTCONbits.T0IF = 0; //bajo la bandera
     
     PORTB = 0; // Estado inicial de los pines
@@ -86,23 +103,7 @@ void main(void) {
 
     //------------------------------loop principal----------------------------------
     while (1) {
-        if (T0IF == 1) { //INTERRUPCION POR TIMMER0
-            if(!RB0){
-                RD1 = 1;
-                __delay_ms(2);
-                RD1 = 0;
-                TMR0 = 70;  //POSICION 0°
-                INTCONbits.T0IF = 0; //bajo la bandera
-            }
-            else{
-                RD1 = 1;
-                __delay_ms(1);
-                RD1 = 0;
-                TMR0 = 74;  //POSICION 180°
-                INTCONbits.T0IF = 0; //bajo la bandera
-            }            
-        } 
-        
+        __delay_us(50);
     }    
     return;
 }

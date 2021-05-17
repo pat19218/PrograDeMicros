@@ -2644,7 +2644,32 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 # 39 "PROYECTO.c" 2
-# 57 "PROYECTO.c"
+# 49 "PROYECTO.c"
+void __attribute__((picinterrupt((""))))isr(void) {
+    if (T0IF == 1) {
+            if(!RB0){
+                RD0 = 1;
+                RD1 = 1;
+                _delay((unsigned long)((2)*(4000000/4000.0)));
+                RD1 = 0;
+                TMR0 = 70;
+                INTCONbits.T0IF = 0;
+            }
+            else{
+                RD0 = 0;
+                RD1 = 1;
+                _delay((unsigned long)((1)*(4000000/4000.0)));
+                RD1 = 0;
+                TMR0 = 74;
+                INTCONbits.T0IF = 0;
+            }
+        }
+
+
+}
+
+
+
 void main(void) {
     ANSEL = 0x00;
     ANSELH = 0x00;
@@ -2667,7 +2692,7 @@ void main(void) {
     OPTION_REGbits.PS = 0b111;
     TMR0 = 78;
 
-    INTCONbits.GIE = 0;
+    INTCONbits.GIE = 1;
     INTCONbits.T0IE = 1;
     INTCONbits.T0IF = 0;
 
@@ -2677,23 +2702,7 @@ void main(void) {
 
 
     while (1) {
-        if (T0IF == 1) {
-            if(!RB0){
-                RD1 = 1;
-                _delay((unsigned long)((2)*(4000000/4000.0)));
-                RD1 = 0;
-                TMR0 = 70;
-                INTCONbits.T0IF = 0;
-            }
-            else{
-                RD1 = 1;
-                _delay((unsigned long)((1)*(4000000/4000.0)));
-                RD1 = 0;
-                TMR0 = 74;
-                INTCONbits.T0IF = 0;
-            }
-        }
-
+        _delay((unsigned long)((50)*(4000000/4000000.0)));
     }
     return;
 }
