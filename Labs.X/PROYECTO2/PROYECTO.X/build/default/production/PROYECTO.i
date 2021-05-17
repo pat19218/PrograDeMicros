@@ -2703,6 +2703,7 @@ void main(void) {
 
     while (1) {
         _delay((unsigned long)((50)*(4000000/4000000.0)));
+        __asm("NOP");
     }
     return;
 }

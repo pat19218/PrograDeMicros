@@ -11,14 +11,14 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\isaac\AppData\Local\Temp\se04.o
+$C:\Users\isaac\AppData\Local\Temp\s4r4.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
 $dist/default/production\PROYECTO.X.production.o
 cinit CODE 0 F F 4 2
 text1 CODE 0 13 13 32 2
-maintext CODE 0 45 45 29 2
+maintext CODE 0 45 45 2A 2
 cstackCOMMON COMMON 1 70 70 5 1
 intentry CODE 0 4 4 8 2
 config CONFIG 4 2007 2007 2 2
@@ -37,13 +37,13 @@ BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
 CONST 3-3 2
-CONST 6E-1FFF 2
+CONST 6F-1FFF 2
 ENTRY 3-3 2
-ENTRY 6E-1FFF 2
+ENTRY 6F-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
 CODE 3-3 2
-CODE 6E-1FFF 2
+CODE 6F-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
@@ -51,9 +51,9 @@ SFR3 180-18F 1
 COMMON 75-7D 1
 EEDATA 2100-21FF 2
 STRCODE 3-3 2
-STRCODE 6E-1FFF 2
+STRCODE 6F-1FFF 2
 STRING 3-3 2
-STRING 6E-1FFF 2
+STRING 6F-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -68,11 +68,11 @@ STRING 6E-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\PROYECTO.X.production.o
-F cinit CODE >460:C:\Users\isaac\AppData\Local\Temp\se04.s
-F cinit CODE >463:C:\Users\isaac\AppData\Local\Temp\se04.s
-F cinit CODE >469:C:\Users\isaac\AppData\Local\Temp\se04.s
-F cinit CODE >471:C:\Users\isaac\AppData\Local\Temp\se04.s
-10 cinit CODE >472:C:\Users\isaac\AppData\Local\Temp\se04.s
+F cinit CODE >460:C:\Users\isaac\AppData\Local\Temp\s4r4.s
+F cinit CODE >463:C:\Users\isaac\AppData\Local\Temp\s4r4.s
+F cinit CODE >469:C:\Users\isaac\AppData\Local\Temp\s4r4.s
+F cinit CODE >471:C:\Users\isaac\AppData\Local\Temp\s4r4.s
+10 cinit CODE >472:C:\Users\isaac\AppData\Local\Temp\s4r4.s
 4 intentry CODE >49:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
 13 text1 CODE >49:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
 13 text1 CODE >50:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
@@ -114,6 +114,7 @@ F cinit CODE >471:C:\Users\isaac\AppData\Local\Temp\se04.s
 63 maintext CODE >101:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
 64 maintext CODE >102:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
 65 maintext CODE >106:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+6A maintext CODE >107:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -127,7 +128,7 @@ F cinit CODE >471:C:\Users\isaac\AppData\Local\Temp\se04.s
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
-__Hspace_0 6E 0 ABS 0 - -
+__Hspace_0 6F 0 ABS 0 - -
 __Hspace_1 75 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
@@ -136,30 +137,30 @@ __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
 _T0IF 5A 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _TMR0 1 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\se04.o
+___sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\s4r4.o
 _main 8A 0 CODE 0 maintext dist/default/production\PROYECTO.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
-start 18 0 CODE 0 init C:\Users\isaac\AppData\Local\Temp\se04.o
+start 18 0 CODE 0 init C:\Users\isaac\AppData\Local\Temp\s4r4.o
 __size_of_main 0 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\se04.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\se04.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\se04.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\se04.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\se04.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\se04.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
 _ANSELH 189 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\se04.o
-___stacklo 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\se04.o
+___stackhi 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\s4r4.o
+___stacklo 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\s4r4.o
 _WPUBbits 95 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\PROYECTO.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\se04.o
+___int_sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\s4r4.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -196,7 +197,7 @@ __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _RB0 30 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _RD0 40 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _RD1 41 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
-__S0 6E 0 ABS 0 - -
+__S0 6F 0 ABS 0 - -
 __S1 75 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
@@ -204,7 +205,7 @@ _isr 26 0 CODE 0 text1 dist/default/production\PROYECTO.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 __end_of_isr 8A 0 CODE 0 text1 dist/default/production\PROYECTO.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\isaac\AppData\Local\Temp\se04.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\isaac\AppData\Local\Temp\s4r4.o
 __pmaintext 8A 0 CODE 0 maintext dist/default/production\PROYECTO.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
@@ -228,7 +229,7 @@ __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\PROYECTO.X.production.o
 __Hend_init 1E 0 CODE 0 end_init -
-__end_of_main DC 0 CODE 0 maintext dist/default/production\PROYECTO.X.production.o
+__end_of_main DE 0 CODE 0 maintext dist/default/production\PROYECTO.X.production.o
 _ANSEL 188 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _PORTB 6 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _PORTD 8 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
@@ -268,7 +269,7 @@ __initialization 1E 0 CODE 0 cinit dist/default/production\PROYECTO.X.production
 # All other numeric quantities are in decimal.
 %SEGMENTS
 cstackCOMMON 1 70 70 5 1
-intentry 0 4 8 6A 2
+intentry 0 4 8 6B 2
 reset_vec 0 0 0 3 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section

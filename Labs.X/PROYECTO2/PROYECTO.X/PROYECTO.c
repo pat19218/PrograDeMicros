@@ -104,6 +104,7 @@ void main(void) {
     //------------------------------loop principal----------------------------------
     while (1) {
         __delay_us(50);
+        asm("NOP");
     }    
     return;
 }
