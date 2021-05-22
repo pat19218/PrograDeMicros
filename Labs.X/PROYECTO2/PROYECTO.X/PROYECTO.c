@@ -62,13 +62,13 @@ void __interrupt()isr(void) {
 //----------------------configuracion microprocesador---------------------------
 
 void main(void) {
-    ANSEL = 0x00; // NO HAY ANALOGICOS
+    ANSEL = 0x00;       // NO HAY ANALOGICOS
     ANSELH = 0x00;
     
     TRISA = 0x00;
     TRISB = 0xff;
-    TRISD = 0x00; // PORTD todo salida
-    TRISE = 0b0011; // primeros 2 pines como entrada analogicas
+    TRISD = 0x00;       // PORTD todo salida
+    TRISE = 0b0011;     // primeros 2 pines como entrada analogicas
     
                             //Confi. ADC
     ADCON1bits.ADFM = 0;    //Justificado a la izquierda
@@ -108,11 +108,11 @@ void main(void) {
     RCSTAbits.CREN = 1;     //activo recepción
     TXSTAbits.TXEN = 1;     //activo transmision 
 
-    INTCONbits.GIE = 1;  //habilito interrupciones
-    INTCONbits.T0IE = 0; //desactivo interrupciones por timmer 0
-    INTCONbits.T0IF = 0; //bajo la bandera
-//    PIE1bits.RCIE = 1;   //interrupcion por serialcomunication recepcion
-//    PIR1bits.RCIF = 0;   //bajo la bandera
+    INTCONbits.GIE = 1;     //habilito interrupciones
+    INTCONbits.T0IE = 0;    //desactivo interrupciones por timmer 0
+    INTCONbits.T0IF = 0;    //bajo la bandera
+//    PIE1bits.RCIE = 1;    //interrupcion por serialcomunication recepcion
+//    PIR1bits.RCIF = 0;    //bajo la bandera
     
     ADCON0bits.GO = 1;  //para el ADC
     
@@ -210,14 +210,14 @@ void main(void) {
             ADCON0bits.GO = 1;
         }
        
-       
+       PORTA = hora;
        
        if(ventana == 1){
            
            USART_Cadena("\r Que accion desea ejecutar? \r");
-           USART_Cadena("\r1) ver datos de hora \r");
-           USART_Cadena("\r2) ver datos de minuto \r");
-           USART_Cadena("\r3) ver datos de ambos \r\r");
+           USART_Cadena("1) ver datos de hora \r");
+           USART_Cadena("2) ver datos de minuto \r");
+           USART_Cadena("3) ver datos de ambos \r\r");
            ventana = 0;
         }
        
@@ -230,26 +230,52 @@ void main(void) {
             case ('1'):
                 USART_Cadena(" Esperar  ");
                 while(TXSTAbits.TRMT == 0);
-                TXREG = hora;
-                USART_Cadena(" H. para el medicamento  \r\r");
+                if (hora == 0){
+                    TXREG = 48;                    
+                }else if(hora == 1){
+                    TXREG = 49;                    
+                }else if(hora == 2){
+                    TXREG = 50;                    
+                }else if(hora == 3){
+                    TXREG = 51;
+                }else if(hora == 4){
+                    TXREG = 52;
+                }else if(hora == 5){
+                    TXREG = 53;
+                }else if(hora == 6){
+                    TXREG = 54;
+                }else if(hora == 7){
+                    TXREG = 55;
+                }else if(hora == 8){
+                    TXREG = 56;
+                }else if(hora == 9){
+                    TXREG = 57;
+                }
+                
+                USART_Cadena(" Horas ");
+                
+                USART_Cadena(" con  ");
+                while(TXSTAbits.TRMT == 0);
+                if(minuto == 0) {
+                    USART_Cadena("0");
+                }else if (minuto == 15){
+                    USART_Cadena("15");
+                }else if (minuto == 30){
+                    USART_Cadena("30");
+                }else if (minuto == 45){
+                    USART_Cadena("45");
+                }else if (minuto == 60){
+                    USART_Cadena("60");
+                }
+                USART_Cadena(" mins. para el medicamento  \r\r");
                 ventana = 1;
                 break;
                         
             case ('2'):
-                USART_Cadena(" Esperar  ");
-                while(TXSTAbits.TRMT == 0);
-                TXREG = minuto;
-                USART_Cadena(" mins. para el medicamento  \r\r");
                 ventana = 1;
                 break;
                         
             case ('3'):
-                USART_Cadena(" Esperar  ");
-                USART_Tx(hora);
-                USART_Cadena(" H. para el medicamento  \r");
-                USART_Cadena(" Esperar  ");
-                USART_Tx(minuto);
-                USART_Cadena(" mins. para el medicamento  \r\r");
                 ventana = 1;
                 break;
         }

@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\PROYECTO.X.production.sym \
   --cmf=dist/default/production\PROYECTO.X.production.cmf -z -Q16F887 \
-  -oC:\Users\isaac\AppData\Local\Temp\s1828.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\isaac\AppData\Local\Temp\shj0.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/PROYECTO.X.production.map -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\isaac\AppData\Local\Temp\s1828.o \
+  -pfunctab=ENTRY -k C:\Users\isaac\AppData\Local\Temp\shj0.o \
   dist/default/production\PROYECTO.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\isaac\AppData\Local\Temp\s1828.o
+C:\Users\isaac\AppData\Local\Temp\shj0.o
                 end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -36,14 +36,14 @@ dist/default/production\PROYECTO.X.production.o
                 cinit                                 F        F        9        8       0
                 intentry                              4        4        8        8       0
                 config                             2007     2007        2        0       4
-                text4                               3FD      3FD        7      7A4       0
-                text3                               3F1      3F1        C      7A4       0
-                text2                               3D2      3D2       1F      7A4       0
-                text1                               404      404        4      7A4       0
-                maintext                             18       18      255        8       0
+                text4                               4F9      4F9        7      99C       0
+                text3                               4ED      4ED        C      99C       0
+                text2                               4CE      4CE       1F      99C       0
+                text1                               500      500        4      99C       0
+                maintext                             18       18      34D        8       0
                 cstackCOMMON                         70       70        7       70       1
                 bssCOMMON                            77       77        5       70       1
-                strings                             300      300       D2      600       0
+                strings                             400      400       CE      800       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -53,16 +53,16 @@ TOTAL           Name                               Link     Load   Length     Sp
                 cinit                                 F        F        9         0
                 intentry                              4        4        8         0
                 reset_vec                             0        0        3         0
-                text4                               3FD      3FD        7         0
-                text3                               3F1      3F1        C         0
-                text2                               3D2      3D2       1F         0
-                text1                               404      404        4         0
-                maintext                             18       18      255         0
+                text4                               4F9      4F9        7         0
+                text3                               4ED      4ED        C         0
+                text2                               4CE      4CE       1F         0
+                text1                               500      500        4         0
+                maintext                             18       18      34D         0
 
         CLASS   STRCODE        
 
         CLASS   STRING         
-                strings                             300      300       D2         0
+                strings                             400      400       CE         0
 
         CLASS   CONST          
 
@@ -105,10 +105,10 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  000269  00026D         8       0  CODE        2
+                intentry                       000004  000361  000365         8       0  CODE        2
                 cstackCOMMON                   000070  00000C  00007C        70       1  COMMON      1
-                strings                        000300  0000D2  0003D2       600       0  STRING      2
-                text2                          0003D2  000036  000408       7A4       0  CODE        2
+                strings                        000400  0000CE  0004CE       800       0  STRING      2
+                text2                          0004CE  000036  000504       99C       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
@@ -119,16 +119,16 @@ UNUSED ADDRESS RANGES
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
         CODE             0003-0003              1           2
-                         026D-02FF             93
-                         0408-1FFF            800
+                         0365-03FF             9B
+                         0504-1FFF            800
         COMMON           007C-007D              2           1
         CONST            0003-0003              1           2
-                         026D-02FF             93
-                         0408-1FFF            100
+                         0365-03FF             9B
+                         0504-1FFF            100
         EEDATA           2100-21FF            100           2
         ENTRY            0003-0003              1           2
-                         026D-02FF             93
-                         0408-1FFF            100
+                         0365-03FF             9B
+                         0504-1FFF            100
         IDLOC            2000-2003              4           2
         RAM              0020-006F             50           1
                          00A0-00EF             50
@@ -140,11 +140,11 @@ UNUSED ADDRESS RANGES
         SFR3             0180-018F             10           1
         STACK            0110-016F             60           1
         STRCODE          0003-0003              1           2
-                         026D-02FF             93
-                         0408-1FFF           1BF8
+                         0365-03FF             9B
+                         0504-1FFF           1AFC
         STRING           0003-0003              1           2
-                         026D-02FF             93
-                         0408-1FFF            100
+                         0365-03FF             9B
+                         0504-1FFF            100
 
                                   Symbol Table
 
@@ -183,9 +183,9 @@ _TRISD                   (abs)        0088
 _TRISE                   (abs)        0089
 _TXREG                   (abs)        0019
 _TXSTAbits               (abs)        0098
-_USART_Cadena            text2        03D2
-_USART_Rx                text1        0404
-_USART_Tx                text3        03F1
+_USART_Cadena            text2        04CE
+_USART_Rx                text1        0500
+_USART_Tx                text3        04ED
 _WPUBbits                (abs)        0095
 __Habs1                  abs1         0000
 __Hbank0                 bank0        0000
@@ -212,7 +212,7 @@ __Hsfr0                  sfr0         0000
 __Hsfr1                  sfr1         0000
 __Hsfr2                  sfr2         0000
 __Hsfr3                  sfr3         0000
-__Hspace_0               (abs)        0408
+__Hspace_0               (abs)        0504
 __Hspace_1               (abs)        007C
 __Hspace_2               (abs)        0000
 __Hspace_3               (abs)        0000
@@ -253,7 +253,7 @@ __Lspace_4               (abs)        0000
 __Lstack                 stack        0000
 __Lstrings               strings      0000
 __Ltext                  text         0000
-__S0                     (abs)        0408
+__S0                     (abs)        0504
 __S1                     (abs)        007C
 __S2                     (abs)        0000
 __S3                     (abs)        0000
@@ -262,33 +262,33 @@ ___latbits               (abs)        0002
 ___sp                    stack        0000
 ___stackhi               (abs)        0000
 ___stacklo               (abs)        0000
-__end_of_USART_Cadena    text2        03F1
-__end_of_USART_Rx        text1        0408
-__end_of_USART_Tx        text3        03FD
+__end_of_USART_Cadena    text2        04ED
+__end_of_USART_Rx        text1        0504
+__end_of_USART_Tx        text3        04F9
 __end_of__initialization cinit        0014
-__end_of__stringtab      strings      0306
-__end_of_isr             text4        0404
-__end_of_main            maintext     026D
+__end_of__stringtab      strings      0406
+__end_of_isr             text4        0500
+__end_of_main            maintext     0365
 __initialization         cinit        000F
 __pbssCOMMON             bssCOMMON    0077
 __pcstackCOMMON          cstackCOMMON 0070
 __pintentry              intentry     0004
 __pmaintext              maintext     0018
-__pstrings               strings      0300
-__ptext1                 text1        0404
-__ptext2                 text2        03D2
-__ptext3                 text3        03F1
-__ptext4                 text4        03FD
+__pstrings               strings      0400
+__ptext1                 text1        0500
+__ptext2                 text2        04CE
+__ptext3                 text3        04ED
+__ptext4                 text4        04F9
 __size_of_USART_Cadena   (abs)        0000
 __size_of_USART_Rx       (abs)        0000
 __size_of_USART_Tx       (abs)        0000
 __size_of_isr            (abs)        0000
 __size_of_main           (abs)        0000
-__stringbase             strings      0305
-__stringtab              strings      0300
+__stringbase             strings      0405
+__stringtab              strings      0400
 _escala                  bssCOMMON    0079
 _hora                    bssCOMMON    007B
-_isr                     text4        03FD
+_isr                     text4        04F9
 _main                    maintext     0018
 _minuto                  bssCOMMON    007A
 _valor                   bssCOMMON    0078
@@ -344,7 +344,7 @@ Total ram usage:        2 bytes
 
  *************** function _USART_Rx *****************
  Defined at:
-		line 269 in file "PROYECTO.c"
+		line 315 in file "PROYECTO.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -374,17 +374,23 @@ Total ram usage:        0 bytes
 
  *************** function _USART_Cadena *****************
  Defined at:
-		line 273 in file "PROYECTO.c"
+		line 319 in file "PROYECTO.c"
  Parameters:    Size  Location     Type
   str             1    wreg     PTR unsigned char 
-		 -> STR_12(31), STR_11(11), STR_10(27), STR_9(11), 
-		 -> STR_8(31), STR_7(11), STR_6(28), STR_5(11), 
-		 -> STR_4(26), STR_3(26), STR_2(24), STR_1(31), 
+		 -> STR_24(31), STR_23(11), STR_22(27), STR_21(11), 
+		 -> STR_20(31), STR_19(3), STR_18(3), STR_17(3), 
+		 -> STR_16(3), STR_15(2), STR_14(7), STR_13(31), 
+		 -> STR_12(3), STR_11(3), STR_10(3), STR_9(3), 
+		 -> STR_8(2), STR_7(7), STR_6(8), STR_5(11), 
+		 -> STR_4(25), STR_3(25), STR_2(23), STR_1(31), 
  Auto vars:     Size  Location     Type
   str             1    4[COMMON] PTR unsigned char 
-		 -> STR_12(31), STR_11(11), STR_10(27), STR_9(11), 
-		 -> STR_8(31), STR_7(11), STR_6(28), STR_5(11), 
-		 -> STR_4(26), STR_3(26), STR_2(24), STR_1(31), 
+		 -> STR_24(31), STR_23(11), STR_22(27), STR_21(11), 
+		 -> STR_20(31), STR_19(3), STR_18(3), STR_17(3), 
+		 -> STR_16(3), STR_15(2), STR_14(7), STR_13(31), 
+		 -> STR_12(3), STR_11(3), STR_10(3), STR_9(3), 
+		 -> STR_8(2), STR_7(7), STR_6(8), STR_5(11), 
+		 -> STR_4(25), STR_3(25), STR_2(23), STR_1(31), 
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
@@ -410,7 +416,7 @@ Total ram usage:        2 bytes
 
  *************** function _USART_Tx *****************
  Defined at:
-		line 264 in file "PROYECTO.c"
+		line 310 in file "PROYECTO.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -473,16 +479,16 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 PROYECTO.c
-		_USART_Rx      		CODE           	0404	0000	4
-		_main          		CODE           	0018	0000	597
-		_USART_Tx      		CODE           	03F1	0000	12
-		_isr           		CODE           	03FD	0000	7
-		_USART_Cadena  		CODE           	03D2	0000	31
+		_USART_Rx      		CODE           	0500	0000	4
+		_main          		CODE           	0018	0000	845
+		_USART_Tx      		CODE           	04ED	0000	12
+		_isr           		CODE           	04F9	0000	7
+		_USART_Cadena  		CODE           	04CE	0000	31
 
-PROYECTO.c estimated size: 651
+PROYECTO.c estimated size: 899
 
 shared
-		__stringtab    		STRING         	0300	0000	6
+		__stringtab    		STRING         	0400	0000	6
 		__initialization		CODE           	000F	0000	5
 
 shared estimated size: 11

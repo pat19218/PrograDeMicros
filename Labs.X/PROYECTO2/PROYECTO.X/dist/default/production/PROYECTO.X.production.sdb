@@ -15,11 +15,11 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "64
 [v _main main `(v  1 e 1 0 ]
-"264
+"310
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
-"269
+"315
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
-"273
+"319
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -235,28 +235,28 @@
 "64
 [v _main main `(v  1 e 1 0 ]
 {
-"260
+"306
 } 0
-"269
+"315
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
 {
-"271
+"317
 } 0
-"273
+"319
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 {
 [v USART_Cadena@str str `*.24uc  1 a 1 wreg ]
 [v USART_Cadena@str str `*.24uc  1 a 1 wreg ]
 [v USART_Cadena@str str `*.24uc  1 a 1 4 ]
-"278
+"324
 } 0
-"264
+"310
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
 {
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 2 ]
-"267
+"313
 } 0
 "56
 [v _isr isr `II(v  1 e 1 0 ]
