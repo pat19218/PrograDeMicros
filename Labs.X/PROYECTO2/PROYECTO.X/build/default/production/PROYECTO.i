@@ -2646,24 +2646,7 @@ typedef uint16_t uintptr_t;
 # 39 "PROYECTO.c" 2
 # 49 "PROYECTO.c"
 void __attribute__((picinterrupt((""))))isr(void) {
-    if (T0IF == 1) {
-            if(!RB0){
-                RD0 = 1;
-                RD1 = 1;
-                _delay((unsigned long)((2)*(4000000/4000.0)));
-                RD1 = 0;
-                TMR0 = 70;
-                INTCONbits.T0IF = 0;
-            }
-            else{
-                RD0 = 0;
-                RD1 = 1;
-                _delay((unsigned long)((1)*(4000000/4000.0)));
-                RD1 = 0;
-                TMR0 = 74;
-                INTCONbits.T0IF = 0;
-            }
-        }
+
 
 
 }
@@ -2674,13 +2657,26 @@ void main(void) {
     ANSEL = 0x00;
     ANSELH = 0x00;
 
+    TRISA = 0x00;
     TRISB = 0xff;
+    TRISC = 0x00;
     TRISD = 0x00;
     TRISE = 0x00;
+    TRISE = 0b0011;
+
+    ADCON1bits.ADFM = 0;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADCS1 = 0;
+    ADCON0bits.CHS = 5;
+    _delay((unsigned long)((100)*(4000000/4000000.0)));
+    ADCON0bits.ADON = 1;
 
     OPTION_REGbits.nRBPU = 0;
     WPUBbits.WPUB0 = 1;
     WPUBbits.WPUB1 = 1;
+    WPUBbits.WPUB2 = 1;
 
 
     OSCCONbits.IRCF = 0b110;
@@ -2692,8 +2688,10 @@ void main(void) {
     OPTION_REGbits.PS = 0b111;
     TMR0 = 78;
 
+    ADCON0bits.GO = 1;
+
     INTCONbits.GIE = 1;
-    INTCONbits.T0IE = 1;
+    INTCONbits.T0IE = 0;
     INTCONbits.T0IF = 0;
 
     PORTB = 0;
@@ -2702,8 +2700,56 @@ void main(void) {
 
 
     while (1) {
-        _delay((unsigned long)((50)*(4000000/4000000.0)));
-        __asm("NOP");
+       if (T0IF == 1) {
+            if(!RB0){
+                RD0 = 1;
+                _delay((unsigned long)((2)*(4000000/4000.0)));
+                RD0 = 0;
+                TMR0 = 70;
+                INTCONbits.T0IF = 0;
+            }
+            else if(!RB1){
+                RD1 = 1;
+                _delay((unsigned long)((2)*(4000000/4000.0)));
+                RD1 = 0;
+                TMR0 = 70;
+                INTCONbits.T0IF = 0;
+            }
+            else if(!RB2){
+                RD2 = 1;
+                _delay((unsigned long)((2)*(4000000/4000.0)));
+                RD2 = 0;
+                TMR0 = 70;
+                INTCONbits.T0IF = 0;
+            }
+            else{
+                RD0 = 1;
+                RD1 = 1;
+                RD2 = 1;
+                _delay((unsigned long)((1)*(4000000/4000.0)));
+                RD1 = 0;
+                RD2 = 0;
+                RD0 = 0;
+                TMR0 = 74;
+                INTCONbits.T0IF = 0;
+            }
+        }
+
+       if(ADCON0bits.GO == 0){
+
+            if(ADCON0bits.CHS == 6){
+                PORTA = ADRESH;
+                ADCON0bits.CHS = 5;
+            }
+            else if(ADCON0bits.CHS == 5){
+                PORTC = ADRESH;
+                ADCON0bits.CHS = 6;
+            }
+            _delay((unsigned long)((50)*(4000000/4000000.0)));
+
+            ADCON0bits.GO = 1;
+        }
+
     }
     return;
 }

@@ -11,15 +11,15 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\isaac\AppData\Local\Temp\s4r4.o
+$C:\Users\isaac\AppData\Local\Temp\s1ado.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
 $dist/default/production\PROYECTO.X.production.o
 cinit CODE 0 F F 4 2
-text1 CODE 0 13 13 32 2
-maintext CODE 0 45 45 2A 2
-cstackCOMMON COMMON 1 70 70 5 1
+text1 CODE 0 D1 D1 7 2
+maintext CODE 0 13 13 BE 2
+cstackCOMMON COMMON 1 70 70 4 1
 intentry CODE 0 4 4 8 2
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
@@ -37,23 +37,23 @@ BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
 CONST 3-3 2
-CONST 6F-1FFF 2
+CONST D8-1FFF 2
 ENTRY 3-3 2
-ENTRY 6F-1FFF 2
+ENTRY D8-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
 CODE 3-3 2
-CODE 6F-1FFF 2
+CODE D8-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
 SFR3 180-18F 1
-COMMON 75-7D 1
+COMMON 74-7D 1
 EEDATA 2100-21FF 2
 STRCODE 3-3 2
-STRCODE 6F-1FFF 2
+STRCODE D8-1FFF 2
 STRING 3-3 2
-STRING 6F-1FFF 2
+STRING D8-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -68,53 +68,90 @@ STRING 6F-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\PROYECTO.X.production.o
-F cinit CODE >460:C:\Users\isaac\AppData\Local\Temp\s4r4.s
-F cinit CODE >463:C:\Users\isaac\AppData\Local\Temp\s4r4.s
-F cinit CODE >469:C:\Users\isaac\AppData\Local\Temp\s4r4.s
-F cinit CODE >471:C:\Users\isaac\AppData\Local\Temp\s4r4.s
-10 cinit CODE >472:C:\Users\isaac\AppData\Local\Temp\s4r4.s
+F cinit CODE >480:C:\Users\isaac\AppData\Local\Temp\s1ado.s
+F cinit CODE >483:C:\Users\isaac\AppData\Local\Temp\s1ado.s
+F cinit CODE >489:C:\Users\isaac\AppData\Local\Temp\s1ado.s
+F cinit CODE >491:C:\Users\isaac\AppData\Local\Temp\s1ado.s
+10 cinit CODE >492:C:\Users\isaac\AppData\Local\Temp\s1ado.s
 4 intentry CODE >49:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-13 text1 CODE >49:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-13 text1 CODE >50:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-17 text1 CODE >51:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-1D text1 CODE >52:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-1E text1 CODE >53:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-1F text1 CODE >54:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-28 text1 CODE >55:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-2B text1 CODE >56:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-2D text1 CODE >57:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-2E text1 CODE >58:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-2F text1 CODE >59:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-2F text1 CODE >60:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-30 text1 CODE >61:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-31 text1 CODE >62:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-38 text1 CODE >63:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-3B text1 CODE >64:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-3D text1 CODE >65:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-3E text1 CODE >70:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-45 maintext CODE >74:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-45 maintext CODE >75:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-48 maintext CODE >76:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-49 maintext CODE >78:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-4D maintext CODE >79:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-4E maintext CODE >80:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-4F maintext CODE >82:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-50 maintext CODE >83:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-51 maintext CODE >84:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-52 maintext CODE >87:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-56 maintext CODE >88:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-57 maintext CODE >91:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-58 maintext CODE >92:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-59 maintext CODE >93:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-5B maintext CODE >94:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-5F maintext CODE >96:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-60 maintext CODE >97:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-61 maintext CODE >98:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-62 maintext CODE >100:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-63 maintext CODE >101:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-64 maintext CODE >102:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-65 maintext CODE >106:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
-6A maintext CODE >107:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+D1 text1 CODE >49:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+D1 text1 CODE >53:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+13 maintext CODE >57:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+13 maintext CODE >58:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+16 maintext CODE >59:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+17 maintext CODE >61:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+1A maintext CODE >62:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+1C maintext CODE >63:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+1D maintext CODE >64:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+1E maintext CODE >65:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+1F maintext CODE >66:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+21 maintext CODE >68:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+22 maintext CODE >69:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+23 maintext CODE >70:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+24 maintext CODE >71:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+27 maintext CODE >72:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+28 maintext CODE >73:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+2C maintext CODE >74:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+30 maintext CODE >75:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+33 maintext CODE >77:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+36 maintext CODE >78:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+37 maintext CODE >79:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+38 maintext CODE >80:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+39 maintext CODE >83:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+3D maintext CODE >84:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+3E maintext CODE >87:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+3F maintext CODE >88:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+40 maintext CODE >89:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+42 maintext CODE >90:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+46 maintext CODE >92:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+47 maintext CODE >94:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+48 maintext CODE >95:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+49 maintext CODE >96:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+4A maintext CODE >98:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+4B maintext CODE >99:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+4C maintext CODE >100:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+4D maintext CODE >104:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+51 maintext CODE >105:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+55 maintext CODE >106:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+56 maintext CODE >107:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+5F maintext CODE >108:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+62 maintext CODE >109:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+64 maintext CODE >110:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+65 maintext CODE >111:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+66 maintext CODE >112:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+6A maintext CODE >113:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+6B maintext CODE >114:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+74 maintext CODE >115:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+77 maintext CODE >116:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+79 maintext CODE >117:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+7A maintext CODE >118:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+7B maintext CODE >119:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+7F maintext CODE >120:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+80 maintext CODE >121:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+89 maintext CODE >122:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+8C maintext CODE >123:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+8E maintext CODE >124:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+8F maintext CODE >125:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+90 maintext CODE >126:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+90 maintext CODE >127:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+91 maintext CODE >128:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+92 maintext CODE >129:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+93 maintext CODE >130:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+9A maintext CODE >131:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+9D maintext CODE >132:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+9E maintext CODE >133:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+9F maintext CODE >134:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+A1 maintext CODE >135:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+A2 maintext CODE >139:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+A6 maintext CODE >141:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+AF maintext CODE >142:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+B1 maintext CODE >143:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+B5 maintext CODE >144:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+B6 maintext CODE >145:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+BF maintext CODE >146:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+C1 maintext CODE >147:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+C5 maintext CODE >149:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+CA maintext CODE >151:C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -128,8 +165,8 @@ F cinit CODE >471:C:\Users\isaac\AppData\Local\Temp\s4r4.s
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
-__Hspace_0 6F 0 ABS 0 - -
-__Hspace_1 75 0 ABS 0 - -
+__Hspace_0 D8 0 ABS 0 - -
+__Hspace_1 74 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
@@ -137,30 +174,31 @@ __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
 _T0IF 5A 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _TMR0 1 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\s4r4.o
-_main 8A 0 CODE 0 maintext dist/default/production\PROYECTO.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\s1ado.o
+_main 26 0 CODE 0 maintext dist/default/production\PROYECTO.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
-start 18 0 CODE 0 init C:\Users\isaac\AppData\Local\Temp\s4r4.o
+start 18 0 CODE 0 init C:\Users\isaac\AppData\Local\Temp\s1ado.o
 __size_of_main 0 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s4r4.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s1ado.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s1ado.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s1ado.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s1ado.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s1ado.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\isaac\AppData\Local\Temp\s1ado.o
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
+_ADRESH 1E 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _ANSELH 189 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\s4r4.o
-___stacklo 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\s4r4.o
+___stackhi 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\s1ado.o
+___stacklo 0 0 ABS 0 - C:\Users\isaac\AppData\Local\Temp\s1ado.o
 _WPUBbits 95 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\PROYECTO.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\s4r4.o
+___int_sp 0 0 STACK 2 stack C:\Users\isaac\AppData\Local\Temp\s1ado.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -195,20 +233,25 @@ __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _RB0 30 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
+_RB1 31 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
+_RB2 32 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _RD0 40 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _RD1 41 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
-__S0 6F 0 ABS 0 - -
-__S1 75 0 ABS 0 - -
+_RD2 42 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
+__S0 D8 0 ABS 0 - -
+__S1 74 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_isr 26 0 CODE 0 text1 dist/default/production\PROYECTO.X.production.o
+_isr 1A2 0 CODE 0 text1 dist/default/production\PROYECTO.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
-__end_of_isr 8A 0 CODE 0 text1 dist/default/production\PROYECTO.X.production.o
+__end_of_isr 1B0 0 CODE 0 text1 dist/default/production\PROYECTO.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\isaac\AppData\Local\Temp\s4r4.o
-__pmaintext 8A 0 CODE 0 maintext dist/default/production\PROYECTO.X.production.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\isaac\AppData\Local\Temp\s1ado.o
+__pmaintext 26 0 CODE 0 maintext dist/default/production\PROYECTO.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
+_ADCON0bits 1F 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
+_ADCON1bits 9F 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
@@ -220,7 +263,7 @@ end_of_initialization 1E 0 CODE 0 cinit dist/default/production\PROYECTO.X.produ
 __Hintentry 18 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 6 0 CODE 0 reset_vec -
-__ptext1 26 0 CODE 0 text1 dist/default/production\PROYECTO.X.production.o
+__ptext1 1A2 0 CODE 0 text1 dist/default/production\PROYECTO.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
@@ -229,12 +272,16 @@ __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\PROYECTO.X.production.o
 __Hend_init 1E 0 CODE 0 end_init -
-__end_of_main DE 0 CODE 0 maintext dist/default/production\PROYECTO.X.production.o
+__end_of_main 1A2 0 CODE 0 maintext dist/default/production\PROYECTO.X.production.o
 _ANSEL 188 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
+_PORTA 5 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _PORTB 6 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
+_PORTC 7 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _PORTD 8 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _PORTE 9 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
+_TRISA 85 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _TRISB 86 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
+_TRISC 87 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _TRISD 88 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 _TRISE 89 0 ABS 0 - dist/default/production\PROYECTO.X.production.o
 __Hram 0 0 ABS 0 ram -
@@ -268,8 +315,8 @@ __initialization 1E 0 CODE 0 cinit dist/default/production\PROYECTO.X.production
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cstackCOMMON 1 70 70 5 1
-intentry 0 4 8 6B 2
+cstackCOMMON 1 70 70 4 1
+intentry 0 4 8 D4 2
 reset_vec 0 0 0 3 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section

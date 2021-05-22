@@ -13,17 +13,21 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "49 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
 [v _isr isr `II(v  1 e 1 0 ]
-"74
+"57
 [v _main main `(v  1 e 1 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
+"166
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
 "228
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"290
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S33 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S175 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -33,14 +37,39 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S42 . 1 `uc 1 . 1 0 :2:0 
+[s S184 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S47 . 1 `S33 1 . 1 0 `S42 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES47  1 e 1 @11 ]
-[s S70 . 1 `uc 1 PS 1 0 :3:0 
+[u S189 . 1 `S175 1 . 1 0 `S184 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES189  1 e 1 @11 ]
+"1238
+[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
+[s S44 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+`uc 1 ADCS 1 0 :2:6 
+]
+"1276
+[s S49 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 ADCS0 1 0 :1:6 
+`uc 1 ADCS1 1 0 :1:7 
+]
+[s S58 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S61 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[u S64 . 1 `S44 1 . 1 0 `S49 1 . 1 0 `S58 1 . 1 0 `S61 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES64  1 e 1 @31 ]
+[s S96 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -48,36 +77,40 @@
 `uc 1 nRBPU 1 0 :1:7 
 ]
 "1366
-[s S77 . 1 `uc 1 PS0 1 0 :1:0 
+[s S103 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 ]
-[u S81 . 1 `S70 1 . 1 0 `S77 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES81  1 e 1 @129 ]
+[u S107 . 1 `S96 1 . 1 0 `S103 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES107  1 e 1 @129 ]
+"1416
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1540
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S122 . 1 `uc 1 SCS 1 0 :1:0 
+[s S148 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S128 . 1 `uc 1 . 1 0 :4:0 
+[s S154 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S133 . 1 `S122 1 . 1 0 `S128 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES133  1 e 1 @143 ]
-[s S96 . 1 `uc 1 WPUB 1 0 :8:0 
+[u S159 . 1 `S148 1 . 1 0 `S154 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES159  1 e 1 @143 ]
+[s S122 . 1 `uc 1 WPUB 1 0 :8:0 
 ]
 "2366
-[s S98 . 1 `uc 1 WPUB0 1 0 :1:0 
+[s S124 . 1 `uc 1 WPUB0 1 0 :1:0 
 `uc 1 WPUB1 1 0 :1:1 
 `uc 1 WPUB2 1 0 :1:2 
 `uc 1 WPUB3 1 0 :1:3 
@@ -86,27 +119,42 @@
 `uc 1 WPUB6 1 0 :1:6 
 `uc 1 WPUB7 1 0 :1:7 
 ]
-[u S107 . 1 `S96 1 . 1 0 `S98 1 . 1 0 ]
-[v _WPUBbits WPUBbits `VES107  1 e 1 @149 ]
+[u S133 . 1 `S122 1 . 1 0 `S124 1 . 1 0 ]
+[v _WPUBbits WPUBbits `VES133  1 e 1 @149 ]
+[s S29 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 VCFG0 1 0 :1:4 
+`uc 1 VCFG1 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"2991
+[u S35 . 1 `S29 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES35  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
 "4103
 [v _RB0 RB0 `VEb  1 e 0 @48 ]
+"4106
+[v _RB1 RB1 `VEb  1 e 0 @49 ]
+"4109
+[v _RB2 RB2 `VEb  1 e 0 @50 ]
 "4181
 [v _RD0 RD0 `VEb  1 e 0 @64 ]
 "4184
 [v _RD1 RD1 `VEb  1 e 0 @65 ]
+"4187
+[v _RD2 RD2 `VEb  1 e 0 @66 ]
 "4322
 [v _T0IF T0IF `VEb  1 e 0 @90 ]
-"74 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+"57 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
 [v _main main `(v  1 e 1 0 ]
 {
-"110
+"156
 } 0
 "49
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"70
+"53
 } 0

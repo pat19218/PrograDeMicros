@@ -47,24 +47,7 @@
 //---------------------------interrupciones-------------------------------------
 
 void __interrupt()isr(void) {
-    if (T0IF == 1) { //INTERRUPCION POR TIMMER0
-            if(!RB0){
-                RD0 = 1;
-                RD1 = 1;
-                __delay_ms(2);
-                RD1 = 0;
-                TMR0 = 70;  //POSICION 0°
-                INTCONbits.T0IF = 0; //bajo la bandera
-            }
-            else{
-                RD0 = 0;
-                RD1 = 1;
-                __delay_ms(1);
-                RD1 = 0;
-                TMR0 = 74;  //POSICION 180°
-                INTCONbits.T0IF = 0; //bajo la bandera
-            }            
-        }
+
   
 
 }
@@ -75,13 +58,26 @@ void main(void) {
     ANSEL = 0x00; // NO HAY ANALOGICOS
     ANSELH = 0x00;
     
+    TRISA = 0x00;
     TRISB = 0xff;
+    TRISC = 0x00;
     TRISD = 0x00; // PORTD todo salida
     TRISE = 0x00; // PORTE todo salida
+    TRISE = 0b0011; // primeros 2 pines como entrada analogicas
+    
+    ADCON1bits.ADFM = 0;    //Justificado a la izquierda
+    ADCON1bits.VCFG0 = 0;   //voltaje de 0V-5V
+    ADCON1bits.VCFG1 = 0;
+    ADCON0bits.ADCS0 = 1;   //Fosc/8
+    ADCON0bits.ADCS1 = 0;
+    ADCON0bits.CHS = 5; //canal 5
+    __delay_us(100);
+    ADCON0bits.ADON = 1;    //activo el modulo
     
     OPTION_REGbits.nRBPU = 0; //config. de PULL-UP
     WPUBbits.WPUB0 = 1;
     WPUBbits.WPUB1 = 1;
+    WPUBbits.WPUB2 = 1;
     
     
     OSCCONbits.IRCF = 0b110; //Config. de oscilacion 4MHz
@@ -93,8 +89,10 @@ void main(void) {
     OPTION_REGbits.PS = 0b111;  //PS = 111 / 1:256
     TMR0 = 78;                  //Reinicio del timmer
 
+    ADCON0bits.GO = 1;  //para el ADC
+    
     INTCONbits.GIE = 1; //habilito interrupciones
-    INTCONbits.T0IE = 1; //desactivo interrupciones por timmer 0
+    INTCONbits.T0IE = 0; //desactivo interrupciones por timmer 0
     INTCONbits.T0IF = 0; //bajo la bandera
     
     PORTB = 0; // Estado inicial de los pines
@@ -103,8 +101,56 @@ void main(void) {
 
     //------------------------------loop principal----------------------------------
     while (1) {
-        __delay_us(50);
-        asm("NOP");
+       if (T0IF == 1) { //INTERRUPCION POR TIMMER0
+            if(!RB0){
+                RD0 = 1;
+                __delay_ms(2);
+                RD0 = 0;
+                TMR0 = 70;  //POSICION 0°
+                INTCONbits.T0IF = 0; //bajo la bandera
+            }
+            else if(!RB1){
+                RD1 = 1;
+                __delay_ms(2);
+                RD1 = 0;
+                TMR0 = 70;  //POSICION 0°
+                INTCONbits.T0IF = 0; //bajo la bandera                
+            }
+            else if(!RB2){
+                RD2 = 1;
+                __delay_ms(2);
+                RD2 = 0;
+                TMR0 = 70;  //POSICION 0°
+                INTCONbits.T0IF = 0; //bajo la bandera                
+            }
+            else{
+                RD0 = 1;
+                RD1 = 1;
+                RD2 = 1;
+                __delay_ms(1);
+                RD1 = 0;
+                RD2 = 0;
+                RD0 = 0;
+                TMR0 = 74;  //POSICION 180°
+                INTCONbits.T0IF = 0; //bajo la bandera
+            }            
+        }
+       
+       if(ADCON0bits.GO == 0){
+            
+            if(ADCON0bits.CHS == 6){
+                PORTA = ADRESH;
+                ADCON0bits.CHS = 5;
+            }
+            else if(ADCON0bits.CHS == 5){
+                PORTC = ADRESH;
+                ADCON0bits.CHS = 6;
+            }
+            __delay_us(50);     //con 2 micros segundos será suficiente se dejo
+                                //en 50 por fallos de software en proteus
+            ADCON0bits.GO = 1;
+        }
+       
     }    
     return;
 }
