@@ -2644,7 +2644,23 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 # 39 "PROYECTO.c" 2
-# 49 "PROYECTO.c"
+
+
+
+
+
+
+char hora, minuto, escala;
+char valor;
+char ventana;
+
+
+void USART_Tx(char data);
+char USART_Rx();
+void USART_Cadena(char *str);
+
+
+
 void __attribute__((picinterrupt((""))))isr(void) {
 
 
@@ -2659,10 +2675,9 @@ void main(void) {
 
     TRISA = 0x00;
     TRISB = 0xff;
-    TRISC = 0x00;
     TRISD = 0x00;
-    TRISE = 0x00;
     TRISE = 0b0011;
+
 
     ADCON1bits.ADFM = 0;
     ADCON1bits.VCFG0 = 0;
@@ -2688,15 +2703,34 @@ void main(void) {
     OPTION_REGbits.PS = 0b111;
     TMR0 = 78;
 
-    ADCON0bits.GO = 1;
+
+    TXSTAbits.SYNC = 0;
+    TXSTAbits.BRGH = 1;
+    BAUDCTLbits.BRG16 = 1;
+
+    SPBRG = 103;
+    SPBRGH = 0;
+
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.RX9 = 0;
+    RCSTAbits.CREN = 1;
+    TXSTAbits.TXEN = 1;
 
     INTCONbits.GIE = 1;
     INTCONbits.T0IE = 0;
     INTCONbits.T0IF = 0;
 
+
+
+    ADCON0bits.GO = 1;
+
+    PORTA = 0;
     PORTB = 0;
+    PORTC = 0;
     PORTD = 0;
     PORTE = 0;
+
+    ventana = 1;
 
 
     while (1) {
@@ -2738,11 +2772,45 @@ void main(void) {
        if(ADCON0bits.GO == 0){
 
             if(ADCON0bits.CHS == 6){
-                PORTA = ADRESH;
+                escala = ADRESH;
+                if (escala >= 0 && escala <=42 ){
+                    minuto = 0;
+                }else if(escala >= 43 && escala <= 84 ){
+                    minuto = 15;
+                }else if(escala >= 85 && escala <= 126 ){
+                    minuto = 30;
+                }else if(escala >= 127 && escala <= 168 ){
+                    minuto = 45;
+                }else if(escala >= 210 && escala <= 255 ){
+                    minuto = 60;
+                }
+
                 ADCON0bits.CHS = 5;
             }
             else if(ADCON0bits.CHS == 5){
-                PORTC = ADRESH;
+                escala = ADRESH;
+                if (escala >= 0 && escala <=26 ){
+                    hora = 0;
+                }else if(escala >= 27 && escala <=52 ){
+                    hora = 1;
+                }else if(escala >= 52 && escala <=78 ){
+                    hora = 2;
+                }else if(escala >= 79 && escala <=104 ){
+                    hora = 3;
+                }else if(escala >= 105 && escala <=130 ){
+                    hora = 4;
+                }else if(escala >= 131 && escala <=156 ){
+                    hora = 5;
+                }else if(escala >= 157 && escala <=182 ){
+                    hora = 6;
+                }else if(escala >= 183 && escala <=208 ){
+                    hora = 7;
+                }else if(escala >= 209 && escala <=234 ){
+                    hora = 8;
+                }else if(escala >= 235 && escala <=255 ){
+                    hora = 9;
+                }
+
                 ADCON0bits.CHS = 6;
             }
             _delay((unsigned long)((50)*(4000000/4000000.0)));
@@ -2750,6 +2818,69 @@ void main(void) {
             ADCON0bits.GO = 1;
         }
 
+
+
+       if(ventana == 1){
+
+           USART_Cadena("\r Que accion desea ejecutar? \r");
+           USART_Cadena("\r1) ver datos de hora \r");
+           USART_Cadena("\r2) ver datos de minuto \r");
+           USART_Cadena("\r3) ver datos de ambos \r\r");
+           ventana = 0;
+        }
+
+       if (PIR1bits.RCIF == 1){
+           valor = USART_Rx();
+           ventana = 1;
+       }
+
+       switch(valor){
+            case ('1'):
+                USART_Cadena(" Esperar  ");
+                while(TXSTAbits.TRMT == 0);
+                TXREG = hora;
+                USART_Cadena(" H. para el medicamento  \r\r");
+                ventana = 1;
+                break;
+
+            case ('2'):
+                USART_Cadena(" Esperar  ");
+                while(TXSTAbits.TRMT == 0);
+                TXREG = minuto;
+                USART_Cadena(" mins. para el medicamento  \r\r");
+                ventana = 1;
+                break;
+
+            case ('3'):
+                USART_Cadena(" Esperar  ");
+                USART_Tx(hora);
+                USART_Cadena(" H. para el medicamento  \r");
+                USART_Cadena(" Esperar  ");
+                USART_Tx(minuto);
+                USART_Cadena(" mins. para el medicamento  \r\r");
+                ventana = 1;
+                break;
+        }
+       valor = 0;
+
     }
     return;
 }
+
+
+
+    void USART_Tx(char data){
+        while(TXSTAbits.TRMT == 0);
+        TXREG = data;
+    }
+
+    char USART_Rx(){
+        return RCREG;
+       }
+
+    void USART_Cadena(char *str){
+        while(*str != '\0'){
+            USART_Tx(*str);
+            str++;
+        }
+    }

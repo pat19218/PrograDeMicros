@@ -9,7 +9,7 @@
  * Hardware: Pic 16f887, transistores, resistencias, leds, button
  * 
  * Created on 14 de mayo de 2021, 21:51
- * Last modification on 14 de mayo de 2021, 23:00
+ * Last modification on 21 de mayo de 2021, 23:00
  */
 
 // PIC16F887 Configuration Bit Settings
@@ -42,13 +42,20 @@
 #define _XTAL_FREQ 4000000 //__delay_ms(x)
 
 //---------------------------variables------------------------------------------
+char hora, minuto, escala;
+char valor;
+char ventana;
 
+//--------------------------funciones-------------------------------------------
+void USART_Tx(char data);
+char USART_Rx();
+void USART_Cadena(char *str);
 
 //---------------------------interrupciones-------------------------------------
 
 void __interrupt()isr(void) {
 
-  
+    
 
 }
 
@@ -60,17 +67,16 @@ void main(void) {
     
     TRISA = 0x00;
     TRISB = 0xff;
-    TRISC = 0x00;
     TRISD = 0x00; // PORTD todo salida
-    TRISE = 0x00; // PORTE todo salida
     TRISE = 0b0011; // primeros 2 pines como entrada analogicas
     
+                            //Confi. ADC
     ADCON1bits.ADFM = 0;    //Justificado a la izquierda
     ADCON1bits.VCFG0 = 0;   //voltaje de 0V-5V
     ADCON1bits.VCFG1 = 0;
     ADCON0bits.ADCS0 = 1;   //Fosc/8
     ADCON0bits.ADCS1 = 0;
-    ADCON0bits.CHS = 5; //canal 5
+    ADCON0bits.CHS = 5;     //canal 5
     __delay_us(100);
     ADCON0bits.ADON = 1;    //activo el modulo
     
@@ -83,21 +89,40 @@ void main(void) {
     OSCCONbits.IRCF = 0b110; //Config. de oscilacion 4MHz
     OSCCONbits.SCS = 1;      //reloj interno
 
-                             //Config. timmer0
+                                //Config. timmer0 para PWM
     OPTION_REGbits.T0CS = 0;    //Uso reloj interno
     OPTION_REGbits.PSA = 0;     //Uso pre-escaler
     OPTION_REGbits.PS = 0b111;  //PS = 111 / 1:256
     TMR0 = 78;                  //Reinicio del timmer
 
-    ADCON0bits.GO = 1;  //para el ADC
+                            //Confi. serial comunication
+    TXSTAbits.SYNC = 0;     //asincrono
+    TXSTAbits.BRGH = 1;     //high speed
+    BAUDCTLbits.BRG16 = 1;  //uso los 16 bits
+   
+    SPBRG = 103;   //revisar tabla BAUD RATES FOR ASYNCHRONOUS MODES (CONTINUED)                      
+    SPBRGH = 0;    //pagina 168 del datasheet del 2009         
     
-    INTCONbits.GIE = 1; //habilito interrupciones
+    RCSTAbits.SPEN = 1;     //enciendo el modulo
+    RCSTAbits.RX9 = 0;      //No trabajo a 9 bits
+    RCSTAbits.CREN = 1;     //activo recepción
+    TXSTAbits.TXEN = 1;     //activo transmision 
+
+    INTCONbits.GIE = 1;  //habilito interrupciones
     INTCONbits.T0IE = 0; //desactivo interrupciones por timmer 0
     INTCONbits.T0IF = 0; //bajo la bandera
+//    PIE1bits.RCIE = 1;   //interrupcion por serialcomunication recepcion
+//    PIR1bits.RCIF = 0;   //bajo la bandera
     
+    ADCON0bits.GO = 1;  //para el ADC
+    
+    PORTA = 0; // Estado inicial de los pines
     PORTB = 0; // Estado inicial de los pines
+    PORTC = 0; // Estado inicial de los pines
     PORTD = 0; // Estado inicial de los pines
     PORTE = 0; // Estado inicial de los pines
+    
+    ventana = 1;// Estado inicial
 
     //------------------------------loop principal----------------------------------
     while (1) {
@@ -139,11 +164,45 @@ void main(void) {
        if(ADCON0bits.GO == 0){
             
             if(ADCON0bits.CHS == 6){
-                PORTA = ADRESH;
+                escala = ADRESH;
+                if (escala >= 0 && escala <=42 ){
+                    minuto = 0;
+                }else if(escala >= 43 && escala <= 84 ){
+                    minuto = 15;
+                }else if(escala >= 85 && escala <= 126 ){
+                    minuto = 30;
+                }else if(escala >= 127 && escala <= 168 ){
+                    minuto = 45;
+                }else if(escala >= 210 && escala <= 255 ){
+                    minuto = 60;
+                }
+       
                 ADCON0bits.CHS = 5;
             }
             else if(ADCON0bits.CHS == 5){
-                PORTC = ADRESH;
+                escala = ADRESH;
+                if (escala >= 0 && escala <=26 ){
+                    hora = 0;
+                }else if(escala >= 27 && escala <=52 ){
+                    hora = 1;
+                }else if(escala >= 52 && escala <=78 ){
+                    hora = 2;
+                }else if(escala >= 79 && escala <=104 ){
+                    hora = 3;
+                }else if(escala >= 105 && escala <=130 ){
+                    hora = 4;
+                }else if(escala >= 131 && escala <=156 ){
+                    hora = 5;
+                }else if(escala >= 157 && escala <=182 ){
+                    hora = 6;
+                }else if(escala >= 183 && escala <=208 ){
+                    hora = 7;
+                }else if(escala >= 209 && escala <=234 ){
+                    hora = 8;
+                }else if(escala >= 235 && escala <=255 ){
+                    hora = 9;
+                }
+                
                 ADCON0bits.CHS = 6;
             }
             __delay_us(50);     //con 2 micros segundos será suficiente se dejo
@@ -151,9 +210,72 @@ void main(void) {
             ADCON0bits.GO = 1;
         }
        
+       
+       
+       if(ventana == 1){
+           
+           USART_Cadena("\r Que accion desea ejecutar? \r");
+           USART_Cadena("\r1) ver datos de hora \r");
+           USART_Cadena("\r2) ver datos de minuto \r");
+           USART_Cadena("\r3) ver datos de ambos \r\r");
+           ventana = 0;
+        }
+       
+       if (PIR1bits.RCIF == 1){
+           valor = USART_Rx();
+           ventana = 1;
+       }
+              
+       switch(valor){
+            case ('1'):
+                USART_Cadena(" Esperar  ");
+                while(TXSTAbits.TRMT == 0);
+                TXREG = hora;
+                USART_Cadena(" H. para el medicamento  \r\r");
+                ventana = 1;
+                break;
+                        
+            case ('2'):
+                USART_Cadena(" Esperar  ");
+                while(TXSTAbits.TRMT == 0);
+                TXREG = minuto;
+                USART_Cadena(" mins. para el medicamento  \r\r");
+                ventana = 1;
+                break;
+                        
+            case ('3'):
+                USART_Cadena(" Esperar  ");
+                USART_Tx(hora);
+                USART_Cadena(" H. para el medicamento  \r");
+                USART_Cadena(" Esperar  ");
+                USART_Tx(minuto);
+                USART_Cadena(" mins. para el medicamento  \r\r");
+                ventana = 1;
+                break;
+        }
+       valor = 0;
+       
     }    
     return;
 }
+
+
+
+    void USART_Tx(char data){
+        while(TXSTAbits.TRMT == 0);
+        TXREG = data;
+    }
+
+    char USART_Rx(){
+        return RCREG; 
+       }
+
+    void USART_Cadena(char *str){
+        while(*str != '\0'){
+            USART_Tx(*str);
+            str++;
+        }
+    }
 /*
  * Temporizacion = 20ms = 4/Fosc * Prescaler * x 
  * 20ms = 4/4MHz * 256 * x
