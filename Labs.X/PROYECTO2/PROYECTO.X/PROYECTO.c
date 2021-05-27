@@ -9,7 +9,7 @@
  * Hardware: Pic 16f887, transistores, resistencias, leds, button
  * 
  * Created on 14 de mayo de 2021, 21:51
- * Last modification on 21 de mayo de 2021, 23:00
+ * Last modification on 26 de mayo de 2021, 23:00
  */
 
 // PIC16F887 Configuration Bit Settings
@@ -45,8 +45,13 @@
 char hora, minuto, escala;
 char valor;
 char ventana;
-char user1, user2, user3;
-char nueva_hora, nueva_min;
+char min_user1, min_user2, min_user3;
+char hora_user1, hora_user2, hora_user3;
+char hora_nueva;
+char me_1_us1, me_2_us1, me_3_us1;
+char me_1_us2, me_2_us2, me_3_us2;
+char me_1_us3, me_2_us3, me_3_us3;
+
 
 //--------------------------funciones-------------------------------------------
 void USART_Tx(char data);
@@ -56,9 +61,7 @@ void USART_Cadena(char *str);
 //---------------------------interrupciones-------------------------------------
 
 void __interrupt()isr(void) {
-
     
-
 }
 
 //----------------------configuracion microprocesador---------------------------
@@ -68,7 +71,7 @@ void main(void) {
     ANSELH = 0x00;
     
     TRISA = 0x00;
-    TRISB = 0xff;
+    TRISB = 0xff;       // PORTB todo entrada
     TRISD = 0x00;       // PORTD todo salida
     TRISE = 0b0011;     // primeros 2 pines como entrada analogicas
     
@@ -86,6 +89,9 @@ void main(void) {
     WPUBbits.WPUB0 = 1;
     WPUBbits.WPUB1 = 1;
     WPUBbits.WPUB2 = 1;
+    WPUBbits.WPUB5 = 1;
+    WPUBbits.WPUB6 = 1;
+    WPUBbits.WPUB7 = 1;
     
     
     OSCCONbits.IRCF = 0b110; //Config. de oscilacion 4MHz
@@ -167,7 +173,7 @@ void main(void) {
             
             if(ADCON0bits.CHS == 6){            //leo el canal para escalar mins
                 escala = ADRESH;
-                if (escala >= 0 && escala <=42 ){
+                if (escala >= 0 && escala <=42){
                     minuto = 0;
                 }else if(escala >= 43 && escala <= 84 ){
                     minuto = 15;
@@ -245,9 +251,12 @@ void main(void) {
        if(ventana == 1){        //muestro menú solo una vez
            
            USART_Cadena("\r Que accion desea ejecutar? \r");
-           USART_Cadena("1) ver datos de hora \r");
-           USART_Cadena("2) ver datos de minuto \r");
-           USART_Cadena("3) ver datos de ambos \r\r");
+           USART_Cadena("1) ver datos de usuario uno \r");
+           USART_Cadena("2) ver datos de usuario dos\r");
+           USART_Cadena("3) ver datos de usuario tres \r");
+           USART_Cadena("4) Modificar horario usuario uno \r");
+           USART_Cadena("5) Modificar horario usuario dos\r");
+           USART_Cadena("6) Modificar horario usuario tres \r\r");
            ventana = 0;
         }
        
@@ -259,7 +268,7 @@ void main(void) {
        switch(valor){       //verifico que caracter se introdujo
             case ('1'):
                 USART_Cadena(" Esperar  ");
-                switch(hora){       //acorde al caracter se entrega la hora
+                switch(hora_user1){       //acorde al caracter se entrega la hora
                     case(0):
                         while(TXSTAbits.TRMT == 0);
                         TXREG = 48;
@@ -419,53 +428,669 @@ void main(void) {
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 while(TXSTAbits.TRMT == 0);
-                if(minuto == 0) {
+                if(min_user1 == 0) {
                     USART_Cadena("0");
-                }else if (minuto == 15){
+                }else if (min_user1 == 15){
                     USART_Cadena("15");
-                }else if (minuto == 30){
+                }else if (min_user1 == 30){
                     USART_Cadena("30");
-                }else if (minuto == 45){
+                }else if (min_user1 == 45){
                     USART_Cadena("45");
-                }else if (minuto == 60){
+                }else if (min_user1 == 60){
                     USART_Cadena("60");
                 }
                 USART_Cadena(" mins. para el medicamento  \r\r");
                 ventana = 1;
                 break;
-                        
+             
             case ('2'):
+                USART_Cadena(" Esperar  ");
+                switch(hora_user2){       //acorde al caracter se entrega la hora
+                    case(0):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 48;
+                    break;
+                    
+                    case(1):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;   
+                    break;
+                    
+                    case(2):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;   
+                    break;
+                    
+                    case(3):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 51;   
+                    break;
+                    
+                    case(4):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 52;
+                    break;
+                    
+                    case(5):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 53;
+                    break;
+                    
+                    case(6):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 54;
+                    break;
+                    
+                    case(7):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 55;
+                    break;
+                    
+                    case(8):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 56;
+                    break;
+                    
+                    case(9):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 57;
+                    break;
+                    
+                    case(10):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 48;
+                    break;
+                    
+                    case(11):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                    break;
+                    
+                    case(12):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                    break;
+                    
+                    case(13):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 51;
+                    break;
+                    
+                    case(14):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 52;
+                    break;
+                    
+                    case(15):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 53;
+                    break;
+                    
+                    case(16):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 54;
+                    break;
+                    
+                    case(17):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 55;
+                    break;
+                    
+                    case(18):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 56;
+                    break;
+                    
+                    case(19):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 57;
+                    break;
+                    
+                    case(20):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 48;
+                    break;
+                    
+                    case(21):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                    break;
+                    
+                    case(22):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                    break;
+                    
+                    case(23):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 51;
+                    break;
+                    
+                    case(24):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 52;
+                    break;
+                }
+                
+                USART_Cadena(" Horas ");    //Entrego los minutos
+                USART_Cadena(" con  ");
+                while(TXSTAbits.TRMT == 0);
+                if(min_user2 == 0) {
+                    USART_Cadena("0");
+                }else if (min_user2 == 15){
+                    USART_Cadena("15");
+                }else if (min_user2 == 30){
+                    USART_Cadena("30");
+                }else if (min_user2 == 45){
+                    USART_Cadena("45");
+                }else if (min_user2 == 60){
+                    USART_Cadena("60");
+                }
+                USART_Cadena(" mins. para el medicamento  \r\r");
+                ventana = 1;
+                break;
+           
+            case ('3'):
+                USART_Cadena(" Esperar  ");
+                switch(hora_user3){       //acorde al caracter se entrega la hora
+                    case(0):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 48;
+                    break;
+                    
+                    case(1):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;   
+                    break;
+                    
+                    case(2):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;   
+                    break;
+                    
+                    case(3):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 51;   
+                    break;
+                    
+                    case(4):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 52;
+                    break;
+                    
+                    case(5):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 53;
+                    break;
+                    
+                    case(6):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 54;
+                    break;
+                    
+                    case(7):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 55;
+                    break;
+                    
+                    case(8):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 56;
+                    break;
+                    
+                    case(9):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 57;
+                    break;
+                    
+                    case(10):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 48;
+                    break;
+                    
+                    case(11):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                    break;
+                    
+                    case(12):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                    break;
+                    
+                    case(13):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 51;
+                    break;
+                    
+                    case(14):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 52;
+                    break;
+                    
+                    case(15):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 53;
+                    break;
+                    
+                    case(16):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 54;
+                    break;
+                    
+                    case(17):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 55;
+                    break;
+                    
+                    case(18):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 56;
+                    break;
+                    
+                    case(19):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 57;
+                    break;
+                    
+                    case(20):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 48;
+                    break;
+                    
+                    case(21):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 49;
+                    break;
+                    
+                    case(22):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                    break;
+                    
+                    case(23):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 51;
+                    break;
+                    
+                    case(24):
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 50;
+                        while(TXSTAbits.TRMT == 0);
+                        TXREG = 52;
+                    break;
+                }
+                
+                USART_Cadena(" Horas ");    //Entrego los minutos
+                USART_Cadena(" con  ");
+                while(TXSTAbits.TRMT == 0);
+                if(min_user3 == 0) {
+                    USART_Cadena("0");
+                }else if (min_user3 == 15){
+                    USART_Cadena("15");
+                }else if (min_user3 == 30){
+                    USART_Cadena("30");
+                }else if (min_user3 == 45){
+                    USART_Cadena("45");
+                }else if (min_user3 == 60){
+                    USART_Cadena("60");
+                }
+                USART_Cadena(" mins. para el medicamento  \r\r");
+                ventana = 1;
+                break;
+            
+            case ('4'):
                 USART_Cadena(" Ingresá la letra de la nueva hora  \r");
-                USART_Cadena(" a.0  b.1  c.2  d.3  e.4  f.5  g.6  h.7  i.8\r");
+                USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
                 USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
                 USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
                 while(1){
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
                         USART_Cadena(" \r");
-                        nueva_hora = USART_Rx();
+                        hora_nueva = USART_Rx();
                         USART_Cadena(" \r");
+                        if(hora_nueva == 'a'){
+                            hora_user1 = 0;
+                        }else if(hora_nueva == 'b'){
+                            hora_user1 = 1;
+                        }else if(hora_nueva == 'c'){
+                            hora_user1 = 2;
+                        }else if(hora_nueva == 'd'){
+                            hora_user1 = 3;
+                        }else if(hora_nueva == 'e'){
+                            hora_user1 = 4;
+                        }else if(hora_nueva == 'f'){
+                            hora_user1 = 5;
+                        }else if(hora_nueva == 'g'){
+                            hora_user1 = 6;
+                        }else if(hora_nueva == 'h'){
+                            hora_user1 = 7;
+                        }else if(hora_nueva == 'i'){
+                            hora_user1 = 8;
+                        }else if(hora_nueva == 'j'){
+                            hora_user1 = 9;
+                        }else if(hora_nueva == 'k'){
+                            hora_user1 = 10;
+                        }else if(hora_nueva == 'l'){
+                            hora_user1 = 11;
+                        }else if(hora_nueva == 'm'){
+                            hora_user1 = 12;
+                        }else if(hora_nueva == 'n'){
+                            hora_user1 = 13;
+                        }else if(hora_nueva == 'o'){
+                            hora_user1 = 14;
+                        }else if(hora_nueva == 'p'){
+                            hora_user1 = 15;
+                        }else if(hora_nueva == 'q'){
+                            hora_user1 = 16;
+                        }else if(hora_nueva == 'r'){
+                            hora_user1 = 17;
+                        }else if(hora_nueva == 's'){
+                            hora_user1 = 18;
+                        }else if(hora_nueva == 't'){
+                            hora_user1 = 19;
+                        }else if(hora_nueva == 'u'){
+                            hora_user1 = 20;
+                        }else if(hora_nueva == 'v'){
+                            hora_user1 = 21;
+                        }else if(hora_nueva == 'w'){
+                            hora_user1 = 22;
+                        }else if(hora_nueva == 'x'){
+                            hora_user1 = 23;
+                        }else if(hora_nueva == 'y'){
+                            hora_user1 = 24;
+                        }
                         break;
                     }
+                }
+                USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
+                USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
+                while(1){
+                    if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
+                        USART_Cadena(" \r");
+                        hora_nueva = USART_Rx();
+                        USART_Cadena(" \r");
+                        if(hora_nueva == 'a'){
+                            min_user1 = 0;
+                        }else if(hora_nueva == 'b'){
+                            min_user1 = 15;
+                        }else if(hora_nueva == 'c'){
+                            min_user1 = 30;
+                        }else if(hora_nueva == 'd'){
+                            min_user1 = 45;
+                        }else if(hora_nueva == 'e'){
+                            min_user1 = 55;
+                        }
+                        
+                        break;
+                    }
+                USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
+                USART_Cadena(" presione el número de medicamento a guardar \r");
+                USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
+                while(1){
+                    if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
+                        
+                        break;
+                    }
+                }                             
+                                        
                 }
                 ventana = 1;
                 break;
                         
-            case ('3'):
+            case ('5'):
+                USART_Cadena(" Ingresá la letra de la nueva hora  \r");
+                USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
+                USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
+                USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
+                while(1){
+                    if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
+                        USART_Cadena(" \r");
+                        hora_nueva = USART_Rx();
+                        USART_Cadena(" \r");
+                        if(hora_nueva == 'a'){
+                            hora_user2 = 0;
+                        }else if(hora_nueva == 'b'){
+                            hora_user2 = 1;
+                        }else if(hora_nueva == 'c'){
+                            hora_user2 = 2;
+                        }else if(hora_nueva == 'd'){
+                            hora_user2 = 3;
+                        }else if(hora_nueva == 'e'){
+                            hora_user2 = 4;
+                        }else if(hora_nueva == 'f'){
+                            hora_user2 = 5;
+                        }else if(hora_nueva == 'g'){
+                            hora_user2 = 6;
+                        }else if(hora_nueva == 'h'){
+                            hora_user2 = 7;
+                        }else if(hora_nueva == 'i'){
+                            hora_user2 = 8;
+                        }else if(hora_nueva == 'j'){
+                            hora_user2 = 9;
+                        }else if(hora_nueva == 'k'){
+                            hora_user2 = 10;
+                        }else if(hora_nueva == 'l'){
+                            hora_user2 = 11;
+                        }else if(hora_nueva == 'm'){
+                            hora_user2 = 12;
+                        }else if(hora_nueva == 'n'){
+                            hora_user2 = 13;
+                        }else if(hora_nueva == 'o'){
+                            hora_user2 = 14;
+                        }else if(hora_nueva == 'p'){
+                            hora_user2 = 15;
+                        }else if(hora_nueva == 'q'){
+                            hora_user2 = 16;
+                        }else if(hora_nueva == 'r'){
+                            hora_user2 = 17;
+                        }else if(hora_nueva == 's'){
+                            hora_user2 = 18;
+                        }else if(hora_nueva == 't'){
+                            hora_user2 = 19;
+                        }else if(hora_nueva == 'u'){
+                            hora_user2 = 20;
+                        }else if(hora_nueva == 'v'){
+                            hora_user2 = 21;
+                        }else if(hora_nueva == 'w'){
+                            hora_user2 = 22;
+                        }else if(hora_nueva == 'x'){
+                            hora_user2 = 23;
+                        }else if(hora_nueva == 'y'){
+                            hora_user2 = 24;
+                        }
+                        break;
+                    }
+                }
+                USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
+                USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
+                while(1){
+                    if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
+                        USART_Cadena(" \r");
+                        hora_nueva = USART_Rx();
+                        USART_Cadena(" \r");
+                        if(hora_nueva == 'a'){
+                            min_user2 = 0;
+                        }else if(hora_nueva == 'b'){
+                            min_user2 = 15;
+                        }else if(hora_nueva == 'c'){
+                            min_user2 = 30;
+                        }else if(hora_nueva == 'd'){
+                            min_user2 = 45;
+                        }else if(hora_nueva == 'e'){
+                            min_user2 = 55;
+                        }
+                        
+                        break;
+                    }
+                        
+                }
                 ventana = 1;
                 break;
+                
+            case ('6'):
+                USART_Cadena(" Ingresá la letra de la nueva hora  \r");
+                USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
+                USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
+                USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
+                while(1){
+                    if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
+                        USART_Cadena(" \r");
+                        hora_nueva = USART_Rx();
+                        USART_Cadena(" \r");
+                        if(hora_nueva == 'a'){
+                            hora_user3 = 0;
+                        }else if(hora_nueva == 'b'){
+                            hora_user3 = 1;
+                        }else if(hora_nueva == 'c'){
+                            hora_user3 = 2;
+                        }else if(hora_nueva == 'd'){
+                            hora_user3 = 3;
+                        }else if(hora_nueva == 'e'){
+                            hora_user3 = 4;
+                        }else if(hora_nueva == 'f'){
+                            hora_user3 = 5;
+                        }else if(hora_nueva == 'g'){
+                            hora_user3 = 6;
+                        }else if(hora_nueva == 'h'){
+                            hora_user3 = 7;
+                        }else if(hora_nueva == 'i'){
+                            hora_user3 = 8;
+                        }else if(hora_nueva == 'j'){
+                            hora_user3 = 9;
+                        }else if(hora_nueva == 'k'){
+                            hora_user3 = 10;
+                        }else if(hora_nueva == 'l'){
+                            hora_user3 = 11;
+                        }else if(hora_nueva == 'm'){
+                            hora_user3 = 12;
+                        }else if(hora_nueva == 'n'){
+                            hora_user3 = 13;
+                        }else if(hora_nueva == 'o'){
+                            hora_user3 = 14;
+                        }else if(hora_nueva == 'p'){
+                            hora_user3 = 15;
+                        }else if(hora_nueva == 'q'){
+                            hora_user3 = 16;
+                        }else if(hora_nueva == 'r'){
+                            hora_user3 = 17;
+                        }else if(hora_nueva == 's'){
+                            hora_user3 = 18;
+                        }else if(hora_nueva == 't'){
+                            hora_user3 = 19;
+                        }else if(hora_nueva == 'u'){
+                            hora_user3 = 20;
+                        }else if(hora_nueva == 'v'){
+                            hora_user3 = 21;
+                        }else if(hora_nueva == 'w'){
+                            hora_user3 = 22;
+                        }else if(hora_nueva == 'x'){
+                            hora_user3 = 23;
+                        }else if(hora_nueva == 'y'){
+                            hora_user3 = 24;
+                        }
+                        break;
+                    }
+                }
+                USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
+                USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
+                while(1){
+                    if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
+                        USART_Cadena(" \r");
+                        hora_nueva = USART_Rx();
+                        USART_Cadena(" \r");
+                        if(hora_nueva == 'a'){
+                            min_user3 = 0;
+                        }else if(hora_nueva == 'b'){
+                            min_user3 = 15;
+                        }else if(hora_nueva == 'c'){
+                            min_user3 = 30;
+                        }else if(hora_nueva == 'd'){
+                            min_user3 = 45;
+                        }else if(hora_nueva == 'e'){
+                            min_user3 = 55;
+                        }
+                        
+                        break;
+                    }
+                        
+                }
+                ventana = 1;
+                break;    
         }
        valor = '0';
        
        
-       PORTA = nueva_hora;
+       
        if (!RB7){
-           user1 = 1;
+           min_user3 = minuto;
+           hora_user3 = hora;
        }
        if (!RB6){
-           user2 = 1;
+           min_user2 = minuto;
+           hora_user2 = hora;
        }
        if (!RB5){
-           user3 = 1;
+           min_user1 = minuto;
+           hora_user1 = hora;
        }
        
        
@@ -474,22 +1099,21 @@ void main(void) {
 }
 
 
+void USART_Tx(char data){
+    while(TXSTAbits.TRMT == 0);
+    TXREG = data;
+}
 
-    void USART_Tx(char data){
-        while(TXSTAbits.TRMT == 0);
-        TXREG = data;
+char USART_Rx(){
+    return RCREG; 
+   }
+
+void USART_Cadena(char *str){
+    while(*str != '\0'){
+        USART_Tx(*str);
+        str++;
     }
-
-    char USART_Rx(){
-        return RCREG; 
-       }
-
-    void USART_Cadena(char *str){
-        while(*str != '\0'){
-            USART_Tx(*str);
-            str++;
-        }
-    }
+}
     
 /*
  * Temporizacion = 20ms = 4/Fosc * Prescaler * x 

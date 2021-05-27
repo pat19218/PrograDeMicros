@@ -11,15 +11,15 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"58 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+"63 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
 [v _isr isr `II(v  1 e 1 0 ]
-"66
+"69
 [v _main main `(v  1 e 1 0 ]
-"478
+"1102
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
-"483
+"1107
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
-"487
+"1111
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -239,37 +239,41 @@
 "47
 [v _ventana ventana `uc  1 e 1 0 ]
 "48
-[v _user1 user1 `uc  1 e 1 0 ]
-[v _user2 user2 `uc  1 e 1 0 ]
-[v _user3 user3 `uc  1 e 1 0 ]
+[v _min_user1 min_user1 `uc  1 e 1 0 ]
+[v _min_user2 min_user2 `uc  1 e 1 0 ]
+[v _min_user3 min_user3 `uc  1 e 1 0 ]
 "49
-[v _nueva_hora nueva_hora `uc  1 e 1 0 ]
-"66
+[v _hora_user1 hora_user1 `uc  1 e 1 0 ]
+[v _hora_user2 hora_user2 `uc  1 e 1 0 ]
+[v _hora_user3 hora_user3 `uc  1 e 1 0 ]
+"50
+[v _hora_nueva hora_nueva `uc  1 e 1 0 ]
+"69
 [v _main main `(v  1 e 1 0 ]
 {
-"474
+"1099
 } 0
-"483
+"1107
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
 {
-"485
+"1109
 } 0
-"487
+"1111
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 {
 [v USART_Cadena@str str `*.25uc  1 p 2 3 ]
-"492
+"1116
 } 0
-"478
+"1102
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
 {
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 2 ]
-"481
+"1105
 } 0
-"58
+"63
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"62
+"65
 } 0
