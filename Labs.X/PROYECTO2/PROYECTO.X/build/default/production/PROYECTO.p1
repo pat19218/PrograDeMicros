@@ -219,8 +219,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1238
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1238: extern volatile unsigned char ADRESH __attribute__((address(0x01E)));
 [v _ADRESH `Vuc ~T0 @X0 0 e@30 ]
-"52 PROYECTO.c
-[; ;PROYECTO.c: 52: void USART_Cadena(char *str);
+"54 PROYECTO.c
+[; ;PROYECTO.c: 54: void USART_Cadena(char *str);
 [v _USART_Cadena `(v ~T0 @X0 0 ef1`*uc ]
 "543 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 543:     struct {
@@ -233,16 +233,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "553
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 553: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x00C)));
 [v _PIR1bits `VS18 ~T0 @X0 0 e@12 ]
-"51 PROYECTO.c
-[; ;PROYECTO.c: 51: char USART_Rx();
+"53 PROYECTO.c
+[; ;PROYECTO.c: 53: char USART_Rx();
 [v _USART_Rx `(uc ~T0 @X0 0 e? ]
 "1133 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1133: extern volatile unsigned char TXREG __attribute__((address(0x019)));
 [v _TXREG `Vuc ~T0 @X0 0 e@25 ]
-"50 PROYECTO.c
-[; ;PROYECTO.c: 50: void USART_Tx(char data);
-[v _USART_Tx `(v ~T0 @X0 0 ef1`uc ]
-"1140 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+"4124
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4124: extern volatile __bit RB7 __attribute__((address(0x37)));
+[v _RB7 `Vb ~T0 @X0 0 e@55 ]
+"4121
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4121: extern volatile __bit RB6 __attribute__((address(0x36)));
+[v _RB6 `Vb ~T0 @X0 0 e@54 ]
+"4118
+[; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4118: extern volatile __bit RB5 __attribute__((address(0x35)));
+[v _RB5 `Vb ~T0 @X0 0 e@53 ]
+"1140
 [; ;C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1140: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
 [v _RCREG `Vuc ~T0 @X0 0 e@26 ]
 "19 PROYECTO.c
@@ -514,455 +520,629 @@ Version 4.0 HI-TECH Software Intermediate Code
 "47
 [; ;PROYECTO.c: 47: char ventana;
 [v _ventana `uc ~T0 @X0 1 e ]
+"48
+[; ;PROYECTO.c: 48: char user1, user2, user3;
+[v _user1 `uc ~T0 @X0 1 e ]
+[v _user2 `uc ~T0 @X0 1 e ]
+[v _user3 `uc ~T0 @X0 1 e ]
+"49
+[; ;PROYECTO.c: 49: char nueva_hora, nueva_min;
+[v _nueva_hora `uc ~T0 @X0 1 e ]
+[v _nueva_min `uc ~T0 @X0 1 e ]
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"56
-[; ;PROYECTO.c: 56: void __attribute__((picinterrupt((""))))isr(void) {
+"58
+[; ;PROYECTO.c: 58: void __attribute__((picinterrupt((""))))isr(void) {
 [v _isr `(v ~T1 @X0 1 ef ]
 {
 [e :U _isr ]
 [f ]
-"60
-[; ;PROYECTO.c: 60: }
+"62
+[; ;PROYECTO.c: 62: }
 [e :UE 138 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"64
-[; ;PROYECTO.c: 64: void main(void) {
+"66
+[; ;PROYECTO.c: 66: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"65
-[; ;PROYECTO.c: 65:     ANSEL = 0x00;
+"67
+[; ;PROYECTO.c: 67:     ANSEL = 0x00;
 [e = _ANSEL -> -> 0 `i `uc ]
-"66
-[; ;PROYECTO.c: 66:     ANSELH = 0x00;
-[e = _ANSELH -> -> 0 `i `uc ]
 "68
-[; ;PROYECTO.c: 68:     TRISA = 0x00;
-[e = _TRISA -> -> 0 `i `uc ]
-"69
-[; ;PROYECTO.c: 69:     TRISB = 0xff;
-[e = _TRISB -> -> 255 `i `uc ]
+[; ;PROYECTO.c: 68:     ANSELH = 0x00;
+[e = _ANSELH -> -> 0 `i `uc ]
 "70
-[; ;PROYECTO.c: 70:     TRISD = 0x00;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 70:     TRISA = 0x00;
+[e = _TRISA -> -> 0 `i `uc ]
 "71
-[; ;PROYECTO.c: 71:     TRISE = 0b0011;
+[; ;PROYECTO.c: 71:     TRISB = 0xff;
+[e = _TRISB -> -> 255 `i `uc ]
+"72
+[; ;PROYECTO.c: 72:     TRISD = 0x00;
+[e = _TRISD -> -> 0 `i `uc ]
+"73
+[; ;PROYECTO.c: 73:     TRISE = 0b0011;
 [e = _TRISE -> -> 3 `i `uc ]
-"74
-[; ;PROYECTO.c: 74:     ADCON1bits.ADFM = 0;
-[e = . . _ADCON1bits 0 4 -> -> 0 `i `uc ]
-"75
-[; ;PROYECTO.c: 75:     ADCON1bits.VCFG0 = 0;
-[e = . . _ADCON1bits 0 1 -> -> 0 `i `uc ]
 "76
-[; ;PROYECTO.c: 76:     ADCON1bits.VCFG1 = 0;
-[e = . . _ADCON1bits 0 2 -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 76:     ADCON1bits.ADFM = 0;
+[e = . . _ADCON1bits 0 4 -> -> 0 `i `uc ]
 "77
-[; ;PROYECTO.c: 77:     ADCON0bits.ADCS0 = 1;
-[e = . . _ADCON0bits 1 6 -> -> 1 `i `uc ]
+[; ;PROYECTO.c: 77:     ADCON1bits.VCFG0 = 0;
+[e = . . _ADCON1bits 0 1 -> -> 0 `i `uc ]
 "78
-[; ;PROYECTO.c: 78:     ADCON0bits.ADCS1 = 0;
-[e = . . _ADCON0bits 1 7 -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 78:     ADCON1bits.VCFG1 = 0;
+[e = . . _ADCON1bits 0 2 -> -> 0 `i `uc ]
 "79
-[; ;PROYECTO.c: 79:     ADCON0bits.CHS = 5;
-[e = . . _ADCON0bits 0 2 -> -> 5 `i `uc ]
+[; ;PROYECTO.c: 79:     ADCON0bits.ADCS0 = 1;
+[e = . . _ADCON0bits 1 6 -> -> 1 `i `uc ]
 "80
-[; ;PROYECTO.c: 80:     _delay((unsigned long)((100)*(4000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+[; ;PROYECTO.c: 80:     ADCON0bits.ADCS1 = 0;
+[e = . . _ADCON0bits 1 7 -> -> 0 `i `uc ]
 "81
-[; ;PROYECTO.c: 81:     ADCON0bits.ADON = 1;
-[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
+[; ;PROYECTO.c: 81:     ADCON0bits.CHS = 5;
+[e = . . _ADCON0bits 0 2 -> -> 5 `i `uc ]
+"82
+[; ;PROYECTO.c: 82:     _delay((unsigned long)((100)*(4000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
 "83
-[; ;PROYECTO.c: 83:     OPTION_REGbits.nRBPU = 0;
-[e = . . _OPTION_REGbits 0 5 -> -> 0 `i `uc ]
-"84
-[; ;PROYECTO.c: 84:     WPUBbits.WPUB0 = 1;
-[e = . . _WPUBbits 1 0 -> -> 1 `i `uc ]
+[; ;PROYECTO.c: 83:     ADCON0bits.ADON = 1;
+[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
 "85
-[; ;PROYECTO.c: 85:     WPUBbits.WPUB1 = 1;
-[e = . . _WPUBbits 1 1 -> -> 1 `i `uc ]
+[; ;PROYECTO.c: 85:     OPTION_REGbits.nRBPU = 0;
+[e = . . _OPTION_REGbits 0 5 -> -> 0 `i `uc ]
 "86
-[; ;PROYECTO.c: 86:     WPUBbits.WPUB2 = 1;
+[; ;PROYECTO.c: 86:     WPUBbits.WPUB0 = 1;
+[e = . . _WPUBbits 1 0 -> -> 1 `i `uc ]
+"87
+[; ;PROYECTO.c: 87:     WPUBbits.WPUB1 = 1;
+[e = . . _WPUBbits 1 1 -> -> 1 `i `uc ]
+"88
+[; ;PROYECTO.c: 88:     WPUBbits.WPUB2 = 1;
 [e = . . _WPUBbits 1 2 -> -> 1 `i `uc ]
-"89
-[; ;PROYECTO.c: 89:     OSCCONbits.IRCF = 0b110;
+"91
+[; ;PROYECTO.c: 91:     OSCCONbits.IRCF = 0b110;
 [e = . . _OSCCONbits 0 4 -> -> 6 `i `uc ]
-"90
-[; ;PROYECTO.c: 90:     OSCCONbits.SCS = 1;
+"92
+[; ;PROYECTO.c: 92:     OSCCONbits.SCS = 1;
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"93
-[; ;PROYECTO.c: 93:     OPTION_REGbits.T0CS = 0;
-[e = . . _OPTION_REGbits 0 3 -> -> 0 `i `uc ]
-"94
-[; ;PROYECTO.c: 94:     OPTION_REGbits.PSA = 0;
-[e = . . _OPTION_REGbits 0 1 -> -> 0 `i `uc ]
 "95
-[; ;PROYECTO.c: 95:     OPTION_REGbits.PS = 0b111;
-[e = . . _OPTION_REGbits 0 0 -> -> 7 `i `uc ]
+[; ;PROYECTO.c: 95:     OPTION_REGbits.T0CS = 0;
+[e = . . _OPTION_REGbits 0 3 -> -> 0 `i `uc ]
 "96
-[; ;PROYECTO.c: 96:     TMR0 = 78;
+[; ;PROYECTO.c: 96:     OPTION_REGbits.PSA = 0;
+[e = . . _OPTION_REGbits 0 1 -> -> 0 `i `uc ]
+"97
+[; ;PROYECTO.c: 97:     OPTION_REGbits.PS = 0b111;
+[e = . . _OPTION_REGbits 0 0 -> -> 7 `i `uc ]
+"98
+[; ;PROYECTO.c: 98:     TMR0 = 78;
 [e = _TMR0 -> -> 78 `i `uc ]
-"99
-[; ;PROYECTO.c: 99:     TXSTAbits.SYNC = 0;
-[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
-"100
-[; ;PROYECTO.c: 100:     TXSTAbits.BRGH = 1;
-[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
 "101
-[; ;PROYECTO.c: 101:     BAUDCTLbits.BRG16 = 1;
-[e = . . _BAUDCTLbits 0 3 -> -> 1 `i `uc ]
+[; ;PROYECTO.c: 101:     TXSTAbits.SYNC = 0;
+[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
+"102
+[; ;PROYECTO.c: 102:     TXSTAbits.BRGH = 1;
+[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
 "103
-[; ;PROYECTO.c: 103:     SPBRG = 103;
+[; ;PROYECTO.c: 103:     BAUDCTLbits.BRG16 = 1;
+[e = . . _BAUDCTLbits 0 3 -> -> 1 `i `uc ]
+"105
+[; ;PROYECTO.c: 105:     SPBRG = 103;
 [e = _SPBRG -> -> 103 `i `uc ]
-"104
-[; ;PROYECTO.c: 104:     SPBRGH = 0;
-[e = _SPBRGH -> -> 0 `i `uc ]
 "106
-[; ;PROYECTO.c: 106:     RCSTAbits.SPEN = 1;
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-"107
-[; ;PROYECTO.c: 107:     RCSTAbits.RX9 = 0;
-[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 106:     SPBRGH = 0;
+[e = _SPBRGH -> -> 0 `i `uc ]
 "108
-[; ;PROYECTO.c: 108:     RCSTAbits.CREN = 1;
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+[; ;PROYECTO.c: 108:     RCSTAbits.SPEN = 1;
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
 "109
-[; ;PROYECTO.c: 109:     TXSTAbits.TXEN = 1;
-[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
+[; ;PROYECTO.c: 109:     RCSTAbits.RX9 = 0;
+[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
+"110
+[; ;PROYECTO.c: 110:     RCSTAbits.CREN = 1;
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
 "111
-[; ;PROYECTO.c: 111:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"112
-[; ;PROYECTO.c: 112:     INTCONbits.T0IE = 0;
-[e = . . _INTCONbits 0 5 -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 111:     TXSTAbits.TXEN = 1;
+[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
 "113
-[; ;PROYECTO.c: 113:     INTCONbits.T0IF = 0;
+[; ;PROYECTO.c: 113:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"114
+[; ;PROYECTO.c: 114:     INTCONbits.T0IE = 0;
+[e = . . _INTCONbits 0 5 -> -> 0 `i `uc ]
+"115
+[; ;PROYECTO.c: 115:     INTCONbits.T0IF = 0;
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"117
-[; ;PROYECTO.c: 117:     ADCON0bits.GO = 1;
-[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
 "119
-[; ;PROYECTO.c: 119:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
-"120
-[; ;PROYECTO.c: 120:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 119:     ADCON0bits.GO = 1;
+[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
 "121
-[; ;PROYECTO.c: 121:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 121:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
 "122
-[; ;PROYECTO.c: 122:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 122:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
 "123
-[; ;PROYECTO.c: 123:     PORTE = 0;
-[e = _PORTE -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 123:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
+"124
+[; ;PROYECTO.c: 124:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
 "125
-[; ;PROYECTO.c: 125:     ventana = 1;
+[; ;PROYECTO.c: 125:     PORTE = 0;
+[e = _PORTE -> -> 0 `i `uc ]
+"127
+[; ;PROYECTO.c: 127:     ventana = 1;
 [e = _ventana -> -> 1 `i `uc ]
-"128
-[; ;PROYECTO.c: 128:     while (1) {
+"130
+[; ;PROYECTO.c: 130:     while (1) {
 [e :U 141 ]
 {
-"129
-[; ;PROYECTO.c: 129:        if (T0IF == 1) {
+"131
+[; ;PROYECTO.c: 131:        if (T0IF == 1) {
 [e $ ! == -> _T0IF `i -> 1 `i 143  ]
 {
-"130
-[; ;PROYECTO.c: 130:             if(!RB0){
+"132
+[; ;PROYECTO.c: 132:             if(!RB0){
 [e $ ! ! _RB0 144  ]
 {
-"131
-[; ;PROYECTO.c: 131:                 RD0 = 1;
-[e = _RD0 -> -> 1 `i `b ]
-"132
-[; ;PROYECTO.c: 132:                 _delay((unsigned long)((2)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "133
-[; ;PROYECTO.c: 133:                 RD0 = 0;
-[e = _RD0 -> -> 0 `i `b ]
+[; ;PROYECTO.c: 133:                 RD0 = 1;
+[e = _RD0 -> -> 1 `i `b ]
 "134
-[; ;PROYECTO.c: 134:                 TMR0 = 70;
-[e = _TMR0 -> -> 70 `i `uc ]
+[; ;PROYECTO.c: 134:                 _delay((unsigned long)((2)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "135
-[; ;PROYECTO.c: 135:                 INTCONbits.T0IF = 0;
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 135:                 RD0 = 0;
+[e = _RD0 -> -> 0 `i `b ]
 "136
-[; ;PROYECTO.c: 136:             }
+[; ;PROYECTO.c: 136:                 TMR0 = 70;
+[e = _TMR0 -> -> 70 `i `uc ]
+"137
+[; ;PROYECTO.c: 137:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"138
+[; ;PROYECTO.c: 138:             }
 }
 [e $U 145  ]
-"137
-[; ;PROYECTO.c: 137:             else if(!RB1){
+"139
+[; ;PROYECTO.c: 139:             else if(!RB1){
 [e :U 144 ]
 [e $ ! ! _RB1 146  ]
 {
-"138
-[; ;PROYECTO.c: 138:                 RD1 = 1;
-[e = _RD1 -> -> 1 `i `b ]
-"139
-[; ;PROYECTO.c: 139:                 _delay((unsigned long)((2)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "140
-[; ;PROYECTO.c: 140:                 RD1 = 0;
-[e = _RD1 -> -> 0 `i `b ]
+[; ;PROYECTO.c: 140:                 RD1 = 1;
+[e = _RD1 -> -> 1 `i `b ]
 "141
-[; ;PROYECTO.c: 141:                 TMR0 = 70;
-[e = _TMR0 -> -> 70 `i `uc ]
+[; ;PROYECTO.c: 141:                 _delay((unsigned long)((2)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "142
-[; ;PROYECTO.c: 142:                 INTCONbits.T0IF = 0;
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 142:                 RD1 = 0;
+[e = _RD1 -> -> 0 `i `b ]
 "143
-[; ;PROYECTO.c: 143:             }
+[; ;PROYECTO.c: 143:                 TMR0 = 70;
+[e = _TMR0 -> -> 70 `i `uc ]
+"144
+[; ;PROYECTO.c: 144:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"145
+[; ;PROYECTO.c: 145:             }
 }
 [e $U 147  ]
-"144
-[; ;PROYECTO.c: 144:             else if(!RB2){
+"146
+[; ;PROYECTO.c: 146:             else if(!RB2){
 [e :U 146 ]
 [e $ ! ! _RB2 148  ]
 {
-"145
-[; ;PROYECTO.c: 145:                 RD2 = 1;
-[e = _RD2 -> -> 1 `i `b ]
-"146
-[; ;PROYECTO.c: 146:                 _delay((unsigned long)((2)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "147
-[; ;PROYECTO.c: 147:                 RD2 = 0;
-[e = _RD2 -> -> 0 `i `b ]
+[; ;PROYECTO.c: 147:                 RD2 = 1;
+[e = _RD2 -> -> 1 `i `b ]
 "148
-[; ;PROYECTO.c: 148:                 TMR0 = 70;
-[e = _TMR0 -> -> 70 `i `uc ]
+[; ;PROYECTO.c: 148:                 _delay((unsigned long)((2)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "149
-[; ;PROYECTO.c: 149:                 INTCONbits.T0IF = 0;
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 149:                 RD2 = 0;
+[e = _RD2 -> -> 0 `i `b ]
 "150
-[; ;PROYECTO.c: 150:             }
+[; ;PROYECTO.c: 150:                 TMR0 = 70;
+[e = _TMR0 -> -> 70 `i `uc ]
+"151
+[; ;PROYECTO.c: 151:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"152
+[; ;PROYECTO.c: 152:             }
 }
 [e $U 149  ]
-"151
-[; ;PROYECTO.c: 151:             else{
+"153
+[; ;PROYECTO.c: 153:             else{
 [e :U 148 ]
 {
-"152
-[; ;PROYECTO.c: 152:                 RD0 = 1;
-[e = _RD0 -> -> 1 `i `b ]
-"153
-[; ;PROYECTO.c: 153:                 RD1 = 1;
-[e = _RD1 -> -> 1 `i `b ]
 "154
-[; ;PROYECTO.c: 154:                 RD2 = 1;
-[e = _RD2 -> -> 1 `i `b ]
+[; ;PROYECTO.c: 154:                 RD0 = 1;
+[e = _RD0 -> -> 1 `i `b ]
 "155
-[; ;PROYECTO.c: 155:                 _delay((unsigned long)((1)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;PROYECTO.c: 155:                 RD1 = 1;
+[e = _RD1 -> -> 1 `i `b ]
 "156
-[; ;PROYECTO.c: 156:                 RD1 = 0;
-[e = _RD1 -> -> 0 `i `b ]
+[; ;PROYECTO.c: 156:                 RD2 = 1;
+[e = _RD2 -> -> 1 `i `b ]
 "157
-[; ;PROYECTO.c: 157:                 RD2 = 0;
-[e = _RD2 -> -> 0 `i `b ]
+[; ;PROYECTO.c: 157:                 _delay((unsigned long)((1)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "158
-[; ;PROYECTO.c: 158:                 RD0 = 0;
-[e = _RD0 -> -> 0 `i `b ]
+[; ;PROYECTO.c: 158:                 RD1 = 0;
+[e = _RD1 -> -> 0 `i `b ]
 "159
-[; ;PROYECTO.c: 159:                 TMR0 = 74;
-[e = _TMR0 -> -> 74 `i `uc ]
+[; ;PROYECTO.c: 159:                 RD2 = 0;
+[e = _RD2 -> -> 0 `i `b ]
 "160
-[; ;PROYECTO.c: 160:                 INTCONbits.T0IF = 0;
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 160:                 RD0 = 0;
+[e = _RD0 -> -> 0 `i `b ]
 "161
-[; ;PROYECTO.c: 161:             }
+[; ;PROYECTO.c: 161:                 TMR0 = 74;
+[e = _TMR0 -> -> 74 `i `uc ]
+"162
+[; ;PROYECTO.c: 162:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"163
+[; ;PROYECTO.c: 163:             }
 }
 [e :U 149 ]
 [e :U 147 ]
 [e :U 145 ]
-"162
-[; ;PROYECTO.c: 162:         }
+"164
+[; ;PROYECTO.c: 164:         }
 }
 [e :U 143 ]
-"164
-[; ;PROYECTO.c: 164:        if(ADCON0bits.GO == 0){
+"166
+[; ;PROYECTO.c: 166:        if(ADCON0bits.GO == 0){
 [e $ ! == -> . . _ADCON0bits 1 1 `i -> 0 `i 150  ]
 {
-"166
-[; ;PROYECTO.c: 166:             if(ADCON0bits.CHS == 6){
+"168
+[; ;PROYECTO.c: 168:             if(ADCON0bits.CHS == 6){
 [e $ ! == -> . . _ADCON0bits 0 2 `i -> 6 `i 151  ]
 {
-"167
-[; ;PROYECTO.c: 167:                 escala = ADRESH;
+"169
+[; ;PROYECTO.c: 169:                 escala = ADRESH;
 [e = _escala -> _ADRESH `uc ]
-"168
-[; ;PROYECTO.c: 168:                 if (escala >= 0 && escala <=42 ){
+"170
+[; ;PROYECTO.c: 170:                 if (escala >= 0 && escala <=42 ){
 [e $ ! && >= -> _escala `i -> 0 `i <= -> _escala `i -> 42 `i 152  ]
 {
-"169
-[; ;PROYECTO.c: 169:                     minuto = 0;
+"171
+[; ;PROYECTO.c: 171:                     minuto = 0;
 [e = _minuto -> -> 0 `i `uc ]
-"170
-[; ;PROYECTO.c: 170:                 }else if(escala >= 43 && escala <= 84 ){
+"172
+[; ;PROYECTO.c: 172:                 }else if(escala >= 43 && escala <= 84 ){
 }
 [e $U 153  ]
 [e :U 152 ]
 [e $ ! && >= -> _escala `i -> 43 `i <= -> _escala `i -> 84 `i 154  ]
 {
-"171
-[; ;PROYECTO.c: 171:                     minuto = 15;
+"173
+[; ;PROYECTO.c: 173:                     minuto = 15;
 [e = _minuto -> -> 15 `i `uc ]
-"172
-[; ;PROYECTO.c: 172:                 }else if(escala >= 85 && escala <= 126 ){
+"174
+[; ;PROYECTO.c: 174:                 }else if(escala >= 85 && escala <= 126 ){
 }
 [e $U 155  ]
 [e :U 154 ]
 [e $ ! && >= -> _escala `i -> 85 `i <= -> _escala `i -> 126 `i 156  ]
 {
-"173
-[; ;PROYECTO.c: 173:                     minuto = 30;
+"175
+[; ;PROYECTO.c: 175:                     minuto = 30;
 [e = _minuto -> -> 30 `i `uc ]
-"174
-[; ;PROYECTO.c: 174:                 }else if(escala >= 127 && escala <= 168 ){
+"176
+[; ;PROYECTO.c: 176:                 }else if(escala >= 127 && escala <= 168 ){
 }
 [e $U 157  ]
 [e :U 156 ]
 [e $ ! && >= -> _escala `i -> 127 `i <= -> _escala `i -> 168 `i 158  ]
 {
-"175
-[; ;PROYECTO.c: 175:                     minuto = 45;
+"177
+[; ;PROYECTO.c: 177:                     minuto = 45;
 [e = _minuto -> -> 45 `i `uc ]
-"176
-[; ;PROYECTO.c: 176:                 }else if(escala >= 210 && escala <= 255 ){
+"178
+[; ;PROYECTO.c: 178:                 }else if(escala >= 210 && escala <= 255 ){
 }
 [e $U 159  ]
 [e :U 158 ]
 [e $ ! && >= -> _escala `i -> 210 `i <= -> _escala `i -> 255 `i 160  ]
 {
-"177
-[; ;PROYECTO.c: 177:                     minuto = 60;
+"179
+[; ;PROYECTO.c: 179:                     minuto = 60;
 [e = _minuto -> -> 60 `i `uc ]
-"178
-[; ;PROYECTO.c: 178:                 }
+"180
+[; ;PROYECTO.c: 180:                 }
 }
 [e :U 160 ]
 [e :U 159 ]
 [e :U 157 ]
 [e :U 155 ]
 [e :U 153 ]
-"180
-[; ;PROYECTO.c: 180:                 ADCON0bits.CHS = 5;
+"182
+[; ;PROYECTO.c: 182:                 ADCON0bits.CHS = 5;
 [e = . . _ADCON0bits 0 2 -> -> 5 `i `uc ]
-"181
-[; ;PROYECTO.c: 181:             }
+"183
+[; ;PROYECTO.c: 183:             }
 }
 [e $U 161  ]
-"182
-[; ;PROYECTO.c: 182:             else if(ADCON0bits.CHS == 5){
+"184
+[; ;PROYECTO.c: 184:             else if(ADCON0bits.CHS == 5){
 [e :U 151 ]
 [e $ ! == -> . . _ADCON0bits 0 2 `i -> 5 `i 162  ]
 {
-"183
-[; ;PROYECTO.c: 183:                 escala = ADRESH;
-[e = _escala -> _ADRESH `uc ]
-"184
-[; ;PROYECTO.c: 184:                 if (escala >= 0 && escala <=26 ){
-[e $ ! && >= -> _escala `i -> 0 `i <= -> _escala `i -> 26 `i 163  ]
-{
 "185
-[; ;PROYECTO.c: 185:                     hora = 0;
-[e = _hora -> -> 0 `i `uc ]
+[; ;PROYECTO.c: 185:                 escala = ADRESH;
+[e = _escala -> _ADRESH `uc ]
 "186
-[; ;PROYECTO.c: 186:                 }else if(escala >= 27 && escala <=52 ){
+[; ;PROYECTO.c: 186:                 if (escala >= 0 && escala <=10 ){
+[e $ ! && >= -> _escala `i -> 0 `i <= -> _escala `i -> 10 `i 163  ]
+{
+"187
+[; ;PROYECTO.c: 187:                     hora = 0;
+[e = _hora -> -> 0 `i `uc ]
+"188
+[; ;PROYECTO.c: 188:                 }else if(escala >= 11 && escala <=20 ){
 }
 [e $U 164  ]
 [e :U 163 ]
-[e $ ! && >= -> _escala `i -> 27 `i <= -> _escala `i -> 52 `i 165  ]
+[e $ ! && >= -> _escala `i -> 11 `i <= -> _escala `i -> 20 `i 165  ]
 {
-"187
-[; ;PROYECTO.c: 187:                     hora = 1;
+"189
+[; ;PROYECTO.c: 189:                     hora = 1;
 [e = _hora -> -> 1 `i `uc ]
-"188
-[; ;PROYECTO.c: 188:                 }else if(escala >= 52 && escala <=78 ){
+"190
+[; ;PROYECTO.c: 190:                 }else if(escala >= 21 && escala <=30 ){
 }
 [e $U 166  ]
 [e :U 165 ]
-[e $ ! && >= -> _escala `i -> 52 `i <= -> _escala `i -> 78 `i 167  ]
+[e $ ! && >= -> _escala `i -> 21 `i <= -> _escala `i -> 30 `i 167  ]
 {
-"189
-[; ;PROYECTO.c: 189:                     hora = 2;
+"191
+[; ;PROYECTO.c: 191:                     hora = 2;
 [e = _hora -> -> 2 `i `uc ]
-"190
-[; ;PROYECTO.c: 190:                 }else if(escala >= 79 && escala <=104 ){
+"192
+[; ;PROYECTO.c: 192:                 }else if(escala >= 31 && escala <=40 ){
 }
 [e $U 168  ]
 [e :U 167 ]
-[e $ ! && >= -> _escala `i -> 79 `i <= -> _escala `i -> 104 `i 169  ]
+[e $ ! && >= -> _escala `i -> 31 `i <= -> _escala `i -> 40 `i 169  ]
 {
-"191
-[; ;PROYECTO.c: 191:                     hora = 3;
+"193
+[; ;PROYECTO.c: 193:                     hora = 3;
 [e = _hora -> -> 3 `i `uc ]
-"192
-[; ;PROYECTO.c: 192:                 }else if(escala >= 105 && escala <=130 ){
+"194
+[; ;PROYECTO.c: 194:                 }else if(escala >= 41 && escala <=50 ){
 }
 [e $U 170  ]
 [e :U 169 ]
-[e $ ! && >= -> _escala `i -> 105 `i <= -> _escala `i -> 130 `i 171  ]
+[e $ ! && >= -> _escala `i -> 41 `i <= -> _escala `i -> 50 `i 171  ]
 {
-"193
-[; ;PROYECTO.c: 193:                     hora = 4;
+"195
+[; ;PROYECTO.c: 195:                     hora = 4;
 [e = _hora -> -> 4 `i `uc ]
-"194
-[; ;PROYECTO.c: 194:                 }else if(escala >= 131 && escala <=156 ){
+"196
+[; ;PROYECTO.c: 196:                 }else if(escala >= 51 && escala <=60 ){
 }
 [e $U 172  ]
 [e :U 171 ]
-[e $ ! && >= -> _escala `i -> 131 `i <= -> _escala `i -> 156 `i 173  ]
+[e $ ! && >= -> _escala `i -> 51 `i <= -> _escala `i -> 60 `i 173  ]
 {
-"195
-[; ;PROYECTO.c: 195:                     hora = 5;
+"197
+[; ;PROYECTO.c: 197:                     hora = 5;
 [e = _hora -> -> 5 `i `uc ]
-"196
-[; ;PROYECTO.c: 196:                 }else if(escala >= 157 && escala <=182 ){
+"198
+[; ;PROYECTO.c: 198:                 }else if(escala >= 61 && escala <=70 ){
 }
 [e $U 174  ]
 [e :U 173 ]
-[e $ ! && >= -> _escala `i -> 157 `i <= -> _escala `i -> 182 `i 175  ]
+[e $ ! && >= -> _escala `i -> 61 `i <= -> _escala `i -> 70 `i 175  ]
 {
-"197
-[; ;PROYECTO.c: 197:                     hora = 6;
+"199
+[; ;PROYECTO.c: 199:                     hora = 6;
 [e = _hora -> -> 6 `i `uc ]
-"198
-[; ;PROYECTO.c: 198:                 }else if(escala >= 183 && escala <=208 ){
+"200
+[; ;PROYECTO.c: 200:                 }else if(escala >= 71 && escala <=80 ){
 }
 [e $U 176  ]
 [e :U 175 ]
-[e $ ! && >= -> _escala `i -> 183 `i <= -> _escala `i -> 208 `i 177  ]
+[e $ ! && >= -> _escala `i -> 71 `i <= -> _escala `i -> 80 `i 177  ]
 {
-"199
-[; ;PROYECTO.c: 199:                     hora = 7;
+"201
+[; ;PROYECTO.c: 201:                     hora = 7;
 [e = _hora -> -> 7 `i `uc ]
-"200
-[; ;PROYECTO.c: 200:                 }else if(escala >= 209 && escala <=234 ){
+"202
+[; ;PROYECTO.c: 202:                 }else if(escala >= 81 && escala <=90 ){
 }
 [e $U 178  ]
 [e :U 177 ]
-[e $ ! && >= -> _escala `i -> 209 `i <= -> _escala `i -> 234 `i 179  ]
+[e $ ! && >= -> _escala `i -> 81 `i <= -> _escala `i -> 90 `i 179  ]
 {
-"201
-[; ;PROYECTO.c: 201:                     hora = 8;
+"203
+[; ;PROYECTO.c: 203:                     hora = 8;
 [e = _hora -> -> 8 `i `uc ]
-"202
-[; ;PROYECTO.c: 202:                 }else if(escala >= 235 && escala <=255 ){
+"204
+[; ;PROYECTO.c: 204:                 }else if(escala >= 91 && escala <=100 ){
 }
 [e $U 180  ]
 [e :U 179 ]
-[e $ ! && >= -> _escala `i -> 235 `i <= -> _escala `i -> 255 `i 181  ]
+[e $ ! && >= -> _escala `i -> 91 `i <= -> _escala `i -> 100 `i 181  ]
 {
-"203
-[; ;PROYECTO.c: 203:                     hora = 9;
+"205
+[; ;PROYECTO.c: 205:                     hora = 9;
 [e = _hora -> -> 9 `i `uc ]
-"204
-[; ;PROYECTO.c: 204:                 }
+"206
+[; ;PROYECTO.c: 206:                 }else if(escala >= 101&& escala <=110 ){
 }
+[e $U 182  ]
 [e :U 181 ]
+[e $ ! && >= -> _escala `i -> 101 `i <= -> _escala `i -> 110 `i 183  ]
+{
+"207
+[; ;PROYECTO.c: 207:                     hora = 10;
+[e = _hora -> -> 10 `i `uc ]
+"208
+[; ;PROYECTO.c: 208:                 }else if(escala >= 111 && escala <=120 ){
+}
+[e $U 184  ]
+[e :U 183 ]
+[e $ ! && >= -> _escala `i -> 111 `i <= -> _escala `i -> 120 `i 185  ]
+{
+"209
+[; ;PROYECTO.c: 209:                     hora = 11;
+[e = _hora -> -> 11 `i `uc ]
+"210
+[; ;PROYECTO.c: 210:                 }else if(escala >= 121 && escala <=130 ){
+}
+[e $U 186  ]
+[e :U 185 ]
+[e $ ! && >= -> _escala `i -> 121 `i <= -> _escala `i -> 130 `i 187  ]
+{
+"211
+[; ;PROYECTO.c: 211:                     hora = 12;
+[e = _hora -> -> 12 `i `uc ]
+"212
+[; ;PROYECTO.c: 212:                 }else if(escala >= 131 && escala <=140 ){
+}
+[e $U 188  ]
+[e :U 187 ]
+[e $ ! && >= -> _escala `i -> 131 `i <= -> _escala `i -> 140 `i 189  ]
+{
+"213
+[; ;PROYECTO.c: 213:                     hora = 13;
+[e = _hora -> -> 13 `i `uc ]
+"214
+[; ;PROYECTO.c: 214:                 }else if(escala >= 141 && escala <=150 ){
+}
+[e $U 190  ]
+[e :U 189 ]
+[e $ ! && >= -> _escala `i -> 141 `i <= -> _escala `i -> 150 `i 191  ]
+{
+"215
+[; ;PROYECTO.c: 215:                     hora = 14;
+[e = _hora -> -> 14 `i `uc ]
+"216
+[; ;PROYECTO.c: 216:                 }else if(escala >= 151 && escala <=160 ){
+}
+[e $U 192  ]
+[e :U 191 ]
+[e $ ! && >= -> _escala `i -> 151 `i <= -> _escala `i -> 160 `i 193  ]
+{
+"217
+[; ;PROYECTO.c: 217:                     hora = 15;
+[e = _hora -> -> 15 `i `uc ]
+"218
+[; ;PROYECTO.c: 218:                 }else if(escala >= 161 && escala <=170 ){
+}
+[e $U 194  ]
+[e :U 193 ]
+[e $ ! && >= -> _escala `i -> 161 `i <= -> _escala `i -> 170 `i 195  ]
+{
+"219
+[; ;PROYECTO.c: 219:                     hora = 16;
+[e = _hora -> -> 16 `i `uc ]
+"220
+[; ;PROYECTO.c: 220:                 }else if(escala >= 171 && escala <=180 ){
+}
+[e $U 196  ]
+[e :U 195 ]
+[e $ ! && >= -> _escala `i -> 171 `i <= -> _escala `i -> 180 `i 197  ]
+{
+"221
+[; ;PROYECTO.c: 221:                     hora = 17;
+[e = _hora -> -> 17 `i `uc ]
+"222
+[; ;PROYECTO.c: 222:                 }else if(escala >= 181 && escala <=190 ){
+}
+[e $U 198  ]
+[e :U 197 ]
+[e $ ! && >= -> _escala `i -> 181 `i <= -> _escala `i -> 190 `i 199  ]
+{
+"223
+[; ;PROYECTO.c: 223:                     hora = 18;
+[e = _hora -> -> 18 `i `uc ]
+"224
+[; ;PROYECTO.c: 224:                 }else if(escala >= 191 && escala <=200 ){
+}
+[e $U 200  ]
+[e :U 199 ]
+[e $ ! && >= -> _escala `i -> 191 `i <= -> _escala `i -> 200 `i 201  ]
+{
+"225
+[; ;PROYECTO.c: 225:                     hora = 19;
+[e = _hora -> -> 19 `i `uc ]
+"226
+[; ;PROYECTO.c: 226:                 }else if(escala >= 201&& escala <=210 ){
+}
+[e $U 202  ]
+[e :U 201 ]
+[e $ ! && >= -> _escala `i -> 201 `i <= -> _escala `i -> 210 `i 203  ]
+{
+"227
+[; ;PROYECTO.c: 227:                     hora = 20;
+[e = _hora -> -> 20 `i `uc ]
+"228
+[; ;PROYECTO.c: 228:                 }else if(escala >= 211 && escala <=220 ){
+}
+[e $U 204  ]
+[e :U 203 ]
+[e $ ! && >= -> _escala `i -> 211 `i <= -> _escala `i -> 220 `i 205  ]
+{
+"229
+[; ;PROYECTO.c: 229:                     hora = 21;
+[e = _hora -> -> 21 `i `uc ]
+"230
+[; ;PROYECTO.c: 230:                 }else if(escala >= 221 && escala <=230 ){
+}
+[e $U 206  ]
+[e :U 205 ]
+[e $ ! && >= -> _escala `i -> 221 `i <= -> _escala `i -> 230 `i 207  ]
+{
+"231
+[; ;PROYECTO.c: 231:                     hora = 22;
+[e = _hora -> -> 22 `i `uc ]
+"232
+[; ;PROYECTO.c: 232:                 }else if(escala >= 231 && escala <=240 ){
+}
+[e $U 208  ]
+[e :U 207 ]
+[e $ ! && >= -> _escala `i -> 231 `i <= -> _escala `i -> 240 `i 209  ]
+{
+"233
+[; ;PROYECTO.c: 233:                     hora = 23;
+[e = _hora -> -> 23 `i `uc ]
+"234
+[; ;PROYECTO.c: 234:                 }else if(escala >= 241 && escala <=255 ){
+}
+[e $U 210  ]
+[e :U 209 ]
+[e $ ! && >= -> _escala `i -> 241 `i <= -> _escala `i -> 255 `i 211  ]
+{
+"235
+[; ;PROYECTO.c: 235:                     hora = 24;
+[e = _hora -> -> 24 `i `uc ]
+"236
+[; ;PROYECTO.c: 236:                 }
+}
+[e :U 211 ]
+[e :U 210 ]
+[e :U 208 ]
+[e :U 206 ]
+[e :U 204 ]
+[e :U 202 ]
+[e :U 200 ]
+[e :U 198 ]
+[e :U 196 ]
+[e :U 194 ]
+[e :U 192 ]
+[e :U 190 ]
+[e :U 188 ]
+[e :U 186 ]
+[e :U 184 ]
+[e :U 182 ]
 [e :U 180 ]
 [e :U 178 ]
 [e :U 176 ]
@@ -972,484 +1152,937 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 168 ]
 [e :U 166 ]
 [e :U 164 ]
-"206
-[; ;PROYECTO.c: 206:                 ADCON0bits.CHS = 6;
+"238
+[; ;PROYECTO.c: 238:                 ADCON0bits.CHS = 6;
 [e = . . _ADCON0bits 0 2 -> -> 6 `i `uc ]
-"207
-[; ;PROYECTO.c: 207:             }
+"239
+[; ;PROYECTO.c: 239:             }
 }
 [e :U 162 ]
 [e :U 161 ]
-"208
-[; ;PROYECTO.c: 208:             _delay((unsigned long)((50)*(4000000/4000000.0)));
+"240
+[; ;PROYECTO.c: 240:             _delay((unsigned long)((50)*(4000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
-"210
-[; ;PROYECTO.c: 210:             ADCON0bits.GO = 1;
+"242
+[; ;PROYECTO.c: 242:             ADCON0bits.GO = 1;
 [e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-"211
-[; ;PROYECTO.c: 211:         }
+"243
+[; ;PROYECTO.c: 243:         }
 }
 [e :U 150 ]
-"213
-[; ;PROYECTO.c: 213:        PORTA = hora;
-[e = _PORTA -> _hora `uc ]
-"215
-[; ;PROYECTO.c: 215:        if(ventana == 1){
-[e $ ! == -> _ventana `i -> 1 `i 182  ]
-{
-"217
-[; ;PROYECTO.c: 217:            USART_Cadena("\r Que accion desea ejecutar? \r");
-[e ( _USART_Cadena (1 :s 1C ]
-"218
-[; ;PROYECTO.c: 218:            USART_Cadena("1) ver datos de hora \r");
-[e ( _USART_Cadena (1 :s 2C ]
-"219
-[; ;PROYECTO.c: 219:            USART_Cadena("2) ver datos de minuto \r");
-[e ( _USART_Cadena (1 :s 3C ]
-"220
-[; ;PROYECTO.c: 220:            USART_Cadena("3) ver datos de ambos \r\r");
-[e ( _USART_Cadena (1 :s 4C ]
-"221
-[; ;PROYECTO.c: 221:            ventana = 0;
-[e = _ventana -> -> 0 `i `uc ]
-"222
-[; ;PROYECTO.c: 222:         }
-}
-[e :U 182 ]
-"224
-[; ;PROYECTO.c: 224:        if (PIR1bits.RCIF == 1){
-[e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 183  ]
-{
-"225
-[; ;PROYECTO.c: 225:            valor = USART_Rx();
-[e = _valor ( _USART_Rx ..  ]
-"226
-[; ;PROYECTO.c: 226:            ventana = 1;
-[e = _ventana -> -> 1 `i `uc ]
-"227
-[; ;PROYECTO.c: 227:        }
-}
-[e :U 183 ]
-"229
-[; ;PROYECTO.c: 229:        switch(valor){
-[e $U 185  ]
-{
-"230
-[; ;PROYECTO.c: 230:             case ('1'):
-[e :U 186 ]
-"231
-[; ;PROYECTO.c: 231:                 USART_Cadena(" Esperar  ");
-[e ( _USART_Cadena (1 :s 5C ]
-"232
-[; ;PROYECTO.c: 232:                 while(TXSTAbits.TRMT == 0);
-[e $U 187  ]
-[e :U 188 ]
-[e :U 187 ]
-[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 188  ]
-[e :U 189 ]
-"233
-[; ;PROYECTO.c: 233:                 if (hora == 0){
-[e $ ! == -> _hora `i -> 0 `i 190  ]
-{
-"234
-[; ;PROYECTO.c: 234:                     TXREG = 48;
-[e = _TXREG -> -> 48 `i `uc ]
-"235
-[; ;PROYECTO.c: 235:                 }else if(hora == 1){
-}
-[e $U 191  ]
-[e :U 190 ]
-[e $ ! == -> _hora `i -> 1 `i 192  ]
-{
-"236
-[; ;PROYECTO.c: 236:                     TXREG = 49;
-[e = _TXREG -> -> 49 `i `uc ]
-"237
-[; ;PROYECTO.c: 237:                 }else if(hora == 2){
-}
-[e $U 193  ]
-[e :U 192 ]
-[e $ ! == -> _hora `i -> 2 `i 194  ]
-{
-"238
-[; ;PROYECTO.c: 238:                     TXREG = 50;
-[e = _TXREG -> -> 50 `i `uc ]
-"239
-[; ;PROYECTO.c: 239:                 }else if(hora == 3){
-}
-[e $U 195  ]
-[e :U 194 ]
-[e $ ! == -> _hora `i -> 3 `i 196  ]
-{
-"240
-[; ;PROYECTO.c: 240:                     TXREG = 51;
-[e = _TXREG -> -> 51 `i `uc ]
-"241
-[; ;PROYECTO.c: 241:                 }else if(hora == 4){
-}
-[e $U 197  ]
-[e :U 196 ]
-[e $ ! == -> _hora `i -> 4 `i 198  ]
-{
-"242
-[; ;PROYECTO.c: 242:                     TXREG = 52;
-[e = _TXREG -> -> 52 `i `uc ]
-"243
-[; ;PROYECTO.c: 243:                 }else if(hora == 5){
-}
-[e $U 199  ]
-[e :U 198 ]
-[e $ ! == -> _hora `i -> 5 `i 200  ]
-{
-"244
-[; ;PROYECTO.c: 244:                     TXREG = 53;
-[e = _TXREG -> -> 53 `i `uc ]
 "245
-[; ;PROYECTO.c: 245:                 }else if(hora == 6){
-}
-[e $U 201  ]
-[e :U 200 ]
-[e $ ! == -> _hora `i -> 6 `i 202  ]
+[; ;PROYECTO.c: 245:        if(ventana == 1){
+[e $ ! == -> _ventana `i -> 1 `i 212  ]
 {
-"246
-[; ;PROYECTO.c: 246:                     TXREG = 54;
-[e = _TXREG -> -> 54 `i `uc ]
 "247
-[; ;PROYECTO.c: 247:                 }else if(hora == 7){
-}
-[e $U 203  ]
-[e :U 202 ]
-[e $ ! == -> _hora `i -> 7 `i 204  ]
-{
+[; ;PROYECTO.c: 247:            USART_Cadena("\r Que accion desea ejecutar? \r");
+[e ( _USART_Cadena (1 :s 1C ]
 "248
-[; ;PROYECTO.c: 248:                     TXREG = 55;
-[e = _TXREG -> -> 55 `i `uc ]
+[; ;PROYECTO.c: 248:            USART_Cadena("1) ver datos de hora \r");
+[e ( _USART_Cadena (1 :s 2C ]
 "249
-[; ;PROYECTO.c: 249:                 }else if(hora == 8){
-}
-[e $U 205  ]
-[e :U 204 ]
-[e $ ! == -> _hora `i -> 8 `i 206  ]
-{
+[; ;PROYECTO.c: 249:            USART_Cadena("2) ver datos de minuto \r");
+[e ( _USART_Cadena (1 :s 3C ]
 "250
-[; ;PROYECTO.c: 250:                     TXREG = 56;
-[e = _TXREG -> -> 56 `i `uc ]
+[; ;PROYECTO.c: 250:            USART_Cadena("3) ver datos de ambos \r\r");
+[e ( _USART_Cadena (1 :s 4C ]
 "251
-[; ;PROYECTO.c: 251:                 }else if(hora == 9){
-}
-[e $U 207  ]
-[e :U 206 ]
-[e $ ! == -> _hora `i -> 9 `i 208  ]
-{
+[; ;PROYECTO.c: 251:            ventana = 0;
+[e = _ventana -> -> 0 `i `uc ]
 "252
-[; ;PROYECTO.c: 252:                     TXREG = 57;
-[e = _TXREG -> -> 57 `i `uc ]
-"253
-[; ;PROYECTO.c: 253:                 }
+[; ;PROYECTO.c: 252:         }
 }
-[e :U 208 ]
-[e :U 207 ]
-[e :U 205 ]
-[e :U 203 ]
-[e :U 201 ]
-[e :U 199 ]
-[e :U 197 ]
-[e :U 195 ]
-[e :U 193 ]
-[e :U 191 ]
+[e :U 212 ]
+"254
+[; ;PROYECTO.c: 254:        if (PIR1bits.RCIF == 1){
+[e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 213  ]
+{
 "255
-[; ;PROYECTO.c: 255:                 USART_Cadena(" Horas ");
-[e ( _USART_Cadena (1 :s 6C ]
+[; ;PROYECTO.c: 255:            valor = USART_Rx();
+[e = _valor ( _USART_Rx ..  ]
+"256
+[; ;PROYECTO.c: 256:            ventana = 1;
+[e = _ventana -> -> 1 `i `uc ]
 "257
-[; ;PROYECTO.c: 257:                 USART_Cadena(" con  ");
-[e ( _USART_Cadena (1 :s 7C ]
-"258
-[; ;PROYECTO.c: 258:                 while(TXSTAbits.TRMT == 0);
-[e $U 209  ]
-[e :U 210 ]
-[e :U 209 ]
-[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 210  ]
-[e :U 211 ]
+[; ;PROYECTO.c: 257:        }
+}
+[e :U 213 ]
 "259
-[; ;PROYECTO.c: 259:                 if(minuto == 0) {
-[e $ ! == -> _minuto `i -> 0 `i 212  ]
+[; ;PROYECTO.c: 259:        switch(valor){
+[e $U 215  ]
 {
 "260
-[; ;PROYECTO.c: 260:                     USART_Cadena("0");
-[e ( _USART_Cadena (1 :s 8C ]
-"261
-[; ;PROYECTO.c: 261:                 }else if (minuto == 15){
-}
-[e $U 213  ]
-[e :U 212 ]
-[e $ ! == -> _minuto `i -> 15 `i 214  ]
-{
-"262
-[; ;PROYECTO.c: 262:                     USART_Cadena("15");
-[e ( _USART_Cadena (1 :s 9C ]
-"263
-[; ;PROYECTO.c: 263:                 }else if (minuto == 30){
-}
-[e $U 215  ]
-[e :U 214 ]
-[e $ ! == -> _minuto `i -> 30 `i 216  ]
-{
-"264
-[; ;PROYECTO.c: 264:                     USART_Cadena("30");
-[e ( _USART_Cadena (1 :s 10C ]
-"265
-[; ;PROYECTO.c: 265:                 }else if (minuto == 45){
-}
-[e $U 217  ]
+[; ;PROYECTO.c: 260:             case ('1'):
 [e :U 216 ]
-[e $ ! == -> _minuto `i -> 45 `i 218  ]
+"261
+[; ;PROYECTO.c: 261:                 USART_Cadena(" Esperar  ");
+[e ( _USART_Cadena (1 :s 5C ]
+"262
+[; ;PROYECTO.c: 262:                 switch(hora){
+[e $U 218  ]
 {
-"266
-[; ;PROYECTO.c: 266:                     USART_Cadena("45");
-[e ( _USART_Cadena (1 :s 11C ]
-"267
-[; ;PROYECTO.c: 267:                 }else if (minuto == 60){
-}
-[e $U 219  ]
-[e :U 218 ]
-[e $ ! == -> _minuto `i -> 60 `i 220  ]
-{
-"268
-[; ;PROYECTO.c: 268:                     USART_Cadena("60");
-[e ( _USART_Cadena (1 :s 12C ]
-"269
-[; ;PROYECTO.c: 269:                 }
-}
-[e :U 220 ]
+"263
+[; ;PROYECTO.c: 263:                     case(0):
 [e :U 219 ]
-[e :U 217 ]
-[e :U 215 ]
-[e :U 213 ]
-"270
-[; ;PROYECTO.c: 270:                 USART_Cadena(" mins. para el medicamento  \r\r");
-[e ( _USART_Cadena (1 :s 13C ]
-"271
-[; ;PROYECTO.c: 271:                 ventana = 1;
-[e = _ventana -> -> 1 `i `uc ]
-"272
-[; ;PROYECTO.c: 272:                 break;
-[e $U 184  ]
-"274
-[; ;PROYECTO.c: 274:             case ('2'):
+"264
+[; ;PROYECTO.c: 264:                         while(TXSTAbits.TRMT == 0);
+[e $U 220  ]
 [e :U 221 ]
-"275
-[; ;PROYECTO.c: 275:                 USART_Cadena(" con  ");
-[e ( _USART_Cadena (1 :s 14C ]
-"276
-[; ;PROYECTO.c: 276:                 while(TXSTAbits.TRMT == 0);
-[e $U 222  ]
-[e :U 223 ]
+[e :U 220 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 221  ]
 [e :U 222 ]
-[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 223  ]
-[e :U 224 ]
-"277
-[; ;PROYECTO.c: 277:                 if(minuto == 0) {
-[e $ ! == -> _minuto `i -> 0 `i 225  ]
-{
-"278
-[; ;PROYECTO.c: 278:                     USART_Cadena("0");
-[e ( _USART_Cadena (1 :s 15C ]
-"279
-[; ;PROYECTO.c: 279:                 }else if (minuto == 15){
-}
-[e $U 226  ]
+"265
+[; ;PROYECTO.c: 265:                         TXREG = 48;
+[e = _TXREG -> -> 48 `i `uc ]
+"266
+[; ;PROYECTO.c: 266:                     break;
+[e $U 217  ]
+"268
+[; ;PROYECTO.c: 268:                     case(1):
+[e :U 223 ]
+"269
+[; ;PROYECTO.c: 269:                         while(TXSTAbits.TRMT == 0);
+[e $U 224  ]
 [e :U 225 ]
-[e $ ! == -> _minuto `i -> 15 `i 227  ]
-{
-"280
-[; ;PROYECTO.c: 280:                     USART_Cadena("15");
-[e ( _USART_Cadena (1 :s 16C ]
-"281
-[; ;PROYECTO.c: 281:                 }else if (minuto == 30){
-}
-[e $U 228  ]
+[e :U 224 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 225  ]
+[e :U 226 ]
+"270
+[; ;PROYECTO.c: 270:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"271
+[; ;PROYECTO.c: 271:                     break;
+[e $U 217  ]
+"273
+[; ;PROYECTO.c: 273:                     case(2):
 [e :U 227 ]
-[e $ ! == -> _minuto `i -> 30 `i 229  ]
-{
-"282
-[; ;PROYECTO.c: 282:                     USART_Cadena("30");
-[e ( _USART_Cadena (1 :s 17C ]
-"283
-[; ;PROYECTO.c: 283:                 }else if (minuto == 45){
-}
-[e $U 230  ]
+"274
+[; ;PROYECTO.c: 274:                         while(TXSTAbits.TRMT == 0);
+[e $U 228  ]
 [e :U 229 ]
-[e $ ! == -> _minuto `i -> 45 `i 231  ]
-{
-"284
-[; ;PROYECTO.c: 284:                     USART_Cadena("45");
-[e ( _USART_Cadena (1 :s 18C ]
-"285
-[; ;PROYECTO.c: 285:                 }else if (minuto == 60){
-}
-[e $U 232  ]
+[e :U 228 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 229  ]
+[e :U 230 ]
+"275
+[; ;PROYECTO.c: 275:                         TXREG = 50;
+[e = _TXREG -> -> 50 `i `uc ]
+"276
+[; ;PROYECTO.c: 276:                     break;
+[e $U 217  ]
+"278
+[; ;PROYECTO.c: 278:                     case(3):
 [e :U 231 ]
-[e $ ! == -> _minuto `i -> 60 `i 233  ]
-{
-"286
-[; ;PROYECTO.c: 286:                     USART_Cadena("60");
-[e ( _USART_Cadena (1 :s 19C ]
-"287
-[; ;PROYECTO.c: 287:                 }
-}
+"279
+[; ;PROYECTO.c: 279:                         while(TXSTAbits.TRMT == 0);
+[e $U 232  ]
 [e :U 233 ]
 [e :U 232 ]
-[e :U 230 ]
-[e :U 228 ]
-[e :U 226 ]
-"288
-[; ;PROYECTO.c: 288:                 USART_Cadena(" mins. para el medicamento  \r\r");
-[e ( _USART_Cadena (1 :s 20C ]
-"289
-[; ;PROYECTO.c: 289:                 ventana = 1;
-[e = _ventana -> -> 1 `i `uc ]
-"290
-[; ;PROYECTO.c: 290:                 break;
-[e $U 184  ]
-"292
-[; ;PROYECTO.c: 292:             case ('3'):
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 233  ]
 [e :U 234 ]
-"293
-[; ;PROYECTO.c: 293:                 USART_Cadena(" Esperar  ");
-[e ( _USART_Cadena (1 :s 21C ]
-"294
-[; ;PROYECTO.c: 294:                 USART_Tx(hora);
-[e ( _USART_Tx (1 _hora ]
-"295
-[; ;PROYECTO.c: 295:                 USART_Cadena(" H. para el medicamento  \r");
-[e ( _USART_Cadena (1 :s 22C ]
-"296
-[; ;PROYECTO.c: 296:                 USART_Cadena(" Esperar  ");
-[e ( _USART_Cadena (1 :s 23C ]
-"297
-[; ;PROYECTO.c: 297:                 USART_Tx(minuto);
-[e ( _USART_Tx (1 _minuto ]
-"298
-[; ;PROYECTO.c: 298:                 USART_Cadena(" mins. para el medicamento  \r\r");
-[e ( _USART_Cadena (1 :s 24C ]
-"299
-[; ;PROYECTO.c: 299:                 ventana = 1;
-[e = _ventana -> -> 1 `i `uc ]
-"300
-[; ;PROYECTO.c: 300:                 break;
-[e $U 184  ]
-"301
-[; ;PROYECTO.c: 301:         }
-}
-[e $U 184  ]
-[e :U 185 ]
-[e [\ -> _valor `i , $ -> -> 49 `ui `i 186
- , $ -> -> 50 `ui `i 221
- , $ -> -> 51 `ui `i 234
- 184 ]
-[e :U 184 ]
-"302
-[; ;PROYECTO.c: 302:        valor = 0;
-[e = _valor -> -> 0 `i `uc ]
-"304
-[; ;PROYECTO.c: 304:     }
-}
-[e :U 140 ]
-[e $U 141  ]
-[e :U 142 ]
-"305
-[; ;PROYECTO.c: 305:     return;
-[e $UE 139  ]
-"306
-[; ;PROYECTO.c: 306: }
-[e :UE 139 ]
-}
-"310
-[; ;PROYECTO.c: 310:     void USART_Tx(char data){
-[v _USART_Tx `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _USART_Tx ]
-[v _data `uc ~T0 @X0 1 r1 ]
-[f ]
-"311
-[; ;PROYECTO.c: 311:         while(TXSTAbits.TRMT == 0);
+"280
+[; ;PROYECTO.c: 280:                         TXREG = 51;
+[e = _TXREG -> -> 51 `i `uc ]
+"281
+[; ;PROYECTO.c: 281:                     break;
+[e $U 217  ]
+"283
+[; ;PROYECTO.c: 283:                     case(4):
+[e :U 235 ]
+"284
+[; ;PROYECTO.c: 284:                         while(TXSTAbits.TRMT == 0);
 [e $U 236  ]
 [e :U 237 ]
 [e :U 236 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 237  ]
 [e :U 238 ]
-"312
-[; ;PROYECTO.c: 312:         TXREG = data;
-[e = _TXREG -> _data `uc ]
+"285
+[; ;PROYECTO.c: 285:                         TXREG = 52;
+[e = _TXREG -> -> 52 `i `uc ]
+"286
+[; ;PROYECTO.c: 286:                     break;
+[e $U 217  ]
+"288
+[; ;PROYECTO.c: 288:                     case(5):
+[e :U 239 ]
+"289
+[; ;PROYECTO.c: 289:                         while(TXSTAbits.TRMT == 0);
+[e $U 240  ]
+[e :U 241 ]
+[e :U 240 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 241  ]
+[e :U 242 ]
+"290
+[; ;PROYECTO.c: 290:                         TXREG = 53;
+[e = _TXREG -> -> 53 `i `uc ]
+"291
+[; ;PROYECTO.c: 291:                     break;
+[e $U 217  ]
+"293
+[; ;PROYECTO.c: 293:                     case(6):
+[e :U 243 ]
+"294
+[; ;PROYECTO.c: 294:                         while(TXSTAbits.TRMT == 0);
+[e $U 244  ]
+[e :U 245 ]
+[e :U 244 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 245  ]
+[e :U 246 ]
+"295
+[; ;PROYECTO.c: 295:                         TXREG = 54;
+[e = _TXREG -> -> 54 `i `uc ]
+"296
+[; ;PROYECTO.c: 296:                     break;
+[e $U 217  ]
+"298
+[; ;PROYECTO.c: 298:                     case(7):
+[e :U 247 ]
+"299
+[; ;PROYECTO.c: 299:                         while(TXSTAbits.TRMT == 0);
+[e $U 248  ]
+[e :U 249 ]
+[e :U 248 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 249  ]
+[e :U 250 ]
+"300
+[; ;PROYECTO.c: 300:                         TXREG = 55;
+[e = _TXREG -> -> 55 `i `uc ]
+"301
+[; ;PROYECTO.c: 301:                     break;
+[e $U 217  ]
+"303
+[; ;PROYECTO.c: 303:                     case(8):
+[e :U 251 ]
+"304
+[; ;PROYECTO.c: 304:                         while(TXSTAbits.TRMT == 0);
+[e $U 252  ]
+[e :U 253 ]
+[e :U 252 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 253  ]
+[e :U 254 ]
+"305
+[; ;PROYECTO.c: 305:                         TXREG = 56;
+[e = _TXREG -> -> 56 `i `uc ]
+"306
+[; ;PROYECTO.c: 306:                     break;
+[e $U 217  ]
+"308
+[; ;PROYECTO.c: 308:                     case(9):
+[e :U 255 ]
+"309
+[; ;PROYECTO.c: 309:                         while(TXSTAbits.TRMT == 0);
+[e $U 256  ]
+[e :U 257 ]
+[e :U 256 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 257  ]
+[e :U 258 ]
+"310
+[; ;PROYECTO.c: 310:                         TXREG = 57;
+[e = _TXREG -> -> 57 `i `uc ]
+"311
+[; ;PROYECTO.c: 311:                     break;
+[e $U 217  ]
 "313
-[; ;PROYECTO.c: 313:     }
-[e :UE 235 ]
-}
+[; ;PROYECTO.c: 313:                     case(10):
+[e :U 259 ]
+"314
+[; ;PROYECTO.c: 314:                         while(TXSTAbits.TRMT == 0);
+[e $U 260  ]
+[e :U 261 ]
+[e :U 260 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 261  ]
+[e :U 262 ]
 "315
-[; ;PROYECTO.c: 315:     char USART_Rx(){
+[; ;PROYECTO.c: 315:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"316
+[; ;PROYECTO.c: 316:                         while(TXSTAbits.TRMT == 0);
+[e $U 263  ]
+[e :U 264 ]
+[e :U 263 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 264  ]
+[e :U 265 ]
+"317
+[; ;PROYECTO.c: 317:                         TXREG = 48;
+[e = _TXREG -> -> 48 `i `uc ]
+"318
+[; ;PROYECTO.c: 318:                     break;
+[e $U 217  ]
+"320
+[; ;PROYECTO.c: 320:                     case(11):
+[e :U 266 ]
+"321
+[; ;PROYECTO.c: 321:                         while(TXSTAbits.TRMT == 0);
+[e $U 267  ]
+[e :U 268 ]
+[e :U 267 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 268  ]
+[e :U 269 ]
+"322
+[; ;PROYECTO.c: 322:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"323
+[; ;PROYECTO.c: 323:                         while(TXSTAbits.TRMT == 0);
+[e $U 270  ]
+[e :U 271 ]
+[e :U 270 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 271  ]
+[e :U 272 ]
+"324
+[; ;PROYECTO.c: 324:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"325
+[; ;PROYECTO.c: 325:                     break;
+[e $U 217  ]
+"327
+[; ;PROYECTO.c: 327:                     case(12):
+[e :U 273 ]
+"328
+[; ;PROYECTO.c: 328:                         while(TXSTAbits.TRMT == 0);
+[e $U 274  ]
+[e :U 275 ]
+[e :U 274 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 275  ]
+[e :U 276 ]
+"329
+[; ;PROYECTO.c: 329:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"330
+[; ;PROYECTO.c: 330:                         while(TXSTAbits.TRMT == 0);
+[e $U 277  ]
+[e :U 278 ]
+[e :U 277 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 278  ]
+[e :U 279 ]
+"331
+[; ;PROYECTO.c: 331:                         TXREG = 50;
+[e = _TXREG -> -> 50 `i `uc ]
+"332
+[; ;PROYECTO.c: 332:                     break;
+[e $U 217  ]
+"334
+[; ;PROYECTO.c: 334:                     case(13):
+[e :U 280 ]
+"335
+[; ;PROYECTO.c: 335:                         while(TXSTAbits.TRMT == 0);
+[e $U 281  ]
+[e :U 282 ]
+[e :U 281 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 282  ]
+[e :U 283 ]
+"336
+[; ;PROYECTO.c: 336:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"337
+[; ;PROYECTO.c: 337:                         while(TXSTAbits.TRMT == 0);
+[e $U 284  ]
+[e :U 285 ]
+[e :U 284 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 285  ]
+[e :U 286 ]
+"338
+[; ;PROYECTO.c: 338:                         TXREG = 51;
+[e = _TXREG -> -> 51 `i `uc ]
+"339
+[; ;PROYECTO.c: 339:                     break;
+[e $U 217  ]
+"341
+[; ;PROYECTO.c: 341:                     case(14):
+[e :U 287 ]
+"342
+[; ;PROYECTO.c: 342:                         while(TXSTAbits.TRMT == 0);
+[e $U 288  ]
+[e :U 289 ]
+[e :U 288 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 289  ]
+[e :U 290 ]
+"343
+[; ;PROYECTO.c: 343:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"344
+[; ;PROYECTO.c: 344:                         while(TXSTAbits.TRMT == 0);
+[e $U 291  ]
+[e :U 292 ]
+[e :U 291 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 292  ]
+[e :U 293 ]
+"345
+[; ;PROYECTO.c: 345:                         TXREG = 52;
+[e = _TXREG -> -> 52 `i `uc ]
+"346
+[; ;PROYECTO.c: 346:                     break;
+[e $U 217  ]
+"348
+[; ;PROYECTO.c: 348:                     case(15):
+[e :U 294 ]
+"349
+[; ;PROYECTO.c: 349:                         while(TXSTAbits.TRMT == 0);
+[e $U 295  ]
+[e :U 296 ]
+[e :U 295 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 296  ]
+[e :U 297 ]
+"350
+[; ;PROYECTO.c: 350:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"351
+[; ;PROYECTO.c: 351:                         while(TXSTAbits.TRMT == 0);
+[e $U 298  ]
+[e :U 299 ]
+[e :U 298 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 299  ]
+[e :U 300 ]
+"352
+[; ;PROYECTO.c: 352:                         TXREG = 53;
+[e = _TXREG -> -> 53 `i `uc ]
+"353
+[; ;PROYECTO.c: 353:                     break;
+[e $U 217  ]
+"355
+[; ;PROYECTO.c: 355:                     case(16):
+[e :U 301 ]
+"356
+[; ;PROYECTO.c: 356:                         while(TXSTAbits.TRMT == 0);
+[e $U 302  ]
+[e :U 303 ]
+[e :U 302 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 303  ]
+[e :U 304 ]
+"357
+[; ;PROYECTO.c: 357:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"358
+[; ;PROYECTO.c: 358:                         while(TXSTAbits.TRMT == 0);
+[e $U 305  ]
+[e :U 306 ]
+[e :U 305 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 306  ]
+[e :U 307 ]
+"359
+[; ;PROYECTO.c: 359:                         TXREG = 54;
+[e = _TXREG -> -> 54 `i `uc ]
+"360
+[; ;PROYECTO.c: 360:                     break;
+[e $U 217  ]
+"362
+[; ;PROYECTO.c: 362:                     case(17):
+[e :U 308 ]
+"363
+[; ;PROYECTO.c: 363:                         while(TXSTAbits.TRMT == 0);
+[e $U 309  ]
+[e :U 310 ]
+[e :U 309 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 310  ]
+[e :U 311 ]
+"364
+[; ;PROYECTO.c: 364:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"365
+[; ;PROYECTO.c: 365:                         while(TXSTAbits.TRMT == 0);
+[e $U 312  ]
+[e :U 313 ]
+[e :U 312 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 313  ]
+[e :U 314 ]
+"366
+[; ;PROYECTO.c: 366:                         TXREG = 55;
+[e = _TXREG -> -> 55 `i `uc ]
+"367
+[; ;PROYECTO.c: 367:                     break;
+[e $U 217  ]
+"369
+[; ;PROYECTO.c: 369:                     case(18):
+[e :U 315 ]
+"370
+[; ;PROYECTO.c: 370:                         while(TXSTAbits.TRMT == 0);
+[e $U 316  ]
+[e :U 317 ]
+[e :U 316 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 317  ]
+[e :U 318 ]
+"371
+[; ;PROYECTO.c: 371:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"372
+[; ;PROYECTO.c: 372:                         while(TXSTAbits.TRMT == 0);
+[e $U 319  ]
+[e :U 320 ]
+[e :U 319 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 320  ]
+[e :U 321 ]
+"373
+[; ;PROYECTO.c: 373:                         TXREG = 56;
+[e = _TXREG -> -> 56 `i `uc ]
+"374
+[; ;PROYECTO.c: 374:                     break;
+[e $U 217  ]
+"376
+[; ;PROYECTO.c: 376:                     case(19):
+[e :U 322 ]
+"377
+[; ;PROYECTO.c: 377:                         while(TXSTAbits.TRMT == 0);
+[e $U 323  ]
+[e :U 324 ]
+[e :U 323 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 324  ]
+[e :U 325 ]
+"378
+[; ;PROYECTO.c: 378:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"379
+[; ;PROYECTO.c: 379:                         while(TXSTAbits.TRMT == 0);
+[e $U 326  ]
+[e :U 327 ]
+[e :U 326 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 327  ]
+[e :U 328 ]
+"380
+[; ;PROYECTO.c: 380:                         TXREG = 57;
+[e = _TXREG -> -> 57 `i `uc ]
+"381
+[; ;PROYECTO.c: 381:                     break;
+[e $U 217  ]
+"383
+[; ;PROYECTO.c: 383:                     case(20):
+[e :U 329 ]
+"384
+[; ;PROYECTO.c: 384:                         while(TXSTAbits.TRMT == 0);
+[e $U 330  ]
+[e :U 331 ]
+[e :U 330 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 331  ]
+[e :U 332 ]
+"385
+[; ;PROYECTO.c: 385:                         TXREG = 50;
+[e = _TXREG -> -> 50 `i `uc ]
+"386
+[; ;PROYECTO.c: 386:                         while(TXSTAbits.TRMT == 0);
+[e $U 333  ]
+[e :U 334 ]
+[e :U 333 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 334  ]
+[e :U 335 ]
+"387
+[; ;PROYECTO.c: 387:                         TXREG = 48;
+[e = _TXREG -> -> 48 `i `uc ]
+"388
+[; ;PROYECTO.c: 388:                     break;
+[e $U 217  ]
+"390
+[; ;PROYECTO.c: 390:                     case(21):
+[e :U 336 ]
+"391
+[; ;PROYECTO.c: 391:                         while(TXSTAbits.TRMT == 0);
+[e $U 337  ]
+[e :U 338 ]
+[e :U 337 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 338  ]
+[e :U 339 ]
+"392
+[; ;PROYECTO.c: 392:                         TXREG = 50;
+[e = _TXREG -> -> 50 `i `uc ]
+"393
+[; ;PROYECTO.c: 393:                         while(TXSTAbits.TRMT == 0);
+[e $U 340  ]
+[e :U 341 ]
+[e :U 340 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 341  ]
+[e :U 342 ]
+"394
+[; ;PROYECTO.c: 394:                         TXREG = 49;
+[e = _TXREG -> -> 49 `i `uc ]
+"395
+[; ;PROYECTO.c: 395:                     break;
+[e $U 217  ]
+"397
+[; ;PROYECTO.c: 397:                     case(22):
+[e :U 343 ]
+"398
+[; ;PROYECTO.c: 398:                         while(TXSTAbits.TRMT == 0);
+[e $U 344  ]
+[e :U 345 ]
+[e :U 344 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 345  ]
+[e :U 346 ]
+"399
+[; ;PROYECTO.c: 399:                         TXREG = 50;
+[e = _TXREG -> -> 50 `i `uc ]
+"400
+[; ;PROYECTO.c: 400:                         while(TXSTAbits.TRMT == 0);
+[e $U 347  ]
+[e :U 348 ]
+[e :U 347 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 348  ]
+[e :U 349 ]
+"401
+[; ;PROYECTO.c: 401:                         TXREG = 50;
+[e = _TXREG -> -> 50 `i `uc ]
+"402
+[; ;PROYECTO.c: 402:                     break;
+[e $U 217  ]
+"404
+[; ;PROYECTO.c: 404:                     case(23):
+[e :U 350 ]
+"405
+[; ;PROYECTO.c: 405:                         while(TXSTAbits.TRMT == 0);
+[e $U 351  ]
+[e :U 352 ]
+[e :U 351 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 352  ]
+[e :U 353 ]
+"406
+[; ;PROYECTO.c: 406:                         TXREG = 50;
+[e = _TXREG -> -> 50 `i `uc ]
+"407
+[; ;PROYECTO.c: 407:                         while(TXSTAbits.TRMT == 0);
+[e $U 354  ]
+[e :U 355 ]
+[e :U 354 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 355  ]
+[e :U 356 ]
+"408
+[; ;PROYECTO.c: 408:                         TXREG = 51;
+[e = _TXREG -> -> 51 `i `uc ]
+"409
+[; ;PROYECTO.c: 409:                     break;
+[e $U 217  ]
+"411
+[; ;PROYECTO.c: 411:                     case(24):
+[e :U 357 ]
+"412
+[; ;PROYECTO.c: 412:                         while(TXSTAbits.TRMT == 0);
+[e $U 358  ]
+[e :U 359 ]
+[e :U 358 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 359  ]
+[e :U 360 ]
+"413
+[; ;PROYECTO.c: 413:                         TXREG = 50;
+[e = _TXREG -> -> 50 `i `uc ]
+"414
+[; ;PROYECTO.c: 414:                         while(TXSTAbits.TRMT == 0);
+[e $U 361  ]
+[e :U 362 ]
+[e :U 361 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 362  ]
+[e :U 363 ]
+"415
+[; ;PROYECTO.c: 415:                         TXREG = 52;
+[e = _TXREG -> -> 52 `i `uc ]
+"416
+[; ;PROYECTO.c: 416:                     break;
+[e $U 217  ]
+"417
+[; ;PROYECTO.c: 417:                 }
+}
+[e $U 217  ]
+[e :U 218 ]
+[e [\ -> _hora `i , $ -> 0 `i 219
+ , $ -> 1 `i 223
+ , $ -> 2 `i 227
+ , $ -> 3 `i 231
+ , $ -> 4 `i 235
+ , $ -> 5 `i 239
+ , $ -> 6 `i 243
+ , $ -> 7 `i 247
+ , $ -> 8 `i 251
+ , $ -> 9 `i 255
+ , $ -> 10 `i 259
+ , $ -> 11 `i 266
+ , $ -> 12 `i 273
+ , $ -> 13 `i 280
+ , $ -> 14 `i 287
+ , $ -> 15 `i 294
+ , $ -> 16 `i 301
+ , $ -> 17 `i 308
+ , $ -> 18 `i 315
+ , $ -> 19 `i 322
+ , $ -> 20 `i 329
+ , $ -> 21 `i 336
+ , $ -> 22 `i 343
+ , $ -> 23 `i 350
+ , $ -> 24 `i 357
+ 217 ]
+[e :U 217 ]
+"419
+[; ;PROYECTO.c: 419:                 USART_Cadena(" Horas ");
+[e ( _USART_Cadena (1 :s 6C ]
+"420
+[; ;PROYECTO.c: 420:                 USART_Cadena(" con  ");
+[e ( _USART_Cadena (1 :s 7C ]
+"421
+[; ;PROYECTO.c: 421:                 while(TXSTAbits.TRMT == 0);
+[e $U 364  ]
+[e :U 365 ]
+[e :U 364 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 365  ]
+[e :U 366 ]
+"422
+[; ;PROYECTO.c: 422:                 if(minuto == 0) {
+[e $ ! == -> _minuto `i -> 0 `i 367  ]
+{
+"423
+[; ;PROYECTO.c: 423:                     USART_Cadena("0");
+[e ( _USART_Cadena (1 :s 8C ]
+"424
+[; ;PROYECTO.c: 424:                 }else if (minuto == 15){
+}
+[e $U 368  ]
+[e :U 367 ]
+[e $ ! == -> _minuto `i -> 15 `i 369  ]
+{
+"425
+[; ;PROYECTO.c: 425:                     USART_Cadena("15");
+[e ( _USART_Cadena (1 :s 9C ]
+"426
+[; ;PROYECTO.c: 426:                 }else if (minuto == 30){
+}
+[e $U 370  ]
+[e :U 369 ]
+[e $ ! == -> _minuto `i -> 30 `i 371  ]
+{
+"427
+[; ;PROYECTO.c: 427:                     USART_Cadena("30");
+[e ( _USART_Cadena (1 :s 10C ]
+"428
+[; ;PROYECTO.c: 428:                 }else if (minuto == 45){
+}
+[e $U 372  ]
+[e :U 371 ]
+[e $ ! == -> _minuto `i -> 45 `i 373  ]
+{
+"429
+[; ;PROYECTO.c: 429:                     USART_Cadena("45");
+[e ( _USART_Cadena (1 :s 11C ]
+"430
+[; ;PROYECTO.c: 430:                 }else if (minuto == 60){
+}
+[e $U 374  ]
+[e :U 373 ]
+[e $ ! == -> _minuto `i -> 60 `i 375  ]
+{
+"431
+[; ;PROYECTO.c: 431:                     USART_Cadena("60");
+[e ( _USART_Cadena (1 :s 12C ]
+"432
+[; ;PROYECTO.c: 432:                 }
+}
+[e :U 375 ]
+[e :U 374 ]
+[e :U 372 ]
+[e :U 370 ]
+[e :U 368 ]
+"433
+[; ;PROYECTO.c: 433:                 USART_Cadena(" mins. para el medicamento  \r\r");
+[e ( _USART_Cadena (1 :s 13C ]
+"434
+[; ;PROYECTO.c: 434:                 ventana = 1;
+[e = _ventana -> -> 1 `i `uc ]
+"435
+[; ;PROYECTO.c: 435:                 break;
+[e $U 214  ]
+"437
+[; ;PROYECTO.c: 437:             case ('2'):
+[e :U 376 ]
+"438
+[; ;PROYECTO.c: 438:                 USART_Cadena(" Ingresá la letra de la nueva hora  \r");
+[e ( _USART_Cadena (1 :s 14C ]
+"439
+[; ;PROYECTO.c: 439:                 USART_Cadena(" a.0  b.1  c.2  d.3  e.4  f.5  g.6  h.7  i.8\r");
+[e ( _USART_Cadena (1 :s 15C ]
+"440
+[; ;PROYECTO.c: 440:                 USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
+[e ( _USART_Cadena (1 :s 16C ]
+"441
+[; ;PROYECTO.c: 441:                 USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
+[e ( _USART_Cadena (1 :s 17C ]
+"442
+[; ;PROYECTO.c: 442:                 while(1){
+[e :U 378 ]
+{
+"443
+[; ;PROYECTO.c: 443:                     if (PIR1bits.RCIF == 1){
+[e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 380  ]
+{
+"444
+[; ;PROYECTO.c: 444:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 18C ]
+"445
+[; ;PROYECTO.c: 445:                         nueva_hora = USART_Rx();
+[e = _nueva_hora ( _USART_Rx ..  ]
+"446
+[; ;PROYECTO.c: 446:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 19C ]
+"447
+[; ;PROYECTO.c: 447:                         break;
+[e $U 379  ]
+"448
+[; ;PROYECTO.c: 448:                     }
+}
+[e :U 380 ]
+"449
+[; ;PROYECTO.c: 449:                 }
+}
+[e :U 377 ]
+[e $U 378  ]
+[e :U 379 ]
+"450
+[; ;PROYECTO.c: 450:                 ventana = 1;
+[e = _ventana -> -> 1 `i `uc ]
+"451
+[; ;PROYECTO.c: 451:                 break;
+[e $U 214  ]
+"453
+[; ;PROYECTO.c: 453:             case ('3'):
+[e :U 381 ]
+"454
+[; ;PROYECTO.c: 454:                 ventana = 1;
+[e = _ventana -> -> 1 `i `uc ]
+"455
+[; ;PROYECTO.c: 455:                 break;
+[e $U 214  ]
+"456
+[; ;PROYECTO.c: 456:         }
+}
+[e $U 214  ]
+[e :U 215 ]
+[e [\ -> _valor `i , $ -> -> 49 `ui `i 216
+ , $ -> -> 50 `ui `i 376
+ , $ -> -> 51 `ui `i 381
+ 214 ]
+[e :U 214 ]
+"457
+[; ;PROYECTO.c: 457:        valor = '0';
+[e = _valor -> -> 48 `ui `uc ]
+"460
+[; ;PROYECTO.c: 460:        PORTA = nueva_hora;
+[e = _PORTA -> _nueva_hora `uc ]
+"461
+[; ;PROYECTO.c: 461:        if (!RB7){
+[e $ ! ! _RB7 382  ]
+{
+"462
+[; ;PROYECTO.c: 462:            user1 = 1;
+[e = _user1 -> -> 1 `i `uc ]
+"463
+[; ;PROYECTO.c: 463:        }
+}
+[e :U 382 ]
+"464
+[; ;PROYECTO.c: 464:        if (!RB6){
+[e $ ! ! _RB6 383  ]
+{
+"465
+[; ;PROYECTO.c: 465:            user2 = 1;
+[e = _user2 -> -> 1 `i `uc ]
+"466
+[; ;PROYECTO.c: 466:        }
+}
+[e :U 383 ]
+"467
+[; ;PROYECTO.c: 467:        if (!RB5){
+[e $ ! ! _RB5 384  ]
+{
+"468
+[; ;PROYECTO.c: 468:            user3 = 1;
+[e = _user3 -> -> 1 `i `uc ]
+"469
+[; ;PROYECTO.c: 469:        }
+}
+[e :U 384 ]
+"472
+[; ;PROYECTO.c: 472:     }
+}
+[e :U 140 ]
+[e $U 141  ]
+[e :U 142 ]
+"473
+[; ;PROYECTO.c: 473:     return;
+[e $UE 139  ]
+"474
+[; ;PROYECTO.c: 474: }
+[e :UE 139 ]
+}
+"478
+[; ;PROYECTO.c: 478:     void USART_Tx(char data){
+[v _USART_Tx `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _USART_Tx ]
+[v _data `uc ~T0 @X0 1 r1 ]
+[f ]
+"479
+[; ;PROYECTO.c: 479:         while(TXSTAbits.TRMT == 0);
+[e $U 386  ]
+[e :U 387 ]
+[e :U 386 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 387  ]
+[e :U 388 ]
+"480
+[; ;PROYECTO.c: 480:         TXREG = data;
+[e = _TXREG -> _data `uc ]
+"481
+[; ;PROYECTO.c: 481:     }
+[e :UE 385 ]
+}
+"483
+[; ;PROYECTO.c: 483:     char USART_Rx(){
 [v _USART_Rx `(uc ~T0 @X0 1 ef ]
 {
 [e :U _USART_Rx ]
 [f ]
-"316
-[; ;PROYECTO.c: 316:         return RCREG;
+"484
+[; ;PROYECTO.c: 484:         return RCREG;
 [e ) -> _RCREG `uc ]
-[e $UE 239  ]
-"317
-[; ;PROYECTO.c: 317:        }
-[e :UE 239 ]
+[e $UE 389  ]
+"485
+[; ;PROYECTO.c: 485:        }
+[e :UE 389 ]
 }
-"319
-[; ;PROYECTO.c: 319:     void USART_Cadena(char *str){
+"487
+[; ;PROYECTO.c: 487:     void USART_Cadena(char *str){
 [v _USART_Cadena `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _USART_Cadena ]
 [v _str `*uc ~T0 @X0 1 r1 ]
 [f ]
-"320
-[; ;PROYECTO.c: 320:         while(*str != '\0'){
-[e $U 241  ]
-[e :U 242 ]
+"488
+[; ;PROYECTO.c: 488:         while(*str != '\0'){
+[e $U 391  ]
+[e :U 392 ]
 {
-"321
-[; ;PROYECTO.c: 321:             USART_Tx(*str);
+"489
+[; ;PROYECTO.c: 489:             USART_Tx(*str);
 [e ( _USART_Tx (1 *U _str ]
-"322
-[; ;PROYECTO.c: 322:             str++;
+"490
+[; ;PROYECTO.c: 490:             str++;
 [e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
-"323
-[; ;PROYECTO.c: 323:         }
+"491
+[; ;PROYECTO.c: 491:         }
 }
-[e :U 241 ]
-"320
-[; ;PROYECTO.c: 320:         while(*str != '\0'){
-[e $ != -> *U _str `ui -> 0 `ui 242  ]
-[e :U 243 ]
-"324
-[; ;PROYECTO.c: 324:     }
-[e :UE 240 ]
+[e :U 391 ]
+"488
+[; ;PROYECTO.c: 488:         while(*str != '\0'){
+[e $ != -> *U _str `ui -> 0 `ui 392  ]
+[e :U 393 ]
+"492
+[; ;PROYECTO.c: 492:     }
+[e :UE 390 ]
 }
 [a 11C 52 53 0 ]
-[a 18C 52 53 0 ]
 [a 9C 49 53 0 ]
-[a 16C 49 53 0 ]
 [a 12C 54 48 0 ]
-[a 19C 54 48 0 ]
 [a 10C 51 48 0 ]
-[a 17C 51 48 0 ]
 [a 8C 48 0 ]
-[a 15C 48 0 ]
 [a 6C 32 72 111 114 97 115 32 0 ]
 [a 5C 32 69 115 112 101 114 97 114 32 32 0 ]
-[a 21C 32 69 115 112 101 114 97 114 32 32 0 ]
-[a 23C 32 69 115 112 101 114 97 114 32 32 0 ]
 [a 7C 32 99 111 110 32 32 0 ]
-[a 14C 32 99 111 110 32 32 0 ]
+[a 15C 32 97 46 48 32 32 98 46 49 32 32 99 46 50 32 32 100 46 51 32 32 101 46 52 32 32 102 46 53 32 32 103 46 54 32 32 104 46 55 32 32 105 46 56 13 0 ]
+[a 16C 32 106 46 57 32 32 107 46 49 48 32 32 108 46 49 49 32 32 109 46 49 50 32 32 110 46 49 51 32 32 111 46 49 52 32 32 112 46 49 53 32 32 113 46 49 54 13 0 ]
+[a 17C 114 46 49 55 32 32 115 46 49 56 32 32 116 46 49 57 32 32 117 46 50 48 32 32 118 46 50 49 32 32 119 46 50 50 32 32 120 46 50 51 32 32 121 46 50 52 13 0 ]
 [a 3C 50 41 32 118 101 114 32 100 97 116 111 115 32 100 101 32 109 105 110 117 116 111 32 13 0 ]
 [a 2C 49 41 32 118 101 114 32 100 97 116 111 115 32 100 101 32 104 111 114 97 32 13 0 ]
 [a 1C 13 32 81 117 101 32 97 99 99 105 111 110 32 100 101 115 101 97 32 101 106 101 99 117 116 97 114 63 32 13 0 ]
-[a 22C 32 72 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 32 13 0 ]
+[a 14C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 97 32 110 117 101 118 97 32 104 111 114 97 32 32 13 0 ]
+[a 18C 32 13 0 ]
+[a 19C 32 13 0 ]
 [a 4C 51 41 32 118 101 114 32 100 97 116 111 115 32 100 101 32 97 109 98 111 115 32 13 13 0 ]
 [a 13C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 32 13 13 0 ]
-[a 20C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 32 13 13 0 ]
-[a 24C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 32 13 13 0 ]
