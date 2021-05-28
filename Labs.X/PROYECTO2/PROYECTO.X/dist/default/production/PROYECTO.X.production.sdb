@@ -11,16 +11,24 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"63 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+"70 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
 [v _isr isr `II(v  1 e 1 0 ]
-"69
+"76
 [v _main main `(v  1 e 1 0 ]
-"1102
+"614
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
-"1107
+"619
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
-"1111
+"623
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
+"630
+[v _SendCharH SendCharH `(v  1 e 1 0 ]
+"789
+[v _SendCharM SendCharM `(v  1 e 1 0 ]
+"804
+[v _CharToNumH CharToNumH `(uc  1 e 1 0 ]
+"884
+[v _CharToNumM CharToNumM `(uc  1 e 1 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
 "166
@@ -248,32 +256,90 @@
 [v _hora_user3 hora_user3 `uc  1 e 1 0 ]
 "50
 [v _hora_nueva hora_nueva `uc  1 e 1 0 ]
-"69
+"51
+[v _me_1_us1_h me_1_us1_h `uc  1 e 1 0 ]
+[v _me_2_us1_h me_2_us1_h `uc  1 e 1 0 ]
+[v _me_3_us1_h me_3_us1_h `uc  1 e 1 0 ]
+"52
+[v _me_1_us2_h me_1_us2_h `uc  1 e 1 0 ]
+[v _me_2_us2_h me_2_us2_h `uc  1 e 1 0 ]
+[v _me_3_us2_h me_3_us2_h `uc  1 e 1 0 ]
+"53
+[v _me_1_us3_h me_1_us3_h `uc  1 e 1 0 ]
+[v _me_2_us3_h me_2_us3_h `uc  1 e 1 0 ]
+[v _me_3_us3_h me_3_us3_h `uc  1 e 1 0 ]
+"54
+[v _me_1_us1_m me_1_us1_m `uc  1 e 1 0 ]
+[v _me_2_us1_m me_2_us1_m `uc  1 e 1 0 ]
+[v _me_3_us1_m me_3_us1_m `uc  1 e 1 0 ]
+"55
+[v _me_1_us2_m me_1_us2_m `uc  1 e 1 0 ]
+[v _me_2_us2_m me_2_us2_m `uc  1 e 1 0 ]
+[v _me_3_us2_m me_3_us2_m `uc  1 e 1 0 ]
+"56
+[v _me_1_us3_m me_1_us3_m `uc  1 e 1 0 ]
+[v _me_2_us3_m me_2_us3_m `uc  1 e 1 0 ]
+[v _me_3_us3_m me_3_us3_m `uc  1 e 1 0 ]
+"76
 [v _main main `(v  1 e 1 0 ]
 {
-"1099
+"610
 } 0
-"1107
+"619
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
 {
-"1109
+"621
 } 0
-"1111
+"789
+[v _SendCharM SendCharM `(v  1 e 1 0 ]
+{
+[v SendCharM@in in `uc  1 a 1 wreg ]
+[v SendCharM@in in `uc  1 a 1 wreg ]
+[v SendCharM@in in `uc  1 a 1 5 ]
+"802
+} 0
+"623
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 {
 [v USART_Cadena@str str `*.25uc  1 p 2 3 ]
-"1116
+"628
 } 0
-"1102
+"614
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
 {
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 2 ]
-"1105
+"617
 } 0
-"63
+"630
+[v _SendCharH SendCharH `(v  1 e 1 0 ]
+{
+[v SendCharH@in in `uc  1 a 1 wreg ]
+[v SendCharH@in in `uc  1 a 1 wreg ]
+[v SendCharH@in in `uc  1 a 1 4 ]
+"787
+} 0
+"884
+[v _CharToNumM CharToNumM `(uc  1 e 1 0 ]
+{
+[v CharToNumM@in in `uc  1 a 1 wreg ]
+[v CharToNumM@in in `uc  1 a 1 wreg ]
+[v CharToNumM@her her `uc  1 p 1 2 ]
+[v CharToNumM@in in `uc  1 a 1 4 ]
+"897
+} 0
+"804
+[v _CharToNumH CharToNumH `(uc  1 e 1 0 ]
+{
+[v CharToNumH@in in `uc  1 a 1 wreg ]
+[v CharToNumH@in in `uc  1 a 1 wreg ]
+[v CharToNumH@hora_user hora_user `uc  1 p 1 2 ]
+[v CharToNumH@in in `uc  1 a 1 5 ]
+"883
+} 0
+"70
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"65
+"72
 } 0

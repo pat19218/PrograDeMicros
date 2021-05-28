@@ -2656,15 +2656,22 @@ char ventana;
 char min_user1, min_user2, min_user3;
 char hora_user1, hora_user2, hora_user3;
 char hora_nueva;
-char me_1_us1, me_2_us1, me_3_us1;
-char me_1_us2, me_2_us2, me_3_us2;
-char me_1_us3, me_2_us3, me_3_us3;
+char me_1_us1_h, me_2_us1_h, me_3_us1_h;
+char me_1_us2_h, me_2_us2_h, me_3_us2_h;
+char me_1_us3_h, me_2_us3_h, me_3_us3_h;
+char me_1_us1_m, me_2_us1_m, me_3_us1_m;
+char me_1_us2_m, me_2_us2_m, me_3_us2_m;
+char me_1_us3_m, me_2_us3_m, me_3_us3_m;
 
 
 
 void USART_Tx(char data);
 char USART_Rx();
 void USART_Cadena(char *str);
+void SendCharH(char in);
+void SendCharM(char in);
+char CharToNumH(char in, char hora_user);
+char CharToNumM(char in, char her);
 
 
 
@@ -2876,531 +2883,44 @@ void main(void) {
        switch(valor){
             case ('1'):
                 USART_Cadena(" Esperar  ");
-                switch(hora_user1){
-                    case(0):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 48;
-                    break;
-
-                    case(1):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                    break;
-
-                    case(2):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                    break;
-
-                    case(3):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 51;
-                    break;
-
-                    case(4):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 52;
-                    break;
-
-                    case(5):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 53;
-                    break;
-
-                    case(6):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 54;
-                    break;
-
-                    case(7):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 55;
-                    break;
-
-                    case(8):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 56;
-                    break;
-
-                    case(9):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 57;
-                    break;
-
-                    case(10):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 48;
-                    break;
-
-                    case(11):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                    break;
-
-                    case(12):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                    break;
-
-                    case(13):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 51;
-                    break;
-
-                    case(14):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 52;
-                    break;
-
-                    case(15):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 53;
-                    break;
-
-                    case(16):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 54;
-                    break;
-
-                    case(17):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 55;
-                    break;
-
-                    case(18):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 56;
-                    break;
-
-                    case(19):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 57;
-                    break;
-
-                    case(20):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 48;
-                    break;
-
-                    case(21):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                    break;
-
-                    case(22):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                    break;
-
-                    case(23):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 51;
-                    break;
-
-                    case(24):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 52;
-                    break;
-                }
-
+                SendCharH(me_1_us1_h);
                 USART_Cadena(" Horas ");
                 USART_Cadena(" con  ");
-                while(TXSTAbits.TRMT == 0);
-                if(min_user1 == 0) {
-                    USART_Cadena("0");
-                }else if (min_user1 == 15){
-                    USART_Cadena("15");
-                }else if (min_user1 == 30){
-                    USART_Cadena("30");
-                }else if (min_user1 == 45){
-                    USART_Cadena("45");
-                }else if (min_user1 == 60){
-                    USART_Cadena("60");
-                }
-                USART_Cadena(" mins. para el medicamento  \r\r");
+                SendCharM(me_1_us1_m);
+                USART_Cadena(" mins. para el medicamento 1 \r\r");
+
+                USART_Cadena(" Esperar  ");
+                SendCharH(me_2_us1_h);
+                USART_Cadena(" Horas ");
+                USART_Cadena(" con  ");
+                SendCharM(me_2_us1_m);
+                USART_Cadena(" mins. para el medicamento 2 \r\r");
+
+                USART_Cadena(" Esperar  ");
+                SendCharH(me_3_us1_h);
+                USART_Cadena(" Horas ");
+                USART_Cadena(" con  ");
+                SendCharM(me_3_us1_m);
+                USART_Cadena(" mins. para el medicamento 3 \r\r");
                 ventana = 1;
                 break;
 
             case ('2'):
                 USART_Cadena(" Esperar  ");
-                switch(hora_user2){
-                    case(0):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 48;
-                    break;
-
-                    case(1):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                    break;
-
-                    case(2):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                    break;
-
-                    case(3):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 51;
-                    break;
-
-                    case(4):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 52;
-                    break;
-
-                    case(5):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 53;
-                    break;
-
-                    case(6):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 54;
-                    break;
-
-                    case(7):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 55;
-                    break;
-
-                    case(8):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 56;
-                    break;
-
-                    case(9):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 57;
-                    break;
-
-                    case(10):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 48;
-                    break;
-
-                    case(11):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                    break;
-
-                    case(12):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                    break;
-
-                    case(13):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 51;
-                    break;
-
-                    case(14):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 52;
-                    break;
-
-                    case(15):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 53;
-                    break;
-
-                    case(16):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 54;
-                    break;
-
-                    case(17):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 55;
-                    break;
-
-                    case(18):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 56;
-                    break;
-
-                    case(19):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 57;
-                    break;
-
-                    case(20):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 48;
-                    break;
-
-                    case(21):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                    break;
-
-                    case(22):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                    break;
-
-                    case(23):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 51;
-                    break;
-
-                    case(24):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 52;
-                    break;
-                }
-
+                SendCharH(hora_user2);
                 USART_Cadena(" Horas ");
                 USART_Cadena(" con  ");
-                while(TXSTAbits.TRMT == 0);
-                if(min_user2 == 0) {
-                    USART_Cadena("0");
-                }else if (min_user2 == 15){
-                    USART_Cadena("15");
-                }else if (min_user2 == 30){
-                    USART_Cadena("30");
-                }else if (min_user2 == 45){
-                    USART_Cadena("45");
-                }else if (min_user2 == 60){
-                    USART_Cadena("60");
-                }
+                SendCharM(min_user2);
                 USART_Cadena(" mins. para el medicamento  \r\r");
                 ventana = 1;
                 break;
 
             case ('3'):
                 USART_Cadena(" Esperar  ");
-                switch(hora_user3){
-                    case(0):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 48;
-                    break;
-
-                    case(1):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                    break;
-
-                    case(2):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                    break;
-
-                    case(3):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 51;
-                    break;
-
-                    case(4):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 52;
-                    break;
-
-                    case(5):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 53;
-                    break;
-
-                    case(6):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 54;
-                    break;
-
-                    case(7):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 55;
-                    break;
-
-                    case(8):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 56;
-                    break;
-
-                    case(9):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 57;
-                    break;
-
-                    case(10):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 48;
-                    break;
-
-                    case(11):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                    break;
-
-                    case(12):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                    break;
-
-                    case(13):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 51;
-                    break;
-
-                    case(14):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 52;
-                    break;
-
-                    case(15):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 53;
-                    break;
-
-                    case(16):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 54;
-                    break;
-
-                    case(17):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 55;
-                    break;
-
-                    case(18):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 56;
-                    break;
-
-                    case(19):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 57;
-                    break;
-
-                    case(20):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 48;
-                    break;
-
-                    case(21):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 49;
-                    break;
-
-                    case(22):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                    break;
-
-                    case(23):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 51;
-                    break;
-
-                    case(24):
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 50;
-                        while(TXSTAbits.TRMT == 0);
-                        TXREG = 52;
-                    break;
-                }
-
+                SendCharH(hora_user3);
                 USART_Cadena(" Horas ");
                 USART_Cadena(" con  ");
-                while(TXSTAbits.TRMT == 0);
-                if(min_user3 == 0) {
-                    USART_Cadena("0");
-                }else if (min_user3 == 15){
-                    USART_Cadena("15");
-                }else if (min_user3 == 30){
-                    USART_Cadena("30");
-                }else if (min_user3 == 45){
-                    USART_Cadena("45");
-                }else if (min_user3 == 60){
-                    USART_Cadena("60");
-                }
+                SendCharM(min_user3);
                 USART_Cadena(" mins. para el medicamento  \r\r");
                 ventana = 1;
                 break;
@@ -3415,57 +2935,7 @@ void main(void) {
                         USART_Cadena(" \r");
                         hora_nueva = USART_Rx();
                         USART_Cadena(" \r");
-                        if(hora_nueva == 'a'){
-                            hora_user1 = 0;
-                        }else if(hora_nueva == 'b'){
-                            hora_user1 = 1;
-                        }else if(hora_nueva == 'c'){
-                            hora_user1 = 2;
-                        }else if(hora_nueva == 'd'){
-                            hora_user1 = 3;
-                        }else if(hora_nueva == 'e'){
-                            hora_user1 = 4;
-                        }else if(hora_nueva == 'f'){
-                            hora_user1 = 5;
-                        }else if(hora_nueva == 'g'){
-                            hora_user1 = 6;
-                        }else if(hora_nueva == 'h'){
-                            hora_user1 = 7;
-                        }else if(hora_nueva == 'i'){
-                            hora_user1 = 8;
-                        }else if(hora_nueva == 'j'){
-                            hora_user1 = 9;
-                        }else if(hora_nueva == 'k'){
-                            hora_user1 = 10;
-                        }else if(hora_nueva == 'l'){
-                            hora_user1 = 11;
-                        }else if(hora_nueva == 'm'){
-                            hora_user1 = 12;
-                        }else if(hora_nueva == 'n'){
-                            hora_user1 = 13;
-                        }else if(hora_nueva == 'o'){
-                            hora_user1 = 14;
-                        }else if(hora_nueva == 'p'){
-                            hora_user1 = 15;
-                        }else if(hora_nueva == 'q'){
-                            hora_user1 = 16;
-                        }else if(hora_nueva == 'r'){
-                            hora_user1 = 17;
-                        }else if(hora_nueva == 's'){
-                            hora_user1 = 18;
-                        }else if(hora_nueva == 't'){
-                            hora_user1 = 19;
-                        }else if(hora_nueva == 'u'){
-                            hora_user1 = 20;
-                        }else if(hora_nueva == 'v'){
-                            hora_user1 = 21;
-                        }else if(hora_nueva == 'w'){
-                            hora_user1 = 22;
-                        }else if(hora_nueva == 'x'){
-                            hora_user1 = 23;
-                        }else if(hora_nueva == 'y'){
-                            hora_user1 = 24;
-                        }
+                        hora_user1 = CharToNumH(hora_nueva, hora_user1);
                         break;
                     }
                 }
@@ -3476,31 +2946,32 @@ void main(void) {
                         USART_Cadena(" \r");
                         hora_nueva = USART_Rx();
                         USART_Cadena(" \r");
-                        if(hora_nueva == 'a'){
-                            min_user1 = 0;
-                        }else if(hora_nueva == 'b'){
-                            min_user1 = 15;
-                        }else if(hora_nueva == 'c'){
-                            min_user1 = 30;
-                        }else if(hora_nueva == 'd'){
-                            min_user1 = 45;
-                        }else if(hora_nueva == 'e'){
-                            min_user1 = 55;
-                        }
-
+                        min_user1 = CharToNumM(hora_nueva, min_user1);
                         break;
                     }
+                }
                 USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
                 USART_Cadena(" presione el número de medicamento a guardar \r");
                 USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
                 while(1){
                     if (PIR1bits.RCIF == 1){
+                        hora_nueva = USART_Rx();
+                        if(hora_nueva == '1'){
+                            me_1_us1_h = hora_user1;
+                            me_1_us1_m = min_user1;
+                        }else if(hora_nueva == '2'){
+                            me_2_us1_h = hora_user1;
+                            me_2_us1_m = min_user1;
+                        }else if(hora_nueva == '3'){
+                            me_3_us1_h = hora_user1;
+                            me_3_us1_m = min_user1;
+                        }
 
                         break;
                     }
                 }
 
-                }
+
                 ventana = 1;
                 break;
 
@@ -3589,7 +3060,26 @@ void main(void) {
 
                         break;
                     }
+                }
+                USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
+                USART_Cadena(" presione el número de medicamento a guardar \r");
+                USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
+                while(1){
+                    if (PIR1bits.RCIF == 1){
+                        hora_nueva = USART_Rx();
+                        if(hora_nueva == '1'){
+                            me_1_us2_h = hora_user1;
+                            me_1_us2_m = min_user1;
+                        }else if(hora_nueva == '2'){
+                            me_2_us2_h = hora_user1;
+                            me_2_us2_m = min_user1;
+                        }else if(hora_nueva == '3'){
+                            me_3_us2_h = hora_user1;
+                            me_3_us2_m = min_user1;
+                        }
 
+                        break;
+                    }
                 }
                 ventana = 1;
                 break;
@@ -3681,9 +3171,30 @@ void main(void) {
                     }
 
                 }
+                USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
+                USART_Cadena(" presione el número de medicamento a guardar \r");
+                USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
+                while(1){
+                    if (PIR1bits.RCIF == 1){
+                        hora_nueva = USART_Rx();
+                        if(hora_nueva == '1'){
+                            me_1_us3_h = hora_user1;
+                            me_1_us3_m = min_user1;
+                        }else if(hora_nueva == '2'){
+                            me_2_us3_h = hora_user1;
+                            me_2_us3_m = min_user1;
+                        }else if(hora_nueva == '3'){
+                            me_3_us3_h = hora_user1;
+                            me_3_us3_m = min_user1;
+                        }
+
+                        break;
+                    }
+                }
                 ventana = 1;
                 break;
-        }
+            }
+
        valor = '0';
 
 
@@ -3704,7 +3215,8 @@ void main(void) {
 
     }
     return;
-}
+    }
+
 
 
 void USART_Tx(char data){
@@ -3721,4 +3233,273 @@ void USART_Cadena(char *str){
         USART_Tx(*str);
         str++;
     }
+}
+
+void SendCharH(char in){
+    switch(in){
+        case(0):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 48;
+        break;
+
+        case(1):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+        break;
+
+        case(2):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 50;
+        break;
+
+        case(3):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 51;
+        break;
+
+        case(4):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 52;
+        break;
+
+        case(5):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 53;
+        break;
+
+        case(6):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 54;
+        break;
+
+        case(7):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 55;
+        break;
+
+        case(8):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 56;
+        break;
+
+        case(9):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 57;
+        break;
+
+        case(10):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 48;
+        break;
+
+        case(11):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+        break;
+
+        case(12):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 50;
+        break;
+
+        case(13):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 51;
+        break;
+
+        case(14):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 52;
+        break;
+
+        case(15):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 53;
+        break;
+
+        case(16):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 54;
+        break;
+
+        case(17):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 55;
+        break;
+
+        case(18):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 56;
+        break;
+
+        case(19):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 57;
+        break;
+
+        case(20):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 50;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 48;
+        break;
+
+        case(21):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 50;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 49;
+        break;
+
+        case(22):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 50;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 50;
+        break;
+
+        case(23):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 50;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 51;
+        break;
+
+        case(24):
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 50;
+            while(TXSTAbits.TRMT == 0);
+            TXREG = 52;
+        break;
+    }
+}
+
+void SendCharM(char in){
+    while(TXSTAbits.TRMT == 0);
+        if(in == 0) {
+            USART_Cadena("0");
+        }else if (in == 15){
+            USART_Cadena("15");
+        }else if (in == 30){
+            USART_Cadena("30");
+        }else if (in == 45){
+            USART_Cadena("45");
+        }else if (in == 55){
+            USART_Cadena("55");
+        }
+}
+
+char CharToNumH(char in, char hora_user){
+    switch(in){
+        case('a'):
+            hora_user = 0;
+            break;
+        case('b'):
+            hora_user = 1;
+            break;
+        case('c'):
+            hora_user = 2;
+            break;
+        case('d'):
+            hora_user = 3;
+            break;
+        case('e'):
+            hora_user = 4;
+            break;
+        case('f'):
+            hora_user = 5;
+            break;
+        case('g'):
+            hora_user = 6;
+            break;
+        case('h'):
+            hora_user = 7;
+            break;
+        case('i'):
+            hora_user = 8;
+            break;
+        case('j'):
+            hora_user = 9;
+            break;
+        case('k'):
+            hora_user = 10;
+            break;
+        case('l'):
+            hora_user = 11;
+            break;
+        case('m'):
+            hora_user = 12;
+            break;
+        case('n'):
+            hora_user = 13;
+            break;
+        case('o'):
+            hora_user = 14;
+            break;
+        case('p'):
+            hora_user = 15;
+            break;
+        case('q'):
+            hora_user = 16;
+            break;
+        case('r'):
+            hora_user = 17;
+            break;
+        case('s'):
+            hora_user = 18;
+            break;
+        case('t'):
+            hora_user = 19;
+            break;
+        case('u'):
+            hora_user = 20;
+            break;
+        case('v'):
+            hora_user = 21;
+            break;
+        case('w'):
+            hora_user = 22;
+            break;
+        case('x'):
+            hora_user = 23;
+            break;
+        case('y'):
+            hora_user = 24;
+            break;
+    }
+    return hora_user;
+}
+char CharToNumM(char in, char her){
+    if(in == 'a'){
+        her = 0;
+    }else if(in == 'b'){
+        her = 15;
+    }else if(in == 'c'){
+        her = 30;
+    }else if(in == 'd'){
+        her = 45;
+    }else if(in == 'e'){
+        her = 55;
+    }
+    return her;
 }
