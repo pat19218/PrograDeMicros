@@ -913,8 +913,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! && >= -> _escala `i -> 210 `i <= -> _escala `i -> 255 `i 160  ]
 {
 "192
-[; ;PROYECTO.c: 192:                     minuto = 60;
-[e = _minuto -> -> 60 `i `uc ]
+[; ;PROYECTO.c: 192:                     minuto = 55;
+[e = _minuto -> -> 55 `i `uc ]
 "193
 [; ;PROYECTO.c: 193:                 }
 }
@@ -1213,697 +1213,769 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 168 ]
 [e :U 166 ]
 [e :U 164 ]
-"251
-[; ;PROYECTO.c: 251:                 ADCON0bits.CHS = 6;
+"250
+[; ;PROYECTO.c: 250:                 ADCON0bits.CHS = 6;
 [e = . . _ADCON0bits 0 2 -> -> 6 `i `uc ]
-"252
-[; ;PROYECTO.c: 252:             }
+"251
+[; ;PROYECTO.c: 251:             }
 }
 [e :U 162 ]
 [e :U 161 ]
-"253
-[; ;PROYECTO.c: 253:             _delay((unsigned long)((50)*(4000000/4000000.0)));
+"252
+[; ;PROYECTO.c: 252:             _delay((unsigned long)((50)*(4000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
-"255
-[; ;PROYECTO.c: 255:             ADCON0bits.GO = 1;
+"254
+[; ;PROYECTO.c: 254:             ADCON0bits.GO = 1;
 [e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-"256
-[; ;PROYECTO.c: 256:         }
+"255
+[; ;PROYECTO.c: 255:         }
 }
 [e :U 150 ]
-"258
-[; ;PROYECTO.c: 258:        if(ventana == 1){
+"257
+[; ;PROYECTO.c: 257:        if(ventana == 1){
 [e $ ! == -> _ventana `i -> 1 `i 212  ]
 {
-"260
-[; ;PROYECTO.c: 260:            USART_Cadena("\r Que accion desea ejecutar? \r");
+"259
+[; ;PROYECTO.c: 259:            USART_Cadena("\r Que accion desea ejecutar? \r");
 [e ( _USART_Cadena (1 :s 1C ]
-"261
-[; ;PROYECTO.c: 261:            USART_Cadena("1) ver datos de usuario uno \r");
+"260
+[; ;PROYECTO.c: 260:            USART_Cadena("1) ver datos de usuario uno \r");
 [e ( _USART_Cadena (1 :s 2C ]
-"262
-[; ;PROYECTO.c: 262:            USART_Cadena("2) ver datos de usuario dos\r");
+"261
+[; ;PROYECTO.c: 261:            USART_Cadena("2) ver datos de usuario dos\r");
 [e ( _USART_Cadena (1 :s 3C ]
-"263
-[; ;PROYECTO.c: 263:            USART_Cadena("3) ver datos de usuario tres \r");
+"262
+[; ;PROYECTO.c: 262:            USART_Cadena("3) ver datos de usuario tres \r");
 [e ( _USART_Cadena (1 :s 4C ]
-"264
-[; ;PROYECTO.c: 264:            USART_Cadena("4) Modificar horario usuario uno \r");
+"263
+[; ;PROYECTO.c: 263:            USART_Cadena("4) Modificar horario usuario uno \r");
 [e ( _USART_Cadena (1 :s 5C ]
-"265
-[; ;PROYECTO.c: 265:            USART_Cadena("5) Modificar horario usuario dos\r");
+"264
+[; ;PROYECTO.c: 264:            USART_Cadena("5) Modificar horario usuario dos\r");
 [e ( _USART_Cadena (1 :s 6C ]
-"266
-[; ;PROYECTO.c: 266:            USART_Cadena("6) Modificar horario usuario tres \r\r");
+"265
+[; ;PROYECTO.c: 265:            USART_Cadena("6) Modificar horario usuario tres \r\r");
 [e ( _USART_Cadena (1 :s 7C ]
-"267
-[; ;PROYECTO.c: 267:            ventana = 0;
+"266
+[; ;PROYECTO.c: 266:            ventana = 0;
 [e = _ventana -> -> 0 `i `uc ]
-"268
-[; ;PROYECTO.c: 268:         }
+"267
+[; ;PROYECTO.c: 267:         }
 }
 [e :U 212 ]
-"270
-[; ;PROYECTO.c: 270:        if (PIR1bits.RCIF == 1){
+"269
+[; ;PROYECTO.c: 269:        if (PIR1bits.RCIF == 1){
 [e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 213  ]
 {
-"271
-[; ;PROYECTO.c: 271:            valor = USART_Rx();
+"270
+[; ;PROYECTO.c: 270:            valor = USART_Rx();
 [e = _valor ( _USART_Rx ..  ]
-"272
-[; ;PROYECTO.c: 272:            ventana = 1;
+"271
+[; ;PROYECTO.c: 271:            ventana = 1;
 [e = _ventana -> -> 1 `i `uc ]
-"273
-[; ;PROYECTO.c: 273:        }
+"272
+[; ;PROYECTO.c: 272:        }
 }
 [e :U 213 ]
-"275
-[; ;PROYECTO.c: 275:        switch(valor){
+"274
+[; ;PROYECTO.c: 274:        switch(valor){
 [e $U 215  ]
 {
-"276
-[; ;PROYECTO.c: 276:             case ('1'):
+"275
+[; ;PROYECTO.c: 275:             case ('1'):
 [e :U 216 ]
-"277
-[; ;PROYECTO.c: 277:                 USART_Cadena(" Esperar  ");
+"276
+[; ;PROYECTO.c: 276:                 USART_Cadena(" Esperar  ");
 [e ( _USART_Cadena (1 :s 8C ]
-"278
-[; ;PROYECTO.c: 278:                 SendCharH(me_1_us1_h);
+"277
+[; ;PROYECTO.c: 277:                 SendCharH(me_1_us1_h);
 [e ( _SendCharH (1 _me_1_us1_h ]
-"279
-[; ;PROYECTO.c: 279:                 USART_Cadena(" Horas ");
+"278
+[; ;PROYECTO.c: 278:                 USART_Cadena(" Horas ");
 [e ( _USART_Cadena (1 :s 9C ]
-"280
-[; ;PROYECTO.c: 280:                 USART_Cadena(" con  ");
+"279
+[; ;PROYECTO.c: 279:                 USART_Cadena(" con  ");
 [e ( _USART_Cadena (1 :s 10C ]
-"281
-[; ;PROYECTO.c: 281:                 SendCharM(me_1_us1_m);
+"280
+[; ;PROYECTO.c: 280:                 SendCharM(me_1_us1_m);
 [e ( _SendCharM (1 _me_1_us1_m ]
-"282
-[; ;PROYECTO.c: 282:                 USART_Cadena(" mins. para el medicamento 1 \r");
+"281
+[; ;PROYECTO.c: 281:                 USART_Cadena(" mins. para el medicamento 1 \r");
 [e ( _USART_Cadena (1 :s 11C ]
-"284
-[; ;PROYECTO.c: 284:                 USART_Cadena(" Esperar  ");
+"283
+[; ;PROYECTO.c: 283:                 USART_Cadena(" Esperar  ");
 [e ( _USART_Cadena (1 :s 12C ]
-"285
-[; ;PROYECTO.c: 285:                 SendCharH(me_2_us1_h);
+"284
+[; ;PROYECTO.c: 284:                 SendCharH(me_2_us1_h);
 [e ( _SendCharH (1 _me_2_us1_h ]
-"286
-[; ;PROYECTO.c: 286:                 USART_Cadena(" Horas ");
+"285
+[; ;PROYECTO.c: 285:                 USART_Cadena(" Horas ");
 [e ( _USART_Cadena (1 :s 13C ]
-"287
-[; ;PROYECTO.c: 287:                 USART_Cadena(" con  ");
+"286
+[; ;PROYECTO.c: 286:                 USART_Cadena(" con  ");
 [e ( _USART_Cadena (1 :s 14C ]
-"288
-[; ;PROYECTO.c: 288:                 SendCharM(me_2_us1_m);
+"287
+[; ;PROYECTO.c: 287:                 SendCharM(me_2_us1_m);
 [e ( _SendCharM (1 _me_2_us1_m ]
-"289
-[; ;PROYECTO.c: 289:                 USART_Cadena(" mins. para el medicamento 2 \r");
+"288
+[; ;PROYECTO.c: 288:                 USART_Cadena(" mins. para el medicamento 2 \r");
 [e ( _USART_Cadena (1 :s 15C ]
-"291
-[; ;PROYECTO.c: 291:                 USART_Cadena(" Esperar  ");
+"290
+[; ;PROYECTO.c: 290:                 USART_Cadena(" Esperar  ");
 [e ( _USART_Cadena (1 :s 16C ]
-"292
-[; ;PROYECTO.c: 292:                 SendCharH(me_3_us1_h);
+"291
+[; ;PROYECTO.c: 291:                 SendCharH(me_3_us1_h);
 [e ( _SendCharH (1 _me_3_us1_h ]
-"293
-[; ;PROYECTO.c: 293:                 USART_Cadena(" Horas ");
+"292
+[; ;PROYECTO.c: 292:                 USART_Cadena(" Horas ");
 [e ( _USART_Cadena (1 :s 17C ]
-"294
-[; ;PROYECTO.c: 294:                 USART_Cadena(" con  ");
+"293
+[; ;PROYECTO.c: 293:                 USART_Cadena(" con  ");
 [e ( _USART_Cadena (1 :s 18C ]
-"295
-[; ;PROYECTO.c: 295:                 SendCharM(me_3_us1_m);
+"294
+[; ;PROYECTO.c: 294:                 SendCharM(me_3_us1_m);
 [e ( _SendCharM (1 _me_3_us1_m ]
-"296
-[; ;PROYECTO.c: 296:                 USART_Cadena(" mins. para el medicamento 3 \r\r");
+"295
+[; ;PROYECTO.c: 295:                 USART_Cadena(" mins. para el medicamento 3 \r\r");
 [e ( _USART_Cadena (1 :s 19C ]
-"297
-[; ;PROYECTO.c: 297:                 ventana = 1;
+"296
+[; ;PROYECTO.c: 296:                 ventana = 1;
 [e = _ventana -> -> 1 `i `uc ]
-"298
-[; ;PROYECTO.c: 298:                 break;
+"297
+[; ;PROYECTO.c: 297:                 break;
 [e $U 214  ]
-"300
-[; ;PROYECTO.c: 300:             case ('2'):
+"299
+[; ;PROYECTO.c: 299:             case ('2'):
 [e :U 217 ]
-"301
-[; ;PROYECTO.c: 301:                 USART_Cadena(" Esperar  ");
+"300
+[; ;PROYECTO.c: 300:                 USART_Cadena(" Esperar  ");
 [e ( _USART_Cadena (1 :s 20C ]
+"301
+[; ;PROYECTO.c: 301:                 SendCharH(me_1_us2_h);
+[e ( _SendCharH (1 _me_1_us2_h ]
 "302
-[; ;PROYECTO.c: 302:                 SendCharH(hora_user2);
-[e ( _SendCharH (1 _hora_user2 ]
-"303
-[; ;PROYECTO.c: 303:                 USART_Cadena(" Horas ");
+[; ;PROYECTO.c: 302:                 USART_Cadena(" Horas ");
 [e ( _USART_Cadena (1 :s 21C ]
-"304
-[; ;PROYECTO.c: 304:                 USART_Cadena(" con  ");
+"303
+[; ;PROYECTO.c: 303:                 USART_Cadena(" con  ");
 [e ( _USART_Cadena (1 :s 22C ]
+"304
+[; ;PROYECTO.c: 304:                 SendCharM(me_1_us2_m);
+[e ( _SendCharM (1 _me_1_us2_m ]
 "305
-[; ;PROYECTO.c: 305:                 SendCharM(min_user2);
-[e ( _SendCharM (1 _min_user2 ]
-"306
-[; ;PROYECTO.c: 306:                 USART_Cadena(" mins. para el medicamento  \r\r");
+[; ;PROYECTO.c: 305:                 USART_Cadena(" mins. para el medicamento 1 \r");
 [e ( _USART_Cadena (1 :s 23C ]
 "307
-[; ;PROYECTO.c: 307:                 ventana = 1;
-[e = _ventana -> -> 1 `i `uc ]
-"308
-[; ;PROYECTO.c: 308:                 break;
-[e $U 214  ]
-"310
-[; ;PROYECTO.c: 310:             case ('3'):
-[e :U 218 ]
-"311
-[; ;PROYECTO.c: 311:                 USART_Cadena(" Esperar  ");
+[; ;PROYECTO.c: 307:                 USART_Cadena(" Esperar  ");
 [e ( _USART_Cadena (1 :s 24C ]
-"312
-[; ;PROYECTO.c: 312:                 SendCharH(hora_user3);
-[e ( _SendCharH (1 _hora_user3 ]
-"313
-[; ;PROYECTO.c: 313:                 USART_Cadena(" Horas ");
+"308
+[; ;PROYECTO.c: 308:                 SendCharH(me_2_us2_h);
+[e ( _SendCharH (1 _me_2_us2_h ]
+"309
+[; ;PROYECTO.c: 309:                 USART_Cadena(" Horas ");
 [e ( _USART_Cadena (1 :s 25C ]
-"314
-[; ;PROYECTO.c: 314:                 USART_Cadena(" con  ");
+"310
+[; ;PROYECTO.c: 310:                 USART_Cadena(" con  ");
 [e ( _USART_Cadena (1 :s 26C ]
-"315
-[; ;PROYECTO.c: 315:                 SendCharM(min_user3);
-[e ( _SendCharM (1 _min_user3 ]
-"316
-[; ;PROYECTO.c: 316:                 USART_Cadena(" mins. para el medicamento  \r\r");
+"311
+[; ;PROYECTO.c: 311:                 SendCharM(me_2_us2_m);
+[e ( _SendCharM (1 _me_2_us2_m ]
+"312
+[; ;PROYECTO.c: 312:                 USART_Cadena(" mins. para el medicamento 2 \r");
 [e ( _USART_Cadena (1 :s 27C ]
-"317
-[; ;PROYECTO.c: 317:                 ventana = 1;
-[e = _ventana -> -> 1 `i `uc ]
-"318
-[; ;PROYECTO.c: 318:                 break;
-[e $U 214  ]
-"320
-[; ;PROYECTO.c: 320:             case ('4'):
-[e :U 219 ]
-"321
-[; ;PROYECTO.c: 321:                 USART_Cadena(" Ingresá la letra de la nueva hora  \r");
+"314
+[; ;PROYECTO.c: 314:                 USART_Cadena(" Esperar  ");
 [e ( _USART_Cadena (1 :s 28C ]
-"322
-[; ;PROYECTO.c: 322:                 USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
+"315
+[; ;PROYECTO.c: 315:                 SendCharH(me_3_us2_h);
+[e ( _SendCharH (1 _me_3_us2_h ]
+"316
+[; ;PROYECTO.c: 316:                 USART_Cadena(" Horas ");
 [e ( _USART_Cadena (1 :s 29C ]
-"323
-[; ;PROYECTO.c: 323:                 USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
+"317
+[; ;PROYECTO.c: 317:                 USART_Cadena(" con  ");
 [e ( _USART_Cadena (1 :s 30C ]
-"324
-[; ;PROYECTO.c: 324:                 USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
+"318
+[; ;PROYECTO.c: 318:                 SendCharM(me_3_us2_m);
+[e ( _SendCharM (1 _me_3_us2_m ]
+"319
+[; ;PROYECTO.c: 319:                 USART_Cadena(" mins. para el medicamento 3 \r\r");
 [e ( _USART_Cadena (1 :s 31C ]
+"320
+[; ;PROYECTO.c: 320:                 ventana = 1;
+[e = _ventana -> -> 1 `i `uc ]
+"321
+[; ;PROYECTO.c: 321:                 break;
+[e $U 214  ]
+"323
+[; ;PROYECTO.c: 323:             case ('3'):
+[e :U 218 ]
+"324
+[; ;PROYECTO.c: 324:                 USART_Cadena(" Esperar  ");
+[e ( _USART_Cadena (1 :s 32C ]
 "325
-[; ;PROYECTO.c: 325:                 while(1){
+[; ;PROYECTO.c: 325:                 SendCharH(me_1_us3_h);
+[e ( _SendCharH (1 _me_1_us3_h ]
+"326
+[; ;PROYECTO.c: 326:                 USART_Cadena(" Horas ");
+[e ( _USART_Cadena (1 :s 33C ]
+"327
+[; ;PROYECTO.c: 327:                 USART_Cadena(" con  ");
+[e ( _USART_Cadena (1 :s 34C ]
+"328
+[; ;PROYECTO.c: 328:                 SendCharM(me_1_us3_m);
+[e ( _SendCharM (1 _me_1_us3_m ]
+"329
+[; ;PROYECTO.c: 329:                 USART_Cadena(" mins. para el medicamento 1 \r");
+[e ( _USART_Cadena (1 :s 35C ]
+"331
+[; ;PROYECTO.c: 331:                 USART_Cadena(" Esperar  ");
+[e ( _USART_Cadena (1 :s 36C ]
+"332
+[; ;PROYECTO.c: 332:                 SendCharH(me_2_us3_h);
+[e ( _SendCharH (1 _me_2_us3_h ]
+"333
+[; ;PROYECTO.c: 333:                 USART_Cadena(" Horas ");
+[e ( _USART_Cadena (1 :s 37C ]
+"334
+[; ;PROYECTO.c: 334:                 USART_Cadena(" con  ");
+[e ( _USART_Cadena (1 :s 38C ]
+"335
+[; ;PROYECTO.c: 335:                 SendCharM(me_2_us3_m);
+[e ( _SendCharM (1 _me_2_us3_m ]
+"336
+[; ;PROYECTO.c: 336:                 USART_Cadena(" mins. para el medicamento 2 \r");
+[e ( _USART_Cadena (1 :s 39C ]
+"338
+[; ;PROYECTO.c: 338:                 USART_Cadena(" Esperar  ");
+[e ( _USART_Cadena (1 :s 40C ]
+"339
+[; ;PROYECTO.c: 339:                 SendCharH(me_3_us3_h);
+[e ( _SendCharH (1 _me_3_us3_h ]
+"340
+[; ;PROYECTO.c: 340:                 USART_Cadena(" Horas ");
+[e ( _USART_Cadena (1 :s 41C ]
+"341
+[; ;PROYECTO.c: 341:                 USART_Cadena(" con  ");
+[e ( _USART_Cadena (1 :s 42C ]
+"342
+[; ;PROYECTO.c: 342:                 SendCharM(me_3_us3_m);
+[e ( _SendCharM (1 _me_3_us3_m ]
+"343
+[; ;PROYECTO.c: 343:                 USART_Cadena(" mins. para el medicamento 3 \r\r");
+[e ( _USART_Cadena (1 :s 43C ]
+"344
+[; ;PROYECTO.c: 344:                 ventana = 1;
+[e = _ventana -> -> 1 `i `uc ]
+"345
+[; ;PROYECTO.c: 345:                 break;
+[e $U 214  ]
+"347
+[; ;PROYECTO.c: 347:             case ('4'):
+[e :U 219 ]
+"348
+[; ;PROYECTO.c: 348:                 USART_Cadena(" Ingresá la letra de la nueva hora  \r");
+[e ( _USART_Cadena (1 :s 44C ]
+"349
+[; ;PROYECTO.c: 349:                 USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
+[e ( _USART_Cadena (1 :s 45C ]
+"350
+[; ;PROYECTO.c: 350:                 USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
+[e ( _USART_Cadena (1 :s 46C ]
+"351
+[; ;PROYECTO.c: 351:                 USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
+[e ( _USART_Cadena (1 :s 47C ]
+"352
+[; ;PROYECTO.c: 352:                 while(1){
 [e :U 221 ]
 {
-"326
-[; ;PROYECTO.c: 326:                     if (PIR1bits.RCIF == 1){
+"353
+[; ;PROYECTO.c: 353:                     if (PIR1bits.RCIF == 1){
 [e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 223  ]
 {
-"327
-[; ;PROYECTO.c: 327:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 32C ]
-"328
-[; ;PROYECTO.c: 328:                         hora_nueva = USART_Rx();
+"354
+[; ;PROYECTO.c: 354:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 48C ]
+"355
+[; ;PROYECTO.c: 355:                         hora_nueva = USART_Rx();
 [e = _hora_nueva ( _USART_Rx ..  ]
-"329
-[; ;PROYECTO.c: 329:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 33C ]
-"330
-[; ;PROYECTO.c: 330:                         hora_user1 = CharToNumH(hora_nueva, hora_user1);
+"356
+[; ;PROYECTO.c: 356:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 49C ]
+"357
+[; ;PROYECTO.c: 357:                         hora_user1 = CharToNumH(hora_nueva, hora_user1);
 [e = _hora_user1 ( _CharToNumH (2 , _hora_nueva _hora_user1 ]
-"331
-[; ;PROYECTO.c: 331:                         break;
+"358
+[; ;PROYECTO.c: 358:                         break;
 [e $U 222  ]
-"332
-[; ;PROYECTO.c: 332:                     }
+"359
+[; ;PROYECTO.c: 359:                     }
 }
 [e :U 223 ]
-"333
-[; ;PROYECTO.c: 333:                 }
+"360
+[; ;PROYECTO.c: 360:                 }
 }
 [e :U 220 ]
 [e $U 221  ]
 [e :U 222 ]
-"334
-[; ;PROYECTO.c: 334:                 USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
-[e ( _USART_Cadena (1 :s 34C ]
-"335
-[; ;PROYECTO.c: 335:                 USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
-[e ( _USART_Cadena (1 :s 35C ]
-"336
-[; ;PROYECTO.c: 336:                 while(1){
+"361
+[; ;PROYECTO.c: 361:                 USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
+[e ( _USART_Cadena (1 :s 50C ]
+"362
+[; ;PROYECTO.c: 362:                 USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
+[e ( _USART_Cadena (1 :s 51C ]
+"363
+[; ;PROYECTO.c: 363:                 while(1){
 [e :U 225 ]
 {
-"337
-[; ;PROYECTO.c: 337:                     if (PIR1bits.RCIF == 1){
+"364
+[; ;PROYECTO.c: 364:                     if (PIR1bits.RCIF == 1){
 [e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 227  ]
 {
-"338
-[; ;PROYECTO.c: 338:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 36C ]
-"339
-[; ;PROYECTO.c: 339:                         hora_nueva = USART_Rx();
+"365
+[; ;PROYECTO.c: 365:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 52C ]
+"366
+[; ;PROYECTO.c: 366:                         hora_nueva = USART_Rx();
 [e = _hora_nueva ( _USART_Rx ..  ]
-"340
-[; ;PROYECTO.c: 340:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 37C ]
-"341
-[; ;PROYECTO.c: 341:                         min_user1 = CharToNumM(hora_nueva, min_user1);
+"367
+[; ;PROYECTO.c: 367:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 53C ]
+"368
+[; ;PROYECTO.c: 368:                         min_user1 = CharToNumM(hora_nueva, min_user1);
 [e = _min_user1 ( _CharToNumM (2 , _hora_nueva _min_user1 ]
-"342
-[; ;PROYECTO.c: 342:                         break;
+"369
+[; ;PROYECTO.c: 369:                         break;
 [e $U 226  ]
-"343
-[; ;PROYECTO.c: 343:                     }
+"370
+[; ;PROYECTO.c: 370:                     }
 }
 [e :U 227 ]
-"344
-[; ;PROYECTO.c: 344:                 }
+"371
+[; ;PROYECTO.c: 371:                 }
 }
 [e :U 224 ]
 [e $U 225  ]
 [e :U 226 ]
-"345
-[; ;PROYECTO.c: 345:                 USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
-[e ( _USART_Cadena (1 :s 38C ]
-"346
-[; ;PROYECTO.c: 346:                 USART_Cadena(" presione el número de medicamento a guardar \r");
-[e ( _USART_Cadena (1 :s 39C ]
-"347
-[; ;PROYECTO.c: 347:                 USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
-[e ( _USART_Cadena (1 :s 40C ]
-"348
-[; ;PROYECTO.c: 348:                 while(1){
+"372
+[; ;PROYECTO.c: 372:                 USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
+[e ( _USART_Cadena (1 :s 54C ]
+"373
+[; ;PROYECTO.c: 373:                 USART_Cadena(" presione el número de medicamento a guardar \r");
+[e ( _USART_Cadena (1 :s 55C ]
+"374
+[; ;PROYECTO.c: 374:                 USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
+[e ( _USART_Cadena (1 :s 56C ]
+"375
+[; ;PROYECTO.c: 375:                 while(1){
 [e :U 229 ]
 {
-"349
-[; ;PROYECTO.c: 349:                     if (PIR1bits.RCIF == 1){
+"376
+[; ;PROYECTO.c: 376:                     if (PIR1bits.RCIF == 1){
 [e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 231  ]
 {
-"350
-[; ;PROYECTO.c: 350:                         hora_nueva = USART_Rx();
+"377
+[; ;PROYECTO.c: 377:                         hora_nueva = USART_Rx();
 [e = _hora_nueva ( _USART_Rx ..  ]
-"351
-[; ;PROYECTO.c: 351:                         if(hora_nueva == '1'){
+"378
+[; ;PROYECTO.c: 378:                         if(hora_nueva == '1'){
 [e $ ! == -> _hora_nueva `ui -> 49 `ui 232  ]
 {
-"352
-[; ;PROYECTO.c: 352:                             me_1_us1_h = hora_user1;
+"379
+[; ;PROYECTO.c: 379:                             me_1_us1_h = hora_user1;
 [e = _me_1_us1_h _hora_user1 ]
-"353
-[; ;PROYECTO.c: 353:                             me_1_us1_m = min_user1;
+"380
+[; ;PROYECTO.c: 380:                             me_1_us1_m = min_user1;
 [e = _me_1_us1_m _min_user1 ]
-"354
-[; ;PROYECTO.c: 354:                         }else if(hora_nueva == '2'){
+"381
+[; ;PROYECTO.c: 381:                         }else if(hora_nueva == '2'){
 }
 [e $U 233  ]
 [e :U 232 ]
 [e $ ! == -> _hora_nueva `ui -> 50 `ui 234  ]
 {
-"355
-[; ;PROYECTO.c: 355:                             me_2_us1_h = hora_user1;
+"382
+[; ;PROYECTO.c: 382:                             me_2_us1_h = hora_user1;
 [e = _me_2_us1_h _hora_user1 ]
-"356
-[; ;PROYECTO.c: 356:                             me_2_us1_m = min_user1;
+"383
+[; ;PROYECTO.c: 383:                             me_2_us1_m = min_user1;
 [e = _me_2_us1_m _min_user1 ]
-"357
-[; ;PROYECTO.c: 357:                         }else if(hora_nueva == '3'){
+"384
+[; ;PROYECTO.c: 384:                         }else if(hora_nueva == '3'){
 }
 [e $U 235  ]
 [e :U 234 ]
 [e $ ! == -> _hora_nueva `ui -> 51 `ui 236  ]
 {
-"358
-[; ;PROYECTO.c: 358:                             me_3_us1_h = hora_user1;
+"385
+[; ;PROYECTO.c: 385:                             me_3_us1_h = hora_user1;
 [e = _me_3_us1_h _hora_user1 ]
-"359
-[; ;PROYECTO.c: 359:                             me_3_us1_m = min_user1;
+"386
+[; ;PROYECTO.c: 386:                             me_3_us1_m = min_user1;
 [e = _me_3_us1_m _min_user1 ]
-"360
-[; ;PROYECTO.c: 360:                         }
+"387
+[; ;PROYECTO.c: 387:                         }
 }
 [e :U 236 ]
 [e :U 235 ]
 [e :U 233 ]
-"361
-[; ;PROYECTO.c: 361:                         break;
+"388
+[; ;PROYECTO.c: 388:                         break;
 [e $U 230  ]
-"362
-[; ;PROYECTO.c: 362:                     }
+"389
+[; ;PROYECTO.c: 389:                     }
 }
 [e :U 231 ]
-"363
-[; ;PROYECTO.c: 363:                 }
+"390
+[; ;PROYECTO.c: 390:                 }
 }
 [e :U 228 ]
 [e $U 229  ]
 [e :U 230 ]
-"364
-[; ;PROYECTO.c: 364:                 ventana = 1;
+"391
+[; ;PROYECTO.c: 391:                 ventana = 1;
 [e = _ventana -> -> 1 `i `uc ]
-"365
-[; ;PROYECTO.c: 365:                 break;
+"392
+[; ;PROYECTO.c: 392:                 break;
 [e $U 214  ]
-"367
-[; ;PROYECTO.c: 367:             case ('5'):
+"394
+[; ;PROYECTO.c: 394:             case ('5'):
 [e :U 237 ]
-"368
-[; ;PROYECTO.c: 368:                 USART_Cadena(" Ingresá la letra de la nueva hora  \r");
-[e ( _USART_Cadena (1 :s 41C ]
-"369
-[; ;PROYECTO.c: 369:                 USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
-[e ( _USART_Cadena (1 :s 42C ]
-"370
-[; ;PROYECTO.c: 370:                 USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
-[e ( _USART_Cadena (1 :s 43C ]
-"371
-[; ;PROYECTO.c: 371:                 USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
-[e ( _USART_Cadena (1 :s 44C ]
-"372
-[; ;PROYECTO.c: 372:                 while(1){
+"395
+[; ;PROYECTO.c: 395:                 USART_Cadena(" Ingresá la letra de la nueva hora  \r");
+[e ( _USART_Cadena (1 :s 57C ]
+"396
+[; ;PROYECTO.c: 396:                 USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
+[e ( _USART_Cadena (1 :s 58C ]
+"397
+[; ;PROYECTO.c: 397:                 USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
+[e ( _USART_Cadena (1 :s 59C ]
+"398
+[; ;PROYECTO.c: 398:                 USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
+[e ( _USART_Cadena (1 :s 60C ]
+"399
+[; ;PROYECTO.c: 399:                 while(1){
 [e :U 239 ]
 {
-"373
-[; ;PROYECTO.c: 373:                     if (PIR1bits.RCIF == 1){
+"400
+[; ;PROYECTO.c: 400:                     if (PIR1bits.RCIF == 1){
 [e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 241  ]
 {
-"374
-[; ;PROYECTO.c: 374:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 45C ]
-"375
-[; ;PROYECTO.c: 375:                         hora_nueva = USART_Rx();
+"401
+[; ;PROYECTO.c: 401:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 61C ]
+"402
+[; ;PROYECTO.c: 402:                         hora_nueva = USART_Rx();
 [e = _hora_nueva ( _USART_Rx ..  ]
-"376
-[; ;PROYECTO.c: 376:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 46C ]
-"377
-[; ;PROYECTO.c: 377:                         hora_user2 = CharToNumH(hora_nueva, hora_user2);
+"403
+[; ;PROYECTO.c: 403:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 62C ]
+"404
+[; ;PROYECTO.c: 404:                         hora_user2 = CharToNumH(hora_nueva, hora_user2);
 [e = _hora_user2 ( _CharToNumH (2 , _hora_nueva _hora_user2 ]
-"378
-[; ;PROYECTO.c: 378:                         break;
+"405
+[; ;PROYECTO.c: 405:                         break;
 [e $U 240  ]
-"379
-[; ;PROYECTO.c: 379:                     }
+"406
+[; ;PROYECTO.c: 406:                     }
 }
 [e :U 241 ]
-"380
-[; ;PROYECTO.c: 380:                 }
+"407
+[; ;PROYECTO.c: 407:                 }
 }
 [e :U 238 ]
 [e $U 239  ]
 [e :U 240 ]
-"381
-[; ;PROYECTO.c: 381:                 USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
-[e ( _USART_Cadena (1 :s 47C ]
-"382
-[; ;PROYECTO.c: 382:                 USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
-[e ( _USART_Cadena (1 :s 48C ]
-"383
-[; ;PROYECTO.c: 383:                 while(1){
+"408
+[; ;PROYECTO.c: 408:                 USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
+[e ( _USART_Cadena (1 :s 63C ]
+"409
+[; ;PROYECTO.c: 409:                 USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
+[e ( _USART_Cadena (1 :s 64C ]
+"410
+[; ;PROYECTO.c: 410:                 while(1){
 [e :U 243 ]
 {
-"384
-[; ;PROYECTO.c: 384:                     if (PIR1bits.RCIF == 1){
+"411
+[; ;PROYECTO.c: 411:                     if (PIR1bits.RCIF == 1){
 [e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 245  ]
 {
-"385
-[; ;PROYECTO.c: 385:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 49C ]
-"386
-[; ;PROYECTO.c: 386:                         hora_nueva = USART_Rx();
+"412
+[; ;PROYECTO.c: 412:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 65C ]
+"413
+[; ;PROYECTO.c: 413:                         hora_nueva = USART_Rx();
 [e = _hora_nueva ( _USART_Rx ..  ]
-"387
-[; ;PROYECTO.c: 387:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 50C ]
-"388
-[; ;PROYECTO.c: 388:                         min_user2 = CharToNumM(hora_nueva, min_user2);
+"414
+[; ;PROYECTO.c: 414:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 66C ]
+"415
+[; ;PROYECTO.c: 415:                         min_user2 = CharToNumM(hora_nueva, min_user2);
 [e = _min_user2 ( _CharToNumM (2 , _hora_nueva _min_user2 ]
-"389
-[; ;PROYECTO.c: 389:                         break;
+"416
+[; ;PROYECTO.c: 416:                         break;
 [e $U 244  ]
-"390
-[; ;PROYECTO.c: 390:                     }
+"417
+[; ;PROYECTO.c: 417:                     }
 }
 [e :U 245 ]
-"391
-[; ;PROYECTO.c: 391:                 }
+"418
+[; ;PROYECTO.c: 418:                 }
 }
 [e :U 242 ]
 [e $U 243  ]
 [e :U 244 ]
-"392
-[; ;PROYECTO.c: 392:                 USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
-[e ( _USART_Cadena (1 :s 51C ]
-"393
-[; ;PROYECTO.c: 393:                 USART_Cadena(" presione el número de medicamento a guardar \r");
-[e ( _USART_Cadena (1 :s 52C ]
-"394
-[; ;PROYECTO.c: 394:                 USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
-[e ( _USART_Cadena (1 :s 53C ]
-"395
-[; ;PROYECTO.c: 395:                 while(1){
+"419
+[; ;PROYECTO.c: 419:                 USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
+[e ( _USART_Cadena (1 :s 67C ]
+"420
+[; ;PROYECTO.c: 420:                 USART_Cadena(" presione el número de medicamento a guardar \r");
+[e ( _USART_Cadena (1 :s 68C ]
+"421
+[; ;PROYECTO.c: 421:                 USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
+[e ( _USART_Cadena (1 :s 69C ]
+"422
+[; ;PROYECTO.c: 422:                 while(1){
 [e :U 247 ]
 {
-"396
-[; ;PROYECTO.c: 396:                     if (PIR1bits.RCIF == 1){
+"423
+[; ;PROYECTO.c: 423:                     if (PIR1bits.RCIF == 1){
 [e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 249  ]
 {
-"397
-[; ;PROYECTO.c: 397:                         hora_nueva = USART_Rx();
+"424
+[; ;PROYECTO.c: 424:                         hora_nueva = USART_Rx();
 [e = _hora_nueva ( _USART_Rx ..  ]
-"398
-[; ;PROYECTO.c: 398:                         if(hora_nueva == '1'){
+"425
+[; ;PROYECTO.c: 425:                         if(hora_nueva == '1'){
 [e $ ! == -> _hora_nueva `ui -> 49 `ui 250  ]
 {
-"399
-[; ;PROYECTO.c: 399:                             me_1_us2_h = hora_user2;
+"426
+[; ;PROYECTO.c: 426:                             me_1_us2_h = hora_user2;
 [e = _me_1_us2_h _hora_user2 ]
-"400
-[; ;PROYECTO.c: 400:                             me_1_us2_m = min_user2;
+"427
+[; ;PROYECTO.c: 427:                             me_1_us2_m = min_user2;
 [e = _me_1_us2_m _min_user2 ]
-"401
-[; ;PROYECTO.c: 401:                         }else if(hora_nueva == '2'){
+"428
+[; ;PROYECTO.c: 428:                         }else if(hora_nueva == '2'){
 }
 [e $U 251  ]
 [e :U 250 ]
 [e $ ! == -> _hora_nueva `ui -> 50 `ui 252  ]
 {
-"402
-[; ;PROYECTO.c: 402:                             me_2_us2_h = hora_user2;
+"429
+[; ;PROYECTO.c: 429:                             me_2_us2_h = hora_user2;
 [e = _me_2_us2_h _hora_user2 ]
-"403
-[; ;PROYECTO.c: 403:                             me_2_us2_m = min_user2;
+"430
+[; ;PROYECTO.c: 430:                             me_2_us2_m = min_user2;
 [e = _me_2_us2_m _min_user2 ]
-"404
-[; ;PROYECTO.c: 404:                         }else if(hora_nueva == '3'){
+"431
+[; ;PROYECTO.c: 431:                         }else if(hora_nueva == '3'){
 }
 [e $U 253  ]
 [e :U 252 ]
 [e $ ! == -> _hora_nueva `ui -> 51 `ui 254  ]
 {
-"405
-[; ;PROYECTO.c: 405:                             me_3_us2_h = hora_user2;
+"432
+[; ;PROYECTO.c: 432:                             me_3_us2_h = hora_user2;
 [e = _me_3_us2_h _hora_user2 ]
-"406
-[; ;PROYECTO.c: 406:                             me_3_us2_m = min_user2;
+"433
+[; ;PROYECTO.c: 433:                             me_3_us2_m = min_user2;
 [e = _me_3_us2_m _min_user2 ]
-"407
-[; ;PROYECTO.c: 407:                         }
+"434
+[; ;PROYECTO.c: 434:                         }
 }
 [e :U 254 ]
 [e :U 253 ]
 [e :U 251 ]
-"408
-[; ;PROYECTO.c: 408:                         break;
+"435
+[; ;PROYECTO.c: 435:                         break;
 [e $U 248  ]
-"409
-[; ;PROYECTO.c: 409:                     }
+"436
+[; ;PROYECTO.c: 436:                     }
 }
 [e :U 249 ]
-"410
-[; ;PROYECTO.c: 410:                 }
+"437
+[; ;PROYECTO.c: 437:                 }
 }
 [e :U 246 ]
 [e $U 247  ]
 [e :U 248 ]
-"411
-[; ;PROYECTO.c: 411:                 ventana = 1;
+"438
+[; ;PROYECTO.c: 438:                 ventana = 1;
 [e = _ventana -> -> 1 `i `uc ]
-"412
-[; ;PROYECTO.c: 412:                 break;
+"439
+[; ;PROYECTO.c: 439:                 break;
 [e $U 214  ]
-"413
-[; ;PROYECTO.c: 413:             case ('6'):
+"440
+[; ;PROYECTO.c: 440:             case ('6'):
 [e :U 255 ]
-"414
-[; ;PROYECTO.c: 414:                 USART_Cadena(" Ingresá la letra de la nueva hora  \r");
-[e ( _USART_Cadena (1 :s 54C ]
-"415
-[; ;PROYECTO.c: 415:                 USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
-[e ( _USART_Cadena (1 :s 55C ]
-"416
-[; ;PROYECTO.c: 416:                 USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
-[e ( _USART_Cadena (1 :s 56C ]
-"417
-[; ;PROYECTO.c: 417:                 USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
-[e ( _USART_Cadena (1 :s 57C ]
-"418
-[; ;PROYECTO.c: 418:                 while(1){
+"441
+[; ;PROYECTO.c: 441:                 USART_Cadena(" Ingresá la letra de la nueva hora  \r");
+[e ( _USART_Cadena (1 :s 70C ]
+"442
+[; ;PROYECTO.c: 442:                 USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
+[e ( _USART_Cadena (1 :s 71C ]
+"443
+[; ;PROYECTO.c: 443:                 USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
+[e ( _USART_Cadena (1 :s 72C ]
+"444
+[; ;PROYECTO.c: 444:                 USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
+[e ( _USART_Cadena (1 :s 73C ]
+"445
+[; ;PROYECTO.c: 445:                 while(1){
 [e :U 257 ]
 {
-"419
-[; ;PROYECTO.c: 419:                     if (PIR1bits.RCIF == 1){
+"446
+[; ;PROYECTO.c: 446:                     if (PIR1bits.RCIF == 1){
 [e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 259  ]
 {
-"420
-[; ;PROYECTO.c: 420:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 58C ]
-"421
-[; ;PROYECTO.c: 421:                         hora_nueva = USART_Rx();
+"447
+[; ;PROYECTO.c: 447:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 74C ]
+"448
+[; ;PROYECTO.c: 448:                         hora_nueva = USART_Rx();
 [e = _hora_nueva ( _USART_Rx ..  ]
-"422
-[; ;PROYECTO.c: 422:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 59C ]
-"423
-[; ;PROYECTO.c: 423:                         hora_user3 = CharToNumH(hora_nueva, hora_user3);
+"449
+[; ;PROYECTO.c: 449:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 75C ]
+"450
+[; ;PROYECTO.c: 450:                         hora_user3 = CharToNumH(hora_nueva, hora_user3);
 [e = _hora_user3 ( _CharToNumH (2 , _hora_nueva _hora_user3 ]
-"424
-[; ;PROYECTO.c: 424:                         break;
+"451
+[; ;PROYECTO.c: 451:                         break;
 [e $U 258  ]
-"425
-[; ;PROYECTO.c: 425:                     }
+"452
+[; ;PROYECTO.c: 452:                     }
 }
 [e :U 259 ]
-"426
-[; ;PROYECTO.c: 426:                 }
+"453
+[; ;PROYECTO.c: 453:                 }
 }
 [e :U 256 ]
 [e $U 257  ]
 [e :U 258 ]
-"427
-[; ;PROYECTO.c: 427:                 USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
-[e ( _USART_Cadena (1 :s 60C ]
-"428
-[; ;PROYECTO.c: 428:                 USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
-[e ( _USART_Cadena (1 :s 61C ]
-"429
-[; ;PROYECTO.c: 429:                 while(1){
+"454
+[; ;PROYECTO.c: 454:                 USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
+[e ( _USART_Cadena (1 :s 76C ]
+"455
+[; ;PROYECTO.c: 455:                 USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
+[e ( _USART_Cadena (1 :s 77C ]
+"456
+[; ;PROYECTO.c: 456:                 while(1){
 [e :U 261 ]
 {
-"430
-[; ;PROYECTO.c: 430:                     if (PIR1bits.RCIF == 1){
+"457
+[; ;PROYECTO.c: 457:                     if (PIR1bits.RCIF == 1){
 [e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 263  ]
 {
-"431
-[; ;PROYECTO.c: 431:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 62C ]
-"432
-[; ;PROYECTO.c: 432:                         hora_nueva = USART_Rx();
+"458
+[; ;PROYECTO.c: 458:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 78C ]
+"459
+[; ;PROYECTO.c: 459:                         hora_nueva = USART_Rx();
 [e = _hora_nueva ( _USART_Rx ..  ]
-"433
-[; ;PROYECTO.c: 433:                         USART_Cadena(" \r");
-[e ( _USART_Cadena (1 :s 63C ]
-"434
-[; ;PROYECTO.c: 434:                         min_user3 = CharToNumM(hora_nueva, min_user3);
+"460
+[; ;PROYECTO.c: 460:                         USART_Cadena(" \r");
+[e ( _USART_Cadena (1 :s 79C ]
+"461
+[; ;PROYECTO.c: 461:                         min_user3 = CharToNumM(hora_nueva, min_user3);
 [e = _min_user3 ( _CharToNumM (2 , _hora_nueva _min_user3 ]
-"435
-[; ;PROYECTO.c: 435:                         break;
+"462
+[; ;PROYECTO.c: 462:                         break;
 [e $U 262  ]
-"436
-[; ;PROYECTO.c: 436:                     }
+"463
+[; ;PROYECTO.c: 463:                     }
 }
 [e :U 263 ]
-"437
-[; ;PROYECTO.c: 437:                 }
+"464
+[; ;PROYECTO.c: 464:                 }
 }
 [e :U 260 ]
 [e $U 261  ]
 [e :U 262 ]
-"438
-[; ;PROYECTO.c: 438:                 USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
-[e ( _USART_Cadena (1 :s 64C ]
-"439
-[; ;PROYECTO.c: 439:                 USART_Cadena(" presione el número de medicamento a guardar \r");
-[e ( _USART_Cadena (1 :s 65C ]
-"440
-[; ;PROYECTO.c: 440:                 USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
-[e ( _USART_Cadena (1 :s 66C ]
-"441
-[; ;PROYECTO.c: 441:                 while(1){
+"465
+[; ;PROYECTO.c: 465:                 USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
+[e ( _USART_Cadena (1 :s 80C ]
+"466
+[; ;PROYECTO.c: 466:                 USART_Cadena(" presione el número de medicamento a guardar \r");
+[e ( _USART_Cadena (1 :s 81C ]
+"467
+[; ;PROYECTO.c: 467:                 USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
+[e ( _USART_Cadena (1 :s 82C ]
+"468
+[; ;PROYECTO.c: 468:                 while(1){
 [e :U 265 ]
 {
-"442
-[; ;PROYECTO.c: 442:                     if (PIR1bits.RCIF == 1){
+"469
+[; ;PROYECTO.c: 469:                     if (PIR1bits.RCIF == 1){
 [e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 267  ]
 {
-"443
-[; ;PROYECTO.c: 443:                         hora_nueva = USART_Rx();
+"470
+[; ;PROYECTO.c: 470:                         hora_nueva = USART_Rx();
 [e = _hora_nueva ( _USART_Rx ..  ]
-"444
-[; ;PROYECTO.c: 444:                         if(hora_nueva == '1'){
+"471
+[; ;PROYECTO.c: 471:                         if(hora_nueva == '1'){
 [e $ ! == -> _hora_nueva `ui -> 49 `ui 268  ]
 {
-"445
-[; ;PROYECTO.c: 445:                             me_1_us3_h = hora_user3;
+"472
+[; ;PROYECTO.c: 472:                             me_1_us3_h = hora_user3;
 [e = _me_1_us3_h _hora_user3 ]
-"446
-[; ;PROYECTO.c: 446:                             me_1_us3_m = min_user3;
+"473
+[; ;PROYECTO.c: 473:                             me_1_us3_m = min_user3;
 [e = _me_1_us3_m _min_user3 ]
-"447
-[; ;PROYECTO.c: 447:                         }else if(hora_nueva == '2'){
+"474
+[; ;PROYECTO.c: 474:                         }else if(hora_nueva == '2'){
 }
 [e $U 269  ]
 [e :U 268 ]
 [e $ ! == -> _hora_nueva `ui -> 50 `ui 270  ]
 {
-"448
-[; ;PROYECTO.c: 448:                             me_2_us3_h = hora_user3;
+"475
+[; ;PROYECTO.c: 475:                             me_2_us3_h = hora_user3;
 [e = _me_2_us3_h _hora_user3 ]
-"449
-[; ;PROYECTO.c: 449:                             me_2_us3_m = min_user3;
+"476
+[; ;PROYECTO.c: 476:                             me_2_us3_m = min_user3;
 [e = _me_2_us3_m _min_user3 ]
-"450
-[; ;PROYECTO.c: 450:                         }else if(hora_nueva == '3'){
+"477
+[; ;PROYECTO.c: 477:                         }else if(hora_nueva == '3'){
 }
 [e $U 271  ]
 [e :U 270 ]
 [e $ ! == -> _hora_nueva `ui -> 51 `ui 272  ]
 {
-"451
-[; ;PROYECTO.c: 451:                             me_3_us3_h = hora_user3;
+"478
+[; ;PROYECTO.c: 478:                             me_3_us3_h = hora_user3;
 [e = _me_3_us3_h _hora_user3 ]
-"452
-[; ;PROYECTO.c: 452:                             me_3_us3_m = min_user3;
+"479
+[; ;PROYECTO.c: 479:                             me_3_us3_m = min_user3;
 [e = _me_3_us3_m _min_user3 ]
-"453
-[; ;PROYECTO.c: 453:                         }
+"480
+[; ;PROYECTO.c: 480:                         }
 }
 [e :U 272 ]
 [e :U 271 ]
 [e :U 269 ]
-"454
-[; ;PROYECTO.c: 454:                         break;
+"481
+[; ;PROYECTO.c: 481:                         break;
 [e $U 266  ]
-"455
-[; ;PROYECTO.c: 455:                     }
+"482
+[; ;PROYECTO.c: 482:                     }
 }
 [e :U 267 ]
-"456
-[; ;PROYECTO.c: 456:                 }
+"483
+[; ;PROYECTO.c: 483:                 }
 }
 [e :U 264 ]
 [e $U 265  ]
 [e :U 266 ]
-"457
-[; ;PROYECTO.c: 457:                 ventana = 1;
+"484
+[; ;PROYECTO.c: 484:                 ventana = 1;
 [e = _ventana -> -> 1 `i `uc ]
-"458
-[; ;PROYECTO.c: 458:                 break;
+"485
+[; ;PROYECTO.c: 485:                 break;
 [e $U 214  ]
-"459
-[; ;PROYECTO.c: 459:             }
+"486
+[; ;PROYECTO.c: 486:             }
 }
 [e $U 214  ]
 [e :U 215 ]
@@ -1915,776 +1987,776 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 54 `ui `i 255
  214 ]
 [e :U 214 ]
-"461
-[; ;PROYECTO.c: 461:        valor = '0';
+"488
+[; ;PROYECTO.c: 488:        valor = '0';
 [e = _valor -> -> 48 `ui `uc ]
-"465
-[; ;PROYECTO.c: 465:        if (RB7==0 && RB3==1 && RB4==0){
+"490
+[; ;PROYECTO.c: 490:        if (RB7==0 && RB3==1 && RB4==0){
 [e $ ! && && == -> _RB7 `i -> 0 `i == -> _RB3 `i -> 1 `i == -> _RB4 `i -> 0 `i 273  ]
 {
-"466
-[; ;PROYECTO.c: 466:            me_3_us3_m = minuto;
+"491
+[; ;PROYECTO.c: 491:            me_3_us3_m = minuto;
 [e = _me_3_us3_m _minuto ]
-"467
-[; ;PROYECTO.c: 467:            me_3_us3_h = hora;
+"492
+[; ;PROYECTO.c: 492:            me_3_us3_h = hora;
 [e = _me_3_us3_h _hora ]
-"468
-[; ;PROYECTO.c: 468:        }else if (RB7==0 && RB3==0 && RB4==1){
+"493
+[; ;PROYECTO.c: 493:        }else if (RB7==0 && RB3==0 && RB4==1){
 }
 [e $U 274  ]
 [e :U 273 ]
 [e $ ! && && == -> _RB7 `i -> 0 `i == -> _RB3 `i -> 0 `i == -> _RB4 `i -> 1 `i 275  ]
 {
-"469
-[; ;PROYECTO.c: 469:            me_2_us3_m = minuto;
+"494
+[; ;PROYECTO.c: 494:            me_2_us3_m = minuto;
 [e = _me_2_us3_m _minuto ]
-"470
-[; ;PROYECTO.c: 470:            me_2_us3_h = hora;
+"495
+[; ;PROYECTO.c: 495:            me_2_us3_h = hora;
 [e = _me_2_us3_h _hora ]
-"471
-[; ;PROYECTO.c: 471:        }else if (RB7==0 && RB3==0 && RB4==0){
+"496
+[; ;PROYECTO.c: 496:        }else if (RB7==0 && RB3==0 && RB4==0){
 }
 [e $U 276  ]
 [e :U 275 ]
 [e $ ! && && == -> _RB7 `i -> 0 `i == -> _RB3 `i -> 0 `i == -> _RB4 `i -> 0 `i 277  ]
 {
-"472
-[; ;PROYECTO.c: 472:            me_1_us3_m = minuto;
+"497
+[; ;PROYECTO.c: 497:            me_1_us3_m = minuto;
 [e = _me_1_us3_m _minuto ]
-"473
-[; ;PROYECTO.c: 473:            me_1_us3_h = hora;
+"498
+[; ;PROYECTO.c: 498:            me_1_us3_h = hora;
 [e = _me_1_us3_h _hora ]
-"474
-[; ;PROYECTO.c: 474:        }
+"499
+[; ;PROYECTO.c: 499:        }
 }
 [e :U 277 ]
 [e :U 276 ]
 [e :U 274 ]
-"476
-[; ;PROYECTO.c: 476:        if (RB6==0 && RB3==1 && RB4==0){
+"501
+[; ;PROYECTO.c: 501:        if (RB6==0 && RB3==1 && RB4==0){
 [e $ ! && && == -> _RB6 `i -> 0 `i == -> _RB3 `i -> 1 `i == -> _RB4 `i -> 0 `i 278  ]
 {
-"477
-[; ;PROYECTO.c: 477:            me_3_us2_m = minuto;
+"502
+[; ;PROYECTO.c: 502:            me_3_us2_m = minuto;
 [e = _me_3_us2_m _minuto ]
-"478
-[; ;PROYECTO.c: 478:            me_3_us2_h = hora;
+"503
+[; ;PROYECTO.c: 503:            me_3_us2_h = hora;
 [e = _me_3_us2_h _hora ]
-"479
-[; ;PROYECTO.c: 479:        }else if (RB6==0 && RB3==0 && RB4==1){
+"504
+[; ;PROYECTO.c: 504:        }else if (RB6==0 && RB3==0 && RB4==1){
 }
 [e $U 279  ]
 [e :U 278 ]
 [e $ ! && && == -> _RB6 `i -> 0 `i == -> _RB3 `i -> 0 `i == -> _RB4 `i -> 1 `i 280  ]
 {
-"480
-[; ;PROYECTO.c: 480:            me_2_us2_m = minuto;
+"505
+[; ;PROYECTO.c: 505:            me_2_us2_m = minuto;
 [e = _me_2_us2_m _minuto ]
-"481
-[; ;PROYECTO.c: 481:            me_2_us2_h = hora;
+"506
+[; ;PROYECTO.c: 506:            me_2_us2_h = hora;
 [e = _me_2_us2_h _hora ]
-"482
-[; ;PROYECTO.c: 482:        }else if (RB6==0 && RB3==0 && RB4==0){
+"507
+[; ;PROYECTO.c: 507:        }else if (RB6==0 && RB3==0 && RB4==0){
 }
 [e $U 281  ]
 [e :U 280 ]
 [e $ ! && && == -> _RB6 `i -> 0 `i == -> _RB3 `i -> 0 `i == -> _RB4 `i -> 0 `i 282  ]
 {
-"483
-[; ;PROYECTO.c: 483:            me_1_us2_m = minuto;
+"508
+[; ;PROYECTO.c: 508:            me_1_us2_m = minuto;
 [e = _me_1_us2_m _minuto ]
-"484
-[; ;PROYECTO.c: 484:            me_1_us2_h = hora;
+"509
+[; ;PROYECTO.c: 509:            me_1_us2_h = hora;
 [e = _me_1_us2_h _hora ]
-"485
-[; ;PROYECTO.c: 485:        }
+"510
+[; ;PROYECTO.c: 510:        }
 }
 [e :U 282 ]
 [e :U 281 ]
 [e :U 279 ]
-"487
-[; ;PROYECTO.c: 487:        if (RB5==0 && RB3==0 && RB4==1){
+"512
+[; ;PROYECTO.c: 512:        if (RB5==0 && RB3==0 && RB4==1){
 [e $ ! && && == -> _RB5 `i -> 0 `i == -> _RB3 `i -> 0 `i == -> _RB4 `i -> 1 `i 283  ]
 {
-"488
-[; ;PROYECTO.c: 488:            me_3_us1_m = minuto;
+"513
+[; ;PROYECTO.c: 513:            me_3_us1_m = minuto;
 [e = _me_3_us1_m _minuto ]
-"489
-[; ;PROYECTO.c: 489:            me_3_us1_h = hora;
+"514
+[; ;PROYECTO.c: 514:            me_3_us1_h = hora;
 [e = _me_3_us1_h _hora ]
-"490
-[; ;PROYECTO.c: 490:        }else if (RB5==0 && RB3==1 && RB4==0){
+"515
+[; ;PROYECTO.c: 515:        }else if (RB5==0 && RB3==1 && RB4==0){
 }
 [e $U 284  ]
 [e :U 283 ]
 [e $ ! && && == -> _RB5 `i -> 0 `i == -> _RB3 `i -> 1 `i == -> _RB4 `i -> 0 `i 285  ]
 {
-"491
-[; ;PROYECTO.c: 491:            me_2_us1_m = minuto;
+"516
+[; ;PROYECTO.c: 516:            me_2_us1_m = minuto;
 [e = _me_2_us1_m _minuto ]
-"492
-[; ;PROYECTO.c: 492:            me_2_us1_h = hora;
+"517
+[; ;PROYECTO.c: 517:            me_2_us1_h = hora;
 [e = _me_2_us1_h _hora ]
-"493
-[; ;PROYECTO.c: 493:        }else if (RB5==0 && RB3==0 && RB4==0){
+"518
+[; ;PROYECTO.c: 518:        }else if (RB5==0 && RB3==0 && RB4==0){
 }
 [e $U 286  ]
 [e :U 285 ]
 [e $ ! && && == -> _RB5 `i -> 0 `i == -> _RB3 `i -> 0 `i == -> _RB4 `i -> 0 `i 287  ]
 {
-"494
-[; ;PROYECTO.c: 494:            me_1_us1_m = minuto;
+"519
+[; ;PROYECTO.c: 519:            me_1_us1_m = minuto;
 [e = _me_1_us1_m _minuto ]
-"495
-[; ;PROYECTO.c: 495:            me_1_us1_h = hora;
+"520
+[; ;PROYECTO.c: 520:            me_1_us1_h = hora;
 [e = _me_1_us1_h _hora ]
-"496
-[; ;PROYECTO.c: 496:        }
+"521
+[; ;PROYECTO.c: 521:        }
 }
 [e :U 287 ]
 [e :U 286 ]
 [e :U 284 ]
-"499
-[; ;PROYECTO.c: 499:     }
+"522
+[; ;PROYECTO.c: 522:     }
 }
 [e :U 140 ]
 [e $U 141  ]
 [e :U 142 ]
-"500
-[; ;PROYECTO.c: 500:     return;
+"523
+[; ;PROYECTO.c: 523:     return;
 [e $UE 139  ]
-"501
-[; ;PROYECTO.c: 501:     }
+"524
+[; ;PROYECTO.c: 524: }
 [e :UE 139 ]
 }
-"505
-[; ;PROYECTO.c: 505: void USART_Tx(char data){
+"528
+[; ;PROYECTO.c: 528: void USART_Tx(char data){
 [v _USART_Tx `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _USART_Tx ]
 [v _data `uc ~T0 @X0 1 r1 ]
 [f ]
-"506
-[; ;PROYECTO.c: 506:     while(TXSTAbits.TRMT == 0);
+"529
+[; ;PROYECTO.c: 529:     while(TXSTAbits.TRMT == 0);
 [e $U 289  ]
 [e :U 290 ]
 [e :U 289 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 290  ]
 [e :U 291 ]
-"507
-[; ;PROYECTO.c: 507:     TXREG = data;
+"530
+[; ;PROYECTO.c: 530:     TXREG = data;
 [e = _TXREG -> _data `uc ]
-"508
-[; ;PROYECTO.c: 508: }
+"531
+[; ;PROYECTO.c: 531: }
 [e :UE 288 ]
 }
-"510
-[; ;PROYECTO.c: 510: char USART_Rx(){
+"533
+[; ;PROYECTO.c: 533: char USART_Rx(){
 [v _USART_Rx `(uc ~T0 @X0 1 ef ]
 {
 [e :U _USART_Rx ]
 [f ]
-"511
-[; ;PROYECTO.c: 511:     return RCREG;
+"534
+[; ;PROYECTO.c: 534:     return RCREG;
 [e ) -> _RCREG `uc ]
 [e $UE 292  ]
-"512
-[; ;PROYECTO.c: 512:    }
+"535
+[; ;PROYECTO.c: 535:    }
 [e :UE 292 ]
 }
-"514
-[; ;PROYECTO.c: 514: void USART_Cadena(char *str){
+"537
+[; ;PROYECTO.c: 537: void USART_Cadena(char *str){
 [v _USART_Cadena `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _USART_Cadena ]
 [v _str `*uc ~T0 @X0 1 r1 ]
 [f ]
-"515
-[; ;PROYECTO.c: 515:     while(*str != '\0'){
+"538
+[; ;PROYECTO.c: 538:     while(*str != '\0'){
 [e $U 294  ]
 [e :U 295 ]
 {
-"516
-[; ;PROYECTO.c: 516:         USART_Tx(*str);
+"539
+[; ;PROYECTO.c: 539:         USART_Tx(*str);
 [e ( _USART_Tx (1 *U _str ]
-"517
-[; ;PROYECTO.c: 517:         str++;
+"540
+[; ;PROYECTO.c: 540:         str++;
 [e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
-"518
-[; ;PROYECTO.c: 518:     }
+"541
+[; ;PROYECTO.c: 541:     }
 }
 [e :U 294 ]
-"515
-[; ;PROYECTO.c: 515:     while(*str != '\0'){
+"538
+[; ;PROYECTO.c: 538:     while(*str != '\0'){
 [e $ != -> *U _str `ui -> 0 `ui 295  ]
 [e :U 296 ]
-"519
-[; ;PROYECTO.c: 519: }
+"542
+[; ;PROYECTO.c: 542: }
 [e :UE 293 ]
 }
-"521
-[; ;PROYECTO.c: 521: void SendCharH(char in){
+"544
+[; ;PROYECTO.c: 544: void SendCharH(char in){
 [v _SendCharH `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _SendCharH ]
 [v _in `uc ~T0 @X0 1 r1 ]
 [f ]
-"522
-[; ;PROYECTO.c: 522:     switch(in){
+"545
+[; ;PROYECTO.c: 545:     switch(in){
 [e $U 299  ]
 {
-"523
-[; ;PROYECTO.c: 523:         case(0):
+"546
+[; ;PROYECTO.c: 546:         case(0):
 [e :U 300 ]
-"524
-[; ;PROYECTO.c: 524:             while(TXSTAbits.TRMT == 0);
+"547
+[; ;PROYECTO.c: 547:             while(TXSTAbits.TRMT == 0);
 [e $U 301  ]
 [e :U 302 ]
 [e :U 301 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 302  ]
 [e :U 303 ]
-"525
-[; ;PROYECTO.c: 525:             TXREG = 48;
+"548
+[; ;PROYECTO.c: 548:             TXREG = 48;
 [e = _TXREG -> -> 48 `i `uc ]
-"526
-[; ;PROYECTO.c: 526:         break;
+"549
+[; ;PROYECTO.c: 549:         break;
 [e $U 298  ]
-"528
-[; ;PROYECTO.c: 528:         case(1):
+"551
+[; ;PROYECTO.c: 551:         case(1):
 [e :U 304 ]
-"529
-[; ;PROYECTO.c: 529:             while(TXSTAbits.TRMT == 0);
+"552
+[; ;PROYECTO.c: 552:             while(TXSTAbits.TRMT == 0);
 [e $U 305  ]
 [e :U 306 ]
 [e :U 305 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 306  ]
 [e :U 307 ]
-"530
-[; ;PROYECTO.c: 530:             TXREG = 49;
+"553
+[; ;PROYECTO.c: 553:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"531
-[; ;PROYECTO.c: 531:         break;
+"554
+[; ;PROYECTO.c: 554:         break;
 [e $U 298  ]
-"533
-[; ;PROYECTO.c: 533:         case(2):
+"556
+[; ;PROYECTO.c: 556:         case(2):
 [e :U 308 ]
-"534
-[; ;PROYECTO.c: 534:             while(TXSTAbits.TRMT == 0);
+"557
+[; ;PROYECTO.c: 557:             while(TXSTAbits.TRMT == 0);
 [e $U 309  ]
 [e :U 310 ]
 [e :U 309 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 310  ]
 [e :U 311 ]
-"535
-[; ;PROYECTO.c: 535:             TXREG = 50;
+"558
+[; ;PROYECTO.c: 558:             TXREG = 50;
 [e = _TXREG -> -> 50 `i `uc ]
-"536
-[; ;PROYECTO.c: 536:         break;
+"559
+[; ;PROYECTO.c: 559:         break;
 [e $U 298  ]
-"538
-[; ;PROYECTO.c: 538:         case(3):
+"561
+[; ;PROYECTO.c: 561:         case(3):
 [e :U 312 ]
-"539
-[; ;PROYECTO.c: 539:             while(TXSTAbits.TRMT == 0);
+"562
+[; ;PROYECTO.c: 562:             while(TXSTAbits.TRMT == 0);
 [e $U 313  ]
 [e :U 314 ]
 [e :U 313 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 314  ]
 [e :U 315 ]
-"540
-[; ;PROYECTO.c: 540:             TXREG = 51;
+"563
+[; ;PROYECTO.c: 563:             TXREG = 51;
 [e = _TXREG -> -> 51 `i `uc ]
-"541
-[; ;PROYECTO.c: 541:         break;
+"564
+[; ;PROYECTO.c: 564:         break;
 [e $U 298  ]
-"543
-[; ;PROYECTO.c: 543:         case(4):
+"566
+[; ;PROYECTO.c: 566:         case(4):
 [e :U 316 ]
-"544
-[; ;PROYECTO.c: 544:             while(TXSTAbits.TRMT == 0);
+"567
+[; ;PROYECTO.c: 567:             while(TXSTAbits.TRMT == 0);
 [e $U 317  ]
 [e :U 318 ]
 [e :U 317 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 318  ]
 [e :U 319 ]
-"545
-[; ;PROYECTO.c: 545:             TXREG = 52;
+"568
+[; ;PROYECTO.c: 568:             TXREG = 52;
 [e = _TXREG -> -> 52 `i `uc ]
-"546
-[; ;PROYECTO.c: 546:         break;
+"569
+[; ;PROYECTO.c: 569:         break;
 [e $U 298  ]
-"548
-[; ;PROYECTO.c: 548:         case(5):
+"571
+[; ;PROYECTO.c: 571:         case(5):
 [e :U 320 ]
-"549
-[; ;PROYECTO.c: 549:             while(TXSTAbits.TRMT == 0);
+"572
+[; ;PROYECTO.c: 572:             while(TXSTAbits.TRMT == 0);
 [e $U 321  ]
 [e :U 322 ]
 [e :U 321 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 322  ]
 [e :U 323 ]
-"550
-[; ;PROYECTO.c: 550:             TXREG = 53;
+"573
+[; ;PROYECTO.c: 573:             TXREG = 53;
 [e = _TXREG -> -> 53 `i `uc ]
-"551
-[; ;PROYECTO.c: 551:         break;
+"574
+[; ;PROYECTO.c: 574:         break;
 [e $U 298  ]
-"553
-[; ;PROYECTO.c: 553:         case(6):
+"576
+[; ;PROYECTO.c: 576:         case(6):
 [e :U 324 ]
-"554
-[; ;PROYECTO.c: 554:             while(TXSTAbits.TRMT == 0);
+"577
+[; ;PROYECTO.c: 577:             while(TXSTAbits.TRMT == 0);
 [e $U 325  ]
 [e :U 326 ]
 [e :U 325 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 326  ]
 [e :U 327 ]
-"555
-[; ;PROYECTO.c: 555:             TXREG = 54;
+"578
+[; ;PROYECTO.c: 578:             TXREG = 54;
 [e = _TXREG -> -> 54 `i `uc ]
-"556
-[; ;PROYECTO.c: 556:         break;
+"579
+[; ;PROYECTO.c: 579:         break;
 [e $U 298  ]
-"558
-[; ;PROYECTO.c: 558:         case(7):
+"581
+[; ;PROYECTO.c: 581:         case(7):
 [e :U 328 ]
-"559
-[; ;PROYECTO.c: 559:             while(TXSTAbits.TRMT == 0);
+"582
+[; ;PROYECTO.c: 582:             while(TXSTAbits.TRMT == 0);
 [e $U 329  ]
 [e :U 330 ]
 [e :U 329 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 330  ]
 [e :U 331 ]
-"560
-[; ;PROYECTO.c: 560:             TXREG = 55;
+"583
+[; ;PROYECTO.c: 583:             TXREG = 55;
 [e = _TXREG -> -> 55 `i `uc ]
-"561
-[; ;PROYECTO.c: 561:         break;
+"584
+[; ;PROYECTO.c: 584:         break;
 [e $U 298  ]
-"563
-[; ;PROYECTO.c: 563:         case(8):
+"586
+[; ;PROYECTO.c: 586:         case(8):
 [e :U 332 ]
-"564
-[; ;PROYECTO.c: 564:             while(TXSTAbits.TRMT == 0);
+"587
+[; ;PROYECTO.c: 587:             while(TXSTAbits.TRMT == 0);
 [e $U 333  ]
 [e :U 334 ]
 [e :U 333 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 334  ]
 [e :U 335 ]
-"565
-[; ;PROYECTO.c: 565:             TXREG = 56;
+"588
+[; ;PROYECTO.c: 588:             TXREG = 56;
 [e = _TXREG -> -> 56 `i `uc ]
-"566
-[; ;PROYECTO.c: 566:         break;
+"589
+[; ;PROYECTO.c: 589:         break;
 [e $U 298  ]
-"568
-[; ;PROYECTO.c: 568:         case(9):
+"591
+[; ;PROYECTO.c: 591:         case(9):
 [e :U 336 ]
-"569
-[; ;PROYECTO.c: 569:             while(TXSTAbits.TRMT == 0);
+"592
+[; ;PROYECTO.c: 592:             while(TXSTAbits.TRMT == 0);
 [e $U 337  ]
 [e :U 338 ]
 [e :U 337 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 338  ]
 [e :U 339 ]
-"570
-[; ;PROYECTO.c: 570:             TXREG = 57;
+"593
+[; ;PROYECTO.c: 593:             TXREG = 57;
 [e = _TXREG -> -> 57 `i `uc ]
-"571
-[; ;PROYECTO.c: 571:         break;
+"594
+[; ;PROYECTO.c: 594:         break;
 [e $U 298  ]
-"573
-[; ;PROYECTO.c: 573:         case(10):
+"596
+[; ;PROYECTO.c: 596:         case(10):
 [e :U 340 ]
-"574
-[; ;PROYECTO.c: 574:             while(TXSTAbits.TRMT == 0);
+"597
+[; ;PROYECTO.c: 597:             while(TXSTAbits.TRMT == 0);
 [e $U 341  ]
 [e :U 342 ]
 [e :U 341 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 342  ]
 [e :U 343 ]
-"575
-[; ;PROYECTO.c: 575:             TXREG = 49;
+"598
+[; ;PROYECTO.c: 598:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"576
-[; ;PROYECTO.c: 576:             while(TXSTAbits.TRMT == 0);
+"599
+[; ;PROYECTO.c: 599:             while(TXSTAbits.TRMT == 0);
 [e $U 344  ]
 [e :U 345 ]
 [e :U 344 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 345  ]
 [e :U 346 ]
-"577
-[; ;PROYECTO.c: 577:             TXREG = 48;
+"600
+[; ;PROYECTO.c: 600:             TXREG = 48;
 [e = _TXREG -> -> 48 `i `uc ]
-"578
-[; ;PROYECTO.c: 578:         break;
+"601
+[; ;PROYECTO.c: 601:         break;
 [e $U 298  ]
-"580
-[; ;PROYECTO.c: 580:         case(11):
+"603
+[; ;PROYECTO.c: 603:         case(11):
 [e :U 347 ]
-"581
-[; ;PROYECTO.c: 581:             while(TXSTAbits.TRMT == 0);
+"604
+[; ;PROYECTO.c: 604:             while(TXSTAbits.TRMT == 0);
 [e $U 348  ]
 [e :U 349 ]
 [e :U 348 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 349  ]
 [e :U 350 ]
-"582
-[; ;PROYECTO.c: 582:             TXREG = 49;
+"605
+[; ;PROYECTO.c: 605:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"583
-[; ;PROYECTO.c: 583:             while(TXSTAbits.TRMT == 0);
+"606
+[; ;PROYECTO.c: 606:             while(TXSTAbits.TRMT == 0);
 [e $U 351  ]
 [e :U 352 ]
 [e :U 351 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 352  ]
 [e :U 353 ]
-"584
-[; ;PROYECTO.c: 584:             TXREG = 49;
+"607
+[; ;PROYECTO.c: 607:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"585
-[; ;PROYECTO.c: 585:         break;
+"608
+[; ;PROYECTO.c: 608:         break;
 [e $U 298  ]
-"587
-[; ;PROYECTO.c: 587:         case(12):
+"610
+[; ;PROYECTO.c: 610:         case(12):
 [e :U 354 ]
-"588
-[; ;PROYECTO.c: 588:             while(TXSTAbits.TRMT == 0);
+"611
+[; ;PROYECTO.c: 611:             while(TXSTAbits.TRMT == 0);
 [e $U 355  ]
 [e :U 356 ]
 [e :U 355 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 356  ]
 [e :U 357 ]
-"589
-[; ;PROYECTO.c: 589:             TXREG = 49;
+"612
+[; ;PROYECTO.c: 612:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"590
-[; ;PROYECTO.c: 590:             while(TXSTAbits.TRMT == 0);
+"613
+[; ;PROYECTO.c: 613:             while(TXSTAbits.TRMT == 0);
 [e $U 358  ]
 [e :U 359 ]
 [e :U 358 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 359  ]
 [e :U 360 ]
-"591
-[; ;PROYECTO.c: 591:             TXREG = 50;
+"614
+[; ;PROYECTO.c: 614:             TXREG = 50;
 [e = _TXREG -> -> 50 `i `uc ]
-"592
-[; ;PROYECTO.c: 592:         break;
+"615
+[; ;PROYECTO.c: 615:         break;
 [e $U 298  ]
-"594
-[; ;PROYECTO.c: 594:         case(13):
+"617
+[; ;PROYECTO.c: 617:         case(13):
 [e :U 361 ]
-"595
-[; ;PROYECTO.c: 595:             while(TXSTAbits.TRMT == 0);
+"618
+[; ;PROYECTO.c: 618:             while(TXSTAbits.TRMT == 0);
 [e $U 362  ]
 [e :U 363 ]
 [e :U 362 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 363  ]
 [e :U 364 ]
-"596
-[; ;PROYECTO.c: 596:             TXREG = 49;
+"619
+[; ;PROYECTO.c: 619:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"597
-[; ;PROYECTO.c: 597:             while(TXSTAbits.TRMT == 0);
+"620
+[; ;PROYECTO.c: 620:             while(TXSTAbits.TRMT == 0);
 [e $U 365  ]
 [e :U 366 ]
 [e :U 365 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 366  ]
 [e :U 367 ]
-"598
-[; ;PROYECTO.c: 598:             TXREG = 51;
+"621
+[; ;PROYECTO.c: 621:             TXREG = 51;
 [e = _TXREG -> -> 51 `i `uc ]
-"599
-[; ;PROYECTO.c: 599:         break;
+"622
+[; ;PROYECTO.c: 622:         break;
 [e $U 298  ]
-"601
-[; ;PROYECTO.c: 601:         case(14):
+"624
+[; ;PROYECTO.c: 624:         case(14):
 [e :U 368 ]
-"602
-[; ;PROYECTO.c: 602:             while(TXSTAbits.TRMT == 0);
+"625
+[; ;PROYECTO.c: 625:             while(TXSTAbits.TRMT == 0);
 [e $U 369  ]
 [e :U 370 ]
 [e :U 369 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 370  ]
 [e :U 371 ]
-"603
-[; ;PROYECTO.c: 603:             TXREG = 49;
+"626
+[; ;PROYECTO.c: 626:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"604
-[; ;PROYECTO.c: 604:             while(TXSTAbits.TRMT == 0);
+"627
+[; ;PROYECTO.c: 627:             while(TXSTAbits.TRMT == 0);
 [e $U 372  ]
 [e :U 373 ]
 [e :U 372 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 373  ]
 [e :U 374 ]
-"605
-[; ;PROYECTO.c: 605:             TXREG = 52;
+"628
+[; ;PROYECTO.c: 628:             TXREG = 52;
 [e = _TXREG -> -> 52 `i `uc ]
-"606
-[; ;PROYECTO.c: 606:         break;
+"629
+[; ;PROYECTO.c: 629:         break;
 [e $U 298  ]
-"608
-[; ;PROYECTO.c: 608:         case(15):
+"631
+[; ;PROYECTO.c: 631:         case(15):
 [e :U 375 ]
-"609
-[; ;PROYECTO.c: 609:             while(TXSTAbits.TRMT == 0);
+"632
+[; ;PROYECTO.c: 632:             while(TXSTAbits.TRMT == 0);
 [e $U 376  ]
 [e :U 377 ]
 [e :U 376 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 377  ]
 [e :U 378 ]
-"610
-[; ;PROYECTO.c: 610:             TXREG = 49;
+"633
+[; ;PROYECTO.c: 633:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"611
-[; ;PROYECTO.c: 611:             while(TXSTAbits.TRMT == 0);
+"634
+[; ;PROYECTO.c: 634:             while(TXSTAbits.TRMT == 0);
 [e $U 379  ]
 [e :U 380 ]
 [e :U 379 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 380  ]
 [e :U 381 ]
-"612
-[; ;PROYECTO.c: 612:             TXREG = 53;
+"635
+[; ;PROYECTO.c: 635:             TXREG = 53;
 [e = _TXREG -> -> 53 `i `uc ]
-"613
-[; ;PROYECTO.c: 613:         break;
+"636
+[; ;PROYECTO.c: 636:         break;
 [e $U 298  ]
-"615
-[; ;PROYECTO.c: 615:         case(16):
+"638
+[; ;PROYECTO.c: 638:         case(16):
 [e :U 382 ]
-"616
-[; ;PROYECTO.c: 616:             while(TXSTAbits.TRMT == 0);
+"639
+[; ;PROYECTO.c: 639:             while(TXSTAbits.TRMT == 0);
 [e $U 383  ]
 [e :U 384 ]
 [e :U 383 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 384  ]
 [e :U 385 ]
-"617
-[; ;PROYECTO.c: 617:             TXREG = 49;
+"640
+[; ;PROYECTO.c: 640:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"618
-[; ;PROYECTO.c: 618:             while(TXSTAbits.TRMT == 0);
+"641
+[; ;PROYECTO.c: 641:             while(TXSTAbits.TRMT == 0);
 [e $U 386  ]
 [e :U 387 ]
 [e :U 386 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 387  ]
 [e :U 388 ]
-"619
-[; ;PROYECTO.c: 619:             TXREG = 54;
+"642
+[; ;PROYECTO.c: 642:             TXREG = 54;
 [e = _TXREG -> -> 54 `i `uc ]
-"620
-[; ;PROYECTO.c: 620:         break;
+"643
+[; ;PROYECTO.c: 643:         break;
 [e $U 298  ]
-"622
-[; ;PROYECTO.c: 622:         case(17):
+"645
+[; ;PROYECTO.c: 645:         case(17):
 [e :U 389 ]
-"623
-[; ;PROYECTO.c: 623:             while(TXSTAbits.TRMT == 0);
+"646
+[; ;PROYECTO.c: 646:             while(TXSTAbits.TRMT == 0);
 [e $U 390  ]
 [e :U 391 ]
 [e :U 390 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 391  ]
 [e :U 392 ]
-"624
-[; ;PROYECTO.c: 624:             TXREG = 49;
+"647
+[; ;PROYECTO.c: 647:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"625
-[; ;PROYECTO.c: 625:             while(TXSTAbits.TRMT == 0);
+"648
+[; ;PROYECTO.c: 648:             while(TXSTAbits.TRMT == 0);
 [e $U 393  ]
 [e :U 394 ]
 [e :U 393 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 394  ]
 [e :U 395 ]
-"626
-[; ;PROYECTO.c: 626:             TXREG = 55;
+"649
+[; ;PROYECTO.c: 649:             TXREG = 55;
 [e = _TXREG -> -> 55 `i `uc ]
-"627
-[; ;PROYECTO.c: 627:         break;
+"650
+[; ;PROYECTO.c: 650:         break;
 [e $U 298  ]
-"629
-[; ;PROYECTO.c: 629:         case(18):
+"652
+[; ;PROYECTO.c: 652:         case(18):
 [e :U 396 ]
-"630
-[; ;PROYECTO.c: 630:             while(TXSTAbits.TRMT == 0);
+"653
+[; ;PROYECTO.c: 653:             while(TXSTAbits.TRMT == 0);
 [e $U 397  ]
 [e :U 398 ]
 [e :U 397 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 398  ]
 [e :U 399 ]
-"631
-[; ;PROYECTO.c: 631:             TXREG = 49;
+"654
+[; ;PROYECTO.c: 654:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"632
-[; ;PROYECTO.c: 632:             while(TXSTAbits.TRMT == 0);
+"655
+[; ;PROYECTO.c: 655:             while(TXSTAbits.TRMT == 0);
 [e $U 400  ]
 [e :U 401 ]
 [e :U 400 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 401  ]
 [e :U 402 ]
-"633
-[; ;PROYECTO.c: 633:             TXREG = 56;
+"656
+[; ;PROYECTO.c: 656:             TXREG = 56;
 [e = _TXREG -> -> 56 `i `uc ]
-"634
-[; ;PROYECTO.c: 634:         break;
+"657
+[; ;PROYECTO.c: 657:         break;
 [e $U 298  ]
-"636
-[; ;PROYECTO.c: 636:         case(19):
+"659
+[; ;PROYECTO.c: 659:         case(19):
 [e :U 403 ]
-"637
-[; ;PROYECTO.c: 637:             while(TXSTAbits.TRMT == 0);
+"660
+[; ;PROYECTO.c: 660:             while(TXSTAbits.TRMT == 0);
 [e $U 404  ]
 [e :U 405 ]
 [e :U 404 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 405  ]
 [e :U 406 ]
-"638
-[; ;PROYECTO.c: 638:             TXREG = 49;
+"661
+[; ;PROYECTO.c: 661:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"639
-[; ;PROYECTO.c: 639:             while(TXSTAbits.TRMT == 0);
+"662
+[; ;PROYECTO.c: 662:             while(TXSTAbits.TRMT == 0);
 [e $U 407  ]
 [e :U 408 ]
 [e :U 407 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 408  ]
 [e :U 409 ]
-"640
-[; ;PROYECTO.c: 640:             TXREG = 57;
+"663
+[; ;PROYECTO.c: 663:             TXREG = 57;
 [e = _TXREG -> -> 57 `i `uc ]
-"641
-[; ;PROYECTO.c: 641:         break;
+"664
+[; ;PROYECTO.c: 664:         break;
 [e $U 298  ]
-"643
-[; ;PROYECTO.c: 643:         case(20):
+"666
+[; ;PROYECTO.c: 666:         case(20):
 [e :U 410 ]
-"644
-[; ;PROYECTO.c: 644:             while(TXSTAbits.TRMT == 0);
+"667
+[; ;PROYECTO.c: 667:             while(TXSTAbits.TRMT == 0);
 [e $U 411  ]
 [e :U 412 ]
 [e :U 411 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 412  ]
 [e :U 413 ]
-"645
-[; ;PROYECTO.c: 645:             TXREG = 50;
+"668
+[; ;PROYECTO.c: 668:             TXREG = 50;
 [e = _TXREG -> -> 50 `i `uc ]
-"646
-[; ;PROYECTO.c: 646:             while(TXSTAbits.TRMT == 0);
+"669
+[; ;PROYECTO.c: 669:             while(TXSTAbits.TRMT == 0);
 [e $U 414  ]
 [e :U 415 ]
 [e :U 414 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 415  ]
 [e :U 416 ]
-"647
-[; ;PROYECTO.c: 647:             TXREG = 48;
+"670
+[; ;PROYECTO.c: 670:             TXREG = 48;
 [e = _TXREG -> -> 48 `i `uc ]
-"648
-[; ;PROYECTO.c: 648:         break;
+"671
+[; ;PROYECTO.c: 671:         break;
 [e $U 298  ]
-"650
-[; ;PROYECTO.c: 650:         case(21):
+"673
+[; ;PROYECTO.c: 673:         case(21):
 [e :U 417 ]
-"651
-[; ;PROYECTO.c: 651:             while(TXSTAbits.TRMT == 0);
+"674
+[; ;PROYECTO.c: 674:             while(TXSTAbits.TRMT == 0);
 [e $U 418  ]
 [e :U 419 ]
 [e :U 418 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 419  ]
 [e :U 420 ]
-"652
-[; ;PROYECTO.c: 652:             TXREG = 50;
+"675
+[; ;PROYECTO.c: 675:             TXREG = 50;
 [e = _TXREG -> -> 50 `i `uc ]
-"653
-[; ;PROYECTO.c: 653:             while(TXSTAbits.TRMT == 0);
+"676
+[; ;PROYECTO.c: 676:             while(TXSTAbits.TRMT == 0);
 [e $U 421  ]
 [e :U 422 ]
 [e :U 421 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 422  ]
 [e :U 423 ]
-"654
-[; ;PROYECTO.c: 654:             TXREG = 49;
+"677
+[; ;PROYECTO.c: 677:             TXREG = 49;
 [e = _TXREG -> -> 49 `i `uc ]
-"655
-[; ;PROYECTO.c: 655:         break;
+"678
+[; ;PROYECTO.c: 678:         break;
 [e $U 298  ]
-"657
-[; ;PROYECTO.c: 657:         case(22):
+"680
+[; ;PROYECTO.c: 680:         case(22):
 [e :U 424 ]
-"658
-[; ;PROYECTO.c: 658:             while(TXSTAbits.TRMT == 0);
+"681
+[; ;PROYECTO.c: 681:             while(TXSTAbits.TRMT == 0);
 [e $U 425  ]
 [e :U 426 ]
 [e :U 425 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 426  ]
 [e :U 427 ]
-"659
-[; ;PROYECTO.c: 659:             TXREG = 50;
+"682
+[; ;PROYECTO.c: 682:             TXREG = 50;
 [e = _TXREG -> -> 50 `i `uc ]
-"660
-[; ;PROYECTO.c: 660:             while(TXSTAbits.TRMT == 0);
+"683
+[; ;PROYECTO.c: 683:             while(TXSTAbits.TRMT == 0);
 [e $U 428  ]
 [e :U 429 ]
 [e :U 428 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 429  ]
 [e :U 430 ]
-"661
-[; ;PROYECTO.c: 661:             TXREG = 50;
+"684
+[; ;PROYECTO.c: 684:             TXREG = 50;
 [e = _TXREG -> -> 50 `i `uc ]
-"662
-[; ;PROYECTO.c: 662:         break;
+"685
+[; ;PROYECTO.c: 685:         break;
 [e $U 298  ]
-"664
-[; ;PROYECTO.c: 664:         case(23):
+"687
+[; ;PROYECTO.c: 687:         case(23):
 [e :U 431 ]
-"665
-[; ;PROYECTO.c: 665:             while(TXSTAbits.TRMT == 0);
+"688
+[; ;PROYECTO.c: 688:             while(TXSTAbits.TRMT == 0);
 [e $U 432  ]
 [e :U 433 ]
 [e :U 432 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 433  ]
 [e :U 434 ]
-"666
-[; ;PROYECTO.c: 666:             TXREG = 50;
+"689
+[; ;PROYECTO.c: 689:             TXREG = 50;
 [e = _TXREG -> -> 50 `i `uc ]
-"667
-[; ;PROYECTO.c: 667:             while(TXSTAbits.TRMT == 0);
+"690
+[; ;PROYECTO.c: 690:             while(TXSTAbits.TRMT == 0);
 [e $U 435  ]
 [e :U 436 ]
 [e :U 435 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 436  ]
 [e :U 437 ]
-"668
-[; ;PROYECTO.c: 668:             TXREG = 51;
+"691
+[; ;PROYECTO.c: 691:             TXREG = 51;
 [e = _TXREG -> -> 51 `i `uc ]
-"669
-[; ;PROYECTO.c: 669:         break;
+"692
+[; ;PROYECTO.c: 692:         break;
 [e $U 298  ]
-"671
-[; ;PROYECTO.c: 671:         case(24):
+"694
+[; ;PROYECTO.c: 694:         case(24):
 [e :U 438 ]
-"672
-[; ;PROYECTO.c: 672:             while(TXSTAbits.TRMT == 0);
+"695
+[; ;PROYECTO.c: 695:             while(TXSTAbits.TRMT == 0);
 [e $U 439  ]
 [e :U 440 ]
 [e :U 439 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 440  ]
 [e :U 441 ]
-"673
-[; ;PROYECTO.c: 673:             TXREG = 50;
+"696
+[; ;PROYECTO.c: 696:             TXREG = 50;
 [e = _TXREG -> -> 50 `i `uc ]
-"674
-[; ;PROYECTO.c: 674:             while(TXSTAbits.TRMT == 0);
+"697
+[; ;PROYECTO.c: 697:             while(TXSTAbits.TRMT == 0);
 [e $U 442  ]
 [e :U 443 ]
 [e :U 442 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 443  ]
 [e :U 444 ]
-"675
-[; ;PROYECTO.c: 675:             TXREG = 52;
+"698
+[; ;PROYECTO.c: 698:             TXREG = 52;
 [e = _TXREG -> -> 52 `i `uc ]
-"676
-[; ;PROYECTO.c: 676:         break;
+"699
+[; ;PROYECTO.c: 699:         break;
 [e $U 298  ]
-"677
-[; ;PROYECTO.c: 677:     }
+"700
+[; ;PROYECTO.c: 700:     }
 }
 [e $U 298  ]
 [e :U 299 ]
@@ -2715,322 +2787,322 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 24 `i 438
  298 ]
 [e :U 298 ]
-"678
-[; ;PROYECTO.c: 678: }
+"701
+[; ;PROYECTO.c: 701: }
 [e :UE 297 ]
 }
-"680
-[; ;PROYECTO.c: 680: void SendCharM(char in){
+"703
+[; ;PROYECTO.c: 703: void SendCharM(char in){
 [v _SendCharM `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _SendCharM ]
 [v _in `uc ~T0 @X0 1 r1 ]
 [f ]
-"681
-[; ;PROYECTO.c: 681:     while(TXSTAbits.TRMT == 0);
+"704
+[; ;PROYECTO.c: 704:     while(TXSTAbits.TRMT == 0);
 [e $U 446  ]
 [e :U 447 ]
 [e :U 446 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 447  ]
 [e :U 448 ]
-"682
-[; ;PROYECTO.c: 682:         if(in == 0) {
+"705
+[; ;PROYECTO.c: 705:         if(in == 0) {
 [e $ ! == -> _in `i -> 0 `i 449  ]
 {
-"683
-[; ;PROYECTO.c: 683:             USART_Cadena("0");
-[e ( _USART_Cadena (1 :s 67C ]
-"684
-[; ;PROYECTO.c: 684:         }else if (in == 15){
+"706
+[; ;PROYECTO.c: 706:             USART_Cadena("0");
+[e ( _USART_Cadena (1 :s 83C ]
+"707
+[; ;PROYECTO.c: 707:         }else if (in == 15){
 }
 [e $U 450  ]
 [e :U 449 ]
 [e $ ! == -> _in `i -> 15 `i 451  ]
 {
-"685
-[; ;PROYECTO.c: 685:             USART_Cadena("15");
-[e ( _USART_Cadena (1 :s 68C ]
-"686
-[; ;PROYECTO.c: 686:         }else if (in == 30){
+"708
+[; ;PROYECTO.c: 708:             USART_Cadena("15");
+[e ( _USART_Cadena (1 :s 84C ]
+"709
+[; ;PROYECTO.c: 709:         }else if (in == 30){
 }
 [e $U 452  ]
 [e :U 451 ]
 [e $ ! == -> _in `i -> 30 `i 453  ]
 {
-"687
-[; ;PROYECTO.c: 687:             USART_Cadena("30");
-[e ( _USART_Cadena (1 :s 69C ]
-"688
-[; ;PROYECTO.c: 688:         }else if (in == 45){
+"710
+[; ;PROYECTO.c: 710:             USART_Cadena("30");
+[e ( _USART_Cadena (1 :s 85C ]
+"711
+[; ;PROYECTO.c: 711:         }else if (in == 45){
 }
 [e $U 454  ]
 [e :U 453 ]
 [e $ ! == -> _in `i -> 45 `i 455  ]
 {
-"689
-[; ;PROYECTO.c: 689:             USART_Cadena("45");
-[e ( _USART_Cadena (1 :s 70C ]
-"690
-[; ;PROYECTO.c: 690:         }else if (in == 55){
+"712
+[; ;PROYECTO.c: 712:             USART_Cadena("45");
+[e ( _USART_Cadena (1 :s 86C ]
+"713
+[; ;PROYECTO.c: 713:         }else if (in == 55){
 }
 [e $U 456  ]
 [e :U 455 ]
 [e $ ! == -> _in `i -> 55 `i 457  ]
 {
-"691
-[; ;PROYECTO.c: 691:             USART_Cadena("55");
-[e ( _USART_Cadena (1 :s 71C ]
-"692
-[; ;PROYECTO.c: 692:         }
+"714
+[; ;PROYECTO.c: 714:             USART_Cadena("55");
+[e ( _USART_Cadena (1 :s 87C ]
+"715
+[; ;PROYECTO.c: 715:         }
 }
 [e :U 457 ]
 [e :U 456 ]
 [e :U 454 ]
 [e :U 452 ]
 [e :U 450 ]
-"693
-[; ;PROYECTO.c: 693: }
+"716
+[; ;PROYECTO.c: 716: }
 [e :UE 445 ]
 }
-"695
-[; ;PROYECTO.c: 695: char CharToNumH(char in, char hora_user){
+"718
+[; ;PROYECTO.c: 718: char CharToNumH(char in, char hora_user){
 [v _CharToNumH `(uc ~T0 @X0 1 ef2`uc`uc ]
 {
 [e :U _CharToNumH ]
 [v _in `uc ~T0 @X0 1 r1 ]
 [v _hora_user `uc ~T0 @X0 1 r2 ]
 [f ]
-"696
-[; ;PROYECTO.c: 696:     switch(in){
+"719
+[; ;PROYECTO.c: 719:     switch(in){
 [e $U 460  ]
 {
-"697
-[; ;PROYECTO.c: 697:         case('a'):
-[e :U 461 ]
-"698
-[; ;PROYECTO.c: 698:             hora_user = 0;
-[e = _hora_user -> -> 0 `i `uc ]
-"699
-[; ;PROYECTO.c: 699:             break;
-[e $U 459  ]
-"700
-[; ;PROYECTO.c: 700:         case('b'):
-[e :U 462 ]
-"701
-[; ;PROYECTO.c: 701:             hora_user = 1;
-[e = _hora_user -> -> 1 `i `uc ]
-"702
-[; ;PROYECTO.c: 702:             break;
-[e $U 459  ]
-"703
-[; ;PROYECTO.c: 703:         case('c'):
-[e :U 463 ]
-"704
-[; ;PROYECTO.c: 704:             hora_user = 2;
-[e = _hora_user -> -> 2 `i `uc ]
-"705
-[; ;PROYECTO.c: 705:             break;
-[e $U 459  ]
-"706
-[; ;PROYECTO.c: 706:         case('d'):
-[e :U 464 ]
-"707
-[; ;PROYECTO.c: 707:             hora_user = 3;
-[e = _hora_user -> -> 3 `i `uc ]
-"708
-[; ;PROYECTO.c: 708:             break;
-[e $U 459  ]
-"709
-[; ;PROYECTO.c: 709:         case('e'):
-[e :U 465 ]
-"710
-[; ;PROYECTO.c: 710:             hora_user = 4;
-[e = _hora_user -> -> 4 `i `uc ]
-"711
-[; ;PROYECTO.c: 711:             break;
-[e $U 459  ]
-"712
-[; ;PROYECTO.c: 712:         case('f'):
-[e :U 466 ]
-"713
-[; ;PROYECTO.c: 713:             hora_user = 5;
-[e = _hora_user -> -> 5 `i `uc ]
-"714
-[; ;PROYECTO.c: 714:             break;
-[e $U 459  ]
-"715
-[; ;PROYECTO.c: 715:         case('g'):
-[e :U 467 ]
-"716
-[; ;PROYECTO.c: 716:             hora_user = 6;
-[e = _hora_user -> -> 6 `i `uc ]
-"717
-[; ;PROYECTO.c: 717:             break;
-[e $U 459  ]
-"718
-[; ;PROYECTO.c: 718:         case('h'):
-[e :U 468 ]
-"719
-[; ;PROYECTO.c: 719:             hora_user = 7;
-[e = _hora_user -> -> 7 `i `uc ]
 "720
-[; ;PROYECTO.c: 720:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 720:         case('a'):
+[e :U 461 ]
 "721
-[; ;PROYECTO.c: 721:         case('i'):
-[e :U 469 ]
+[; ;PROYECTO.c: 721:             hora_user = 0;
+[e = _hora_user -> -> 0 `i `uc ]
 "722
-[; ;PROYECTO.c: 722:             hora_user = 8;
-[e = _hora_user -> -> 8 `i `uc ]
+[; ;PROYECTO.c: 722:             break;
+[e $U 459  ]
 "723
-[; ;PROYECTO.c: 723:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 723:         case('b'):
+[e :U 462 ]
 "724
-[; ;PROYECTO.c: 724:         case('j'):
-[e :U 470 ]
+[; ;PROYECTO.c: 724:             hora_user = 1;
+[e = _hora_user -> -> 1 `i `uc ]
 "725
-[; ;PROYECTO.c: 725:             hora_user = 9;
-[e = _hora_user -> -> 9 `i `uc ]
+[; ;PROYECTO.c: 725:             break;
+[e $U 459  ]
 "726
-[; ;PROYECTO.c: 726:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 726:         case('c'):
+[e :U 463 ]
 "727
-[; ;PROYECTO.c: 727:         case('k'):
-[e :U 471 ]
+[; ;PROYECTO.c: 727:             hora_user = 2;
+[e = _hora_user -> -> 2 `i `uc ]
 "728
-[; ;PROYECTO.c: 728:             hora_user = 10;
-[e = _hora_user -> -> 10 `i `uc ]
+[; ;PROYECTO.c: 728:             break;
+[e $U 459  ]
 "729
-[; ;PROYECTO.c: 729:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 729:         case('d'):
+[e :U 464 ]
 "730
-[; ;PROYECTO.c: 730:         case('l'):
-[e :U 472 ]
+[; ;PROYECTO.c: 730:             hora_user = 3;
+[e = _hora_user -> -> 3 `i `uc ]
 "731
-[; ;PROYECTO.c: 731:             hora_user = 11;
-[e = _hora_user -> -> 11 `i `uc ]
+[; ;PROYECTO.c: 731:             break;
+[e $U 459  ]
 "732
-[; ;PROYECTO.c: 732:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 732:         case('e'):
+[e :U 465 ]
 "733
-[; ;PROYECTO.c: 733:         case('m'):
-[e :U 473 ]
+[; ;PROYECTO.c: 733:             hora_user = 4;
+[e = _hora_user -> -> 4 `i `uc ]
 "734
-[; ;PROYECTO.c: 734:             hora_user = 12;
-[e = _hora_user -> -> 12 `i `uc ]
+[; ;PROYECTO.c: 734:             break;
+[e $U 459  ]
 "735
-[; ;PROYECTO.c: 735:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 735:         case('f'):
+[e :U 466 ]
 "736
-[; ;PROYECTO.c: 736:         case('n'):
-[e :U 474 ]
+[; ;PROYECTO.c: 736:             hora_user = 5;
+[e = _hora_user -> -> 5 `i `uc ]
 "737
-[; ;PROYECTO.c: 737:             hora_user = 13;
-[e = _hora_user -> -> 13 `i `uc ]
+[; ;PROYECTO.c: 737:             break;
+[e $U 459  ]
 "738
-[; ;PROYECTO.c: 738:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 738:         case('g'):
+[e :U 467 ]
 "739
-[; ;PROYECTO.c: 739:         case('o'):
-[e :U 475 ]
+[; ;PROYECTO.c: 739:             hora_user = 6;
+[e = _hora_user -> -> 6 `i `uc ]
 "740
-[; ;PROYECTO.c: 740:             hora_user = 14;
-[e = _hora_user -> -> 14 `i `uc ]
+[; ;PROYECTO.c: 740:             break;
+[e $U 459  ]
 "741
-[; ;PROYECTO.c: 741:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 741:         case('h'):
+[e :U 468 ]
 "742
-[; ;PROYECTO.c: 742:         case('p'):
-[e :U 476 ]
+[; ;PROYECTO.c: 742:             hora_user = 7;
+[e = _hora_user -> -> 7 `i `uc ]
 "743
-[; ;PROYECTO.c: 743:             hora_user = 15;
-[e = _hora_user -> -> 15 `i `uc ]
+[; ;PROYECTO.c: 743:             break;
+[e $U 459  ]
 "744
-[; ;PROYECTO.c: 744:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 744:         case('i'):
+[e :U 469 ]
 "745
-[; ;PROYECTO.c: 745:         case('q'):
-[e :U 477 ]
+[; ;PROYECTO.c: 745:             hora_user = 8;
+[e = _hora_user -> -> 8 `i `uc ]
 "746
-[; ;PROYECTO.c: 746:             hora_user = 16;
-[e = _hora_user -> -> 16 `i `uc ]
+[; ;PROYECTO.c: 746:             break;
+[e $U 459  ]
 "747
-[; ;PROYECTO.c: 747:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 747:         case('j'):
+[e :U 470 ]
 "748
-[; ;PROYECTO.c: 748:         case('r'):
-[e :U 478 ]
+[; ;PROYECTO.c: 748:             hora_user = 9;
+[e = _hora_user -> -> 9 `i `uc ]
 "749
-[; ;PROYECTO.c: 749:             hora_user = 17;
-[e = _hora_user -> -> 17 `i `uc ]
+[; ;PROYECTO.c: 749:             break;
+[e $U 459  ]
 "750
-[; ;PROYECTO.c: 750:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 750:         case('k'):
+[e :U 471 ]
 "751
-[; ;PROYECTO.c: 751:         case('s'):
-[e :U 479 ]
+[; ;PROYECTO.c: 751:             hora_user = 10;
+[e = _hora_user -> -> 10 `i `uc ]
 "752
-[; ;PROYECTO.c: 752:             hora_user = 18;
-[e = _hora_user -> -> 18 `i `uc ]
+[; ;PROYECTO.c: 752:             break;
+[e $U 459  ]
 "753
-[; ;PROYECTO.c: 753:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 753:         case('l'):
+[e :U 472 ]
 "754
-[; ;PROYECTO.c: 754:         case('t'):
-[e :U 480 ]
+[; ;PROYECTO.c: 754:             hora_user = 11;
+[e = _hora_user -> -> 11 `i `uc ]
 "755
-[; ;PROYECTO.c: 755:             hora_user = 19;
-[e = _hora_user -> -> 19 `i `uc ]
+[; ;PROYECTO.c: 755:             break;
+[e $U 459  ]
 "756
-[; ;PROYECTO.c: 756:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 756:         case('m'):
+[e :U 473 ]
 "757
-[; ;PROYECTO.c: 757:         case('u'):
-[e :U 481 ]
+[; ;PROYECTO.c: 757:             hora_user = 12;
+[e = _hora_user -> -> 12 `i `uc ]
 "758
-[; ;PROYECTO.c: 758:             hora_user = 20;
-[e = _hora_user -> -> 20 `i `uc ]
+[; ;PROYECTO.c: 758:             break;
+[e $U 459  ]
 "759
-[; ;PROYECTO.c: 759:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 759:         case('n'):
+[e :U 474 ]
 "760
-[; ;PROYECTO.c: 760:         case('v'):
-[e :U 482 ]
+[; ;PROYECTO.c: 760:             hora_user = 13;
+[e = _hora_user -> -> 13 `i `uc ]
 "761
-[; ;PROYECTO.c: 761:             hora_user = 21;
-[e = _hora_user -> -> 21 `i `uc ]
+[; ;PROYECTO.c: 761:             break;
+[e $U 459  ]
 "762
-[; ;PROYECTO.c: 762:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 762:         case('o'):
+[e :U 475 ]
 "763
-[; ;PROYECTO.c: 763:         case('w'):
-[e :U 483 ]
+[; ;PROYECTO.c: 763:             hora_user = 14;
+[e = _hora_user -> -> 14 `i `uc ]
 "764
-[; ;PROYECTO.c: 764:             hora_user = 22;
-[e = _hora_user -> -> 22 `i `uc ]
+[; ;PROYECTO.c: 764:             break;
+[e $U 459  ]
 "765
-[; ;PROYECTO.c: 765:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 765:         case('p'):
+[e :U 476 ]
 "766
-[; ;PROYECTO.c: 766:         case('x'):
-[e :U 484 ]
+[; ;PROYECTO.c: 766:             hora_user = 15;
+[e = _hora_user -> -> 15 `i `uc ]
 "767
-[; ;PROYECTO.c: 767:             hora_user = 23;
-[e = _hora_user -> -> 23 `i `uc ]
+[; ;PROYECTO.c: 767:             break;
+[e $U 459  ]
 "768
-[; ;PROYECTO.c: 768:             break;
-[e $U 459  ]
+[; ;PROYECTO.c: 768:         case('q'):
+[e :U 477 ]
 "769
-[; ;PROYECTO.c: 769:         case('y'):
-[e :U 485 ]
+[; ;PROYECTO.c: 769:             hora_user = 16;
+[e = _hora_user -> -> 16 `i `uc ]
 "770
-[; ;PROYECTO.c: 770:             hora_user = 24;
-[e = _hora_user -> -> 24 `i `uc ]
-"771
-[; ;PROYECTO.c: 771:             break;
+[; ;PROYECTO.c: 770:             break;
 [e $U 459  ]
+"771
+[; ;PROYECTO.c: 771:         case('r'):
+[e :U 478 ]
 "772
-[; ;PROYECTO.c: 772:     }
+[; ;PROYECTO.c: 772:             hora_user = 17;
+[e = _hora_user -> -> 17 `i `uc ]
+"773
+[; ;PROYECTO.c: 773:             break;
+[e $U 459  ]
+"774
+[; ;PROYECTO.c: 774:         case('s'):
+[e :U 479 ]
+"775
+[; ;PROYECTO.c: 775:             hora_user = 18;
+[e = _hora_user -> -> 18 `i `uc ]
+"776
+[; ;PROYECTO.c: 776:             break;
+[e $U 459  ]
+"777
+[; ;PROYECTO.c: 777:         case('t'):
+[e :U 480 ]
+"778
+[; ;PROYECTO.c: 778:             hora_user = 19;
+[e = _hora_user -> -> 19 `i `uc ]
+"779
+[; ;PROYECTO.c: 779:             break;
+[e $U 459  ]
+"780
+[; ;PROYECTO.c: 780:         case('u'):
+[e :U 481 ]
+"781
+[; ;PROYECTO.c: 781:             hora_user = 20;
+[e = _hora_user -> -> 20 `i `uc ]
+"782
+[; ;PROYECTO.c: 782:             break;
+[e $U 459  ]
+"783
+[; ;PROYECTO.c: 783:         case('v'):
+[e :U 482 ]
+"784
+[; ;PROYECTO.c: 784:             hora_user = 21;
+[e = _hora_user -> -> 21 `i `uc ]
+"785
+[; ;PROYECTO.c: 785:             break;
+[e $U 459  ]
+"786
+[; ;PROYECTO.c: 786:         case('w'):
+[e :U 483 ]
+"787
+[; ;PROYECTO.c: 787:             hora_user = 22;
+[e = _hora_user -> -> 22 `i `uc ]
+"788
+[; ;PROYECTO.c: 788:             break;
+[e $U 459  ]
+"789
+[; ;PROYECTO.c: 789:         case('x'):
+[e :U 484 ]
+"790
+[; ;PROYECTO.c: 790:             hora_user = 23;
+[e = _hora_user -> -> 23 `i `uc ]
+"791
+[; ;PROYECTO.c: 791:             break;
+[e $U 459  ]
+"792
+[; ;PROYECTO.c: 792:         case('y'):
+[e :U 485 ]
+"793
+[; ;PROYECTO.c: 793:             hora_user = 24;
+[e = _hora_user -> -> 24 `i `uc ]
+"794
+[; ;PROYECTO.c: 794:             break;
+[e $U 459  ]
+"795
+[; ;PROYECTO.c: 795:     }
 }
 [e $U 459  ]
 [e :U 460 ]
@@ -3061,153 +3133,169 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> -> 121 `ui `i 485
  459 ]
 [e :U 459 ]
-"773
-[; ;PROYECTO.c: 773:     return hora_user;
+"796
+[; ;PROYECTO.c: 796:     return hora_user;
 [e ) _hora_user ]
 [e $UE 458  ]
-"774
-[; ;PROYECTO.c: 774: }
+"797
+[; ;PROYECTO.c: 797: }
 [e :UE 458 ]
 }
-"775
-[; ;PROYECTO.c: 775: char CharToNumM(char in, char her){
+"798
+[; ;PROYECTO.c: 798: char CharToNumM(char in, char her){
 [v _CharToNumM `(uc ~T0 @X0 1 ef2`uc`uc ]
 {
 [e :U _CharToNumM ]
 [v _in `uc ~T0 @X0 1 r1 ]
 [v _her `uc ~T0 @X0 1 r2 ]
 [f ]
-"776
-[; ;PROYECTO.c: 776:     if(in == 'a'){
+"799
+[; ;PROYECTO.c: 799:     if(in == 'a'){
 [e $ ! == -> _in `ui -> 97 `ui 487  ]
 {
-"777
-[; ;PROYECTO.c: 777:         her = 0;
+"800
+[; ;PROYECTO.c: 800:         her = 0;
 [e = _her -> -> 0 `i `uc ]
-"778
-[; ;PROYECTO.c: 778:     }else if(in == 'b'){
+"801
+[; ;PROYECTO.c: 801:     }else if(in == 'b'){
 }
 [e $U 488  ]
 [e :U 487 ]
 [e $ ! == -> _in `ui -> 98 `ui 489  ]
 {
-"779
-[; ;PROYECTO.c: 779:         her = 15;
+"802
+[; ;PROYECTO.c: 802:         her = 15;
 [e = _her -> -> 15 `i `uc ]
-"780
-[; ;PROYECTO.c: 780:     }else if(in == 'c'){
+"803
+[; ;PROYECTO.c: 803:     }else if(in == 'c'){
 }
 [e $U 490  ]
 [e :U 489 ]
 [e $ ! == -> _in `ui -> 99 `ui 491  ]
 {
-"781
-[; ;PROYECTO.c: 781:         her = 30;
+"804
+[; ;PROYECTO.c: 804:         her = 30;
 [e = _her -> -> 30 `i `uc ]
-"782
-[; ;PROYECTO.c: 782:     }else if(in == 'd'){
+"805
+[; ;PROYECTO.c: 805:     }else if(in == 'd'){
 }
 [e $U 492  ]
 [e :U 491 ]
 [e $ ! == -> _in `ui -> 100 `ui 493  ]
 {
-"783
-[; ;PROYECTO.c: 783:         her = 45;
+"806
+[; ;PROYECTO.c: 806:         her = 45;
 [e = _her -> -> 45 `i `uc ]
-"784
-[; ;PROYECTO.c: 784:     }else if(in == 'e'){
+"807
+[; ;PROYECTO.c: 807:     }else if(in == 'e'){
 }
 [e $U 494  ]
 [e :U 493 ]
 [e $ ! == -> _in `ui -> 101 `ui 495  ]
 {
-"785
-[; ;PROYECTO.c: 785:         her = 55;
+"808
+[; ;PROYECTO.c: 808:         her = 55;
 [e = _her -> -> 55 `i `uc ]
-"786
-[; ;PROYECTO.c: 786:     }
+"809
+[; ;PROYECTO.c: 809:     }
 }
 [e :U 495 ]
 [e :U 494 ]
 [e :U 492 ]
 [e :U 490 ]
 [e :U 488 ]
-"787
-[; ;PROYECTO.c: 787:     return her;
+"810
+[; ;PROYECTO.c: 810:     return her;
 [e ) _her ]
 [e $UE 486  ]
-"788
-[; ;PROYECTO.c: 788: }
+"811
+[; ;PROYECTO.c: 811: }
 [e :UE 486 ]
 }
-[a 71C 53 53 0 ]
-[a 70C 52 53 0 ]
-[a 68C 49 53 0 ]
-[a 69C 51 48 0 ]
-[a 67C 48 0 ]
+[a 87C 53 53 0 ]
+[a 86C 52 53 0 ]
+[a 84C 49 53 0 ]
+[a 85C 51 48 0 ]
+[a 83C 48 0 ]
 [a 9C 32 72 111 114 97 115 32 0 ]
 [a 13C 32 72 111 114 97 115 32 0 ]
 [a 17C 32 72 111 114 97 115 32 0 ]
 [a 21C 32 72 111 114 97 115 32 0 ]
 [a 25C 32 72 111 114 97 115 32 0 ]
+[a 29C 32 72 111 114 97 115 32 0 ]
+[a 33C 32 72 111 114 97 115 32 0 ]
+[a 37C 32 72 111 114 97 115 32 0 ]
+[a 41C 32 72 111 114 97 115 32 0 ]
 [a 8C 32 69 115 112 101 114 97 114 32 32 0 ]
 [a 12C 32 69 115 112 101 114 97 114 32 32 0 ]
 [a 16C 32 69 115 112 101 114 97 114 32 32 0 ]
 [a 20C 32 69 115 112 101 114 97 114 32 32 0 ]
 [a 24C 32 69 115 112 101 114 97 114 32 32 0 ]
+[a 28C 32 69 115 112 101 114 97 114 32 32 0 ]
+[a 32C 32 69 115 112 101 114 97 114 32 32 0 ]
+[a 36C 32 69 115 112 101 114 97 114 32 32 0 ]
+[a 40C 32 69 115 112 101 114 97 114 32 32 0 ]
 [a 10C 32 99 111 110 32 32 0 ]
 [a 14C 32 99 111 110 32 32 0 ]
 [a 18C 32 99 111 110 32 32 0 ]
 [a 22C 32 99 111 110 32 32 0 ]
 [a 26C 32 99 111 110 32 32 0 ]
-[a 38C 32 65 99 116 117 97 108 109 101 110 116 101 32 115 101 32 99 117 101 110 116 97 32 99 111 110 32 51 32 109 101 100 105 99 97 109 101 110 116 111 115 13 0 ]
-[a 51C 32 65 99 116 117 97 108 109 101 110 116 101 32 115 101 32 99 117 101 110 116 97 32 99 111 110 32 51 32 109 101 100 105 99 97 109 101 110 116 111 115 13 0 ]
-[a 64C 32 65 99 116 117 97 108 109 101 110 116 101 32 115 101 32 99 117 101 110 116 97 32 99 111 110 32 51 32 109 101 100 105 99 97 109 101 110 116 111 115 13 0 ]
+[a 30C 32 99 111 110 32 32 0 ]
+[a 34C 32 99 111 110 32 32 0 ]
+[a 38C 32 99 111 110 32 32 0 ]
+[a 42C 32 99 111 110 32 32 0 ]
+[a 54C 32 65 99 116 117 97 108 109 101 110 116 101 32 115 101 32 99 117 101 110 116 97 32 99 111 110 32 51 32 109 101 100 105 99 97 109 101 110 116 111 115 13 0 ]
+[a 67C 32 65 99 116 117 97 108 109 101 110 116 101 32 115 101 32 99 117 101 110 116 97 32 99 111 110 32 51 32 109 101 100 105 99 97 109 101 110 116 111 115 13 0 ]
+[a 80C 32 65 99 116 117 97 108 109 101 110 116 101 32 115 101 32 99 117 101 110 116 97 32 99 111 110 32 51 32 109 101 100 105 99 97 109 101 110 116 111 115 13 0 ]
 [a 6C 53 41 32 77 111 100 105 102 105 99 97 114 32 104 111 114 97 114 105 111 32 117 115 117 97 114 105 111 32 100 111 115 13 0 ]
 [a 3C 50 41 32 118 101 114 32 100 97 116 111 115 32 100 101 32 117 115 117 97 114 105 111 32 100 111 115 13 0 ]
-[a 29C 32 97 46 48 32 32 98 46 49 32 32 32 99 46 50 32 32 32 100 46 51 32 32 32 101 46 52 32 32 32 102 46 53 32 32 32 103 46 54 32 32 32 104 46 55 32 32 105 46 56 13 0 ]
-[a 42C 32 97 46 48 32 32 98 46 49 32 32 32 99 46 50 32 32 32 100 46 51 32 32 32 101 46 52 32 32 32 102 46 53 32 32 32 103 46 54 32 32 32 104 46 55 32 32 105 46 56 13 0 ]
-[a 55C 32 97 46 48 32 32 98 46 49 32 32 32 99 46 50 32 32 32 100 46 51 32 32 32 101 46 52 32 32 32 102 46 53 32 32 32 103 46 54 32 32 32 104 46 55 32 32 105 46 56 13 0 ]
-[a 30C 32 106 46 57 32 32 107 46 49 48 32 32 108 46 49 49 32 32 109 46 49 50 32 32 110 46 49 51 32 32 111 46 49 52 32 32 112 46 49 53 32 32 113 46 49 54 13 0 ]
-[a 43C 32 106 46 57 32 32 107 46 49 48 32 32 108 46 49 49 32 32 109 46 49 50 32 32 110 46 49 51 32 32 111 46 49 52 32 32 112 46 49 53 32 32 113 46 49 54 13 0 ]
-[a 56C 32 106 46 57 32 32 107 46 49 48 32 32 108 46 49 49 32 32 109 46 49 50 32 32 110 46 49 51 32 32 111 46 49 52 32 32 112 46 49 53 32 32 113 46 49 54 13 0 ]
-[a 31C 114 46 49 55 32 32 115 46 49 56 32 32 116 46 49 57 32 32 117 46 50 48 32 32 118 46 50 49 32 32 119 46 50 50 32 32 120 46 50 51 32 32 121 46 50 52 13 0 ]
-[a 44C 114 46 49 55 32 32 115 46 49 56 32 32 116 46 49 57 32 32 117 46 50 48 32 32 118 46 50 49 32 32 119 46 50 50 32 32 120 46 50 51 32 32 121 46 50 52 13 0 ]
-[a 57C 114 46 49 55 32 32 115 46 49 56 32 32 116 46 49 57 32 32 117 46 50 48 32 32 118 46 50 49 32 32 119 46 50 50 32 32 120 46 50 51 32 32 121 46 50 52 13 0 ]
+[a 45C 32 97 46 48 32 32 98 46 49 32 32 32 99 46 50 32 32 32 100 46 51 32 32 32 101 46 52 32 32 32 102 46 53 32 32 32 103 46 54 32 32 32 104 46 55 32 32 105 46 56 13 0 ]
+[a 58C 32 97 46 48 32 32 98 46 49 32 32 32 99 46 50 32 32 32 100 46 51 32 32 32 101 46 52 32 32 32 102 46 53 32 32 32 103 46 54 32 32 32 104 46 55 32 32 105 46 56 13 0 ]
+[a 71C 32 97 46 48 32 32 98 46 49 32 32 32 99 46 50 32 32 32 100 46 51 32 32 32 101 46 52 32 32 32 102 46 53 32 32 32 103 46 54 32 32 32 104 46 55 32 32 105 46 56 13 0 ]
+[a 46C 32 106 46 57 32 32 107 46 49 48 32 32 108 46 49 49 32 32 109 46 49 50 32 32 110 46 49 51 32 32 111 46 49 52 32 32 112 46 49 53 32 32 113 46 49 54 13 0 ]
+[a 59C 32 106 46 57 32 32 107 46 49 48 32 32 108 46 49 49 32 32 109 46 49 50 32 32 110 46 49 51 32 32 111 46 49 52 32 32 112 46 49 53 32 32 113 46 49 54 13 0 ]
+[a 72C 32 106 46 57 32 32 107 46 49 48 32 32 108 46 49 49 32 32 109 46 49 50 32 32 110 46 49 51 32 32 111 46 49 52 32 32 112 46 49 53 32 32 113 46 49 54 13 0 ]
+[a 47C 114 46 49 55 32 32 115 46 49 56 32 32 116 46 49 57 32 32 117 46 50 48 32 32 118 46 50 49 32 32 119 46 50 50 32 32 120 46 50 51 32 32 121 46 50 52 13 0 ]
+[a 60C 114 46 49 55 32 32 115 46 49 56 32 32 116 46 49 57 32 32 117 46 50 48 32 32 118 46 50 49 32 32 119 46 50 50 32 32 120 46 50 51 32 32 121 46 50 52 13 0 ]
+[a 73C 114 46 49 55 32 32 115 46 49 56 32 32 116 46 49 57 32 32 117 46 50 48 32 32 118 46 50 49 32 32 119 46 50 50 32 32 120 46 50 51 32 32 121 46 50 52 13 0 ]
 [a 4C 51 41 32 118 101 114 32 100 97 116 111 115 32 100 101 32 117 115 117 97 114 105 111 32 116 114 101 115 32 13 0 ]
-[a 39C 32 112 114 101 115 105 111 110 101 32 101 108 32 110 18446744073709551555 18446744073709551546 109 101 114 111 32 100 101 32 109 101 100 105 99 97 109 101 110 116 111 32 97 32 103 117 97 114 100 97 114 32 13 0 ]
-[a 52C 32 112 114 101 115 105 111 110 101 32 101 108 32 110 18446744073709551555 18446744073709551546 109 101 114 111 32 100 101 32 109 101 100 105 99 97 109 101 110 116 111 32 97 32 103 117 97 114 100 97 114 32 13 0 ]
-[a 65C 32 112 114 101 115 105 111 110 101 32 101 108 32 110 18446744073709551555 18446744073709551546 109 101 114 111 32 100 101 32 109 101 100 105 99 97 109 101 110 116 111 32 97 32 103 117 97 114 100 97 114 32 13 0 ]
+[a 55C 32 112 114 101 115 105 111 110 101 32 101 108 32 110 18446744073709551555 18446744073709551546 109 101 114 111 32 100 101 32 109 101 100 105 99 97 109 101 110 116 111 32 97 32 103 117 97 114 100 97 114 32 13 0 ]
+[a 68C 32 112 114 101 115 105 111 110 101 32 101 108 32 110 18446744073709551555 18446744073709551546 109 101 114 111 32 100 101 32 109 101 100 105 99 97 109 101 110 116 111 32 97 32 103 117 97 114 100 97 114 32 13 0 ]
+[a 81C 32 112 114 101 115 105 111 110 101 32 101 108 32 110 18446744073709551555 18446744073709551546 109 101 114 111 32 100 101 32 109 101 100 105 99 97 109 101 110 116 111 32 97 32 103 117 97 114 100 97 114 32 13 0 ]
 [a 5C 52 41 32 77 111 100 105 102 105 99 97 114 32 104 111 114 97 114 105 111 32 117 115 117 97 114 105 111 32 117 110 111 32 13 0 ]
 [a 2C 49 41 32 118 101 114 32 100 97 116 111 115 32 100 101 32 117 115 117 97 114 105 111 32 117 110 111 32 13 0 ]
-[a 40C 32 49 46 65 70 67 32 32 32 32 50 46 70 70 84 32 32 32 51 46 68 72 76 32 13 0 ]
-[a 53C 32 49 46 65 70 67 32 32 32 32 50 46 70 70 84 32 32 32 51 46 68 72 76 32 13 0 ]
-[a 66C 32 49 46 65 70 67 32 32 32 32 50 46 70 70 84 32 32 32 51 46 68 72 76 32 13 0 ]
+[a 56C 32 49 46 65 70 67 32 32 32 32 50 46 70 70 84 32 32 32 51 46 68 72 76 32 13 0 ]
+[a 69C 32 49 46 65 70 67 32 32 32 32 50 46 70 70 84 32 32 32 51 46 68 72 76 32 13 0 ]
+[a 82C 32 49 46 65 70 67 32 32 32 32 50 46 70 70 84 32 32 32 51 46 68 72 76 32 13 0 ]
 [a 1C 13 32 81 117 101 32 97 99 99 105 111 110 32 100 101 115 101 97 32 101 106 101 99 117 116 97 114 63 32 13 0 ]
 [a 15C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 50 32 13 0 ]
+[a 27C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 50 32 13 0 ]
+[a 39C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 50 32 13 0 ]
 [a 11C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 49 32 13 0 ]
-[a 34C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 111 115 32 109 105 110 117 116 111 115 32 110 117 101 118 111 115 32 32 13 0 ]
-[a 47C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 111 115 32 109 105 110 117 116 111 115 32 110 117 101 118 111 115 32 32 13 0 ]
-[a 60C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 111 115 32 109 105 110 117 116 111 115 32 110 117 101 118 111 115 32 32 13 0 ]
-[a 28C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 97 32 110 117 101 118 97 32 104 111 114 97 32 32 13 0 ]
-[a 41C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 97 32 110 117 101 118 97 32 104 111 114 97 32 32 13 0 ]
-[a 54C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 97 32 110 117 101 118 97 32 104 111 114 97 32 32 13 0 ]
-[a 35C 32 97 46 48 32 32 98 46 49 53 32 32 32 99 46 51 48 32 32 32 100 46 52 53 32 32 32 101 46 53 53 32 32 32 13 0 ]
-[a 48C 32 97 46 48 32 32 98 46 49 53 32 32 32 99 46 51 48 32 32 32 100 46 52 53 32 32 32 101 46 53 53 32 32 32 13 0 ]
-[a 61C 32 97 46 48 32 32 98 46 49 53 32 32 32 99 46 51 48 32 32 32 100 46 52 53 32 32 32 101 46 53 53 32 32 32 13 0 ]
-[a 32C 32 13 0 ]
-[a 33C 32 13 0 ]
-[a 36C 32 13 0 ]
-[a 37C 32 13 0 ]
-[a 45C 32 13 0 ]
-[a 46C 32 13 0 ]
+[a 23C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 49 32 13 0 ]
+[a 35C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 49 32 13 0 ]
+[a 50C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 111 115 32 109 105 110 117 116 111 115 32 110 117 101 118 111 115 32 32 13 0 ]
+[a 63C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 111 115 32 109 105 110 117 116 111 115 32 110 117 101 118 111 115 32 32 13 0 ]
+[a 76C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 111 115 32 109 105 110 117 116 111 115 32 110 117 101 118 111 115 32 32 13 0 ]
+[a 44C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 97 32 110 117 101 118 97 32 104 111 114 97 32 32 13 0 ]
+[a 57C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 97 32 110 117 101 118 97 32 104 111 114 97 32 32 13 0 ]
+[a 70C 32 73 110 103 114 101 115 18446744073709551555 18446744073709551521 32 108 97 32 108 101 116 114 97 32 100 101 32 108 97 32 110 117 101 118 97 32 104 111 114 97 32 32 13 0 ]
+[a 51C 32 97 46 48 32 32 98 46 49 53 32 32 32 99 46 51 48 32 32 32 100 46 52 53 32 32 32 101 46 53 53 32 32 32 13 0 ]
+[a 64C 32 97 46 48 32 32 98 46 49 53 32 32 32 99 46 51 48 32 32 32 100 46 52 53 32 32 32 101 46 53 53 32 32 32 13 0 ]
+[a 77C 32 97 46 48 32 32 98 46 49 53 32 32 32 99 46 51 48 32 32 32 100 46 52 53 32 32 32 101 46 53 53 32 32 32 13 0 ]
+[a 48C 32 13 0 ]
 [a 49C 32 13 0 ]
-[a 50C 32 13 0 ]
-[a 58C 32 13 0 ]
-[a 59C 32 13 0 ]
+[a 52C 32 13 0 ]
+[a 53C 32 13 0 ]
+[a 61C 32 13 0 ]
 [a 62C 32 13 0 ]
-[a 63C 32 13 0 ]
+[a 65C 32 13 0 ]
+[a 66C 32 13 0 ]
+[a 74C 32 13 0 ]
+[a 75C 32 13 0 ]
+[a 78C 32 13 0 ]
+[a 79C 32 13 0 ]
 [a 7C 54 41 32 77 111 100 105 102 105 99 97 114 32 104 111 114 97 114 105 111 32 117 115 117 97 114 105 111 32 116 114 101 115 32 13 13 0 ]
 [a 19C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 51 32 13 13 0 ]
-[a 23C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 32 13 13 0 ]
-[a 27C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 32 13 13 0 ]
+[a 31C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 51 32 13 13 0 ]
+[a 43C 32 109 105 110 115 46 32 112 97 114 97 32 101 108 32 109 101 100 105 99 97 109 101 110 116 111 32 51 32 13 13 0 ]

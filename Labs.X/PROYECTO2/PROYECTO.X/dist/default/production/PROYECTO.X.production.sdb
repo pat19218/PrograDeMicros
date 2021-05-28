@@ -15,19 +15,19 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "76
 [v _main main `(v  1 e 1 0 ]
-"505
+"528
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
-"510
+"533
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
-"514
+"537
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
-"521
+"544
 [v _SendCharH SendCharH `(v  1 e 1 0 ]
-"680
+"703
 [v _SendCharM SendCharM `(v  1 e 1 0 ]
-"695
+"718
 [v _CharToNumH CharToNumH `(uc  1 e 1 0 ]
-"775
+"798
 [v _CharToNumM CharToNumM `(uc  1 e 1 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -287,60 +287,60 @@
 "76
 [v _main main `(v  1 e 1 0 ]
 {
-"501
+"524
 } 0
-"510
+"533
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
 {
-"512
+"535
 } 0
-"680
+"703
 [v _SendCharM SendCharM `(v  1 e 1 0 ]
 {
 [v SendCharM@in in `uc  1 a 1 wreg ]
 [v SendCharM@in in `uc  1 a 1 wreg ]
 [v SendCharM@in in `uc  1 a 1 5 ]
-"693
+"716
 } 0
-"514
+"537
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 {
 [v USART_Cadena@str str `*.25uc  1 p 2 3 ]
-"519
+"542
 } 0
-"505
+"528
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
 {
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 2 ]
-"508
+"531
 } 0
-"521
+"544
 [v _SendCharH SendCharH `(v  1 e 1 0 ]
 {
 [v SendCharH@in in `uc  1 a 1 wreg ]
 [v SendCharH@in in `uc  1 a 1 wreg ]
 [v SendCharH@in in `uc  1 a 1 4 ]
-"678
+"701
 } 0
-"775
+"798
 [v _CharToNumM CharToNumM `(uc  1 e 1 0 ]
 {
 [v CharToNumM@in in `uc  1 a 1 wreg ]
 [v CharToNumM@in in `uc  1 a 1 wreg ]
 [v CharToNumM@her her `uc  1 p 1 2 ]
 [v CharToNumM@in in `uc  1 a 1 4 ]
-"788
+"811
 } 0
-"695
+"718
 [v _CharToNumH CharToNumH `(uc  1 e 1 0 ]
 {
 [v CharToNumH@in in `uc  1 a 1 wreg ]
 [v CharToNumH@in in `uc  1 a 1 wreg ]
 [v CharToNumH@hora_user hora_user `uc  1 p 1 2 ]
 [v CharToNumH@in in `uc  1 a 1 5 ]
-"774
+"797
 } 0
 "70
 [v _isr isr `II(v  1 e 1 0 ]

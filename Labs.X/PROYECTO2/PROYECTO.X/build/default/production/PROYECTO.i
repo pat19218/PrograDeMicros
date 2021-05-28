@@ -2797,7 +2797,7 @@ void main(void) {
                 }else if(escala >= 127 && escala <= 168 ){
                     minuto = 45;
                 }else if(escala >= 210 && escala <= 255 ){
-                    minuto = 60;
+                    minuto = 55;
                 }
 
                 ADCON0bits.CHS = 5;
@@ -2855,7 +2855,6 @@ void main(void) {
                 }else if(escala >= 241 && escala <=255 ){
                     hora = 24;
                 }
-
                 ADCON0bits.CHS = 6;
             }
             _delay((unsigned long)((50)*(4000000/4000000.0)));
@@ -2907,21 +2906,49 @@ void main(void) {
 
             case ('2'):
                 USART_Cadena(" Esperar  ");
-                SendCharH(hora_user2);
+                SendCharH(me_1_us2_h);
                 USART_Cadena(" Horas ");
                 USART_Cadena(" con  ");
-                SendCharM(min_user2);
-                USART_Cadena(" mins. para el medicamento  \r\r");
+                SendCharM(me_1_us2_m);
+                USART_Cadena(" mins. para el medicamento 1 \r");
+
+                USART_Cadena(" Esperar  ");
+                SendCharH(me_2_us2_h);
+                USART_Cadena(" Horas ");
+                USART_Cadena(" con  ");
+                SendCharM(me_2_us2_m);
+                USART_Cadena(" mins. para el medicamento 2 \r");
+
+                USART_Cadena(" Esperar  ");
+                SendCharH(me_3_us2_h);
+                USART_Cadena(" Horas ");
+                USART_Cadena(" con  ");
+                SendCharM(me_3_us2_m);
+                USART_Cadena(" mins. para el medicamento 3 \r\r");
                 ventana = 1;
                 break;
 
             case ('3'):
                 USART_Cadena(" Esperar  ");
-                SendCharH(hora_user3);
+                SendCharH(me_1_us3_h);
                 USART_Cadena(" Horas ");
                 USART_Cadena(" con  ");
-                SendCharM(min_user3);
-                USART_Cadena(" mins. para el medicamento  \r\r");
+                SendCharM(me_1_us3_m);
+                USART_Cadena(" mins. para el medicamento 1 \r");
+
+                USART_Cadena(" Esperar  ");
+                SendCharH(me_2_us3_h);
+                USART_Cadena(" Horas ");
+                USART_Cadena(" con  ");
+                SendCharM(me_2_us3_m);
+                USART_Cadena(" mins. para el medicamento 2 \r");
+
+                USART_Cadena(" Esperar  ");
+                SendCharH(me_3_us3_h);
+                USART_Cadena(" Horas ");
+                USART_Cadena(" con  ");
+                SendCharM(me_3_us3_m);
+                USART_Cadena(" mins. para el medicamento 3 \r\r");
                 ventana = 1;
                 break;
 
@@ -3068,8 +3095,6 @@ void main(void) {
 
        valor = '0';
 
-
-
        if (RB7==0 && RB3==1 && RB4==0){
            me_3_us3_m = minuto;
            me_3_us3_h = hora;
@@ -3102,11 +3127,9 @@ void main(void) {
            me_1_us1_m = minuto;
            me_1_us1_h = hora;
        }
-
-
     }
     return;
-    }
+}
 
 
 
