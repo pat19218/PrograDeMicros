@@ -15,19 +15,19 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "76
 [v _main main `(v  1 e 1 0 ]
-"614
+"505
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
-"619
+"510
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
-"623
+"514
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
-"630
+"521
 [v _SendCharH SendCharH `(v  1 e 1 0 ]
-"789
+"680
 [v _SendCharM SendCharM `(v  1 e 1 0 ]
-"804
+"695
 [v _CharToNumH CharToNumH `(uc  1 e 1 0 ]
-"884
+"775
 [v _CharToNumM CharToNumM `(uc  1 e 1 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -224,6 +224,10 @@
 [v _RB1 RB1 `VEb  1 e 0 @49 ]
 "4109
 [v _RB2 RB2 `VEb  1 e 0 @50 ]
+"4112
+[v _RB3 RB3 `VEb  1 e 0 @51 ]
+"4115
+[v _RB4 RB4 `VEb  1 e 0 @52 ]
 "4118
 [v _RB5 RB5 `VEb  1 e 0 @53 ]
 "4121
@@ -283,60 +287,60 @@
 "76
 [v _main main `(v  1 e 1 0 ]
 {
-"610
+"501
 } 0
-"619
+"510
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
 {
-"621
+"512
 } 0
-"789
+"680
 [v _SendCharM SendCharM `(v  1 e 1 0 ]
 {
 [v SendCharM@in in `uc  1 a 1 wreg ]
 [v SendCharM@in in `uc  1 a 1 wreg ]
 [v SendCharM@in in `uc  1 a 1 5 ]
-"802
+"693
 } 0
-"623
+"514
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 {
 [v USART_Cadena@str str `*.25uc  1 p 2 3 ]
-"628
+"519
 } 0
-"614
+"505
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
 {
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 2 ]
-"617
+"508
 } 0
-"630
+"521
 [v _SendCharH SendCharH `(v  1 e 1 0 ]
 {
 [v SendCharH@in in `uc  1 a 1 wreg ]
 [v SendCharH@in in `uc  1 a 1 wreg ]
 [v SendCharH@in in `uc  1 a 1 4 ]
-"787
+"678
 } 0
-"884
+"775
 [v _CharToNumM CharToNumM `(uc  1 e 1 0 ]
 {
 [v CharToNumM@in in `uc  1 a 1 wreg ]
 [v CharToNumM@in in `uc  1 a 1 wreg ]
 [v CharToNumM@her her `uc  1 p 1 2 ]
 [v CharToNumM@in in `uc  1 a 1 4 ]
-"897
+"788
 } 0
-"804
+"695
 [v _CharToNumH CharToNumH `(uc  1 e 1 0 ]
 {
 [v CharToNumH@in in `uc  1 a 1 wreg ]
 [v CharToNumH@in in `uc  1 a 1 wreg ]
 [v CharToNumH@hora_user hora_user `uc  1 p 1 2 ]
 [v CharToNumH@in in `uc  1 a 1 5 ]
-"883
+"774
 } 0
 "70
 [v _isr isr `II(v  1 e 1 0 ]

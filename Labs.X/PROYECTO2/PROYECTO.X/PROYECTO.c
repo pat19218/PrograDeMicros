@@ -279,14 +279,14 @@ void main(void) {
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 SendCharM(me_1_us1_m);      //datos medicamento 1
-                USART_Cadena(" mins. para el medicamento 1 \r\r");
+                USART_Cadena(" mins. para el medicamento 1 \r");
                 
                 USART_Cadena(" Esperar  ");
                 SendCharH(me_2_us1_h);
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 SendCharM(me_2_us1_m);
-                USART_Cadena(" mins. para el medicamento 2 \r\r");
+                USART_Cadena(" mins. para el medicamento 2 \r");
                 
                 USART_Cadena(" Esperar  ");
                 SendCharH(me_3_us1_h);
@@ -358,12 +358,9 @@ void main(void) {
                             me_3_us1_h = hora_user1;
                             me_3_us1_m = min_user1;
                         }
-                            
                         break;
                     }
                 }                             
-                                        
-            
                 ventana = 1;
                 break;
                         
@@ -377,57 +374,7 @@ void main(void) {
                         USART_Cadena(" \r");
                         hora_nueva = USART_Rx();
                         USART_Cadena(" \r");
-                        if(hora_nueva == 'a'){
-                            hora_user2 = 0;
-                        }else if(hora_nueva == 'b'){
-                            hora_user2 = 1;
-                        }else if(hora_nueva == 'c'){
-                            hora_user2 = 2;
-                        }else if(hora_nueva == 'd'){
-                            hora_user2 = 3;
-                        }else if(hora_nueva == 'e'){
-                            hora_user2 = 4;
-                        }else if(hora_nueva == 'f'){
-                            hora_user2 = 5;
-                        }else if(hora_nueva == 'g'){
-                            hora_user2 = 6;
-                        }else if(hora_nueva == 'h'){
-                            hora_user2 = 7;
-                        }else if(hora_nueva == 'i'){
-                            hora_user2 = 8;
-                        }else if(hora_nueva == 'j'){
-                            hora_user2 = 9;
-                        }else if(hora_nueva == 'k'){
-                            hora_user2 = 10;
-                        }else if(hora_nueva == 'l'){
-                            hora_user2 = 11;
-                        }else if(hora_nueva == 'm'){
-                            hora_user2 = 12;
-                        }else if(hora_nueva == 'n'){
-                            hora_user2 = 13;
-                        }else if(hora_nueva == 'o'){
-                            hora_user2 = 14;
-                        }else if(hora_nueva == 'p'){
-                            hora_user2 = 15;
-                        }else if(hora_nueva == 'q'){
-                            hora_user2 = 16;
-                        }else if(hora_nueva == 'r'){
-                            hora_user2 = 17;
-                        }else if(hora_nueva == 's'){
-                            hora_user2 = 18;
-                        }else if(hora_nueva == 't'){
-                            hora_user2 = 19;
-                        }else if(hora_nueva == 'u'){
-                            hora_user2 = 20;
-                        }else if(hora_nueva == 'v'){
-                            hora_user2 = 21;
-                        }else if(hora_nueva == 'w'){
-                            hora_user2 = 22;
-                        }else if(hora_nueva == 'x'){
-                            hora_user2 = 23;
-                        }else if(hora_nueva == 'y'){
-                            hora_user2 = 24;
-                        }
+                        hora_user2 = CharToNumH(hora_nueva, hora_user2);
                         break;
                     }
                 }
@@ -438,18 +385,7 @@ void main(void) {
                         USART_Cadena(" \r");
                         hora_nueva = USART_Rx();
                         USART_Cadena(" \r");
-                        if(hora_nueva == 'a'){
-                            min_user2 = 0;
-                        }else if(hora_nueva == 'b'){
-                            min_user2 = 15;
-                        }else if(hora_nueva == 'c'){
-                            min_user2 = 30;
-                        }else if(hora_nueva == 'd'){
-                            min_user2 = 45;
-                        }else if(hora_nueva == 'e'){
-                            min_user2 = 55;
-                        }
-                        
+                        min_user2 = CharToNumM(hora_nueva, min_user2);
                         break;
                     }
                 }
@@ -460,22 +396,20 @@ void main(void) {
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
                         hora_nueva = USART_Rx();
                         if(hora_nueva == '1'){
-                            me_1_us2_h = hora_user1;
-                            me_1_us2_m = min_user1;
+                            me_1_us2_h = hora_user2;
+                            me_1_us2_m = min_user2;
                         }else if(hora_nueva == '2'){
-                            me_2_us2_h = hora_user1;
-                            me_2_us2_m = min_user1;
+                            me_2_us2_h = hora_user2;
+                            me_2_us2_m = min_user2;
                         }else if(hora_nueva == '3'){
-                            me_3_us2_h = hora_user1;
-                            me_3_us2_m = min_user1;
+                            me_3_us2_h = hora_user2;
+                            me_3_us2_m = min_user2;
                         }
-                            
                         break;
                     }
-                }
+                }                             
                 ventana = 1;
                 break;
-                
             case ('6'):
                 USART_Cadena(" Ingresá la letra de la nueva hora  \r");
                 USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
@@ -486,57 +420,7 @@ void main(void) {
                         USART_Cadena(" \r");
                         hora_nueva = USART_Rx();
                         USART_Cadena(" \r");
-                        if(hora_nueva == 'a'){
-                            hora_user3 = 0;
-                        }else if(hora_nueva == 'b'){
-                            hora_user3 = 1;
-                        }else if(hora_nueva == 'c'){
-                            hora_user3 = 2;
-                        }else if(hora_nueva == 'd'){
-                            hora_user3 = 3;
-                        }else if(hora_nueva == 'e'){
-                            hora_user3 = 4;
-                        }else if(hora_nueva == 'f'){
-                            hora_user3 = 5;
-                        }else if(hora_nueva == 'g'){
-                            hora_user3 = 6;
-                        }else if(hora_nueva == 'h'){
-                            hora_user3 = 7;
-                        }else if(hora_nueva == 'i'){
-                            hora_user3 = 8;
-                        }else if(hora_nueva == 'j'){
-                            hora_user3 = 9;
-                        }else if(hora_nueva == 'k'){
-                            hora_user3 = 10;
-                        }else if(hora_nueva == 'l'){
-                            hora_user3 = 11;
-                        }else if(hora_nueva == 'm'){
-                            hora_user3 = 12;
-                        }else if(hora_nueva == 'n'){
-                            hora_user3 = 13;
-                        }else if(hora_nueva == 'o'){
-                            hora_user3 = 14;
-                        }else if(hora_nueva == 'p'){
-                            hora_user3 = 15;
-                        }else if(hora_nueva == 'q'){
-                            hora_user3 = 16;
-                        }else if(hora_nueva == 'r'){
-                            hora_user3 = 17;
-                        }else if(hora_nueva == 's'){
-                            hora_user3 = 18;
-                        }else if(hora_nueva == 't'){
-                            hora_user3 = 19;
-                        }else if(hora_nueva == 'u'){
-                            hora_user3 = 20;
-                        }else if(hora_nueva == 'v'){
-                            hora_user3 = 21;
-                        }else if(hora_nueva == 'w'){
-                            hora_user3 = 22;
-                        }else if(hora_nueva == 'x'){
-                            hora_user3 = 23;
-                        }else if(hora_nueva == 'y'){
-                            hora_user3 = 24;
-                        }
+                        hora_user3 = CharToNumH(hora_nueva, hora_user3);
                         break;
                     }
                 }
@@ -547,21 +431,9 @@ void main(void) {
                         USART_Cadena(" \r");
                         hora_nueva = USART_Rx();
                         USART_Cadena(" \r");
-                        if(hora_nueva == 'a'){
-                            min_user3 = 0;
-                        }else if(hora_nueva == 'b'){
-                            min_user3 = 15;
-                        }else if(hora_nueva == 'c'){
-                            min_user3 = 30;
-                        }else if(hora_nueva == 'd'){
-                            min_user3 = 45;
-                        }else if(hora_nueva == 'e'){
-                            min_user3 = 55;
-                        }
-                        
+                        min_user3 = CharToNumM(hora_nueva, min_user3);
                         break;
                     }
-                        
                 }
                 USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
                 USART_Cadena(" presione el número de medicamento a guardar \r");
@@ -570,19 +442,18 @@ void main(void) {
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
                         hora_nueva = USART_Rx();
                         if(hora_nueva == '1'){
-                            me_1_us3_h = hora_user1;
-                            me_1_us3_m = min_user1;
+                            me_1_us3_h = hora_user3;
+                            me_1_us3_m = min_user3;
                         }else if(hora_nueva == '2'){
-                            me_2_us3_h = hora_user1;
-                            me_2_us3_m = min_user1;
+                            me_2_us3_h = hora_user3;
+                            me_2_us3_m = min_user3;
                         }else if(hora_nueva == '3'){
-                            me_3_us3_h = hora_user1;
-                            me_3_us3_m = min_user1;
+                            me_3_us3_h = hora_user3;
+                            me_3_us3_m = min_user3;
                         }
-                            
                         break;
                     }
-                }
+                }                             
                 ventana = 1;
                 break;    
             }
@@ -591,17 +462,37 @@ void main(void) {
        
        
        
-       if (!RB7){
-           min_user3 = minuto;
-           hora_user3 = hora;
+       if (RB7==0 && RB3==1 && RB4==0){
+           me_3_us3_m = minuto;
+           me_3_us3_h = hora;
+       }else if (RB7==0 && RB3==0 && RB4==1){
+           me_2_us3_m = minuto;
+           me_2_us3_h = hora;
+       }else if (RB7==0 && RB3==0 && RB4==0){
+           me_1_us3_m = minuto;
+           me_1_us3_h = hora;
        }
-       if (!RB6){
-           min_user2 = minuto;
-           hora_user2 = hora;
+       
+       if (RB6==0 && RB3==1 && RB4==0){
+           me_3_us2_m = minuto;
+           me_3_us2_h = hora;
+       }else if  (RB6==0 && RB3==0 && RB4==1){
+           me_2_us2_m = minuto;
+           me_2_us2_h = hora;
+       }else if (RB6==0 && RB3==0 && RB4==0){
+           me_1_us2_m = minuto;
+           me_1_us2_h = hora;
        }
-       if (!RB5){
-           min_user1 = minuto;
-           hora_user1 = hora;
+       
+       if (RB5==0 && RB3==0 && RB4==1){
+           me_3_us1_m = minuto;
+           me_3_us1_h = hora;
+       }else if  (RB5==0 && RB3==1 && RB4==0){
+           me_2_us1_m = minuto;
+           me_2_us1_h = hora;
+       }else if (RB5==0 && RB3==0 && RB4==0){
+           me_1_us1_m = minuto;
+           me_1_us1_h = hora;
        }
        
        
