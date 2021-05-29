@@ -9,7 +9,7 @@
  * Hardware: Pic 16f887, transistores, resistencias, leds, button
  * 
  * Created on 14 de mayo de 2021, 21:51
- * Last modification on 26 de mayo de 2021, 23:00
+ * Last modification on 28 de mayo de 2021, 23:00
  */
 
 // PIC16F887 Configuration Bit Settings
@@ -54,6 +54,7 @@ char me_1_us3_h, me_2_us3_h, me_3_us3_h;
 char me_1_us1_m, me_2_us1_m, me_3_us1_m;
 char me_1_us2_m, me_2_us2_m, me_3_us2_m;
 char me_1_us3_m, me_2_us3_m, me_3_us3_m;
+char cont;
 
 
 //--------------------------funciones-------------------------------------------
@@ -69,6 +70,19 @@ char CharToNumM(char in, char her);
 
 void __interrupt()isr(void) {
     
+    if (TMR1IF == 1){     //timmer1
+        
+        cont++;
+        if(cont == 2){
+            PORTA = ~PORTA;      // Toggle PORTB bit1 LED
+            cont = 0;
+        }
+
+        TMR1IF = 0;           // interrupt must be cleared by software
+        TMR1IE =1;        // reenable the interrupt
+        TMR1H = 0;             // preset for timer1 MSB register
+        TMR1L = 0;             // preset for timer1 LSB register
+  }
 }
 
 //----------------------configuracion microprocesador---------------------------
@@ -109,6 +123,17 @@ void main(void) {
     OPTION_REGbits.PSA = 0;     //Uso pre-escaler
     OPTION_REGbits.PS = 0b111;  //PS = 111 / 1:256
     TMR0 = 78;                  //Reinicio del timmer
+    
+                                //config. timmer1 para contar tiempor
+    T1CONbits.T1CKPS1 = 1;   // bits 5-4  Prescaler Rate Select bits
+    T1CONbits.T1CKPS0 = 1;   // bit 4
+    T1CONbits.T1OSCEN = 1;   // bit 3 Timer1 Oscillator Enable Control bit 1 = on
+    T1CONbits.T1SYNC = 1;    // bit 2 Timer1 External Clock Input Synchronization Control bit...1 = Do not synchronize external clock input
+    T1CONbits.TMR1CS = 0;    // bit 1 Timer1 Clock Source Select bit...0 = Internal clock (FOSC/4)
+    T1CONbits.TMR1ON = 1;    // bit 0 enables timer
+    TMR1H = 0;             // preset for timer1 MSB register
+    TMR1L = 0;             // preset for timer1 LSB register
+    
 
                             //Confi. serial comunication
     TXSTAbits.SYNC = 0;     //asincrono
@@ -126,6 +151,10 @@ void main(void) {
     INTCONbits.GIE = 1;     //habilito interrupciones
     INTCONbits.T0IE = 0;    //desactivo interrupciones por timmer 0
     INTCONbits.T0IF = 0;    //bajo la bandera
+    PIR1bits.TMR1IF = 0;    // bandera timmer1
+    PIE1bits.TMR1IE  = 1;   // enable Timer1 interrupts
+    INTCONbits.PEIE = 1;    // 
+
 //    PIE1bits.RCIE = 1;    //interrupcion por serialcomunication recepcion
 //    PIR1bits.RCIF = 0;    //bajo la bandera
     

@@ -2662,6 +2662,7 @@ char me_1_us3_h, me_2_us3_h, me_3_us3_h;
 char me_1_us1_m, me_2_us1_m, me_3_us1_m;
 char me_1_us2_m, me_2_us2_m, me_3_us2_m;
 char me_1_us3_m, me_2_us3_m, me_3_us3_m;
+char cont;
 
 
 
@@ -2677,6 +2678,19 @@ char CharToNumM(char in, char her);
 
 void __attribute__((picinterrupt((""))))isr(void) {
 
+    if (TMR1IF == 1){
+
+        cont++;
+        if(cont == 2){
+            PORTA = ~PORTA;
+            cont = 0;
+        }
+
+        TMR1IF = 0;
+        TMR1IE =1;
+        TMR1H = 0;
+        TMR1L = 0;
+  }
 }
 
 
@@ -2719,6 +2733,17 @@ void main(void) {
     TMR0 = 78;
 
 
+    T1CONbits.T1CKPS1 = 1;
+    T1CONbits.T1CKPS0 = 1;
+    T1CONbits.T1OSCEN = 1;
+    T1CONbits.T1SYNC = 1;
+    T1CONbits.TMR1CS = 0;
+    T1CONbits.TMR1ON = 1;
+    TMR1H = 0;
+    TMR1L = 0;
+
+
+
     TXSTAbits.SYNC = 0;
     TXSTAbits.BRGH = 1;
     BAUDCTLbits.BRG16 = 1;
@@ -2734,6 +2759,10 @@ void main(void) {
     INTCONbits.GIE = 1;
     INTCONbits.T0IE = 0;
     INTCONbits.T0IF = 0;
+    PIR1bits.TMR1IF = 0;
+    PIE1bits.TMR1IE = 1;
+    INTCONbits.PEIE = 1;
+
 
 
 
