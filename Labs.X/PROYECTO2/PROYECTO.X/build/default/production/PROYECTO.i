@@ -17,7 +17,7 @@
 #pragma config BOREN = OFF
 #pragma config IESO = OFF
 #pragma config FCMEN = OFF
-#pragma config LVP = ON
+#pragma config LVP = OFF
 
 
 #pragma config BOR4V = BOR40V
@@ -2663,6 +2663,7 @@ char me_1_us1_m, me_2_us1_m, me_3_us1_m;
 char me_1_us2_m, me_2_us2_m, me_3_us2_m;
 char me_1_us3_m, me_2_us3_m, me_3_us3_m;
 char cont;
+char mins, horas;
 
 
 
@@ -2682,6 +2683,9 @@ void __attribute__((picinterrupt((""))))isr(void) {
 
         cont++;
         if(cont == 2){
+
+            mins++;
+            horas++;
             PORTA = ~PORTA;
             cont = 0;
         }
@@ -2690,7 +2694,7 @@ void __attribute__((picinterrupt((""))))isr(void) {
         TMR1IE =1;
         TMR1H = 0;
         TMR1L = 0;
-  }
+     }
 }
 
 

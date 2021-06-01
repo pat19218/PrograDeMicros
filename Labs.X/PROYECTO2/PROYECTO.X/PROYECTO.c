@@ -25,7 +25,7 @@
 #pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
 #pragma config IESO = OFF       // Internal External Switchover bit (Internal/External Switchover mode is disabled)
 #pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is disabled)
-#pragma config LVP = ON         // Low Voltage Programming Enable bit (RB3/PGM pin has PGM function, low voltage programming enabled)
+#pragma config LVP = OFF         // Low Voltage Programming Enable bit (RB3/PGM pin has PGM function, low voltage programming enabled)
 
 // CONFIG2
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
@@ -55,6 +55,7 @@ char me_1_us1_m, me_2_us1_m, me_3_us1_m;
 char me_1_us2_m, me_2_us2_m, me_3_us2_m;
 char me_1_us3_m, me_2_us3_m, me_3_us3_m;
 char cont;
+char mins, horas;
 
 
 //--------------------------funciones-------------------------------------------
@@ -74,15 +75,18 @@ void __interrupt()isr(void) {
         
         cont++;
         if(cont == 2){
-            PORTA = ~PORTA;      // Toggle PORTB bit1 LED
+            //PORTA = ~PORTA;      // Toggle PORTB bit1 LED
+            mins++;
+            horas++;
+            PORTA = ~PORTA;
             cont = 0;
         }
-
+        
         TMR1IF = 0;           // interrupt must be cleared by software
         TMR1IE =1;        // reenable the interrupt
         TMR1H = 0;             // preset for timer1 MSB register
         TMR1L = 0;             // preset for timer1 LSB register
-  }
+     }
 }
 
 //----------------------configuracion microprocesador---------------------------

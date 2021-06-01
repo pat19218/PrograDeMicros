@@ -11,23 +11,23 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"71 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
+"72 C:\Users\isaac\MPLABXProjects\PrograDeMicros\Labs.X\PROYECTO2\PROYECTO.X\PROYECTO.c
 [v _isr isr `II(v  1 e 1 0 ]
-"90
+"94
 [v _main main `(v  1 e 1 0 ]
-"557
+"561
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
-"562
-[v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
 "566
+[v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
+"570
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
-"573
+"577
 [v _SendCharH SendCharH `(v  1 e 1 0 ]
-"732
+"736
 [v _SendCharM SendCharM `(v  1 e 1 0 ]
-"747
+"751
 [v _CharToNumH CharToNumH `(uc  1 e 1 0 ]
-"827
+"831
 [v _CharToNumM CharToNumM `(uc  1 e 1 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -327,66 +327,69 @@
 [v _me_3_us3_m me_3_us3_m `uc  1 e 1 0 ]
 "57
 [v _cont cont `uc  1 e 1 0 ]
-"90
+"58
+[v _mins mins `uc  1 e 1 0 ]
+[v _horas horas `uc  1 e 1 0 ]
+"94
 [v _main main `(v  1 e 1 0 ]
 {
-"553
+"557
 } 0
-"562
+"566
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
 {
-"564
+"568
 } 0
-"732
+"736
 [v _SendCharM SendCharM `(v  1 e 1 0 ]
 {
 [v SendCharM@in in `uc  1 a 1 wreg ]
 [v SendCharM@in in `uc  1 a 1 wreg ]
 [v SendCharM@in in `uc  1 a 1 0 ]
-"745
+"749
 } 0
-"566
+"570
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 {
 [v USART_Cadena@str str `*.25uc  1 p 2 4 ]
-"571
+"575
 } 0
-"557
+"561
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
 {
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 3 ]
-"560
+"564
 } 0
-"573
+"577
 [v _SendCharH SendCharH `(v  1 e 1 0 ]
 {
 [v SendCharH@in in `uc  1 a 1 wreg ]
 [v SendCharH@in in `uc  1 a 1 wreg ]
 [v SendCharH@in in `uc  1 a 1 5 ]
-"730
+"734
 } 0
-"827
+"831
 [v _CharToNumM CharToNumM `(uc  1 e 1 0 ]
 {
 [v CharToNumM@in in `uc  1 a 1 wreg ]
 [v CharToNumM@in in `uc  1 a 1 wreg ]
 [v CharToNumM@her her `uc  1 p 1 3 ]
 [v CharToNumM@in in `uc  1 a 1 5 ]
-"840
+"844
 } 0
-"747
+"751
 [v _CharToNumH CharToNumH `(uc  1 e 1 0 ]
 {
 [v CharToNumH@in in `uc  1 a 1 wreg ]
 [v CharToNumH@in in `uc  1 a 1 wreg ]
 [v CharToNumH@hora_user hora_user `uc  1 p 1 3 ]
 [v CharToNumH@in in `uc  1 a 1 0 ]
-"826
+"830
 } 0
-"71
+"72
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"86
+"90
 } 0
