@@ -2662,8 +2662,16 @@ char me_1_us3_h, me_2_us3_h, me_3_us3_h;
 char me_1_us1_m, me_2_us1_m, me_3_us1_m;
 char me_1_us2_m, me_2_us2_m, me_3_us2_m;
 char me_1_us3_m, me_2_us3_m, me_3_us3_m;
-char cont;
+char contm, conth;
 char mins, horas;
+char activa1, activa2, activa3;
+char me_1_us1_th, me_2_us1_th, me_3_us1_th;
+char me_1_us2_th, me_2_us2_th, me_3_us2_th;
+char me_1_us3_th, me_2_us3_th, me_3_us3_th;
+char me_1_us1_tm, me_2_us1_tm, me_3_us1_tm;
+char me_1_us2_tm, me_2_us2_tm, me_3_us2_tm;
+char me_1_us3_tm, me_2_us3_tm, me_3_us3_tm;
+char prueba;
 
 
 
@@ -2681,13 +2689,37 @@ void __attribute__((picinterrupt((""))))isr(void) {
 
     if (TMR1IF == 1){
 
-        cont++;
-        if(cont == 2){
+        contm++;
+        conth++;
+        if(contm == 2){
 
-            mins++;
-            horas++;
-            PORTA = ~PORTA;
-            cont = 0;
+            me_1_us1_tm++;
+            me_1_us2_tm++;
+            me_1_us3_tm++;
+            me_2_us1_tm++;
+            me_2_us2_tm++;
+            me_2_us3_tm++;
+            me_3_us1_tm++;
+            me_3_us2_tm++;
+            me_3_us3_tm++;
+            contm = 0;
+            activa1 = 0;
+            activa2 = 0;
+            activa3 = 0;
+            prueba = 1;
+        }
+        if(conth == 120){
+            me_1_us1_th++;
+            me_1_us2_th++;
+            me_1_us3_th++;
+            me_2_us1_th++;
+            me_2_us2_th++;
+            me_2_us3_th++;
+            me_3_us1_th++;
+            me_3_us2_th++;
+            me_3_us3_th++;
+            conth = 0;
+            prueba = 1;
         }
 
         TMR1IF = 0;
@@ -2700,10 +2732,10 @@ void __attribute__((picinterrupt((""))))isr(void) {
 
 
 void main(void) {
-    ANSEL = 0x00;
+    ANSEL = 0b01100000;
     ANSELH = 0x00;
 
-    TRISA = 0x00;
+    TRISA = 0b10000000;
     TRISB = 0xff;
     TRISD = 0x00;
     TRISE = 0b0011;
@@ -2777,46 +2809,142 @@ void main(void) {
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
+    activa1 = 0;
+    activa2 = 0;
+    activa3 = 0;
 
     ventana = 1;
 
 
     while (1) {
+        if(prueba){
+
+            if (me_1_us1_th == me_1_us1_h || me_1_us1_h == 0){
+                if(me_1_us1_tm == me_1_us1_m){
+                    activa1 = 1;
+                    me_1_us1_th = 0;
+                    me_1_us1_tm = 0;
+                }
+            }
+            if (me_1_us2_th == me_1_us2_h || me_1_us2_h == 0){
+                if(me_1_us2_tm == me_1_us2_m){
+                    activa1 = 1;
+                    me_1_us2_th = 0;
+                    me_1_us2_tm = 0;
+                }
+            }
+            if (me_1_us3_th == me_1_us3_h || me_1_us3_h == 0){
+                if(me_1_us3_tm == me_1_us3_m){
+                    activa1 = 1;
+                    me_1_us3_th = 0;
+                    me_1_us3_tm = 0;
+                }
+            }
+            if (me_2_us1_th == me_2_us1_h || me_2_us1_h == 0){
+                if(me_2_us1_tm == me_2_us1_m){
+                    activa2 = 1;
+                    me_2_us1_th = 0;
+                    me_2_us1_tm = 0;
+                }
+            }
+            if (me_2_us2_th == me_2_us2_h || me_2_us2_h == 0){
+                if(me_2_us2_tm == me_2_us2_m){
+                    activa2 = 1;
+                    me_2_us2_th = 0;
+                    me_2_us2_tm = 0;
+                }
+            }
+            if (me_2_us3_th == me_2_us3_h || me_2_us3_h == 0){
+                if(me_2_us3_tm == me_2_us3_m){
+                    activa2 = 1;
+                    me_2_us3_th = 0;
+                    me_2_us3_tm = 0;
+                }
+            }
+            if (me_3_us1_th == me_3_us1_h || me_3_us1_h == 0){
+                if(me_3_us1_tm == me_3_us1_m){
+                    activa3 = 1;
+                    me_3_us1_th = 0;
+                    me_3_us1_tm = 0;
+                }
+            }
+            if (me_3_us2_th == me_3_us2_h || me_3_us2_h == 0){
+                if(me_3_us2_tm == me_3_us2_m){
+                    activa3 = 1;
+                    me_3_us2_th = 0;
+                    me_3_us2_tm = 0;
+                }
+            }
+            if (me_3_us3_th == me_3_us3_h || me_3_us3_h == 0){
+                if(me_3_us3_tm == me_3_us3_m){
+                    activa3 = 1;
+                    me_3_us3_th = 0;
+                    me_3_us3_tm = 0;
+                }
+            }
+            prueba = 0;
+        }
        if (T0IF == 1) {
-            if(!RB0){
+            if(!RB0 || activa1){
                 RD0 = 1;
                 _delay((unsigned long)((2)*(4000000/4000.0)));
                 RD0 = 0;
                 TMR0 = 70;
                 INTCONbits.T0IF = 0;
-            }
-            else if(!RB1){
-                RD1 = 1;
-                _delay((unsigned long)((2)*(4000000/4000.0)));
-                RD1 = 0;
-                TMR0 = 70;
-                INTCONbits.T0IF = 0;
-            }
-            else if(!RB2){
-                RD2 = 1;
-                _delay((unsigned long)((2)*(4000000/4000.0)));
-                RD2 = 0;
-                TMR0 = 70;
-                INTCONbits.T0IF = 0;
-            }
-            else{
+            }else{
                 RD0 = 1;
-                RD1 = 1;
-                RD2 = 1;
                 _delay((unsigned long)((1)*(4000000/4000.0)));
-                RD1 = 0;
-                RD2 = 0;
                 RD0 = 0;
                 TMR0 = 74;
                 INTCONbits.T0IF = 0;
             }
+            if(!RB1 || activa2){
+                RD1 = 1;
+                _delay((unsigned long)((2)*(4000000/4000.0)));
+                RD1 = 0;
+                TMR0 = 70;
+                INTCONbits.T0IF = 0;
+            }else{
+                RD1 = 1;
+                _delay((unsigned long)((1)*(4000000/4000.0)));
+                RD1 = 0;
+                TMR0 = 74;
+                INTCONbits.T0IF = 0;
+            }
+            if(!RB2 || activa3){
+                RD2 = 1;
+                _delay((unsigned long)((2)*(4000000/4000.0)));
+                RD2 = 0;
+                TMR0 = 70;
+                INTCONbits.T0IF = 0;
+            }else{
+                RD2 = 1;
+                _delay((unsigned long)((1)*(4000000/4000.0)));
+                RD2 = 0;
+                TMR0 = 74;
+                INTCONbits.T0IF = 0;
+            }
         }
-
+       if(!RA7){
+           me_1_us1_tm = 0;
+           me_1_us2_tm = 0;
+           me_1_us3_tm = 0;
+           me_2_us1_tm = 0;
+           me_2_us2_tm = 0;
+           me_2_us3_tm = 0;
+           me_3_us1_tm = 0;
+           me_3_us2_tm = 0;
+           me_3_us3_tm = 0;
+           me_1_us1_th = 0;
+           me_1_us2_th = 0;
+           me_1_us3_th = 0;
+           me_2_us1_th = 0;
+           me_2_us2_th = 0;
+           me_2_us3_th = 0;
+           me_3_us1_th = 0;
+           me_3_us2_th = 0;
+           me_3_us3_th = 0;
+       }
        if(ADCON0bits.GO == 0){
 
             if(ADCON0bits.CHS == 6){

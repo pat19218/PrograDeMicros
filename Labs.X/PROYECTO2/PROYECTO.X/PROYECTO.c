@@ -54,8 +54,16 @@ char me_1_us3_h, me_2_us3_h, me_3_us3_h;
 char me_1_us1_m, me_2_us1_m, me_3_us1_m;
 char me_1_us2_m, me_2_us2_m, me_3_us2_m;
 char me_1_us3_m, me_2_us3_m, me_3_us3_m;
-char cont;
+char contm, conth;
 char mins, horas;
+char activa1, activa2, activa3;
+char me_1_us1_th, me_2_us1_th, me_3_us1_th;
+char me_1_us2_th, me_2_us2_th, me_3_us2_th;
+char me_1_us3_th, me_2_us3_th, me_3_us3_th;
+char me_1_us1_tm, me_2_us1_tm, me_3_us1_tm;
+char me_1_us2_tm, me_2_us2_tm, me_3_us2_tm;
+char me_1_us3_tm, me_2_us3_tm, me_3_us3_tm;
+char prueba;
 
 
 //--------------------------funciones-------------------------------------------
@@ -73,15 +81,39 @@ void __interrupt()isr(void) {
     
     if (TMR1IF == 1){     //timmer1
         
-        cont++;
-        if(cont == 2){
+        contm++;
+        conth++;
+        if(contm == 2){
             //PORTA = ~PORTA;      // Toggle PORTB bit1 LED
-            mins++;
-            horas++;
-            cont = 0;
-            
+            me_1_us1_tm++; 
+            me_1_us2_tm++; 
+            me_1_us3_tm++; 
+            me_2_us1_tm++; 
+            me_2_us2_tm++; 
+            me_2_us3_tm++; 
+            me_3_us1_tm++; 
+            me_3_us2_tm++; 
+            me_3_us3_tm++;
+            contm = 0;
+            activa1 = 0;
+            activa2 = 0;
+            activa3 = 0;
+            prueba = 1;
         }
-        
+        if(conth == 120){
+            me_1_us1_th++; 
+            me_1_us2_th++; 
+            me_1_us3_th++; 
+            me_2_us1_th++; 
+            me_2_us2_th++; 
+            me_2_us3_th++; 
+            me_3_us1_th++; 
+            me_3_us2_th++; 
+            me_3_us3_th++; 
+            conth = 0;
+            prueba = 1;
+        }
+                    
         TMR1IF = 0;           // interrupt must be cleared by software
         TMR1IE =1;        // reenable the interrupt
         TMR1H = 0;             // preset for timer1 MSB register
@@ -92,10 +124,10 @@ void __interrupt()isr(void) {
 //----------------------configuracion microprocesador---------------------------
 
 void main(void) {
-    ANSEL = 0x00;       // NO HAY ANALOGICOS
+    ANSEL = 0b01100000;       // NO HAY ANALOGICOS
     ANSELH = 0x00;
     
-    TRISA = 0x00;
+    TRISA = 0b10000000;
     TRISB = 0xff;       // PORTB todo entrada
     TRISD = 0x00;       // PORTD todo salida
     TRISE = 0b0011;     // primeros 2 pines como entrada analogicas
@@ -169,46 +201,142 @@ void main(void) {
     PORTC = 0; // Estado inicial de los pines
     PORTD = 0; // Estado inicial de los pines
     PORTE = 0; // Estado inicial de los pines
+    activa1 = 0;
+    activa2 = 0;
+    activa3 = 0;
     
     ventana = 1;// Estado inicial
     
 //------------------------------loop principal----------------------------------
     while (1) {
+        if(prueba){
+            
+            if (me_1_us1_th == me_1_us1_h || me_1_us1_h == 0){      //chequeo si algun usuario del 
+                if(me_1_us1_tm == me_1_us1_m){  //medicamento 1 tiene que dispensar
+                    activa1 = 1;
+                    me_1_us1_th = 0;
+                    me_1_us1_tm = 0;
+                }
+            }
+            if (me_1_us2_th == me_1_us2_h || me_1_us2_h == 0){
+                if(me_1_us2_tm == me_1_us2_m){
+                    activa1 = 1;
+                    me_1_us2_th = 0;
+                    me_1_us2_tm = 0;
+                }
+            }
+            if (me_1_us3_th == me_1_us3_h || me_1_us3_h == 0){
+                if(me_1_us3_tm == me_1_us3_m){
+                    activa1 = 1;
+                    me_1_us3_th = 0;
+                    me_1_us3_tm = 0;
+                }
+            }
+            if (me_2_us1_th == me_2_us1_h || me_2_us1_h == 0){//chequeo si algun usuario del 
+                if(me_2_us1_tm == me_2_us1_m){  //medicamento 2 tiene que dispensar
+                    activa2 = 1;
+                    me_2_us1_th = 0;
+                    me_2_us1_tm = 0;
+                }
+            }
+            if (me_2_us2_th == me_2_us2_h || me_2_us2_h == 0){
+                if(me_2_us2_tm == me_2_us2_m){
+                    activa2 = 1;
+                    me_2_us2_th = 0;
+                    me_2_us2_tm = 0;
+                }
+            }
+            if (me_2_us3_th == me_2_us3_h || me_2_us3_h == 0){
+                if(me_2_us3_tm == me_2_us3_m){
+                    activa2 = 1;
+                    me_2_us3_th = 0;
+                    me_2_us3_tm = 0;
+                }
+            }
+            if (me_3_us1_th == me_3_us1_h || me_3_us1_h == 0){      //chequeo si algun usuario del 
+                if(me_3_us1_tm == me_3_us1_m){  //medicamento 3 tiene que dispensar
+                    activa3 = 1;
+                    me_3_us1_th = 0;
+                    me_3_us1_tm = 0;
+                }
+            }
+            if (me_3_us2_th == me_3_us2_h || me_3_us2_h == 0){
+                if(me_3_us2_tm == me_3_us2_m){
+                    activa3 = 1;
+                    me_3_us2_th = 0;
+                    me_3_us2_tm = 0;
+                }
+            }
+            if (me_3_us3_th == me_3_us3_h || me_3_us3_h == 0){
+                if(me_3_us3_tm == me_3_us3_m){
+                    activa3 = 1;
+                    me_3_us3_th = 0;
+                    me_3_us3_tm = 0;
+                }
+            }
+            prueba = 0;
+        }
        if (T0IF == 1) { //INTERRUPCION POR TIMMER0
-            if(!RB0){
+            if(!RB0 || activa1){
                 RD0 = 1;
                 __delay_ms(2);
                 RD0 = 0;
                 TMR0 = 70;  //POSICION 0°
                 INTCONbits.T0IF = 0; //bajo la bandera
+            }else{
+                RD0 = 1;
+                __delay_ms(1);
+                RD0 = 0;
+                TMR0 = 74;  //POSICION 180°
+                INTCONbits.T0IF = 0; //bajo la bandera
             }
-            else if(!RB1){
+            if(!RB1 || activa2){
                 RD1 = 1;
                 __delay_ms(2);
                 RD1 = 0;
                 TMR0 = 70;  //POSICION 0°
                 INTCONbits.T0IF = 0; //bajo la bandera                
-            }
-            else if(!RB2){
-                RD2 = 1;
-                __delay_ms(2);
-                RD2 = 0;
-                TMR0 = 70;  //POSICION 0°
-                INTCONbits.T0IF = 0; //bajo la bandera                
-            }
-            else{
-                RD0 = 1;
+            }else{
                 RD1 = 1;
-                RD2 = 1;
                 __delay_ms(1);
                 RD1 = 0;
+                TMR0 = 74;  //POSICION 180°
+                INTCONbits.T0IF = 0; //bajo la bandera
+            }
+            if(!RB2 || activa3){
+                RD2 = 1;
+                __delay_ms(2);
                 RD2 = 0;
-                RD0 = 0;
+                TMR0 = 70;  //POSICION 0°
+                INTCONbits.T0IF = 0; //bajo la bandera                
+            }else{
+                RD2 = 1;
+                __delay_ms(1);
+                RD2 = 0;
                 TMR0 = 74;  //POSICION 180°
                 INTCONbits.T0IF = 0; //bajo la bandera
             }            
         }
-       
+       if(!RA7){
+           me_1_us1_tm = 0; 
+           me_1_us2_tm = 0; 
+           me_1_us3_tm = 0; 
+           me_2_us1_tm = 0; 
+           me_2_us2_tm = 0; 
+           me_2_us3_tm = 0; 
+           me_3_us1_tm = 0; 
+           me_3_us2_tm = 0; 
+           me_3_us3_tm = 0; 
+           me_1_us1_th = 0; 
+           me_1_us2_th = 0; 
+           me_1_us3_th = 0; 
+           me_2_us1_th = 0; 
+           me_2_us2_th = 0; 
+           me_2_us3_th = 0; 
+           me_3_us1_th = 0; 
+           me_3_us2_th = 0; 
+           me_3_us3_th = 0; 
+       }
        if(ADCON0bits.GO == 0){
             
             if(ADCON0bits.CHS == 6){            //leo el canal para escalar mins
