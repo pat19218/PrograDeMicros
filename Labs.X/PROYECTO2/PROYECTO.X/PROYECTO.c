@@ -78,8 +78,8 @@ void __interrupt()isr(void) {
             //PORTA = ~PORTA;      // Toggle PORTB bit1 LED
             mins++;
             horas++;
-            PORTA = ~PORTA;
             cont = 0;
+            
         }
         
         TMR1IF = 0;           // interrupt must be cleared by software
