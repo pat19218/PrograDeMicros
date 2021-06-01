@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\PROYECTO.X.production.sym \
   --cmf=dist/default/production\PROYECTO.X.production.cmf -z -Q16F887 \
-  -oC:\Users\isaac\AppData\Local\Temp\sdqc.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\isaac\AppData\Local\Temp\s1uo.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/PROYECTO.X.production.map -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\isaac\AppData\Local\Temp\sdqc.o \
+  -pfunctab=ENTRY -k C:\Users\isaac\AppData\Local\Temp\s1uo.o \
   dist/default/production\PROYECTO.X.production.o 
 
 Object code version is 3.11
@@ -28,32 +28,32 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\isaac\AppData\Local\Temp\sdqc.o
+C:\Users\isaac\AppData\Local\Temp\s1uo.o
                 end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
 dist/default/production\PROYECTO.X.production.o
                 cinit                                 F        F       12        8       0
                 intentry                              4        4        8        8       0
-                maintext_split_2                     21       21      790        8       0
-                maintext_split_1                    BF9      BF9      10B     17F2       0
+                maintext_split_2                     21       21      7B0        8       0
+                maintext_split_1                    C10      C10      10F     1820       0
                 config                             2007     2007        2        0       4
-                text8                              1786     1786       7A     2F0C       0
-                text7                               B26      B26       D3     164C       0
-                text6                               7B1      7B1       37        8       0
+                text8                              177E     177E       82     2EFC       0
+                text7                               B3D      B3D       D3     167A       0
+                text6                               B06      B06       37     160C       0
                 text5                               E3B      E3B      1C5     1C76       0
-                text4                               AF4      AF4        C     15E8       0
-                text3                               B00      B00       26     1600       0
-                text2                              172B     172B       5B     2E56       0
-                text1                               7FA      7FA        4      FF4       0
-                maintext                            D04      D04      137     1A08       0
+                text4                               AFA      AFA        C     15F4       0
+                text3                               7D1      7D1       26        8       0
+                text2                              1723     1723       5B     2E46       0
+                text1                              171F     171F        4     2E3E       0
+                maintext                            D1F      D1F      11C     1A3E       0
                 cstackBANK0                          53       53        3       20       1
                 cstackCOMMON                         70       70        6       70       1
-                clrtext                             AEC      AEC        8     15D8       0
+                clrtext                             7F7      7F7        8        8       0
                 bssBANK0                             20       20       33       20       1
                 bssCOMMON                            76       76        5       70       1
                 stringtext                          800      800      2E7       10       0
-                strings                             7E8      7E8       12      FD0       0
+                strings                             AE7      AE7       12     15CE       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -63,24 +63,24 @@ TOTAL           Name                               Link     Load   Length     Sp
                 cinit                                 F        F       12         0
                 intentry                              4        4        8         0
                 reset_vec                             0        0        3         0
-                maintext_split_2                     21       21      790         0
-                maintext_split_1                    BF9      BF9      10B         0
-                text8                              1786     1786       7A         0
-                text7                               B26      B26       D3         0
-                text6                               7B1      7B1       37         0
+                maintext_split_2                     21       21      7B0         0
+                maintext_split_1                    C10      C10      10F         0
+                text8                              177E     177E       82         0
+                text7                               B3D      B3D       D3         0
+                text6                               B06      B06       37         0
                 text5                               E3B      E3B      1C5         0
-                text4                               AF4      AF4        C         0
-                text3                               B00      B00       26         0
-                text2                              172B     172B       5B         0
-                text1                               7FA      7FA        4         0
-                maintext                            D04      D04      137         0
-                clrtext                             AEC      AEC        8         0
+                text4                               AFA      AFA        C         0
+                text3                               7D1      7D1       26         0
+                text2                              1723     1723       5B         0
+                text1                              171F     171F        4         0
+                maintext                            D1F      D1F      11C         0
+                clrtext                             7F7      7F7        8         0
 
         CLASS   STRCODE        
                 stringtext                          800      800      2E7         0
 
         CLASS   STRING         
-                strings                             7E8      7E8       12         0
+                strings                             AE7      AE7       12         0
 
         CLASS   CONST          
 
@@ -125,21 +125,20 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  0007E4  0007E8         8       0  CODE        2
+                intentry                       000004  0007FB  0007FF         8       0  CODE        2
                 bssBANK0                       000020  000036  000056        20       1  BANK0       1
                 cstackCOMMON                   000070  00000B  00007B        70       1  COMMON      1
-                strings                        0007E8  000012  0007FA       FD0       0  STRING      2
-                text1                          0007FA  000004  0007FE       FF4       0  CODE        2
                 stringtext                     000800  0002E7  000AE7        10       0  STRCODE     2
-                clrtext                        000AEC  000008  000AF4      15D8       0  CODE        2
-                text4                          000AF4  00000C  000B00      15E8       0  CODE        2
-                text3                          000B00  000026  000B26      1600       0  CODE        2
-                text7                          000B26  0000D3  000BF9      164C       0  CODE        2
-                maintext_split_1               000BF9  00010B  000D04      17F2       0  CODE        2
-                maintext                       000D04  000137  000E3B      1A08       0  CODE        2
+                strings                        000AE7  000012  000AF9      15CE       0  STRING      2
+                text4                          000AFA  00000C  000B06      15F4       0  CODE        2
+                text6                          000B06  000037  000B3D      160C       0  CODE        2
+                text7                          000B3D  0000D3  000C10      167A       0  CODE        2
+                maintext_split_1               000C10  00010F  000D1F      1820       0  CODE        2
+                maintext                       000D1F  00011C  000E3B      1A3E       0  CODE        2
                 text5                          000E3B  0001C5  001000      1C76       0  CODE        2
-                text2                          00172B  00005B  001786      2E56       0  CODE        2
-                text8                          001786  00007A  001800      2F0C       0  CODE        2
+                text1                          00171F  000004  001723      2E3E       0  CODE        2
+                text2                          001723  00005B  00177E      2E46       0  CODE        2
+                text8                          00177E  000082  001800      2EFC       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
@@ -150,21 +149,21 @@ UNUSED ADDRESS RANGES
         BANK2            000110-00016F               60           1
         BANK3            000190-0001EF               60           1
         CODE             000003-000003                1           2
-                         0007FE-0007FF                2
-                         000AE7-000AEB                5
-                         001000-00172A              72B
+                         0007FF-0007FF                1
+                         000AF9-000AF9                1
+                         001000-00171E              71F
                          001800-001FFF              800
         COMMON           00007B-00007D                3           1
         CONST            000003-000003                1           2
-                         0007FE-0007FF                2
-                         000AE7-000AEB                5
-                         001000-00172A              100
+                         0007FF-0007FF                1
+                         000AF9-000AF9                1
+                         001000-00171E              100
                          001800-001FFF              100
         EEDATA           002100-0021FF              100           2
         ENTRY            000003-000003                1           2
-                         0007FE-0007FF                2
-                         000AE7-000AEB                5
-                         001000-00172A              100
+                         0007FF-0007FF                1
+                         000AF9-000AF9                1
+                         001000-00171E              100
                          001800-001FFF              100
         IDLOC            002000-002003                4           2
         RAM              000056-00006F               1A           1
@@ -177,14 +176,14 @@ UNUSED ADDRESS RANGES
         SFR3             000180-00018F               10           1
         STACK            000110-00016F               60           1
         STRCODE          000003-000003                1           2
-                         0007FE-0007FF                2
-                         000AE7-000AEB                5
-                         001000-00172A              72B
+                         0007FF-0007FF                1
+                         000AF9-000AF9                1
+                         001000-00171E              71F
                          001800-001FFF              800
         STRING           000003-000003                1           2
-                         0007FE-0007FF                2
-                         000AE7-000AEB                5
-                         001000-00172A              100
+                         0007FF-0007FF                1
+                         000AF9-000AF9                1
+                         001000-00171E              100
                          001800-001FFF              100
 
                                   Symbol Table
@@ -203,8 +202,8 @@ _ADRESH                  (abs)            00001E
 _ANSEL                   (abs)            000188
 _ANSELH                  (abs)            000189
 _BAUDCTLbits             (abs)            000187
-_CharToNumH              text7            000B26
-_CharToNumM              text6            0007B1
+_CharToNumH              text7            000B3D
+_CharToNumM              text6            000B06
 _INTCONbits              (abs)            00000B
 _OPTION_REGbits          (abs)            000081
 _OSCCONbits              (abs)            00008F
@@ -232,7 +231,7 @@ _RD2                     (abs)            000042
 _SPBRG                   (abs)            000099
 _SPBRGH                  (abs)            00009A
 _SendCharH               text5            000E3B
-_SendCharM               text2            00172B
+_SendCharM               text2            001723
 _T0IF                    (abs)            00005A
 _T1CONbits               (abs)            000010
 _TMR0                    (abs)            000001
@@ -246,9 +245,9 @@ _TRISD                   (abs)            000088
 _TRISE                   (abs)            000089
 _TXREG                   (abs)            000019
 _TXSTAbits               (abs)            000098
-_USART_Cadena            text3            000B00
-_USART_Rx                text1            0007FA
-_USART_Tx                text4            000AF4
+_USART_Cadena            text3            0007D1
+_USART_Rx                text1            00171F
+_USART_Tx                text4            000AFA
 _WPUBbits                (abs)            000095
 __Habs1                  abs1             000000
 __Hbank0                 bank0            000000
@@ -335,34 +334,34 @@ ___latbits               (abs)            000002
 ___sp                    stack            000000
 ___stackhi               (abs)            000000
 ___stacklo               (abs)            000000
-__end_of_CharToNumH      text7            000BF9
-__end_of_CharToNumM      text6            0007E8
+__end_of_CharToNumH      text7            000C10
+__end_of_CharToNumM      text6            000B3D
 __end_of_SendCharH       text5            001000
-__end_of_SendCharM       text2            001786
-__end_of_USART_Cadena    text3            000B26
-__end_of_USART_Rx        text1            0007FE
-__end_of_USART_Tx        text4            000B00
+__end_of_SendCharM       text2            00177E
+__end_of_USART_Cadena    text3            0007F7
+__end_of_USART_Rx        text1            001723
+__end_of_USART_Tx        text4            000B06
 __end_of__initialization cinit            00001D
-__end_of__stringtab      strings          0007FA
+__end_of__stringtab      strings          000AF9
 __end_of_isr             text8            001800
-__end_of_main            maintext_split_2 0007B1
+__end_of_main            maintext_split_2 0007D1
 __initialization         cinit            00000F
 __pbssBANK0              bssBANK0         000020
 __pbssCOMMON             bssCOMMON        000076
 __pcstackBANK0           cstackBANK0      000053
 __pcstackCOMMON          cstackCOMMON     000070
 __pintentry              intentry         000004
-__pmaintext              maintext         000D04
-__pstrings               strings          0007E8
+__pmaintext              maintext         000D1F
+__pstrings               strings          000AE7
 __pstringtext            stringtext       000800
-__ptext1                 text1            0007FA
-__ptext2                 text2            00172B
-__ptext3                 text3            000B00
-__ptext4                 text4            000AF4
+__ptext1                 text1            00171F
+__ptext2                 text2            001723
+__ptext3                 text3            0007D1
+__ptext4                 text4            000AFA
 __ptext5                 text5            000E3B
-__ptext6                 text6            0007B1
-__ptext7                 text7            000B26
-__ptext8                 text8            001786
+__ptext6                 text6            000B06
+__ptext7                 text7            000B3D
+__ptext8                 text8            00177E
 __size_of_CharToNumH     (abs)            000000
 __size_of_CharToNumM     (abs)            000000
 __size_of_SendCharH      (abs)            000000
@@ -372,8 +371,8 @@ __size_of_USART_Rx       (abs)            000000
 __size_of_USART_Tx       (abs)            000000
 __size_of_isr            (abs)            000000
 __size_of_main           (abs)            000000
-__stringbase             strings          0007FA
-__stringtab              strings          0007E8
+__stringbase             strings          000AF9
+__stringtab              strings          000AE7
 _activa1                 bssBANK0         000035
 _activa2                 bssBANK0         000034
 _activa3                 bssBANK0         000033
@@ -385,8 +384,8 @@ _hora_nueva              bssCOMMON        000076
 _hora_user1              bssBANK0         00004E
 _hora_user2              bssBANK0         00004D
 _hora_user3              bssBANK0         00004C
-_isr                     text8            001786
-_main                    maintext         000D04
+_isr                     text8            00177E
+_main                    maintext         000D1F
 _me_1_us1_h              bssBANK0         00004B
 _me_1_us1_m              bssBANK0         000042
 _me_1_us1_th             bssBANK0         000032
@@ -431,7 +430,7 @@ _prueba                  bssBANK0         000020
 _valor                   bssBANK0         000052
 _ventana                 bssBANK0         000051
 btemp                    (abs)            00007E
-clear_ram0               clrtext          000AEC
+clear_ram0               clrtext          0007F7
 end_of_initialization    cinit            00001D
 interrupt_function       intentry         000004
 intlevel0                functab          000000
@@ -456,7 +455,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 126 in file "PROYECTO.c"
+		line 135 in file "PROYECTO.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -490,7 +489,7 @@ Total ram usage:        2 bytes
 
  *************** function _USART_Rx *****************
  Defined at:
-		line 694 in file "PROYECTO.c"
+		line 731 in file "PROYECTO.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -520,7 +519,7 @@ Total ram usage:        0 bytes
 
  *************** function _SendCharM *****************
  Defined at:
-		line 864 in file "PROYECTO.c"
+		line 901 in file "PROYECTO.c"
  Parameters:    Size  Location     Type
   in              1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -550,7 +549,7 @@ Total ram usage:        1 bytes
 
  *************** function _USART_Cadena *****************
  Defined at:
-		line 698 in file "PROYECTO.c"
+		line 735 in file "PROYECTO.c"
  Parameters:    Size  Location     Type
   str             2    4[COMMON] PTR unsigned char 
 		 -> STR_87(3), STR_86(3), STR_85(3), STR_84(3), 
@@ -603,7 +602,7 @@ Total ram usage:        2 bytes
 
  *************** function _USART_Tx *****************
  Defined at:
-		line 689 in file "PROYECTO.c"
+		line 726 in file "PROYECTO.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -633,7 +632,7 @@ Total ram usage:        1 bytes
 
  *************** function _SendCharH *****************
  Defined at:
-		line 705 in file "PROYECTO.c"
+		line 742 in file "PROYECTO.c"
  Parameters:    Size  Location     Type
   in              1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -663,7 +662,7 @@ Total ram usage:        3 bytes
 
  *************** function _CharToNumM *****************
  Defined at:
-		line 959 in file "PROYECTO.c"
+		line 996 in file "PROYECTO.c"
  Parameters:    Size  Location     Type
   in              1    wreg     unsigned char 
   her             1    3[COMMON] unsigned char 
@@ -694,7 +693,7 @@ Total ram usage:        3 bytes
 
  *************** function _CharToNumH *****************
  Defined at:
-		line 879 in file "PROYECTO.c"
+		line 916 in file "PROYECTO.c"
  Parameters:    Size  Location     Type
   in              1    wreg     unsigned char 
   hora_user       1    3[COMMON] unsigned char 
@@ -757,20 +756,20 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 PROYECTO.c
-		_USART_Rx      		CODE           	07FA	0000	4
-		_main          		CODE           	0D04	0000	2514
-		_CharToNumH    		CODE           	0B26	0000	211
-		_CharToNumM    		CODE           	07B1	0000	55
+		_USART_Rx      		CODE           	171F	0000	4
+		_main          		CODE           	0D1F	0000	2523
+		_CharToNumH    		CODE           	0B3D	0000	211
+		_CharToNumM    		CODE           	0B06	0000	55
 		_SendCharH     		CODE           	0E3B	0000	453
-		_SendCharM     		CODE           	172B	0000	91
-		_USART_Tx      		CODE           	0AF4	0000	12
-		_isr           		CODE           	1786	0000	122
-		_USART_Cadena  		CODE           	0B00	0000	38
+		_SendCharM     		CODE           	1723	0000	91
+		_USART_Tx      		CODE           	0AFA	0000	12
+		_isr           		CODE           	177E	0000	130
+		_USART_Cadena  		CODE           	07D1	0000	38
 
-PROYECTO.c estimated size: 3500
+PROYECTO.c estimated size: 3517
 
 shared
-		__stringtab    		STRING         	07E8	0000	18
+		__stringtab    		STRING         	0AE7	0000	18
 		__initialization		CODE           	000F	0000	14
 
 shared estimated size: 32

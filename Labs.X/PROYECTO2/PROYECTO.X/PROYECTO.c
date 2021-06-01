@@ -109,9 +109,18 @@ void __interrupt()isr(void) {
             me_2_us3_th++; 
             me_3_us1_th++; 
             me_3_us2_th++; 
-            me_3_us3_th++; 
+            me_3_us3_th++;
+            me_1_us1_tm = 0;
+            me_1_us2_tm = 0;
+            me_1_us3_tm = 0;
+            me_2_us1_tm = 0;
+            me_2_us2_tm = 0;
+            me_2_us3_tm = 0; 
+            me_3_us1_tm = 0;
+            me_3_us2_tm = 0;
+            me_3_us3_tm = 0;
             conth = 0;
-            prueba = 1;
+            PORTA = ~PORTA;
         }
                     
         TMR1IF = 0;           // interrupt must be cleared by software
@@ -204,70 +213,87 @@ void main(void) {
     activa1 = 0;
     activa2 = 0;
     activa3 = 0;
+    me_1_us1_tm = 0; 
+    me_1_us2_tm = 0; 
+    me_1_us3_tm = 0; 
+    me_2_us1_tm = 0; 
+    me_2_us2_tm = 0; 
+    me_2_us3_tm = 0; 
+    me_3_us1_tm = 0; 
+    me_3_us2_tm = 0; 
+    me_3_us3_tm = 0; 
+    me_1_us1_th = 0; 
+    me_1_us2_th = 0; 
+    me_1_us3_th = 0; 
+    me_2_us1_th = 0; 
+    me_2_us2_th = 0; 
+    me_2_us3_th = 0; 
+    me_3_us1_th = 0; 
+    me_3_us2_th = 0; 
+    me_3_us3_th = 0;
     
     ventana = 1;// Estado inicial
     
 //------------------------------loop principal----------------------------------
     while (1) {
         if(prueba){
-            
-            if (me_1_us1_th == me_1_us1_h || me_1_us1_h == 0){      //chequeo si algun usuario del 
+            if (me_1_us1_th == me_1_us1_h){      //chequeo si algun usuario del 
                 if(me_1_us1_tm == me_1_us1_m){  //medicamento 1 tiene que dispensar
                     activa1 = 1;
                     me_1_us1_th = 0;
                     me_1_us1_tm = 0;
                 }
             }
-            if (me_1_us2_th == me_1_us2_h || me_1_us2_h == 0){
+            if (me_1_us2_th == me_1_us2_h){
                 if(me_1_us2_tm == me_1_us2_m){
                     activa1 = 1;
                     me_1_us2_th = 0;
                     me_1_us2_tm = 0;
                 }
             }
-            if (me_1_us3_th == me_1_us3_h || me_1_us3_h == 0){
+            if (me_1_us3_th == me_1_us3_h){
                 if(me_1_us3_tm == me_1_us3_m){
                     activa1 = 1;
                     me_1_us3_th = 0;
                     me_1_us3_tm = 0;
                 }
             }
-            if (me_2_us1_th == me_2_us1_h || me_2_us1_h == 0){//chequeo si algun usuario del 
+            if (me_2_us1_th == me_2_us1_h){//chequeo si algun usuario del 
                 if(me_2_us1_tm == me_2_us1_m){  //medicamento 2 tiene que dispensar
                     activa2 = 1;
                     me_2_us1_th = 0;
                     me_2_us1_tm = 0;
                 }
             }
-            if (me_2_us2_th == me_2_us2_h || me_2_us2_h == 0){
+            if (me_2_us2_th == me_2_us2_h){
                 if(me_2_us2_tm == me_2_us2_m){
                     activa2 = 1;
                     me_2_us2_th = 0;
                     me_2_us2_tm = 0;
                 }
             }
-            if (me_2_us3_th == me_2_us3_h || me_2_us3_h == 0){
+            if (me_2_us3_th == me_2_us3_h){
                 if(me_2_us3_tm == me_2_us3_m){
                     activa2 = 1;
                     me_2_us3_th = 0;
                     me_2_us3_tm = 0;
                 }
             }
-            if (me_3_us1_th == me_3_us1_h || me_3_us1_h == 0){      //chequeo si algun usuario del 
+            if (me_3_us1_th == me_3_us1_h){      //chequeo si algun usuario del 
                 if(me_3_us1_tm == me_3_us1_m){  //medicamento 3 tiene que dispensar
                     activa3 = 1;
                     me_3_us1_th = 0;
                     me_3_us1_tm = 0;
                 }
             }
-            if (me_3_us2_th == me_3_us2_h || me_3_us2_h == 0){
+            if (me_3_us2_th == me_3_us2_h){
                 if(me_3_us2_tm == me_3_us2_m){
                     activa3 = 1;
                     me_3_us2_th = 0;
                     me_3_us2_tm = 0;
                 }
             }
-            if (me_3_us3_th == me_3_us3_h || me_3_us3_h == 0){
+            if (me_3_us3_th == me_3_us3_h){
                 if(me_3_us3_tm == me_3_us3_m){
                     activa3 = 1;
                     me_3_us3_th = 0;
@@ -315,7 +341,8 @@ void main(void) {
                 RD2 = 0;
                 TMR0 = 74;  //POSICION 180°
                 INTCONbits.T0IF = 0; //bajo la bandera
-            }            
+            }
+            T0IF = 0;
         }
        if(!RA7){
            me_1_us1_tm = 0; 
@@ -336,6 +363,7 @@ void main(void) {
            me_3_us1_th = 0; 
            me_3_us2_th = 0; 
            me_3_us3_th = 0; 
+           PORTA = 0;
        }
        if(ADCON0bits.GO == 0){
             
@@ -644,6 +672,15 @@ void main(void) {
                 }                             
                 ventana = 1;
                 break;    
+           case('7'):
+               hora_nueva = 48 + me_1_us1_h;
+               while(TXSTAbits.TRMT == 0);
+               TXREG = hora_nueva;
+               hora_nueva = 48 + me_1_us1_th;
+               while(TXSTAbits.TRMT == 0);
+               TXREG = hora_nueva;
+               break;
+
             }
         
        valor = '0';
