@@ -2644,12 +2644,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 # 39 "PROYECTO.c" 2
-
-
-
-
-
-
+# 48 "PROYECTO.c"
 char hora, minuto, escala;
 char valor;
 char ventana;
@@ -2672,6 +2667,8 @@ char me_1_us1_tm, me_2_us1_tm, me_3_us1_tm;
 char me_1_us2_tm, me_2_us2_tm, me_3_us2_tm;
 char me_1_us3_tm, me_2_us3_tm, me_3_us3_tm;
 char prueba;
+char RB0_old, RB1_old, RB2_old, RB5_old, RB6_old, RB7_old;
+char medicamento1, medicamento2, medicamento3;
 
 
 
@@ -2682,13 +2679,13 @@ void SendCharH(char in);
 void SendCharM(char in);
 char CharToNumH(char in, char hora_user);
 char CharToNumM(char in, char her);
+void WriteToEEPROM(uint8_t dato, uint8_t addr);
+uint8_t ReadToEEPROM(uint8_t addr);
 
 
 
 void __attribute__((picinterrupt((""))))isr(void) {
-
     if (TMR1IF == 1){
-
         contm++;
         conth++;
         if(contm == 2){
@@ -2728,14 +2725,14 @@ void __attribute__((picinterrupt((""))))isr(void) {
             me_3_us2_tm = 0;
             me_3_us3_tm = 0;
             conth = 0;
-            PORTA = ~PORTA;
+
         }
 
         TMR1IF = 0;
         TMR1IE =1;
         TMR1H = 0;
         TMR1L = 0;
-     }
+    }
 }
 
 
@@ -2766,7 +2763,6 @@ void main(void) {
     WPUBbits.WPUB5 = 1;
     WPUBbits.WPUB6 = 1;
     WPUBbits.WPUB7 = 1;
-
 
     OSCCONbits.IRCF = 0b110;
     OSCCONbits.SCS = 1;
@@ -2813,32 +2809,35 @@ void main(void) {
 
     ADCON0bits.GO = 1;
 
+    medicamento1 = ReadToEEPROM(0x10);
+    if(medicamento1 == 16){
+        medicamento1 = 0;
+    }
+    medicamento2 = ReadToEEPROM(0x11);
+    if(medicamento2 == 17){
+        medicamento2 = 0;
+    }
+    medicamento3 = ReadToEEPROM(0x12);
+    if(medicamento3 == 18){
+        medicamento3 = 0;
+    }
+
     PORTA = 0;
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
     PORTE = 0;
+
     activa1 = 0;
     activa2 = 0;
     activa3 = 0;
-    me_1_us1_tm = 0;
-    me_1_us2_tm = 0;
-    me_1_us3_tm = 0;
-    me_2_us1_tm = 0;
-    me_2_us2_tm = 0;
-    me_2_us3_tm = 0;
-    me_3_us1_tm = 0;
-    me_3_us2_tm = 0;
-    me_3_us3_tm = 0;
-    me_1_us1_th = 0;
-    me_1_us2_th = 0;
-    me_1_us3_th = 0;
-    me_2_us1_th = 0;
-    me_2_us2_th = 0;
-    me_2_us3_th = 0;
-    me_3_us1_th = 0;
-    me_3_us2_th = 0;
-    me_3_us3_th = 0;
+
+    RB0_old = 1;
+    RB1_old = 1;
+    RB2_old = 1;
+    RB5_old = 1;
+    RB6_old = 1;
+    RB7_old = 1;
 
     ventana = 1;
 
@@ -2847,6 +2846,10 @@ void main(void) {
         if(prueba){
             if (me_1_us1_th == me_1_us1_h){
                 if(me_1_us1_tm == me_1_us1_m){
+                    if(activa1 == 0){
+                        medicamento1++;
+                        WriteToEEPROM(medicamento1, 0x10);
+                    }
                     activa1 = 1;
                     me_1_us1_th = 0;
                     me_1_us1_tm = 0;
@@ -2854,6 +2857,10 @@ void main(void) {
             }
             if (me_1_us2_th == me_1_us2_h){
                 if(me_1_us2_tm == me_1_us2_m){
+                    if(activa1 == 0){
+                        medicamento1++;
+                        WriteToEEPROM(medicamento1, 0x10);
+                    }
                     activa1 = 1;
                     me_1_us2_th = 0;
                     me_1_us2_tm = 0;
@@ -2861,6 +2868,10 @@ void main(void) {
             }
             if (me_1_us3_th == me_1_us3_h){
                 if(me_1_us3_tm == me_1_us3_m){
+                    if(activa1 == 0){
+                        medicamento1++;
+                        WriteToEEPROM(medicamento1, 0x10);
+                    }
                     activa1 = 1;
                     me_1_us3_th = 0;
                     me_1_us3_tm = 0;
@@ -2868,6 +2879,10 @@ void main(void) {
             }
             if (me_2_us1_th == me_2_us1_h){
                 if(me_2_us1_tm == me_2_us1_m){
+                    if(activa2 == 0){
+                        medicamento2++;
+                        WriteToEEPROM(medicamento2, 0x11);
+                    }
                     activa2 = 1;
                     me_2_us1_th = 0;
                     me_2_us1_tm = 0;
@@ -2875,6 +2890,10 @@ void main(void) {
             }
             if (me_2_us2_th == me_2_us2_h){
                 if(me_2_us2_tm == me_2_us2_m){
+                    if(activa2 == 0){
+                        medicamento2++;
+                        WriteToEEPROM(medicamento2, 0x11);
+                    }
                     activa2 = 1;
                     me_2_us2_th = 0;
                     me_2_us2_tm = 0;
@@ -2882,6 +2901,10 @@ void main(void) {
             }
             if (me_2_us3_th == me_2_us3_h){
                 if(me_2_us3_tm == me_2_us3_m){
+                    if(activa2 == 0){
+                        medicamento2++;
+                        WriteToEEPROM(medicamento2, 0x11);
+                    }
                     activa2 = 1;
                     me_2_us3_th = 0;
                     me_2_us3_tm = 0;
@@ -2889,6 +2912,10 @@ void main(void) {
             }
             if (me_3_us1_th == me_3_us1_h){
                 if(me_3_us1_tm == me_3_us1_m){
+                    if(activa3 == 0){
+                        medicamento3++;
+                        WriteToEEPROM(medicamento3, 0x12);
+                    }
                     activa3 = 1;
                     me_3_us1_th = 0;
                     me_3_us1_tm = 0;
@@ -2896,6 +2923,10 @@ void main(void) {
             }
             if (me_3_us2_th == me_3_us2_h){
                 if(me_3_us2_tm == me_3_us2_m){
+                    if(activa3 == 0){
+                        medicamento3++;
+                        WriteToEEPROM(medicamento3, 0x12);
+                    }
                     activa3 = 1;
                     me_3_us2_th = 0;
                     me_3_us2_tm = 0;
@@ -2903,6 +2934,10 @@ void main(void) {
             }
             if (me_3_us3_th == me_3_us3_h){
                 if(me_3_us3_tm == me_3_us3_m){
+                    if(activa3 == 0){
+                        medicamento3++;
+                        WriteToEEPROM(medicamento3, 0x12);
+                    }
                     activa3 = 1;
                     me_3_us3_th = 0;
                     me_3_us3_tm = 0;
@@ -2910,7 +2945,7 @@ void main(void) {
             }
             prueba = 0;
         }
-       if (T0IF == 1) {
+        if (T0IF == 1) {
             if(!RB0 || activa1){
                 RD0 = 1;
                 _delay((unsigned long)((2)*(4000000/4000.0)));
@@ -2923,6 +2958,7 @@ void main(void) {
                 RD0 = 0;
                 TMR0 = 74;
                 INTCONbits.T0IF = 0;
+
             }
             if(!RB1 || activa2){
                 RD1 = 1;
@@ -2952,6 +2988,18 @@ void main(void) {
             }
             T0IF = 0;
         }
+        if (RB0 == 1 && RB0_old == 0) {
+            medicamento1++;
+            WriteToEEPROM(medicamento1, 0x10);
+        }RB0_old = RB0;
+        if (RB1 == 1 && RB1_old == 0){
+            medicamento2++;
+            WriteToEEPROM(medicamento2, 0x11);
+        }RB1_old = RB1;
+        if (RB2 == 1 && RB2_old == 0){
+            medicamento3++;
+            WriteToEEPROM(medicamento3, 0x12);
+        }RB2_old = RB2;
        if(!RA7){
            me_1_us1_tm = 0;
            me_1_us2_tm = 0;
@@ -2971,7 +3019,7 @@ void main(void) {
            me_3_us1_th = 0;
            me_3_us2_th = 0;
            me_3_us3_th = 0;
-           PORTA = 0;
+
        }
        if(ADCON0bits.GO == 0){
 
@@ -3059,7 +3107,8 @@ void main(void) {
            USART_Cadena("3) ver datos de usuario tres \r");
            USART_Cadena("4) Modificar horario usuario uno \r");
            USART_Cadena("5) Modificar horario usuario dos\r");
-           USART_Cadena("6) Modificar horario usuario tres \r\r");
+           USART_Cadena("6) Modificar horario usuario tres \r");
+           USART_Cadena("7) Mostrar cantidad de medicamento dispensado \r\r");
            ventana = 0;
         }
 
@@ -3281,12 +3330,15 @@ void main(void) {
                 ventana = 1;
                 break;
            case('7'):
-               hora_nueva = 48 + me_1_us1_h;
-               while(TXSTAbits.TRMT == 0);
-               TXREG = hora_nueva;
-               hora_nueva = 48 + me_1_us1_th;
-               while(TXSTAbits.TRMT == 0);
-               TXREG = hora_nueva;
+               USART_Cadena("El medicamento 1 se ha dispensado ");
+               SendCharH(medicamento1);
+               USART_Cadena(" veces \r");
+               USART_Cadena("El medicamento 2 se ha dispensado ");
+               SendCharH(medicamento2);
+               USART_Cadena(" veces \r");
+               USART_Cadena("El medicamento 3 se ha dispensado ");
+               SendCharH(medicamento3);
+               USART_Cadena(" veces \r \r");
                break;
 
             }
@@ -3614,4 +3666,34 @@ char CharToNumM(char in, char her){
         her = 55;
     }
     return her;
+}
+
+void WriteToEEPROM(uint8_t dato, uint8_t addr){
+    EEADR = addr;
+    EEDAT = dato;
+
+    EECON1bits.EEPGD = 0;
+    EECON1bits.WREN = 1;
+
+    INTCONbits.GIE = 0;
+
+    EECON2 = 0x55;
+    EECON2 = 0xAA;
+
+    EECON1bits.WR = 1;
+
+    while(PIR2bits.EEIF == 0);
+    PIR2bits.EEIF = 0;
+
+    EECON1bits.WREN = 0;
+    INTCONbits.GIE = 1;
+    return;
+}
+
+uint8_t ReadToEEPROM(uint8_t addr){
+    EEADR = addr;
+    EECON1bits.EEPGD = 0;
+    EECON1bits.RD = 1;
+    uint8_t dato = EEADR;
+    return dato;
 }

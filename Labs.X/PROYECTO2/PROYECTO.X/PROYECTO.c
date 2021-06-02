@@ -9,7 +9,7 @@
  * Hardware: Pic 16f887, transistores, resistencias, leds, button
  * 
  * Created on 14 de mayo de 2021, 21:51
- * Last modification on 28 de mayo de 2021, 23:00
+ * Last modification on 01 de junio de 2021, 23:00
  */
 
 // PIC16F887 Configuration Bit Settings
@@ -40,6 +40,9 @@
 
 //--------------------------directivas del compilador---------------------------
 #define _XTAL_FREQ 4000000 //__delay_ms(x)
+#define medicina1 0x10     //espacios de la eeprom a usar
+#define medicina2 0x11
+#define medicina3 0x12
 
 //---------------------------variables------------------------------------------
 char hora, minuto, escala;
@@ -64,6 +67,8 @@ char me_1_us1_tm, me_2_us1_tm, me_3_us1_tm;
 char me_1_us2_tm, me_2_us2_tm, me_3_us2_tm;
 char me_1_us3_tm, me_2_us3_tm, me_3_us3_tm;
 char prueba;
+char RB0_old, RB1_old, RB2_old, RB5_old, RB6_old, RB7_old;
+char medicamento1, medicamento2, medicamento3;
 
 
 //--------------------------funciones-------------------------------------------
@@ -74,18 +79,18 @@ void SendCharH(char in);
 void SendCharM(char in);
 char CharToNumH(char in, char hora_user);
 char CharToNumM(char in, char her);
+void WriteToEEPROM(uint8_t dato, uint8_t addr);
+uint8_t ReadToEEPROM(uint8_t addr);
 
 //---------------------------interrupciones-------------------------------------
 
 void __interrupt()isr(void) {
-    
     if (TMR1IF == 1){     //timmer1
-        
         contm++;
         conth++;
         if(contm == 2){
             //PORTA = ~PORTA;      // Toggle PORTB bit1 LED
-            me_1_us1_tm++; 
+            me_1_us1_tm++;         //mido minutos de cada medicamento
             me_1_us2_tm++; 
             me_1_us3_tm++; 
             me_2_us1_tm++; 
@@ -101,7 +106,7 @@ void __interrupt()isr(void) {
             prueba = 1;
         }
         if(conth == 120){
-            me_1_us1_th++; 
+            me_1_us1_th++;          //mido horas de cada medicamento
             me_1_us2_th++; 
             me_1_us3_th++; 
             me_2_us1_th++; 
@@ -120,20 +125,20 @@ void __interrupt()isr(void) {
             me_3_us2_tm = 0;
             me_3_us3_tm = 0;
             conth = 0;
-            PORTA = ~PORTA;
+            //PORTA = ~PORTA;
         }
                     
         TMR1IF = 0;           // interrupt must be cleared by software
         TMR1IE =1;        // reenable the interrupt
         TMR1H = 0;             // preset for timer1 MSB register
         TMR1L = 0;             // preset for timer1 LSB register
-     }
+    }
 }
 
 //----------------------configuracion microprocesador---------------------------
 
 void main(void) {
-    ANSEL = 0b01100000;       // NO HAY ANALOGICOS
+    ANSEL = 0b01100000;       // 2 pines ANALOGICOS
     ANSELH = 0x00;
     
     TRISA = 0b10000000;
@@ -158,7 +163,6 @@ void main(void) {
     WPUBbits.WPUB5 = 1;
     WPUBbits.WPUB6 = 1;
     WPUBbits.WPUB7 = 1;
-    
     
     OSCCONbits.IRCF = 0b110; //Config. de oscilacion 4MHz
     OSCCONbits.SCS = 1;      //reloj interno
@@ -205,32 +209,35 @@ void main(void) {
     
     ADCON0bits.GO = 1;  //para el ADC
     
+    medicamento1 = ReadToEEPROM(medicina1); // Si inicialmente muestra el valor
+    if(medicamento1 == 16){                 //de su ubicacion la inicion en 0
+        medicamento1 = 0;
+    }
+    medicamento2 = ReadToEEPROM(medicina2);
+    if(medicamento2 == 17){
+        medicamento2 = 0;
+    }
+    medicamento3 = ReadToEEPROM(medicina3);
+    if(medicamento3 == 18){
+        medicamento3 = 0;
+    }
+    
     PORTA = 0; // Estado inicial de los pines
     PORTB = 0; // Estado inicial de los pines
     PORTC = 0; // Estado inicial de los pines
     PORTD = 0; // Estado inicial de los pines
     PORTE = 0; // Estado inicial de los pines
-    activa1 = 0;
+    
+    activa1 = 0;        // variables que activaran los servos
     activa2 = 0;
     activa3 = 0;
-    me_1_us1_tm = 0; 
-    me_1_us2_tm = 0; 
-    me_1_us3_tm = 0; 
-    me_2_us1_tm = 0; 
-    me_2_us2_tm = 0; 
-    me_2_us3_tm = 0; 
-    me_3_us1_tm = 0; 
-    me_3_us2_tm = 0; 
-    me_3_us3_tm = 0; 
-    me_1_us1_th = 0; 
-    me_1_us2_th = 0; 
-    me_1_us3_th = 0; 
-    me_2_us1_th = 0; 
-    me_2_us2_th = 0; 
-    me_2_us3_th = 0; 
-    me_3_us1_th = 0; 
-    me_3_us2_th = 0; 
-    me_3_us3_th = 0;
+    
+    RB0_old = 1;
+    RB1_old = 1;
+    RB2_old = 1;
+    RB5_old = 1;
+    RB6_old = 1;
+    RB7_old = 1;
     
     ventana = 1;// Estado inicial
     
@@ -239,6 +246,10 @@ void main(void) {
         if(prueba){
             if (me_1_us1_th == me_1_us1_h){      //chequeo si algun usuario del 
                 if(me_1_us1_tm == me_1_us1_m){  //medicamento 1 tiene que dispensar
+                    if(activa1 == 0){
+                        medicamento1++;
+                        WriteToEEPROM(medicamento1, medicina1);
+                    }
                     activa1 = 1;
                     me_1_us1_th = 0;
                     me_1_us1_tm = 0;
@@ -246,6 +257,10 @@ void main(void) {
             }
             if (me_1_us2_th == me_1_us2_h){
                 if(me_1_us2_tm == me_1_us2_m){
+                    if(activa1 == 0){
+                        medicamento1++;
+                        WriteToEEPROM(medicamento1, medicina1);
+                    }
                     activa1 = 1;
                     me_1_us2_th = 0;
                     me_1_us2_tm = 0;
@@ -253,6 +268,10 @@ void main(void) {
             }
             if (me_1_us3_th == me_1_us3_h){
                 if(me_1_us3_tm == me_1_us3_m){
+                    if(activa1 == 0){
+                        medicamento1++;
+                        WriteToEEPROM(medicamento1, medicina1);
+                    }
                     activa1 = 1;
                     me_1_us3_th = 0;
                     me_1_us3_tm = 0;
@@ -260,6 +279,10 @@ void main(void) {
             }
             if (me_2_us1_th == me_2_us1_h){//chequeo si algun usuario del 
                 if(me_2_us1_tm == me_2_us1_m){  //medicamento 2 tiene que dispensar
+                    if(activa2 == 0){
+                        medicamento2++;
+                        WriteToEEPROM(medicamento2, medicina2);
+                    }
                     activa2 = 1;
                     me_2_us1_th = 0;
                     me_2_us1_tm = 0;
@@ -267,6 +290,10 @@ void main(void) {
             }
             if (me_2_us2_th == me_2_us2_h){
                 if(me_2_us2_tm == me_2_us2_m){
+                    if(activa2 == 0){
+                        medicamento2++;
+                        WriteToEEPROM(medicamento2, medicina2);
+                    }
                     activa2 = 1;
                     me_2_us2_th = 0;
                     me_2_us2_tm = 0;
@@ -274,6 +301,10 @@ void main(void) {
             }
             if (me_2_us3_th == me_2_us3_h){
                 if(me_2_us3_tm == me_2_us3_m){
+                    if(activa2 == 0){
+                        medicamento2++;
+                        WriteToEEPROM(medicamento2, medicina2);
+                    }
                     activa2 = 1;
                     me_2_us3_th = 0;
                     me_2_us3_tm = 0;
@@ -281,6 +312,10 @@ void main(void) {
             }
             if (me_3_us1_th == me_3_us1_h){      //chequeo si algun usuario del 
                 if(me_3_us1_tm == me_3_us1_m){  //medicamento 3 tiene que dispensar
+                    if(activa3 == 0){
+                        medicamento3++;
+                        WriteToEEPROM(medicamento3, medicina3);
+                    }
                     activa3 = 1;
                     me_3_us1_th = 0;
                     me_3_us1_tm = 0;
@@ -288,6 +323,10 @@ void main(void) {
             }
             if (me_3_us2_th == me_3_us2_h){
                 if(me_3_us2_tm == me_3_us2_m){
+                    if(activa3 == 0){
+                        medicamento3++;
+                        WriteToEEPROM(medicamento3, medicina3);
+                    }
                     activa3 = 1;
                     me_3_us2_th = 0;
                     me_3_us2_tm = 0;
@@ -295,6 +334,10 @@ void main(void) {
             }
             if (me_3_us3_th == me_3_us3_h){
                 if(me_3_us3_tm == me_3_us3_m){
+                    if(activa3 == 0){
+                        medicamento3++;
+                        WriteToEEPROM(medicamento3, medicina3);
+                    }
                     activa3 = 1;
                     me_3_us3_th = 0;
                     me_3_us3_tm = 0;
@@ -302,7 +345,7 @@ void main(void) {
             }
             prueba = 0;
         }
-       if (T0IF == 1) { //INTERRUPCION POR TIMMER0
+        if (T0IF == 1) { //INTERRUPCION POR TIMMER0 PWM
             if(!RB0 || activa1){
                 RD0 = 1;
                 __delay_ms(2);
@@ -315,6 +358,7 @@ void main(void) {
                 RD0 = 0;
                 TMR0 = 74;  //POSICION 180°
                 INTCONbits.T0IF = 0; //bajo la bandera
+                
             }
             if(!RB1 || activa2){
                 RD1 = 1;
@@ -344,7 +388,19 @@ void main(void) {
             }
             T0IF = 0;
         }
-       if(!RA7){
+        if (RB0 == 1 && RB0_old == 0) { // Escribo en la EEPROM si dispenso de
+            medicamento1++;             // forma manual
+            WriteToEEPROM(medicamento1, medicina1);
+        }RB0_old = RB0;
+        if (RB1 == 1 && RB1_old == 0){
+            medicamento2++;
+            WriteToEEPROM(medicamento2, medicina2);
+        }RB1_old = RB1;
+        if (RB2 == 1 && RB2_old == 0){
+            medicamento3++;
+            WriteToEEPROM(medicamento3, medicina3);
+        }RB2_old = RB2;
+       if(!RA7){            //reset todos los tiempos
            me_1_us1_tm = 0; 
            me_1_us2_tm = 0; 
            me_1_us3_tm = 0; 
@@ -363,7 +419,7 @@ void main(void) {
            me_3_us1_th = 0; 
            me_3_us2_th = 0; 
            me_3_us3_th = 0; 
-           PORTA = 0;
+           //PORTA = 0;
        }
        if(ADCON0bits.GO == 0){
             
@@ -451,7 +507,8 @@ void main(void) {
            USART_Cadena("3) ver datos de usuario tres \r");
            USART_Cadena("4) Modificar horario usuario uno \r");
            USART_Cadena("5) Modificar horario usuario dos\r");
-           USART_Cadena("6) Modificar horario usuario tres \r\r");
+           USART_Cadena("6) Modificar horario usuario tres \r");
+           USART_Cadena("7) Mostrar cantidad de medicamento dispensado \r\r");
            ventana = 0;
         }
        
@@ -672,21 +729,24 @@ void main(void) {
                 }                             
                 ventana = 1;
                 break;    
-           case('7'):
-               hora_nueva = 48 + me_1_us1_h;
-               while(TXSTAbits.TRMT == 0);
-               TXREG = hora_nueva;
-               hora_nueva = 48 + me_1_us1_th;
-               while(TXSTAbits.TRMT == 0);
-               TXREG = hora_nueva;
+           case('7'):   //información de cantidad de medicamentos dispensados
+               USART_Cadena("El medicamento 1 se ha dispensado ");
+               SendCharH(medicamento1);
+               USART_Cadena(" veces \r");
+               USART_Cadena("El medicamento 2 se ha dispensado ");
+               SendCharH(medicamento2);
+               USART_Cadena(" veces \r");
+               USART_Cadena("El medicamento 3 se ha dispensado ");
+               SendCharH(medicamento3);
+               USART_Cadena(" veces \r \r");
                break;
 
             }
         
        valor = '0';
        
-       if (RB7==0 && RB3==1 && RB4==0){
-           me_3_us3_m = minuto;
+       if (RB7==0 && RB3==1 && RB4==0){ //Guardo nuevo horario de forma manual
+           me_3_us3_m = minuto;         //para medicamento uno
            me_3_us3_h = hora;
        }else if (RB7==0 && RB3==0 && RB4==1){
            me_2_us3_m = minuto;
@@ -696,8 +756,8 @@ void main(void) {
            me_1_us3_h = hora;
        }
        
-       if (RB6==0 && RB3==1 && RB4==0){
-           me_3_us2_m = minuto;
+       if (RB6==0 && RB3==1 && RB4==0){ //Guardo nuevo horario de forma manual
+           me_3_us2_m = minuto;         //para medicamento dos
            me_3_us2_h = hora;
        }else if  (RB6==0 && RB3==0 && RB4==1){
            me_2_us2_m = minuto;
@@ -707,8 +767,8 @@ void main(void) {
            me_1_us2_h = hora;
        }
        
-       if (RB5==0 && RB3==0 && RB4==1){
-           me_3_us1_m = minuto;
+       if (RB5==0 && RB3==0 && RB4==1){ //Guardo nuevo horario de forma manual
+           me_3_us1_m = minuto;         //para medicamento tres
            me_3_us1_h = hora;
        }else if  (RB5==0 && RB3==1 && RB4==0){
            me_2_us1_m = minuto;
@@ -723,23 +783,23 @@ void main(void) {
 
 
 
-void USART_Tx(char data){
+void USART_Tx(char data){       //envio de un caracter
     while(TXSTAbits.TRMT == 0);
     TXREG = data;
 }
 
-char USART_Rx(){
+char USART_Rx(){                //Lectura de comunicacion serial
     return RCREG; 
    }
 
-void USART_Cadena(char *str){
+void USART_Cadena(char *str){   //Envio de cadena de caracteres
     while(*str != '\0'){
         USART_Tx(*str);
         str++;
     }
 }
 
-void SendCharH(char in){
+void SendCharH(char in){    //Conversion de numero a caracter
     switch(in){       //acorde al caracter se entrega la hora
         case(0):
             while(TXSTAbits.TRMT == 0);
@@ -898,7 +958,7 @@ void SendCharH(char in){
     }
 }
 
-void SendCharM(char in){
+void SendCharM(char in){    //Conversion de numero a caracter
     while(TXSTAbits.TRMT == 0);
         if(in == 0) {
             USART_Cadena("0");
@@ -913,7 +973,7 @@ void SendCharM(char in){
         }
 }
 
-char CharToNumH(char in, char hora_user){
+char CharToNumH(char in, char hora_user){   //conversion de seleccion a numero
     switch(in){
         case('a'):
             hora_user = 0;
@@ -993,7 +1053,7 @@ char CharToNumH(char in, char hora_user){
     }
     return hora_user;
 }
-char CharToNumM(char in, char her){
+char CharToNumM(char in, char her){ //conversion de seleccion a numero
     if(in == 'a'){
         her = 0;
     }else if(in == 'b'){
@@ -1007,6 +1067,37 @@ char CharToNumM(char in, char her){
     }
     return her;
 }
+
+void WriteToEEPROM(uint8_t dato, uint8_t addr){ //Escribir EEPROM
+    EEADR = addr;
+    EEDAT = dato;
+    
+    EECON1bits.EEPGD = 0;
+    EECON1bits.WREN = 1;
+    
+    INTCONbits.GIE = 0;
+    
+    EECON2 = 0x55;
+    EECON2 = 0xAA;
+    
+    EECON1bits.WR = 1;
+    
+    while(PIR2bits.EEIF == 0);  //espero a que escriba
+    PIR2bits.EEIF = 0;
+    
+    EECON1bits.WREN = 0;
+    INTCONbits.GIE = 1;
+    return;
+}
+
+uint8_t ReadToEEPROM(uint8_t addr){ // Leer EEPROM
+    EEADR = addr;
+    EECON1bits.EEPGD = 0;
+    EECON1bits.RD = 1;
+    uint8_t dato = EEADR;
+    return dato;
+}
+
 /*
  * Temporizacion = 20ms = 4/Fosc * Prescaler * x 
  * 20ms = 4/4MHz * 256 * x
