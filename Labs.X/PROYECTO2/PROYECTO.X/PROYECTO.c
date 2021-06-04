@@ -115,15 +115,6 @@ void __interrupt()isr(void) {
             me_3_us1_th++; 
             me_3_us2_th++; 
             me_3_us3_th++;
-            me_1_us1_tm = 0;
-            me_1_us2_tm = 0;
-            me_1_us3_tm = 0;
-            me_2_us1_tm = 0;
-            me_2_us2_tm = 0;
-            me_2_us3_tm = 0; 
-            me_3_us1_tm = 0;
-            me_3_us2_tm = 0;
-            me_3_us3_tm = 0;
             conth = 0;
             //PORTA = ~PORTA;
         }
@@ -210,17 +201,17 @@ void main(void) {
     ADCON0bits.GO = 1;  //para el ADC
     
     medicamento1 = ReadToEEPROM(medicina1); // Si inicialmente muestra el valor
-    if(medicamento1 == 16){                 //de su ubicacion la inicion en 0
+    /*if(medicamento1 == 16){                 //de su ubicacion la inicion en 0
         medicamento1 = 0;
-    }
+    }*/
     medicamento2 = ReadToEEPROM(medicina2);
-    if(medicamento2 == 17){
+    /*if(medicamento2 == 17){
         medicamento2 = 0;
-    }
+    }*/
     medicamento3 = ReadToEEPROM(medicina3);
-    if(medicamento3 == 18){
+    /*if(medicamento3 == 18){
         medicamento3 = 0;
-    }
+    }*/
     
     PORTA = 0; // Estado inicial de los pines
     PORTB = 0; // Estado inicial de los pines
@@ -239,106 +230,145 @@ void main(void) {
     RB6_old = 1;
     RB7_old = 1;
     
+    me_1_us1_h = 24; 
+    me_2_us1_h = 24;
+    me_3_us1_h = 24;
+    me_1_us2_h = 24;
+    me_2_us2_h = 24;
+    me_3_us2_h = 24;
+    me_1_us3_h = 24;
+    me_2_us3_h = 24;
+    me_3_us3_h = 24;
+    me_1_us1_m = 55;
+    me_2_us1_m = 55;
+    me_3_us1_m = 55;
+    me_1_us2_m = 55; 
+    me_2_us2_m = 55;
+    me_3_us2_m = 55;
+    me_1_us3_m = 55; 
+    me_2_us3_m = 55;
+    me_3_us3_m = 55;
+    
+    me_1_us1_tm = 0;         //inicio minutos de cada medicamento
+    me_1_us2_tm = 0; 
+    me_1_us3_tm = 0; 
+    me_2_us1_tm = 0; 
+    me_2_us2_tm = 0; 
+    me_2_us3_tm = 0; 
+    me_3_us1_tm = 0; 
+    me_3_us2_tm = 0; 
+    me_3_us3_tm = 0;
+    
+    me_1_us1_th = 0;          //inicio horas de cada medicamento
+    me_1_us2_th = 0; 
+    me_1_us3_th = 0; 
+    me_2_us1_th = 0; 
+    me_2_us2_th = 0; 
+    me_2_us3_th = 0; 
+    me_3_us1_th = 0; 
+    me_3_us2_th = 0; 
+    me_3_us3_th = 0;
+
     ventana = 1;// Estado inicial
     
 //------------------------------loop principal----------------------------------
     while (1) {
         if(prueba){
-            if (me_1_us1_th == me_1_us1_h){      //chequeo si algun usuario del 
+            if (me_1_us1_th == me_1_us1_h  || me_1_us1_h == 0){      //chequeo si algun usuario del 
                 if(me_1_us1_tm == me_1_us1_m){  //medicamento 1 tiene que dispensar
                     if(activa1 == 0){
+                        activa1 = 1;
                         medicamento1++;
                         WriteToEEPROM(medicamento1, medicina1);
                     }
-                    activa1 = 1;
                     me_1_us1_th = 0;
                     me_1_us1_tm = 0;
                 }
             }
-            if (me_1_us2_th == me_1_us2_h){
+            if (me_1_us2_th == me_1_us2_h || me_1_us2_h  == 0){
                 if(me_1_us2_tm == me_1_us2_m){
                     if(activa1 == 0){
+                        activa1 = 1;
                         medicamento1++;
                         WriteToEEPROM(medicamento1, medicina1);
                     }
-                    activa1 = 1;
                     me_1_us2_th = 0;
                     me_1_us2_tm = 0;
                 }
             }
-            if (me_1_us3_th == me_1_us3_h){
+            if (me_1_us3_th == me_1_us3_h || me_1_us3_h == 0){
                 if(me_1_us3_tm == me_1_us3_m){
                     if(activa1 == 0){
+                        activa1 = 1;
                         medicamento1++;
                         WriteToEEPROM(medicamento1, medicina1);
                     }
-                    activa1 = 1;
                     me_1_us3_th = 0;
                     me_1_us3_tm = 0;
                 }
             }
-            if (me_2_us1_th == me_2_us1_h){//chequeo si algun usuario del 
+            if (me_2_us1_th == me_2_us1_h || me_2_us1_h == 0){//chequeo si algun usuario del 
                 if(me_2_us1_tm == me_2_us1_m){  //medicamento 2 tiene que dispensar
                     if(activa2 == 0){
+                        activa2 = 1;
                         medicamento2++;
                         WriteToEEPROM(medicamento2, medicina2);
                     }
-                    activa2 = 1;
                     me_2_us1_th = 0;
                     me_2_us1_tm = 0;
                 }
             }
-            if (me_2_us2_th == me_2_us2_h){
+            if (me_2_us2_th == me_2_us2_h || me_2_us2_h == 0){
                 if(me_2_us2_tm == me_2_us2_m){
                     if(activa2 == 0){
+                        activa2 = 1;
                         medicamento2++;
                         WriteToEEPROM(medicamento2, medicina2);
                     }
-                    activa2 = 1;
                     me_2_us2_th = 0;
                     me_2_us2_tm = 0;
                 }
             }
-            if (me_2_us3_th == me_2_us3_h){
+            if (me_2_us3_th == me_2_us3_h || me_2_us3_h == 0){
                 if(me_2_us3_tm == me_2_us3_m){
                     if(activa2 == 0){
+                        activa2 = 1;
                         medicamento2++;
-                        WriteToEEPROM(medicamento2, medicina2);
+                       WriteToEEPROM(medicamento2, medicina2);
                     }
-                    activa2 = 1;
                     me_2_us3_th = 0;
                     me_2_us3_tm = 0;
                 }
             }
-            if (me_3_us1_th == me_3_us1_h){      //chequeo si algun usuario del 
+            if (me_3_us1_th == me_3_us1_h || me_3_us1_h == 0){      //chequeo si algun usuario del 
                 if(me_3_us1_tm == me_3_us1_m){  //medicamento 3 tiene que dispensar
                     if(activa3 == 0){
+                        activa3 = 1;
                         medicamento3++;
                         WriteToEEPROM(medicamento3, medicina3);
                     }
-                    activa3 = 1;
                     me_3_us1_th = 0;
                     me_3_us1_tm = 0;
                 }
             }
-            if (me_3_us2_th == me_3_us2_h){
+            if (me_3_us2_th == me_3_us2_h || me_3_us2_h == 0){
                 if(me_3_us2_tm == me_3_us2_m){
                     if(activa3 == 0){
+                        activa3 = 1;
                         medicamento3++;
                         WriteToEEPROM(medicamento3, medicina3);
                     }
-                    activa3 = 1;
                     me_3_us2_th = 0;
                     me_3_us2_tm = 0;
                 }
             }
-            if (me_3_us3_th == me_3_us3_h){
+            if (me_3_us3_th == me_3_us3_h || me_3_us3_h == 0){
                 if(me_3_us3_tm == me_3_us3_m){
                     if(activa3 == 0){
+                        activa3 = 1;
                         medicamento3++;
                         WriteToEEPROM(medicamento3, medicina3);
                     }
-                    activa3 = 1;
                     me_3_us3_th = 0;
                     me_3_us3_tm = 0;
                 }
@@ -346,12 +376,14 @@ void main(void) {
             prueba = 0;
         }
         if (T0IF == 1) { //INTERRUPCION POR TIMMER0 PWM
-            if(!RB0 || activa1){
+            if(RB0==0 || activa1==1){
                 RD0 = 1;
+                RA0 = ~RA0;
                 __delay_ms(2);
                 RD0 = 0;
                 TMR0 = 70;  //POSICION 0°
                 INTCONbits.T0IF = 0; //bajo la bandera
+                
             }else{
                 RD0 = 1;
                 __delay_ms(1);
@@ -360,7 +392,7 @@ void main(void) {
                 INTCONbits.T0IF = 0; //bajo la bandera
                 
             }
-            if(!RB1 || activa2){
+            if(RB1==0 || activa2==1){
                 RD1 = 1;
                 __delay_ms(2);
                 RD1 = 0;
@@ -373,7 +405,7 @@ void main(void) {
                 TMR0 = 74;  //POSICION 180°
                 INTCONbits.T0IF = 0; //bajo la bandera
             }
-            if(!RB2 || activa3){
+            if(RB2==0 || activa3==1){
                 RD2 = 1;
                 __delay_ms(2);
                 RD2 = 0;
@@ -425,13 +457,13 @@ void main(void) {
             
             if(ADCON0bits.CHS == 6){            //leo el canal para escalar mins
                 escala = ADRESH;
-                if (escala >= 0 && escala <=42){
+                if ((escala >= 0) && (escala <=42)){
                     minuto = 0;
-                }else if(escala >= 43 && escala <= 84 ){
+                }else if((escala >= 43 )&& (escala <= 84 )){
                     minuto = 15;
-                }else if(escala >= 85 && escala <= 126 ){
+                }else if((escala >= 85) && (escala <= 126 )){
                     minuto = 30;
-                }else if(escala >= 127 && escala <= 168 ){
+                }else if((escala >= 127) && (escala <= 168) ){
                     minuto = 45;
                 }else if(escala >= 210 && escala <= 255 ){
                     minuto = 55;
@@ -501,14 +533,14 @@ void main(void) {
               
        if(ventana == 1){        //muestro menú solo una vez
            
-           USART_Cadena("\r Que accion desea ejecutar? \r");
-           USART_Cadena("1) ver datos de usuario uno \r");
-           USART_Cadena("2) ver datos de usuario dos\r");
-           USART_Cadena("3) ver datos de usuario tres \r");
-           USART_Cadena("4) Modificar horario usuario uno \r");
-           USART_Cadena("5) Modificar horario usuario dos\r");
-           USART_Cadena("6) Modificar horario usuario tres \r");
-           USART_Cadena("7) Mostrar cantidad de medicamento dispensado \r\r");
+           USART_Cadena("\r Que accion desea ejecutar? \r \n");
+           USART_Cadena("1) ver datos de usuario uno \r \n");
+           USART_Cadena("2) ver datos de usuario dos\r \n");
+           USART_Cadena("3) ver datos de usuario tres \r \n");
+           USART_Cadena("4) Modificar horario usuario uno \r \n");
+           USART_Cadena("5) Modificar horario usuario dos\r \n");
+           USART_Cadena("6) Modificar horario usuario tres \r \n");
+           USART_Cadena("7) Mostrar cantidad de medicamento dispensado \r\r\n\n");
            ventana = 0;
         }
        
@@ -524,21 +556,21 @@ void main(void) {
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 SendCharM(me_1_us1_m);      //datos medicamento 1
-                USART_Cadena(" mins. para el medicamento 1 \r");
+                USART_Cadena(" mins. para el medicamento 1 \r\n");
                 
                 USART_Cadena(" Esperar  ");
                 SendCharH(me_2_us1_h);
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 SendCharM(me_2_us1_m);
-                USART_Cadena(" mins. para el medicamento 2 \r");
+                USART_Cadena(" mins. para el medicamento 2 \r\n");
                 
                 USART_Cadena(" Esperar  ");
                 SendCharH(me_3_us1_h);
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 SendCharM(me_3_us1_m);
-                USART_Cadena(" mins. para el medicamento 3 \r\r");
+                USART_Cadena(" mins. para el medicamento 3 \r\r\n\n");
                 ventana = 1;
                 break;
              
@@ -548,21 +580,21 @@ void main(void) {
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 SendCharM(me_1_us2_m);      //datos medicamento 1
-                USART_Cadena(" mins. para el medicamento 1 \r");
+                USART_Cadena(" mins. para el medicamento 1 \r\n");
                 
                 USART_Cadena(" Esperar  ");
                 SendCharH(me_2_us2_h);
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 SendCharM(me_2_us2_m);
-                USART_Cadena(" mins. para el medicamento 2 \r");
+                USART_Cadena(" mins. para el medicamento 2 \r\n");
                 
                 USART_Cadena(" Esperar  ");
                 SendCharH(me_3_us2_h);
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 SendCharM(me_3_us2_m);
-                USART_Cadena(" mins. para el medicamento 3 \r\r");
+                USART_Cadena(" mins. para el medicamento 3 \r\r\n\n");
                 ventana = 1;
                 break;
            
@@ -572,40 +604,40 @@ void main(void) {
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 SendCharM(me_1_us3_m);      //datos medicamento 1
-                USART_Cadena(" mins. para el medicamento 1 \r");
+                USART_Cadena(" mins. para el medicamento 1 \r\n");
                 
                 USART_Cadena(" Esperar  ");
                 SendCharH(me_2_us3_h);
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 SendCharM(me_2_us3_m);
-                USART_Cadena(" mins. para el medicamento 2 \r");
+                USART_Cadena(" mins. para el medicamento 2 \r\n");
                 
                 USART_Cadena(" Esperar  ");
                 SendCharH(me_3_us3_h);
                 USART_Cadena(" Horas ");    //Entrego los minutos
                 USART_Cadena(" con  ");
                 SendCharM(me_3_us3_m);
-                USART_Cadena(" mins. para el medicamento 3 \r\r");
+                USART_Cadena(" mins. para el medicamento 3 \r\r\n\n");
                 ventana = 1;
                 break;
             
             case ('4'):
-                USART_Cadena(" Ingresá la letra de la nueva hora  \r");
-                USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
-                USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
-                USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
+                USART_Cadena(" Ingresá la letra de la nueva hora  \n\r");
+                USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r\n");
+                USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r\n");
+                USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r\n");
                 while(1){
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
-                        USART_Cadena(" \r");
+                        USART_Cadena(" \r\n");
                         hora_nueva = USART_Rx();
-                        USART_Cadena(" \r");
+                        USART_Cadena(" \r\n");
                         hora_user1 = CharToNumH(hora_nueva, hora_user1);
                         break;
                     }
                 }
-                USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
-                USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
+                USART_Cadena(" Ingresá la letra de los minutos nuevos  \r\n");
+                USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r\n");
                 while(1){
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
                         USART_Cadena(" \r");
@@ -615,9 +647,9 @@ void main(void) {
                         break;
                     }
                 }
-                USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
-                USART_Cadena(" presione el número de medicamento a guardar \r");
-                USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
+                USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r\n");
+                USART_Cadena(" presione el número de medicamento a guardar \r\n");
+                USART_Cadena(" 1.AFC    2.FFT   3.DHL \r\n");
                 while(1){
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
                         hora_nueva = USART_Rx();
@@ -638,33 +670,33 @@ void main(void) {
                 break;
                         
             case ('5'):
-                USART_Cadena(" Ingresá la letra de la nueva hora  \r");
-                USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
-                USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
-                USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
+                USART_Cadena(" Ingresá la letra de la nueva hora  \r\n");
+                USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r\n");
+                USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r\n");
+                USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r\n");
                 while(1){
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
-                        USART_Cadena(" \r");
+                        USART_Cadena(" \r\n");
                         hora_nueva = USART_Rx();
-                        USART_Cadena(" \r");
+                        USART_Cadena(" \r\n");
                         hora_user2 = CharToNumH(hora_nueva, hora_user2);
                         break;
                     }
                 }
-                USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
-                USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
+                USART_Cadena(" Ingresá la letra de los minutos nuevos  \r\n");
+                USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r\n");
                 while(1){
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
-                        USART_Cadena(" \r");
+                        USART_Cadena(" \r\n");
                         hora_nueva = USART_Rx();
-                        USART_Cadena(" \r");
+                        USART_Cadena(" \r\n");
                         min_user2 = CharToNumM(hora_nueva, min_user2);
                         break;
                     }
                 }
-                USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
-                USART_Cadena(" presione el número de medicamento a guardar \r");
-                USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
+                USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r\n");
+                USART_Cadena(" presione el número de medicamento a guardar \r\n");
+                USART_Cadena(" 1.AFC    2.FFT   3.DHL \r\n");
                 while(1){
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
                         hora_nueva = USART_Rx();
@@ -684,33 +716,33 @@ void main(void) {
                 ventana = 1;
                 break;
             case ('6'):
-                USART_Cadena(" Ingresá la letra de la nueva hora  \r");
-                USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6   h.7  i.8\r");
-                USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r");
-                USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r");
+                USART_Cadena(" Ingresá la letra de la nueva hora  \r\n");
+                USART_Cadena(" a.0  b.1   c.2   d.3   e.4   f.5   g.6  h.7  i.8\r\n");
+                USART_Cadena(" j.9  k.10  l.11  m.12  n.13  o.14  p.15  q.16\r\n");
+                USART_Cadena("r.17  s.18  t.19  u.20  v.21  w.22  x.23  y.24\r\n");
                 while(1){
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
-                        USART_Cadena(" \r");
+                        USART_Cadena(" \r\n");
                         hora_nueva = USART_Rx();
-                        USART_Cadena(" \r");
+                        USART_Cadena(" \r\n");
                         hora_user3 = CharToNumH(hora_nueva, hora_user3);
                         break;
                     }
                 }
-                USART_Cadena(" Ingresá la letra de los minutos nuevos  \r");
-                USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r");
+                USART_Cadena(" Ingresá la letra de los minutos nuevos  \r\n");
+                USART_Cadena(" a.0  b.15   c.30   d.45   e.55   \r\n");
                 while(1){
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
-                        USART_Cadena(" \r");
+                        USART_Cadena(" \r\n");
                         hora_nueva = USART_Rx();
-                        USART_Cadena(" \r");
+                        USART_Cadena(" \r\n");
                         min_user3 = CharToNumM(hora_nueva, min_user3);
                         break;
                     }
                 }
-                USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r");
-                USART_Cadena(" presione el número de medicamento a guardar \r");
-                USART_Cadena(" 1.AFC    2.FFT   3.DHL \r");
+                USART_Cadena(" Actualmente se cuenta con 3 medicamentos\r\n");
+                USART_Cadena(" presione el número de medicamento a guardar \r\n");
+                USART_Cadena(" 1.AFC    2.FFT   3.DHL \r\n");
                 while(1){
                     if (PIR1bits.RCIF == 1){ //compruebo si se introdujo un dato
                         hora_nueva = USART_Rx();
@@ -732,13 +764,13 @@ void main(void) {
            case('7'):   //información de cantidad de medicamentos dispensados
                USART_Cadena("El medicamento 1 se ha dispensado ");
                SendCharH(medicamento1);
-               USART_Cadena(" veces \r");
+               USART_Cadena(" veces \r\n");
                USART_Cadena("El medicamento 2 se ha dispensado ");
                SendCharH(medicamento2);
-               USART_Cadena(" veces \r");
+               USART_Cadena(" veces \r\n");
                USART_Cadena("El medicamento 3 se ha dispensado ");
                SendCharH(medicamento3);
-               USART_Cadena(" veces \r \r");
+               USART_Cadena(" veces \r \r \n\n");
                break;
 
             }
@@ -1076,6 +1108,10 @@ void WriteToEEPROM(uint8_t dato, uint8_t addr){ //Escribir EEPROM
     EECON1bits.WREN = 1;
     
     INTCONbits.GIE = 0;
+    RCSTAbits.SPEN = 0;     //enciendo el modulo
+    RCSTAbits.CREN = 0;     //activo recepción
+    TXSTAbits.TXEN = 0;     //activo transmision 
+
     
     EECON2 = 0x55;
     EECON2 = 0xAA;
@@ -1087,6 +1123,10 @@ void WriteToEEPROM(uint8_t dato, uint8_t addr){ //Escribir EEPROM
     
     EECON1bits.WREN = 0;
     INTCONbits.GIE = 1;
+    RCSTAbits.SPEN = 1;     //enciendo el modulo
+    RCSTAbits.CREN = 1;     //activo recepción
+    TXSTAbits.TXEN = 1;     //activo transmision 
+
     return;
 }
 
