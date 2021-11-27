@@ -15,23 +15,23 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "131
 [v _main main `(v  1 e 1 0 ]
-"818
+"817
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
-"823
+"822
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
-"827
+"826
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
-"834
+"833
 [v _SendCharH SendCharH `(v  1 e 1 0 ]
-"993
+"992
 [v _SendCharM SendCharM `(v  1 e 1 0 ]
-"1008
+"1007
 [v _CharToNumH CharToNumH `(uc  1 e 1 0 ]
-"1088
+"1087
 [v _CharToNumM CharToNumM `(uc  1 e 1 0 ]
-"1103
+"1102
 [v _WriteToEEPROM WriteToEEPROM `(v  1 e 1 0 ]
-"1133
+"1131
 [v _ReadToEEPROM ReadToEEPROM `(uc  1 e 1 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -408,80 +408,80 @@
 "131
 [v _main main `(v  1 e 1 0 ]
 {
-"814
+"813
 } 0
-"1103
+"1102
 [v _WriteToEEPROM WriteToEEPROM `(v  1 e 1 0 ]
 {
 [v WriteToEEPROM@dato dato `uc  1 a 1 wreg ]
 [v WriteToEEPROM@dato dato `uc  1 a 1 wreg ]
 [v WriteToEEPROM@addr addr `uc  1 p 1 3 ]
 [v WriteToEEPROM@dato dato `uc  1 a 1 4 ]
-"1131
+"1129
 } 0
-"823
+"822
 [v _USART_Rx USART_Rx `(uc  1 e 1 0 ]
 {
-"825
+"824
 } 0
-"993
+"992
 [v _SendCharM SendCharM `(v  1 e 1 0 ]
 {
 [v SendCharM@in in `uc  1 a 1 wreg ]
 [v SendCharM@in in `uc  1 a 1 wreg ]
 [v SendCharM@in in `uc  1 a 1 0 ]
-"1006
+"1005
 } 0
-"827
+"826
 [v _USART_Cadena USART_Cadena `(v  1 e 1 0 ]
 {
 [v USART_Cadena@str str `*.25uc  1 p 2 4 ]
-"832
+"831
 } 0
-"818
+"817
 [v _USART_Tx USART_Tx `(v  1 e 1 0 ]
 {
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 wreg ]
 [v USART_Tx@data data `uc  1 a 1 3 ]
-"821
+"820
 } 0
-"834
+"833
 [v _SendCharH SendCharH `(v  1 e 1 0 ]
 {
 [v SendCharH@in in `uc  1 a 1 wreg ]
 [v SendCharH@in in `uc  1 a 1 wreg ]
 [v SendCharH@in in `uc  1 a 1 5 ]
-"991
+"990
 } 0
-"1133
+"1131
 [v _ReadToEEPROM ReadToEEPROM `(uc  1 e 1 0 ]
 {
 [v ReadToEEPROM@addr addr `uc  1 a 1 wreg ]
-"1137
+"1135
 [v ReadToEEPROM@dato dato `uc  1 a 1 5 ]
-"1133
+"1131
 [v ReadToEEPROM@addr addr `uc  1 a 1 wreg ]
 [v ReadToEEPROM@addr addr `uc  1 a 1 4 ]
-"1139
+"1137
 } 0
-"1088
+"1087
 [v _CharToNumM CharToNumM `(uc  1 e 1 0 ]
 {
 [v CharToNumM@in in `uc  1 a 1 wreg ]
 [v CharToNumM@in in `uc  1 a 1 wreg ]
 [v CharToNumM@her her `uc  1 p 1 3 ]
 [v CharToNumM@in in `uc  1 a 1 5 ]
-"1101
+"1100
 } 0
-"1008
+"1007
 [v _CharToNumH CharToNumH `(uc  1 e 1 0 ]
 {
 [v CharToNumH@in in `uc  1 a 1 wreg ]
 [v CharToNumH@in in `uc  1 a 1 wreg ]
 [v CharToNumH@hora_user hora_user `uc  1 p 1 3 ]
 [v CharToNumH@in in `uc  1 a 1 0 ]
-"1087
+"1086
 } 0
 "87
 [v _isr isr `II(v  1 e 1 0 ]

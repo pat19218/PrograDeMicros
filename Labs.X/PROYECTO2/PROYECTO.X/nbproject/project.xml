@@ -12,7 +12,9 @@
             <asminc-extensions/>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
-            <sourceRootList/>
+            <sourceRootList>
+                <sourceRootElem>../../../../../Documents/GitHub/Electrónica Digital 2/LABORATORIOS.X/primer_proye/PROYECTO.X</sourceRootElem>
+            </sourceRootList>
             <confList>
                 <confElem>
                     <name>default</name>

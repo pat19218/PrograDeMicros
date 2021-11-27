@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Thu Jun 03 13:43:28 2021
+                                                                                               Mon Jun 28 19:33:53 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -2444,7 +2444,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2430  0C24                     __ptext1:	
   2431 ;; *************** function _WriteToEEPROM *****************
   2432 ;; Defined at:
-  2433 ;;		line 1103 in file "PROYECTO.c"
+  2433 ;;		line 1102 in file "PROYECTO.c"
   2434 ;; Parameters:    Size  Location     Type
   2435 ;;  dato            1    wreg     unsigned char 
   2436 ;;  addr            1    3[COMMON] unsigned char 
@@ -2483,61 +2483,61 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2469  0C24  00F4               	movwf	WriteToEEPROM@dato
   2470  0C25                     l2595:
   2471                           
-  2472                           ;PROYECTO.c: 1104:     EEADR = addr;
+  2472                           ;PROYECTO.c: 1103:     EEADR = addr;
   2473  0C25  0873               	movf	WriteToEEPROM@addr,w
   2474  0C26  1283               	bcf	3,5	;RP0=0, select bank2
   2475  0C27  1703               	bsf	3,6	;RP1=1, select bank2
   2476  0C28  008D               	movwf	13	;volatile
   2477                           
-  2478                           ;PROYECTO.c: 1105:     EEDAT = dato;
+  2478                           ;PROYECTO.c: 1104:     EEDAT = dato;
   2479  0C29  0874               	movf	WriteToEEPROM@dato,w
   2480  0C2A  008C               	movwf	12	;volatile
   2481  0C2B                     l2597:
   2482                           
-  2483                           ;PROYECTO.c: 1107:     EECON1bits.EEPGD = 0;
+  2483                           ;PROYECTO.c: 1106:     EECON1bits.EEPGD = 0;
   2484  0C2B  1683               	bsf	3,5	;RP0=1, select bank3
   2485  0C2C  1703               	bsf	3,6	;RP1=1, select bank3
   2486  0C2D  138C               	bcf	12,7	;volsfr
   2487  0C2E                     l2599:
   2488                           
-  2489                           ;PROYECTO.c: 1108:     EECON1bits.WREN = 1;
+  2489                           ;PROYECTO.c: 1107:     EECON1bits.WREN = 1;
   2490  0C2E  150C               	bsf	12,2	;volsfr
   2491  0C2F                     l2601:
   2492                           
-  2493                           ;PROYECTO.c: 1110:     INTCONbits.GIE = 0;
+  2493                           ;PROYECTO.c: 1109:     INTCONbits.GIE = 0;
   2494  0C2F  138B               	bcf	11,7	;volatile
   2495  0C30                     l2603:
   2496                           
-  2497                           ;PROYECTO.c: 1111:     RCSTAbits.SPEN = 0;
+  2497                           ;PROYECTO.c: 1110:     RCSTAbits.SPEN = 0;
   2498  0C30  1283               	bcf	3,5	;RP0=0, select bank0
   2499  0C31  1303               	bcf	3,6	;RP1=0, select bank0
   2500  0C32  1398               	bcf	24,7	;volatile
   2501  0C33                     l2605:
   2502                           
-  2503                           ;PROYECTO.c: 1112:     RCSTAbits.CREN = 0;
+  2503                           ;PROYECTO.c: 1111:     RCSTAbits.CREN = 0;
   2504  0C33  1218               	bcf	24,4	;volatile
   2505  0C34                     l2607:
   2506                           
-  2507                           ;PROYECTO.c: 1113:     TXSTAbits.TXEN = 0;
+  2507                           ;PROYECTO.c: 1112:     TXSTAbits.TXEN = 0;
   2508  0C34  1683               	bsf	3,5	;RP0=1, select bank1
   2509  0C35  1303               	bcf	3,6	;RP1=0, select bank1
   2510  0C36  1298               	bcf	24,5	;volatile
   2511                           
-  2512                           ;PROYECTO.c: 1116:     EECON2 = 0x55;
+  2512                           ;PROYECTO.c: 1114:     EECON2 = 0x55;
   2513  0C37  3055               	movlw	85
   2514  0C38  1683               	bsf	3,5	;RP0=1, select bank3
   2515  0C39  1703               	bsf	3,6	;RP1=1, select bank3
   2516  0C3A  008D               	movwf	13	;volsfr
   2517                           
-  2518                           ;PROYECTO.c: 1117:     EECON2 = 0xAA;
+  2518                           ;PROYECTO.c: 1115:     EECON2 = 0xAA;
   2519  0C3B  30AA               	movlw	170
   2520  0C3C  008D               	movwf	13	;volsfr
   2521  0C3D                     l2609:
   2522                           
-  2523                           ;PROYECTO.c: 1119:     EECON1bits.WR = 1;
+  2523                           ;PROYECTO.c: 1117:     EECON1bits.WR = 1;
   2524  0C3D  148C               	bsf	12,1	;volsfr
   2525  0C3E                     l695:	
-  2526                           ;PROYECTO.c: 1121:     while(PIR2bits.EEIF == 0);
+  2526                           ;PROYECTO.c: 1119:     while(PIR2bits.EEIF == 0);
   2527                           
   2528  0C3E  1283               	bcf	3,5	;RP0=0, select bank0
   2529  0C3F  1303               	bcf	3,6	;RP1=0, select bank0
@@ -2549,31 +2549,31 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2535  0C44                     u2170:
   2536  0C44                     l697:
   2537                           
-  2538                           ;PROYECTO.c: 1122:     PIR2bits.EEIF = 0;
+  2538                           ;PROYECTO.c: 1120:     PIR2bits.EEIF = 0;
   2539  0C44  120D               	bcf	13,4	;volatile
   2540                           
-  2541                           ;PROYECTO.c: 1124:     EECON1bits.WREN = 0;
+  2541                           ;PROYECTO.c: 1122:     EECON1bits.WREN = 0;
   2542  0C45  1683               	bsf	3,5	;RP0=1, select bank3
   2543  0C46  1703               	bsf	3,6	;RP1=1, select bank3
   2544  0C47  110C               	bcf	12,2	;volsfr
   2545                           
-  2546                           ;PROYECTO.c: 1125:     INTCONbits.GIE = 1;
+  2546                           ;PROYECTO.c: 1123:     INTCONbits.GIE = 1;
   2547  0C48  178B               	bsf	11,7	;volatile
   2548                           
-  2549                           ;PROYECTO.c: 1126:     RCSTAbits.SPEN = 1;
+  2549                           ;PROYECTO.c: 1124:     RCSTAbits.SPEN = 1;
   2550  0C49  1283               	bcf	3,5	;RP0=0, select bank0
   2551  0C4A  1303               	bcf	3,6	;RP1=0, select bank0
   2552  0C4B  1798               	bsf	24,7	;volatile
   2553                           
-  2554                           ;PROYECTO.c: 1127:     RCSTAbits.CREN = 1;
+  2554                           ;PROYECTO.c: 1125:     RCSTAbits.CREN = 1;
   2555  0C4C  1618               	bsf	24,4	;volatile
   2556                           
-  2557                           ;PROYECTO.c: 1128:     TXSTAbits.TXEN = 1;
+  2557                           ;PROYECTO.c: 1126:     TXSTAbits.TXEN = 1;
   2558  0C4D  1683               	bsf	3,5	;RP0=1, select bank1
   2559  0C4E  1303               	bcf	3,6	;RP1=0, select bank1
   2560  0C4F  1698               	bsf	24,5	;volatile
   2561  0C50                     l698:	
-  2562                           ;PROYECTO.c: 1130:     return;
+  2562                           ;PROYECTO.c: 1128:     return;
   2563                           
   2564  0C50  0008               	return
   2565  0C51                     __end_of_WriteToEEPROM:
@@ -2582,7 +2582,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2568  0C14                     __ptext2:	
   2569 ;; *************** function _USART_Rx *****************
   2570 ;; Defined at:
-  2571 ;;		line 823 in file "PROYECTO.c"
+  2571 ;;		line 822 in file "PROYECTO.c"
   2572 ;; Parameters:    Size  Location     Type
   2573 ;;		None
   2574 ;; Auto vars:     Size  Location     Type
@@ -2618,7 +2618,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2604                           ; Regs used in _USART_Rx: [wreg]
   2605                           
   2606                           
-  2607                           ;PROYECTO.c: 824:     return RCREG;
+  2607                           ;PROYECTO.c: 823:     return RCREG;
   2608  0C14  1283               	bcf	3,5	;RP0=0, select bank0
   2609  0C15  1303               	bcf	3,6	;RP1=0, select bank0
   2610  0C16  081A               	movf	26,w	;volatile
@@ -2630,7 +2630,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2616  0C88                     __ptext3:	
   2617 ;; *************** function _SendCharM *****************
   2618 ;; Defined at:
-  2619 ;;		line 993 in file "PROYECTO.c"
+  2619 ;;		line 992 in file "PROYECTO.c"
   2620 ;; Parameters:    Size  Location     Type
   2621 ;;  in              1    wreg     unsigned char 
   2622 ;; Auto vars:     Size  Location     Type
@@ -2670,7 +2670,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2656  0C8A  00DC               	movwf	SendCharM@in
   2657  0C8B                     l3869:
   2658  0C8B                     l638:	
-  2659                           ;PROYECTO.c: 994:     while(TXSTAbits.TRMT == 0);
+  2659                           ;PROYECTO.c: 993:     while(TXSTAbits.TRMT == 0);
   2660                           
   2661  0C8B  1683               	bsf	3,5	;RP0=1, select bank1
   2662  0C8C  1303               	bcf	3,6	;RP1=0, select bank1
@@ -2682,7 +2682,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2668  0C91                     u4310:
   2669  0C91                     l3871:
   2670                           
-  2671                           ;PROYECTO.c: 995:         if(in == 0) {
+  2671                           ;PROYECTO.c: 994:         if(in == 0) {
   2672  0C91  1283               	bcf	3,5	;RP0=0, select bank0
   2673  0C92  1303               	bcf	3,6	;RP1=0, select bank0
   2674  0C93  085C               	movf	SendCharM@in,w
@@ -2694,14 +2694,14 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2680  0C98                     u4320:
   2681  0C98                     l3873:
   2682                           
-  2683                           ;PROYECTO.c: 996:             USART_Cadena("0");
+  2683                           ;PROYECTO.c: 995:             USART_Cadena("0");
   2684  0C98  3009               	movlw	low ((STR_92+1)| (0+32768))
   2685  0C99  00F4               	movwf	USART_Cadena@str
   2686  0C9A  308C               	movlw	high ((STR_92+1)| (0+32768))
   2687  0C9B  00F5               	movwf	USART_Cadena@str+1
   2688  0C9C  160A  118A  23DC  120A  158A  	fcall	_USART_Cadena
   2689                           
-  2690                           ;PROYECTO.c: 997:         }else if (in == 15){
+  2690                           ;PROYECTO.c: 996:         }else if (in == 15){
   2691  0CA1  2CE2               	goto	l650
   2692  0CA2                     l3875:
   2693  0CA2  300F               	movlw	15
@@ -2714,14 +2714,14 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2700  0CA8                     u4330:
   2701  0CA8                     l3877:
   2702                           
-  2703                           ;PROYECTO.c: 998:             USART_Cadena("15");
+  2703                           ;PROYECTO.c: 997:             USART_Cadena("15");
   2704  0CA8  300B               	movlw	low (STR_91| (0+32768))
   2705  0CA9  00F4               	movwf	USART_Cadena@str
   2706  0CAA  308C               	movlw	high (STR_91| (0+32768))
   2707  0CAB  00F5               	movwf	USART_Cadena@str+1
   2708  0CAC  160A  118A  23DC  120A  158A  	fcall	_USART_Cadena
   2709                           
-  2710                           ;PROYECTO.c: 999:         }else if (in == 30){
+  2710                           ;PROYECTO.c: 998:         }else if (in == 30){
   2711  0CB1  2CE2               	goto	l650
   2712  0CB2                     l3879:
   2713  0CB2  301E               	movlw	30
@@ -2734,14 +2734,14 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2720  0CB8                     u4340:
   2721  0CB8                     l3881:
   2722                           
-  2723                           ;PROYECTO.c: 1000:             USART_Cadena("30");
+  2723                           ;PROYECTO.c: 999:             USART_Cadena("30");
   2724  0CB8  3008               	movlw	low (STR_92| (0+32768))
   2725  0CB9  00F4               	movwf	USART_Cadena@str
   2726  0CBA  308C               	movlw	high (STR_92| (0+32768))
   2727  0CBB  00F5               	movwf	USART_Cadena@str+1
   2728  0CBC  160A  118A  23DC  120A  158A  	fcall	_USART_Cadena
   2729                           
-  2730                           ;PROYECTO.c: 1001:         }else if (in == 45){
+  2730                           ;PROYECTO.c: 1000:         }else if (in == 45){
   2731  0CC1  2CE2               	goto	l650
   2732  0CC2                     l3883:
   2733  0CC2  302D               	movlw	45
@@ -2754,14 +2754,14 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2740  0CC8                     u4350:
   2741  0CC8                     l3885:
   2742                           
-  2743                           ;PROYECTO.c: 1002:             USART_Cadena("45");
+  2743                           ;PROYECTO.c: 1001:             USART_Cadena("45");
   2744  0CC8  300E               	movlw	low (STR_93| (0+32768))
   2745  0CC9  00F4               	movwf	USART_Cadena@str
   2746  0CCA  308C               	movlw	high (STR_93| (0+32768))
   2747  0CCB  00F5               	movwf	USART_Cadena@str+1
   2748  0CCC  160A  118A  23DC  120A  158A  	fcall	_USART_Cadena
   2749                           
-  2750                           ;PROYECTO.c: 1003:         }else if (in == 55){
+  2750                           ;PROYECTO.c: 1002:         }else if (in == 55){
   2751  0CD1  2CE2               	goto	l650
   2752  0CD2                     l3887:
   2753  0CD2  3037               	movlw	55
@@ -2774,7 +2774,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2760  0CD8                     u4360:
   2761  0CD8                     l3889:
   2762                           
-  2763                           ;PROYECTO.c: 1004:             USART_Cadena("55");
+  2763                           ;PROYECTO.c: 1003:             USART_Cadena("55");
   2764  0CD8  3011               	movlw	low (STR_94| (0+32768))
   2765  0CD9  00F4               	movwf	USART_Cadena@str
   2766  0CDA  308C               	movlw	high (STR_94| (0+32768))
@@ -2790,7 +2790,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2776  13DC                     __ptext4:	
   2777 ;; *************** function _USART_Cadena *****************
   2778 ;; Defined at:
-  2779 ;;		line 827 in file "PROYECTO.c"
+  2779 ;;		line 826 in file "PROYECTO.c"
   2780 ;; Parameters:    Size  Location     Type
   2781 ;;  str             2    4[COMMON] PTR unsigned char 
   2782 ;;		 -> STR_94(3), STR_93(3), STR_92(3), STR_91(3), 
@@ -2851,11 +2851,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2837                           ; Regs used in _USART_Cadena: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
   2838                           
   2839                           
-  2840                           ;PROYECTO.c: 828:     while(*str != '\0'){
+  2840                           ;PROYECTO.c: 827:     while(*str != '\0'){
   2841  13DC  2BF1               	goto	l3867
   2842  13DD                     l3863:
   2843                           
-  2844                           ;PROYECTO.c: 829:         USART_Tx(*str);
+  2844                           ;PROYECTO.c: 828:         USART_Tx(*str);
   2845  13DD  0875               	movf	USART_Cadena@str+1,w
   2846  13DE  00FF               	movwf	btemp+1
   2847  13DF  0874               	movf	USART_Cadena@str,w
@@ -2864,7 +2864,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2850  13E6  120A  158A  2418  160A  118A  	fcall	_USART_Tx
   2851  13EB                     l3865:
   2852                           
-  2853                           ;PROYECTO.c: 830:         str++;
+  2853                           ;PROYECTO.c: 829:         str++;
   2854  13EB  3001               	movlw	1
   2855  13EC  07F4               	addwf	USART_Cadena@str,f
   2856  13ED  1803               	skipnc
@@ -2873,7 +2873,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2859  13F0  07F5               	addwf	USART_Cadena@str+1,f
   2860  13F1                     l3867:
   2861                           
-  2862                           ;PROYECTO.c: 828:     while(*str != '\0'){
+  2862                           ;PROYECTO.c: 827:     while(*str != '\0'){
   2863  13F1  0875               	movf	USART_Cadena@str+1,w
   2864  13F2  1283               	bcf	3,5	;RP0=0, select bank0
   2865  13F3  1303               	bcf	3,6	;RP1=0, select bank0
@@ -2896,7 +2896,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2882  0C18                     __ptext5:	
   2883 ;; *************** function _USART_Tx *****************
   2884 ;; Defined at:
-  2885 ;;		line 818 in file "PROYECTO.c"
+  2885 ;;		line 817 in file "PROYECTO.c"
   2886 ;; Parameters:    Size  Location     Type
   2887 ;;  data            1    wreg     unsigned char 
   2888 ;; Auto vars:     Size  Location     Type
@@ -2934,7 +2934,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2920  0C18  00F3               	movwf	USART_Tx@data
   2921  0C19                     l3857:
   2922  0C19                     l473:	
-  2923                           ;PROYECTO.c: 819:     while(TXSTAbits.TRMT == 0);
+  2923                           ;PROYECTO.c: 818:     while(TXSTAbits.TRMT == 0);
   2924                           
   2925  0C19  1683               	bsf	3,5	;RP0=1, select bank1
   2926  0C1A  1303               	bcf	3,6	;RP1=0, select bank1
@@ -2946,7 +2946,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2932  0C1F                     u4290:
   2933  0C1F                     l3859:
   2934                           
-  2935                           ;PROYECTO.c: 820:     TXREG = data;
+  2935                           ;PROYECTO.c: 819:     TXREG = data;
   2936  0C1F  0873               	movf	USART_Tx@data,w
   2937  0C20  1283               	bcf	3,5	;RP0=0, select bank0
   2938  0C21  1303               	bcf	3,6	;RP1=0, select bank0
@@ -2959,7 +2959,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2945  0E3B                     __ptext6:	
   2946 ;; *************** function _SendCharH *****************
   2947 ;; Defined at:
-  2948 ;;		line 834 in file "PROYECTO.c"
+  2948 ;;		line 833 in file "PROYECTO.c"
   2949 ;; Parameters:    Size  Location     Type
   2950 ;;  in              1    wreg     unsigned char 
   2951 ;; Auto vars:     Size  Location     Type
@@ -2997,7 +2997,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2983  0E3B  00F5               	movwf	SendCharH@in
   2984  0E3C                     l2615:
   2985                           
-  2986                           ;PROYECTO.c: 835:     switch(in){
+  2986                           ;PROYECTO.c: 834:     switch(in){
   2987  0E3C  2FAA               	goto	l2699
   2988  0E3D                     l490:
   2989  0E3D  1683               	bsf	3,5	;RP0=1, select bank1
@@ -3010,13 +3010,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   2996  0E43                     u2180:
   2997  0E43                     l2617:
   2998                           
-  2999                           ;PROYECTO.c: 838:             TXREG = 48;
+  2999                           ;PROYECTO.c: 837:             TXREG = 48;
   3000  0E43  3030               	movlw	48
   3001  0E44  1283               	bcf	3,5	;RP0=0, select bank0
   3002  0E45  1303               	bcf	3,6	;RP1=0, select bank0
   3003  0E46  0099               	movwf	25	;volatile
   3004                           
-  3005                           ;PROYECTO.c: 839:         break;
+  3005                           ;PROYECTO.c: 838:         break;
   3006  0E47  2FFF               	goto	l635
   3007  0E48                     l495:
   3008  0E48  1683               	bsf	3,5	;RP0=1, select bank1
@@ -3029,13 +3029,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3015  0E4E                     u2190:
   3016  0E4E                     l2619:
   3017                           
-  3018                           ;PROYECTO.c: 843:             TXREG = 49;
+  3018                           ;PROYECTO.c: 842:             TXREG = 49;
   3019  0E4E  3031               	movlw	49
   3020  0E4F  1283               	bcf	3,5	;RP0=0, select bank0
   3021  0E50  1303               	bcf	3,6	;RP1=0, select bank0
   3022  0E51  0099               	movwf	25	;volatile
   3023                           
-  3024                           ;PROYECTO.c: 844:         break;
+  3024                           ;PROYECTO.c: 843:         break;
   3025  0E52  2FFF               	goto	l635
   3026  0E53                     l499:
   3027  0E53  1683               	bsf	3,5	;RP0=1, select bank1
@@ -3048,13 +3048,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3034  0E59                     u2200:
   3035  0E59                     l2621:
   3036                           
-  3037                           ;PROYECTO.c: 848:             TXREG = 50;
+  3037                           ;PROYECTO.c: 847:             TXREG = 50;
   3038  0E59  3032               	movlw	50
   3039  0E5A  1283               	bcf	3,5	;RP0=0, select bank0
   3040  0E5B  1303               	bcf	3,6	;RP1=0, select bank0
   3041  0E5C  0099               	movwf	25	;volatile
   3042                           
-  3043                           ;PROYECTO.c: 849:         break;
+  3043                           ;PROYECTO.c: 848:         break;
   3044  0E5D  2FFF               	goto	l635
   3045  0E5E                     l503:
   3046  0E5E  1683               	bsf	3,5	;RP0=1, select bank1
@@ -3067,13 +3067,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3053  0E64                     u2210:
   3054  0E64                     l2623:
   3055                           
-  3056                           ;PROYECTO.c: 853:             TXREG = 51;
+  3056                           ;PROYECTO.c: 852:             TXREG = 51;
   3057  0E64  3033               	movlw	51
   3058  0E65  1283               	bcf	3,5	;RP0=0, select bank0
   3059  0E66  1303               	bcf	3,6	;RP1=0, select bank0
   3060  0E67  0099               	movwf	25	;volatile
   3061                           
-  3062                           ;PROYECTO.c: 854:         break;
+  3062                           ;PROYECTO.c: 853:         break;
   3063  0E68  2FFF               	goto	l635
   3064  0E69                     l507:
   3065  0E69  1683               	bsf	3,5	;RP0=1, select bank1
@@ -3086,13 +3086,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3072  0E6F                     u2220:
   3073  0E6F                     l2625:
   3074                           
-  3075                           ;PROYECTO.c: 858:             TXREG = 52;
+  3075                           ;PROYECTO.c: 857:             TXREG = 52;
   3076  0E6F  3034               	movlw	52
   3077  0E70  1283               	bcf	3,5	;RP0=0, select bank0
   3078  0E71  1303               	bcf	3,6	;RP1=0, select bank0
   3079  0E72  0099               	movwf	25	;volatile
   3080                           
-  3081                           ;PROYECTO.c: 859:         break;
+  3081                           ;PROYECTO.c: 858:         break;
   3082  0E73  2FFF               	goto	l635
   3083  0E74                     l511:
   3084  0E74  1683               	bsf	3,5	;RP0=1, select bank1
@@ -3105,13 +3105,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3091  0E7A                     u2230:
   3092  0E7A                     l2627:
   3093                           
-  3094                           ;PROYECTO.c: 863:             TXREG = 53;
+  3094                           ;PROYECTO.c: 862:             TXREG = 53;
   3095  0E7A  3035               	movlw	53
   3096  0E7B  1283               	bcf	3,5	;RP0=0, select bank0
   3097  0E7C  1303               	bcf	3,6	;RP1=0, select bank0
   3098  0E7D  0099               	movwf	25	;volatile
   3099                           
-  3100                           ;PROYECTO.c: 864:         break;
+  3100                           ;PROYECTO.c: 863:         break;
   3101  0E7E  2FFF               	goto	l635
   3102  0E7F                     l515:
   3103  0E7F  1683               	bsf	3,5	;RP0=1, select bank1
@@ -3124,13 +3124,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3110  0E85                     u2240:
   3111  0E85                     l2629:
   3112                           
-  3113                           ;PROYECTO.c: 868:             TXREG = 54;
+  3113                           ;PROYECTO.c: 867:             TXREG = 54;
   3114  0E85  3036               	movlw	54
   3115  0E86  1283               	bcf	3,5	;RP0=0, select bank0
   3116  0E87  1303               	bcf	3,6	;RP1=0, select bank0
   3117  0E88  0099               	movwf	25	;volatile
   3118                           
-  3119                           ;PROYECTO.c: 869:         break;
+  3119                           ;PROYECTO.c: 868:         break;
   3120  0E89  2FFF               	goto	l635
   3121  0E8A                     l519:
   3122  0E8A  1683               	bsf	3,5	;RP0=1, select bank1
@@ -3143,13 +3143,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3129  0E90                     u2250:
   3130  0E90                     l2631:
   3131                           
-  3132                           ;PROYECTO.c: 873:             TXREG = 55;
+  3132                           ;PROYECTO.c: 872:             TXREG = 55;
   3133  0E90  3037               	movlw	55
   3134  0E91  1283               	bcf	3,5	;RP0=0, select bank0
   3135  0E92  1303               	bcf	3,6	;RP1=0, select bank0
   3136  0E93  0099               	movwf	25	;volatile
   3137                           
-  3138                           ;PROYECTO.c: 874:         break;
+  3138                           ;PROYECTO.c: 873:         break;
   3139  0E94  2FFF               	goto	l635
   3140  0E95                     l523:
   3141  0E95  1683               	bsf	3,5	;RP0=1, select bank1
@@ -3162,13 +3162,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3148  0E9B                     u2260:
   3149  0E9B                     l2633:
   3150                           
-  3151                           ;PROYECTO.c: 878:             TXREG = 56;
+  3151                           ;PROYECTO.c: 877:             TXREG = 56;
   3152  0E9B  3038               	movlw	56
   3153  0E9C  1283               	bcf	3,5	;RP0=0, select bank0
   3154  0E9D  1303               	bcf	3,6	;RP1=0, select bank0
   3155  0E9E  0099               	movwf	25	;volatile
   3156                           
-  3157                           ;PROYECTO.c: 879:         break;
+  3157                           ;PROYECTO.c: 878:         break;
   3158  0E9F  2FFF               	goto	l635
   3159  0EA0                     l527:
   3160  0EA0  1683               	bsf	3,5	;RP0=1, select bank1
@@ -3181,13 +3181,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3167  0EA6                     u2270:
   3168  0EA6                     l2635:
   3169                           
-  3170                           ;PROYECTO.c: 883:             TXREG = 57;
+  3170                           ;PROYECTO.c: 882:             TXREG = 57;
   3171  0EA6  3039               	movlw	57
   3172  0EA7  1283               	bcf	3,5	;RP0=0, select bank0
   3173  0EA8  1303               	bcf	3,6	;RP1=0, select bank0
   3174  0EA9  0099               	movwf	25	;volatile
   3175                           
-  3176                           ;PROYECTO.c: 884:         break;
+  3176                           ;PROYECTO.c: 883:         break;
   3177  0EAA  2FFF               	goto	l635
   3178  0EAB                     l531:
   3179  0EAB  1683               	bsf	3,5	;RP0=1, select bank1
@@ -3200,13 +3200,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3186  0EB1                     u2280:
   3187  0EB1                     l2637:
   3188                           
-  3189                           ;PROYECTO.c: 888:             TXREG = 49;
+  3189                           ;PROYECTO.c: 887:             TXREG = 49;
   3190  0EB1  3031               	movlw	49
   3191  0EB2  1283               	bcf	3,5	;RP0=0, select bank0
   3192  0EB3  1303               	bcf	3,6	;RP1=0, select bank0
   3193  0EB4  0099               	movwf	25	;volatile
   3194  0EB5                     l534:	
-  3195                           ;PROYECTO.c: 889:             while(TXSTAbits.TRMT == 0);
+  3195                           ;PROYECTO.c: 888:             while(TXSTAbits.TRMT == 0);
   3196                           
   3197  0EB5  1683               	bsf	3,5	;RP0=1, select bank1
   3198  0EB6  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3228,13 +3228,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3214  0EC2                     u2300:
   3215  0EC2                     l2641:
   3216                           
-  3217                           ;PROYECTO.c: 895:             TXREG = 49;
+  3217                           ;PROYECTO.c: 894:             TXREG = 49;
   3218  0EC2  3031               	movlw	49
   3219  0EC3  1283               	bcf	3,5	;RP0=0, select bank0
   3220  0EC4  1303               	bcf	3,6	;RP1=0, select bank0
   3221  0EC5  0099               	movwf	25	;volatile
   3222  0EC6                     l541:	
-  3223                           ;PROYECTO.c: 896:             while(TXSTAbits.TRMT == 0);
+  3223                           ;PROYECTO.c: 895:             while(TXSTAbits.TRMT == 0);
   3224                           
   3225  0EC6  1683               	bsf	3,5	;RP0=1, select bank1
   3226  0EC7  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3256,13 +3256,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3242  0ED3                     u2320:
   3243  0ED3                     l2645:
   3244                           
-  3245                           ;PROYECTO.c: 902:             TXREG = 49;
+  3245                           ;PROYECTO.c: 901:             TXREG = 49;
   3246  0ED3  3031               	movlw	49
   3247  0ED4  1283               	bcf	3,5	;RP0=0, select bank0
   3248  0ED5  1303               	bcf	3,6	;RP1=0, select bank0
   3249  0ED6  0099               	movwf	25	;volatile
   3250  0ED7                     l548:	
-  3251                           ;PROYECTO.c: 903:             while(TXSTAbits.TRMT == 0);
+  3251                           ;PROYECTO.c: 902:             while(TXSTAbits.TRMT == 0);
   3252                           
   3253  0ED7  1683               	bsf	3,5	;RP0=1, select bank1
   3254  0ED8  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3284,13 +3284,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3270  0EE4                     u2340:
   3271  0EE4                     l2649:
   3272                           
-  3273                           ;PROYECTO.c: 909:             TXREG = 49;
+  3273                           ;PROYECTO.c: 908:             TXREG = 49;
   3274  0EE4  3031               	movlw	49
   3275  0EE5  1283               	bcf	3,5	;RP0=0, select bank0
   3276  0EE6  1303               	bcf	3,6	;RP1=0, select bank0
   3277  0EE7  0099               	movwf	25	;volatile
   3278  0EE8                     l555:	
-  3279                           ;PROYECTO.c: 910:             while(TXSTAbits.TRMT == 0);
+  3279                           ;PROYECTO.c: 909:             while(TXSTAbits.TRMT == 0);
   3280                           
   3281  0EE8  1683               	bsf	3,5	;RP0=1, select bank1
   3282  0EE9  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3312,13 +3312,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3298  0EF5                     u2360:
   3299  0EF5                     l2653:
   3300                           
-  3301                           ;PROYECTO.c: 916:             TXREG = 49;
+  3301                           ;PROYECTO.c: 915:             TXREG = 49;
   3302  0EF5  3031               	movlw	49
   3303  0EF6  1283               	bcf	3,5	;RP0=0, select bank0
   3304  0EF7  1303               	bcf	3,6	;RP1=0, select bank0
   3305  0EF8  0099               	movwf	25	;volatile
   3306  0EF9                     l562:	
-  3307                           ;PROYECTO.c: 917:             while(TXSTAbits.TRMT == 0);
+  3307                           ;PROYECTO.c: 916:             while(TXSTAbits.TRMT == 0);
   3308                           
   3309  0EF9  1683               	bsf	3,5	;RP0=1, select bank1
   3310  0EFA  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3340,13 +3340,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3326  0F06                     u2380:
   3327  0F06                     l2657:
   3328                           
-  3329                           ;PROYECTO.c: 923:             TXREG = 49;
+  3329                           ;PROYECTO.c: 922:             TXREG = 49;
   3330  0F06  3031               	movlw	49
   3331  0F07  1283               	bcf	3,5	;RP0=0, select bank0
   3332  0F08  1303               	bcf	3,6	;RP1=0, select bank0
   3333  0F09  0099               	movwf	25	;volatile
   3334  0F0A                     l569:	
-  3335                           ;PROYECTO.c: 924:             while(TXSTAbits.TRMT == 0);
+  3335                           ;PROYECTO.c: 923:             while(TXSTAbits.TRMT == 0);
   3336                           
   3337  0F0A  1683               	bsf	3,5	;RP0=1, select bank1
   3338  0F0B  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3368,13 +3368,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3354  0F17                     u2400:
   3355  0F17                     l2661:
   3356                           
-  3357                           ;PROYECTO.c: 930:             TXREG = 49;
+  3357                           ;PROYECTO.c: 929:             TXREG = 49;
   3358  0F17  3031               	movlw	49
   3359  0F18  1283               	bcf	3,5	;RP0=0, select bank0
   3360  0F19  1303               	bcf	3,6	;RP1=0, select bank0
   3361  0F1A  0099               	movwf	25	;volatile
   3362  0F1B                     l576:	
-  3363                           ;PROYECTO.c: 931:             while(TXSTAbits.TRMT == 0);
+  3363                           ;PROYECTO.c: 930:             while(TXSTAbits.TRMT == 0);
   3364                           
   3365  0F1B  1683               	bsf	3,5	;RP0=1, select bank1
   3366  0F1C  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3396,13 +3396,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3382  0F28                     u2420:
   3383  0F28                     l2665:
   3384                           
-  3385                           ;PROYECTO.c: 937:             TXREG = 49;
+  3385                           ;PROYECTO.c: 936:             TXREG = 49;
   3386  0F28  3031               	movlw	49
   3387  0F29  1283               	bcf	3,5	;RP0=0, select bank0
   3388  0F2A  1303               	bcf	3,6	;RP1=0, select bank0
   3389  0F2B  0099               	movwf	25	;volatile
   3390  0F2C                     l583:	
-  3391                           ;PROYECTO.c: 938:             while(TXSTAbits.TRMT == 0);
+  3391                           ;PROYECTO.c: 937:             while(TXSTAbits.TRMT == 0);
   3392                           
   3393  0F2C  1683               	bsf	3,5	;RP0=1, select bank1
   3394  0F2D  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3424,13 +3424,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3410  0F39                     u2440:
   3411  0F39                     l2669:
   3412                           
-  3413                           ;PROYECTO.c: 944:             TXREG = 49;
+  3413                           ;PROYECTO.c: 943:             TXREG = 49;
   3414  0F39  3031               	movlw	49
   3415  0F3A  1283               	bcf	3,5	;RP0=0, select bank0
   3416  0F3B  1303               	bcf	3,6	;RP1=0, select bank0
   3417  0F3C  0099               	movwf	25	;volatile
   3418  0F3D                     l590:	
-  3419                           ;PROYECTO.c: 945:             while(TXSTAbits.TRMT == 0);
+  3419                           ;PROYECTO.c: 944:             while(TXSTAbits.TRMT == 0);
   3420                           
   3421  0F3D  1683               	bsf	3,5	;RP0=1, select bank1
   3422  0F3E  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3452,13 +3452,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3438  0F4A                     u2460:
   3439  0F4A                     l2673:
   3440                           
-  3441                           ;PROYECTO.c: 951:             TXREG = 49;
+  3441                           ;PROYECTO.c: 950:             TXREG = 49;
   3442  0F4A  3031               	movlw	49
   3443  0F4B  1283               	bcf	3,5	;RP0=0, select bank0
   3444  0F4C  1303               	bcf	3,6	;RP1=0, select bank0
   3445  0F4D  0099               	movwf	25	;volatile
   3446  0F4E                     l597:	
-  3447                           ;PROYECTO.c: 952:             while(TXSTAbits.TRMT == 0);
+  3447                           ;PROYECTO.c: 951:             while(TXSTAbits.TRMT == 0);
   3448                           
   3449  0F4E  1683               	bsf	3,5	;RP0=1, select bank1
   3450  0F4F  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3480,13 +3480,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3466  0F5B                     u2480:
   3467  0F5B                     l2677:
   3468                           
-  3469                           ;PROYECTO.c: 958:             TXREG = 50;
+  3469                           ;PROYECTO.c: 957:             TXREG = 50;
   3470  0F5B  3032               	movlw	50
   3471  0F5C  1283               	bcf	3,5	;RP0=0, select bank0
   3472  0F5D  1303               	bcf	3,6	;RP1=0, select bank0
   3473  0F5E  0099               	movwf	25	;volatile
   3474  0F5F                     l604:	
-  3475                           ;PROYECTO.c: 959:             while(TXSTAbits.TRMT == 0);
+  3475                           ;PROYECTO.c: 958:             while(TXSTAbits.TRMT == 0);
   3476                           
   3477  0F5F  1683               	bsf	3,5	;RP0=1, select bank1
   3478  0F60  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3508,13 +3508,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3494  0F6C                     u2500:
   3495  0F6C                     l2681:
   3496                           
-  3497                           ;PROYECTO.c: 965:             TXREG = 50;
+  3497                           ;PROYECTO.c: 964:             TXREG = 50;
   3498  0F6C  3032               	movlw	50
   3499  0F6D  1283               	bcf	3,5	;RP0=0, select bank0
   3500  0F6E  1303               	bcf	3,6	;RP1=0, select bank0
   3501  0F6F  0099               	movwf	25	;volatile
   3502  0F70                     l611:	
-  3503                           ;PROYECTO.c: 966:             while(TXSTAbits.TRMT == 0);
+  3503                           ;PROYECTO.c: 965:             while(TXSTAbits.TRMT == 0);
   3504                           
   3505  0F70  1683               	bsf	3,5	;RP0=1, select bank1
   3506  0F71  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3536,13 +3536,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3522  0F7D                     u2520:
   3523  0F7D                     l2685:
   3524                           
-  3525                           ;PROYECTO.c: 972:             TXREG = 50;
+  3525                           ;PROYECTO.c: 971:             TXREG = 50;
   3526  0F7D  3032               	movlw	50
   3527  0F7E  1283               	bcf	3,5	;RP0=0, select bank0
   3528  0F7F  1303               	bcf	3,6	;RP1=0, select bank0
   3529  0F80  0099               	movwf	25	;volatile
   3530  0F81                     l618:	
-  3531                           ;PROYECTO.c: 973:             while(TXSTAbits.TRMT == 0);
+  3531                           ;PROYECTO.c: 972:             while(TXSTAbits.TRMT == 0);
   3532                           
   3533  0F81  1683               	bsf	3,5	;RP0=1, select bank1
   3534  0F82  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3564,13 +3564,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3550  0F8E                     u2540:
   3551  0F8E                     l2689:
   3552                           
-  3553                           ;PROYECTO.c: 979:             TXREG = 50;
+  3553                           ;PROYECTO.c: 978:             TXREG = 50;
   3554  0F8E  3032               	movlw	50
   3555  0F8F  1283               	bcf	3,5	;RP0=0, select bank0
   3556  0F90  1303               	bcf	3,6	;RP1=0, select bank0
   3557  0F91  0099               	movwf	25	;volatile
   3558  0F92                     l625:	
-  3559                           ;PROYECTO.c: 980:             while(TXSTAbits.TRMT == 0);
+  3559                           ;PROYECTO.c: 979:             while(TXSTAbits.TRMT == 0);
   3560                           
   3561  0F92  1683               	bsf	3,5	;RP0=1, select bank1
   3562  0F93  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3592,13 +3592,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3578  0F9F                     u2560:
   3579  0F9F                     l2693:
   3580                           
-  3581                           ;PROYECTO.c: 986:             TXREG = 50;
+  3581                           ;PROYECTO.c: 985:             TXREG = 50;
   3582  0F9F  3032               	movlw	50
   3583  0FA0  1283               	bcf	3,5	;RP0=0, select bank0
   3584  0FA1  1303               	bcf	3,6	;RP1=0, select bank0
   3585  0FA2  0099               	movwf	25	;volatile
   3586  0FA3                     l632:	
-  3587                           ;PROYECTO.c: 987:             while(TXSTAbits.TRMT == 0);
+  3587                           ;PROYECTO.c: 986:             while(TXSTAbits.TRMT == 0);
   3588                           
   3589  0FA3  1683               	bsf	3,5	;RP0=1, select bank1
   3590  0FA4  1303               	bcf	3,6	;RP1=0, select bank1
@@ -3724,7 +3724,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3709  13CB                     __ptext7:	
   3710 ;; *************** function _ReadToEEPROM *****************
   3711 ;; Defined at:
-  3712 ;;		line 1133 in file "PROYECTO.c"
+  3712 ;;		line 1131 in file "PROYECTO.c"
   3713 ;; Parameters:    Size  Location     Type
   3714 ;;  addr            1    wreg     unsigned char 
   3715 ;; Auto vars:     Size  Location     Type
@@ -3763,23 +3763,23 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3748  13CB  00F4               	movwf	ReadToEEPROM@addr
   3749  13CC                     l2587:
   3750                           
-  3751                           ;PROYECTO.c: 1134:     EEADR = addr;
+  3751                           ;PROYECTO.c: 1132:     EEADR = addr;
   3752  13CC  0874               	movf	ReadToEEPROM@addr,w
   3753  13CD  1283               	bcf	3,5	;RP0=0, select bank2
   3754  13CE  1703               	bsf	3,6	;RP1=1, select bank2
   3755  13CF  008D               	movwf	13	;volatile
   3756  13D0                     l2589:
   3757                           
-  3758                           ;PROYECTO.c: 1135:     EECON1bits.EEPGD = 0;
+  3758                           ;PROYECTO.c: 1133:     EECON1bits.EEPGD = 0;
   3759  13D0  1683               	bsf	3,5	;RP0=1, select bank3
   3760  13D1  1703               	bsf	3,6	;RP1=1, select bank3
   3761  13D2  138C               	bcf	12,7	;volsfr
   3762  13D3                     l2591:
   3763                           
-  3764                           ;PROYECTO.c: 1136:     EECON1bits.RD = 1;
+  3764                           ;PROYECTO.c: 1134:     EECON1bits.RD = 1;
   3765  13D3  140C               	bsf	12,0	;volsfr
   3766                           
-  3767                           ;PROYECTO.c: 1137:     uint8_t dato = EEADR;
+  3767                           ;PROYECTO.c: 1135:     uint8_t dato = EEADR;
   3768  13D4  1283               	bcf	3,5	;RP0=0, select bank2
   3769  13D5  1703               	bsf	3,6	;RP1=1, select bank2
   3770  13D6  080D               	movf	13,w	;volatile
@@ -3787,7 +3787,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3772  13D8  0873               	movf	??_ReadToEEPROM,w
   3773  13D9  00F5               	movwf	ReadToEEPROM@dato
   3774                           
-  3775                           ;PROYECTO.c: 1138:     return dato;
+  3775                           ;PROYECTO.c: 1136:     return dato;
   3776  13DA  0875               	movf	ReadToEEPROM@dato,w
   3777  13DB                     l701:
   3778  13DB  0008               	return
@@ -3797,7 +3797,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3782  0C51                     __ptext8:	
   3783 ;; *************** function _CharToNumM *****************
   3784 ;; Defined at:
-  3785 ;;		line 1088 in file "PROYECTO.c"
+  3785 ;;		line 1087 in file "PROYECTO.c"
   3786 ;; Parameters:    Size  Location     Type
   3787 ;;  in              1    wreg     unsigned char 
   3788 ;;  her             1    3[COMMON] unsigned char 
@@ -3836,7 +3836,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3821  0C51  00F5               	movwf	CharToNumM@in
   3822  0C52                     l2789:
   3823                           
-  3824                           ;PROYECTO.c: 1089:     if(in == 'a'){
+  3824                           ;PROYECTO.c: 1088:     if(in == 'a'){
   3825  0C52  3061               	movlw	97
   3826  0C53  0675               	xorwf	CharToNumM@in,w
   3827  0C54  1D03               	btfss	3,2
@@ -3847,10 +3847,10 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3832  0C58                     u2640:
   3833  0C58                     l2791:
   3834                           
-  3835                           ;PROYECTO.c: 1090:         her = 0;
+  3835                           ;PROYECTO.c: 1089:         her = 0;
   3836  0C58  01F3               	clrf	CharToNumM@her
   3837                           
-  3838                           ;PROYECTO.c: 1091:     }else if(in == 'b'){
+  3838                           ;PROYECTO.c: 1090:     }else if(in == 'b'){
   3839  0C59  2C86               	goto	l684
   3840  0C5A                     l2793:
   3841  0C5A  3062               	movlw	98
@@ -3863,13 +3863,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3848  0C60                     u2650:
   3849  0C60                     l2795:
   3850                           
-  3851                           ;PROYECTO.c: 1092:         her = 15;
+  3851                           ;PROYECTO.c: 1091:         her = 15;
   3852  0C60  300F               	movlw	15
   3853  0C61  00F4               	movwf	??_CharToNumM
   3854  0C62  0874               	movf	??_CharToNumM,w
   3855  0C63  00F3               	movwf	CharToNumM@her
   3856                           
-  3857                           ;PROYECTO.c: 1093:     }else if(in == 'c'){
+  3857                           ;PROYECTO.c: 1092:     }else if(in == 'c'){
   3858  0C64  2C86               	goto	l684
   3859  0C65                     l2797:
   3860  0C65  3063               	movlw	99
@@ -3882,13 +3882,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3867  0C6B                     u2660:
   3868  0C6B                     l2799:
   3869                           
-  3870                           ;PROYECTO.c: 1094:         her = 30;
+  3870                           ;PROYECTO.c: 1093:         her = 30;
   3871  0C6B  301E               	movlw	30
   3872  0C6C  00F4               	movwf	??_CharToNumM
   3873  0C6D  0874               	movf	??_CharToNumM,w
   3874  0C6E  00F3               	movwf	CharToNumM@her
   3875                           
-  3876                           ;PROYECTO.c: 1095:     }else if(in == 'd'){
+  3876                           ;PROYECTO.c: 1094:     }else if(in == 'd'){
   3877  0C6F  2C86               	goto	l684
   3878  0C70                     l2801:
   3879  0C70  3064               	movlw	100
@@ -3901,13 +3901,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3886  0C76                     u2670:
   3887  0C76                     l2803:
   3888                           
-  3889                           ;PROYECTO.c: 1096:         her = 45;
+  3889                           ;PROYECTO.c: 1095:         her = 45;
   3890  0C76  302D               	movlw	45
   3891  0C77  00F4               	movwf	??_CharToNumM
   3892  0C78  0874               	movf	??_CharToNumM,w
   3893  0C79  00F3               	movwf	CharToNumM@her
   3894                           
-  3895                           ;PROYECTO.c: 1097:     }else if(in == 'e'){
+  3895                           ;PROYECTO.c: 1096:     }else if(in == 'e'){
   3896  0C7A  2C86               	goto	l684
   3897  0C7B                     l2805:
   3898  0C7B  3065               	movlw	101
@@ -3920,7 +3920,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3905  0C81                     u2680:
   3906  0C81                     l2807:
   3907                           
-  3908                           ;PROYECTO.c: 1098:         her = 55;
+  3908                           ;PROYECTO.c: 1097:         her = 55;
   3909  0C81  3037               	movlw	55
   3910  0C82  00F4               	movwf	??_CharToNumM
   3911  0C83  0874               	movf	??_CharToNumM,w
@@ -3929,7 +3929,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3914  0C86                     l688:
   3915  0C86                     l684:
   3916                           
-  3917                           ;PROYECTO.c: 1100:     return her;
+  3917                           ;PROYECTO.c: 1099:     return her;
   3918  0C86  0873               	movf	CharToNumM@her,w
   3919  0C87                     l692:
   3920  0C87  0008               	return
@@ -3939,7 +3939,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3924  1402                     __ptext9:	
   3925 ;; *************** function _CharToNumH *****************
   3926 ;; Defined at:
-  3927 ;;		line 1008 in file "PROYECTO.c"
+  3927 ;;		line 1007 in file "PROYECTO.c"
   3928 ;; Parameters:    Size  Location     Type
   3929 ;;  in              1    wreg     unsigned char 
   3930 ;;  hora_user       1    3[COMMON] unsigned char 
@@ -3980,254 +3980,254 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   3965  1404  00DC               	movwf	CharToNumH@in
   3966  1405                     l3891:
   3967                           
-  3968                           ;PROYECTO.c: 1009:     switch(in){
+  3968                           ;PROYECTO.c: 1008:     switch(in){
   3969  1405  2C7E               	goto	l3943
   3970  1406                     l3893:
   3971                           
-  3972                           ;PROYECTO.c: 1011:             hora_user = 0;
+  3972                           ;PROYECTO.c: 1010:             hora_user = 0;
   3973  1406  01F3               	clrf	CharToNumH@hora_user
   3974                           
-  3975                           ;PROYECTO.c: 1012:             break;
+  3975                           ;PROYECTO.c: 1011:             break;
   3976  1407  2CD3               	goto	l3945
   3977  1408                     l656:	
-  3978                           ;PROYECTO.c: 1013:         case('b'):
+  3978                           ;PROYECTO.c: 1012:         case('b'):
   3979                           
   3980                           
-  3981                           ;PROYECTO.c: 1014:             hora_user = 1;
+  3981                           ;PROYECTO.c: 1013:             hora_user = 1;
   3982  1408  01F3               	clrf	CharToNumH@hora_user
   3983  1409  0AF3               	incf	CharToNumH@hora_user,f
   3984                           
-  3985                           ;PROYECTO.c: 1015:             break;
+  3985                           ;PROYECTO.c: 1014:             break;
   3986  140A  2CD3               	goto	l3945
   3987  140B                     l3895:
   3988                           
-  3989                           ;PROYECTO.c: 1017:             hora_user = 2;
+  3989                           ;PROYECTO.c: 1016:             hora_user = 2;
   3990  140B  3002               	movlw	2
   3991  140C  00F4               	movwf	??_CharToNumH
   3992  140D  0874               	movf	??_CharToNumH,w
   3993  140E  00F3               	movwf	CharToNumH@hora_user
   3994                           
-  3995                           ;PROYECTO.c: 1018:             break;
+  3995                           ;PROYECTO.c: 1017:             break;
   3996  140F  2CD3               	goto	l3945
   3997  1410                     l3897:
   3998                           
-  3999                           ;PROYECTO.c: 1020:             hora_user = 3;
+  3999                           ;PROYECTO.c: 1019:             hora_user = 3;
   4000  1410  3003               	movlw	3
   4001  1411  00F4               	movwf	??_CharToNumH
   4002  1412  0874               	movf	??_CharToNumH,w
   4003  1413  00F3               	movwf	CharToNumH@hora_user
   4004                           
-  4005                           ;PROYECTO.c: 1021:             break;
+  4005                           ;PROYECTO.c: 1020:             break;
   4006  1414  2CD3               	goto	l3945
   4007  1415                     l3899:
   4008                           
-  4009                           ;PROYECTO.c: 1023:             hora_user = 4;
+  4009                           ;PROYECTO.c: 1022:             hora_user = 4;
   4010  1415  3004               	movlw	4
   4011  1416  00F4               	movwf	??_CharToNumH
   4012  1417  0874               	movf	??_CharToNumH,w
   4013  1418  00F3               	movwf	CharToNumH@hora_user
   4014                           
-  4015                           ;PROYECTO.c: 1024:             break;
+  4015                           ;PROYECTO.c: 1023:             break;
   4016  1419  2CD3               	goto	l3945
   4017  141A                     l3901:
   4018                           
-  4019                           ;PROYECTO.c: 1026:             hora_user = 5;
+  4019                           ;PROYECTO.c: 1025:             hora_user = 5;
   4020  141A  3005               	movlw	5
   4021  141B  00F4               	movwf	??_CharToNumH
   4022  141C  0874               	movf	??_CharToNumH,w
   4023  141D  00F3               	movwf	CharToNumH@hora_user
   4024                           
-  4025                           ;PROYECTO.c: 1027:             break;
+  4025                           ;PROYECTO.c: 1026:             break;
   4026  141E  2CD3               	goto	l3945
   4027  141F                     l3903:
   4028                           
-  4029                           ;PROYECTO.c: 1029:             hora_user = 6;
+  4029                           ;PROYECTO.c: 1028:             hora_user = 6;
   4030  141F  3006               	movlw	6
   4031  1420  00F4               	movwf	??_CharToNumH
   4032  1421  0874               	movf	??_CharToNumH,w
   4033  1422  00F3               	movwf	CharToNumH@hora_user
   4034                           
-  4035                           ;PROYECTO.c: 1030:             break;
+  4035                           ;PROYECTO.c: 1029:             break;
   4036  1423  2CD3               	goto	l3945
   4037  1424                     l3905:
   4038                           
-  4039                           ;PROYECTO.c: 1032:             hora_user = 7;
+  4039                           ;PROYECTO.c: 1031:             hora_user = 7;
   4040  1424  3007               	movlw	7
   4041  1425  00F4               	movwf	??_CharToNumH
   4042  1426  0874               	movf	??_CharToNumH,w
   4043  1427  00F3               	movwf	CharToNumH@hora_user
   4044                           
-  4045                           ;PROYECTO.c: 1033:             break;
+  4045                           ;PROYECTO.c: 1032:             break;
   4046  1428  2CD3               	goto	l3945
   4047  1429                     l3907:
   4048                           
-  4049                           ;PROYECTO.c: 1035:             hora_user = 8;
+  4049                           ;PROYECTO.c: 1034:             hora_user = 8;
   4050  1429  3008               	movlw	8
   4051  142A  00F4               	movwf	??_CharToNumH
   4052  142B  0874               	movf	??_CharToNumH,w
   4053  142C  00F3               	movwf	CharToNumH@hora_user
   4054                           
-  4055                           ;PROYECTO.c: 1036:             break;
+  4055                           ;PROYECTO.c: 1035:             break;
   4056  142D  2CD3               	goto	l3945
   4057  142E                     l3909:
   4058                           
-  4059                           ;PROYECTO.c: 1038:             hora_user = 9;
+  4059                           ;PROYECTO.c: 1037:             hora_user = 9;
   4060  142E  3009               	movlw	9
   4061  142F  00F4               	movwf	??_CharToNumH
   4062  1430  0874               	movf	??_CharToNumH,w
   4063  1431  00F3               	movwf	CharToNumH@hora_user
   4064                           
-  4065                           ;PROYECTO.c: 1039:             break;
+  4065                           ;PROYECTO.c: 1038:             break;
   4066  1432  2CD3               	goto	l3945
   4067  1433                     l3911:
   4068                           
-  4069                           ;PROYECTO.c: 1041:             hora_user = 10;
+  4069                           ;PROYECTO.c: 1040:             hora_user = 10;
   4070  1433  300A               	movlw	10
   4071  1434  00F4               	movwf	??_CharToNumH
   4072  1435  0874               	movf	??_CharToNumH,w
   4073  1436  00F3               	movwf	CharToNumH@hora_user
   4074                           
-  4075                           ;PROYECTO.c: 1042:             break;
+  4075                           ;PROYECTO.c: 1041:             break;
   4076  1437  2CD3               	goto	l3945
   4077  1438                     l3913:
   4078                           
-  4079                           ;PROYECTO.c: 1044:             hora_user = 11;
+  4079                           ;PROYECTO.c: 1043:             hora_user = 11;
   4080  1438  300B               	movlw	11
   4081  1439  00F4               	movwf	??_CharToNumH
   4082  143A  0874               	movf	??_CharToNumH,w
   4083  143B  00F3               	movwf	CharToNumH@hora_user
   4084                           
-  4085                           ;PROYECTO.c: 1045:             break;
+  4085                           ;PROYECTO.c: 1044:             break;
   4086  143C  2CD3               	goto	l3945
   4087  143D                     l3915:
   4088                           
-  4089                           ;PROYECTO.c: 1047:             hora_user = 12;
+  4089                           ;PROYECTO.c: 1046:             hora_user = 12;
   4090  143D  300C               	movlw	12
   4091  143E  00F4               	movwf	??_CharToNumH
   4092  143F  0874               	movf	??_CharToNumH,w
   4093  1440  00F3               	movwf	CharToNumH@hora_user
   4094                           
-  4095                           ;PROYECTO.c: 1048:             break;
+  4095                           ;PROYECTO.c: 1047:             break;
   4096  1441  2CD3               	goto	l3945
   4097  1442                     l3917:
   4098                           
-  4099                           ;PROYECTO.c: 1050:             hora_user = 13;
+  4099                           ;PROYECTO.c: 1049:             hora_user = 13;
   4100  1442  300D               	movlw	13
   4101  1443  00F4               	movwf	??_CharToNumH
   4102  1444  0874               	movf	??_CharToNumH,w
   4103  1445  00F3               	movwf	CharToNumH@hora_user
   4104                           
-  4105                           ;PROYECTO.c: 1051:             break;
+  4105                           ;PROYECTO.c: 1050:             break;
   4106  1446  2CD3               	goto	l3945
   4107  1447                     l3919:
   4108                           
-  4109                           ;PROYECTO.c: 1053:             hora_user = 14;
+  4109                           ;PROYECTO.c: 1052:             hora_user = 14;
   4110  1447  300E               	movlw	14
   4111  1448  00F4               	movwf	??_CharToNumH
   4112  1449  0874               	movf	??_CharToNumH,w
   4113  144A  00F3               	movwf	CharToNumH@hora_user
   4114                           
-  4115                           ;PROYECTO.c: 1054:             break;
+  4115                           ;PROYECTO.c: 1053:             break;
   4116  144B  2CD3               	goto	l3945
   4117  144C                     l3921:
   4118                           
-  4119                           ;PROYECTO.c: 1056:             hora_user = 15;
+  4119                           ;PROYECTO.c: 1055:             hora_user = 15;
   4120  144C  300F               	movlw	15
   4121  144D  00F4               	movwf	??_CharToNumH
   4122  144E  0874               	movf	??_CharToNumH,w
   4123  144F  00F3               	movwf	CharToNumH@hora_user
   4124                           
-  4125                           ;PROYECTO.c: 1057:             break;
+  4125                           ;PROYECTO.c: 1056:             break;
   4126  1450  2CD3               	goto	l3945
   4127  1451                     l3923:
   4128                           
-  4129                           ;PROYECTO.c: 1059:             hora_user = 16;
+  4129                           ;PROYECTO.c: 1058:             hora_user = 16;
   4130  1451  3010               	movlw	16
   4131  1452  00F4               	movwf	??_CharToNumH
   4132  1453  0874               	movf	??_CharToNumH,w
   4133  1454  00F3               	movwf	CharToNumH@hora_user
   4134                           
-  4135                           ;PROYECTO.c: 1060:             break;
+  4135                           ;PROYECTO.c: 1059:             break;
   4136  1455  2CD3               	goto	l3945
   4137  1456                     l3925:
   4138                           
-  4139                           ;PROYECTO.c: 1062:             hora_user = 17;
+  4139                           ;PROYECTO.c: 1061:             hora_user = 17;
   4140  1456  3011               	movlw	17
   4141  1457  00F4               	movwf	??_CharToNumH
   4142  1458  0874               	movf	??_CharToNumH,w
   4143  1459  00F3               	movwf	CharToNumH@hora_user
   4144                           
-  4145                           ;PROYECTO.c: 1063:             break;
+  4145                           ;PROYECTO.c: 1062:             break;
   4146  145A  2CD3               	goto	l3945
   4147  145B                     l3927:
   4148                           
-  4149                           ;PROYECTO.c: 1065:             hora_user = 18;
+  4149                           ;PROYECTO.c: 1064:             hora_user = 18;
   4150  145B  3012               	movlw	18
   4151  145C  00F4               	movwf	??_CharToNumH
   4152  145D  0874               	movf	??_CharToNumH,w
   4153  145E  00F3               	movwf	CharToNumH@hora_user
   4154                           
-  4155                           ;PROYECTO.c: 1066:             break;
+  4155                           ;PROYECTO.c: 1065:             break;
   4156  145F  2CD3               	goto	l3945
   4157  1460                     l3929:
   4158                           
-  4159                           ;PROYECTO.c: 1068:             hora_user = 19;
+  4159                           ;PROYECTO.c: 1067:             hora_user = 19;
   4160  1460  3013               	movlw	19
   4161  1461  00F4               	movwf	??_CharToNumH
   4162  1462  0874               	movf	??_CharToNumH,w
   4163  1463  00F3               	movwf	CharToNumH@hora_user
   4164                           
-  4165                           ;PROYECTO.c: 1069:             break;
+  4165                           ;PROYECTO.c: 1068:             break;
   4166  1464  2CD3               	goto	l3945
   4167  1465                     l3931:
   4168                           
-  4169                           ;PROYECTO.c: 1071:             hora_user = 20;
+  4169                           ;PROYECTO.c: 1070:             hora_user = 20;
   4170  1465  3014               	movlw	20
   4171  1466  00F4               	movwf	??_CharToNumH
   4172  1467  0874               	movf	??_CharToNumH,w
   4173  1468  00F3               	movwf	CharToNumH@hora_user
   4174                           
-  4175                           ;PROYECTO.c: 1072:             break;
+  4175                           ;PROYECTO.c: 1071:             break;
   4176  1469  2CD3               	goto	l3945
   4177  146A                     l3933:
   4178                           
-  4179                           ;PROYECTO.c: 1074:             hora_user = 21;
+  4179                           ;PROYECTO.c: 1073:             hora_user = 21;
   4180  146A  3015               	movlw	21
   4181  146B  00F4               	movwf	??_CharToNumH
   4182  146C  0874               	movf	??_CharToNumH,w
   4183  146D  00F3               	movwf	CharToNumH@hora_user
   4184                           
-  4185                           ;PROYECTO.c: 1075:             break;
+  4185                           ;PROYECTO.c: 1074:             break;
   4186  146E  2CD3               	goto	l3945
   4187  146F                     l3935:
   4188                           
-  4189                           ;PROYECTO.c: 1077:             hora_user = 22;
+  4189                           ;PROYECTO.c: 1076:             hora_user = 22;
   4190  146F  3016               	movlw	22
   4191  1470  00F4               	movwf	??_CharToNumH
   4192  1471  0874               	movf	??_CharToNumH,w
   4193  1472  00F3               	movwf	CharToNumH@hora_user
   4194                           
-  4195                           ;PROYECTO.c: 1078:             break;
+  4195                           ;PROYECTO.c: 1077:             break;
   4196  1473  2CD3               	goto	l3945
   4197  1474                     l3937:
   4198                           
-  4199                           ;PROYECTO.c: 1080:             hora_user = 23;
+  4199                           ;PROYECTO.c: 1079:             hora_user = 23;
   4200  1474  3017               	movlw	23
   4201  1475  00F4               	movwf	??_CharToNumH
   4202  1476  0874               	movf	??_CharToNumH,w
   4203  1477  00F3               	movwf	CharToNumH@hora_user
   4204                           
-  4205                           ;PROYECTO.c: 1081:             break;
+  4205                           ;PROYECTO.c: 1080:             break;
   4206  1478  2CD3               	goto	l3945
   4207  1479                     l3939:
   4208                           
-  4209                           ;PROYECTO.c: 1083:             hora_user = 24;
+  4209                           ;PROYECTO.c: 1082:             hora_user = 24;
   4210  1479  3018               	movlw	24
   4211  147A  00F4               	movwf	??_CharToNumH
   4212  147B  0874               	movf	??_CharToNumH,w
   4213  147C  00F3               	movwf	CharToNumH@hora_user
   4214                           
-  4215                           ;PROYECTO.c: 1084:             break;
+  4215                           ;PROYECTO.c: 1083:             break;
   4216  147D  2CD3               	goto	l3945
   4217  147E                     l3943:
   4218  147E  085C               	movf	CharToNumH@in,w
@@ -4338,7 +4338,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   4322  14D2  2CD3               	goto	l3945
   4323  14D3                     l3945:
   4324                           
-  4325                           ;PROYECTO.c: 1086:     return hora_user;
+  4325                           ;PROYECTO.c: 1085:     return hora_user;
   4326  14D3  0873               	movf	CharToNumH@hora_user,w
   4327  14D4                     l680:
   4328  14D4  0008               	return
@@ -7936,7 +7936,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7890  06AB  2EAC               	goto	l4835
   7891  06AC                     l4835:
   7892                           
-  7893                           ;PROYECTO.c: 778:        valor = '0';
+  7893                           ;PROYECTO.c: 777:        valor = '0';
   7894  06AC  3030               	movlw	48
   7895  06AD  1283               	bcf	3,5	;RP0=0, select bank0
   7896  06AE  1303               	bcf	3,6	;RP1=0, select bank0
@@ -7945,7 +7945,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7899  06B1  00DB               	movwf	_valor
   7900  06B2                     l4837:
   7901                           
-  7902                           ;PROYECTO.c: 780:        if (RB7==0 && RB3==1 && RB4==0){
+  7902                           ;PROYECTO.c: 779:        if (RB7==0 && RB3==1 && RB4==0){
   7903  06B2  1B86               	btfsc	6,7	;volatile
   7904  06B3  2EB5               	goto	u5671
   7905  06B4  2EB6               	goto	u5670
@@ -7968,19 +7968,19 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7922  06BE                     u5690:
   7923  06BE                     l4843:
   7924                           
-  7925                           ;PROYECTO.c: 781:            me_3_us3_m = minuto;
+  7925                           ;PROYECTO.c: 780:            me_3_us3_m = minuto;
   7926  06BE  0879               	movf	_minuto,w
   7927  06BF  00DD               	movwf	??_main
   7928  06C0  085D               	movf	??_main,w
   7929  06C1  00C2               	movwf	_me_3_us3_m
   7930                           
-  7931                           ;PROYECTO.c: 782:            me_3_us3_h = hora;
+  7931                           ;PROYECTO.c: 781:            me_3_us3_h = hora;
   7932  06C2  087A               	movf	_hora,w
   7933  06C3  00DD               	movwf	??_main
   7934  06C4  085D               	movf	??_main,w
   7935  06C5  00CB               	movwf	_me_3_us3_h
   7936                           
-  7937                           ;PROYECTO.c: 783:        }else if (RB7==0 && RB3==0 && RB4==1){
+  7937                           ;PROYECTO.c: 782:        }else if (RB7==0 && RB3==0 && RB4==1){
   7938  06C6  2EF0               	goto	l4857
   7939  06C7                     l453:
   7940  06C7  1B86               	btfsc	6,7	;volatile
@@ -8005,19 +8005,19 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7959  06D3                     u5720:
   7960  06D3                     l4849:
   7961                           
-  7962                           ;PROYECTO.c: 784:            me_2_us3_m = minuto;
+  7962                           ;PROYECTO.c: 783:            me_2_us3_m = minuto;
   7963  06D3  0879               	movf	_minuto,w
   7964  06D4  00DD               	movwf	??_main
   7965  06D5  085D               	movf	??_main,w
   7966  06D6  00C3               	movwf	_me_2_us3_m
   7967                           
-  7968                           ;PROYECTO.c: 785:            me_2_us3_h = hora;
+  7968                           ;PROYECTO.c: 784:            me_2_us3_h = hora;
   7969  06D7  087A               	movf	_hora,w
   7970  06D8  00DD               	movwf	??_main
   7971  06D9  085D               	movf	??_main,w
   7972  06DA  00CC               	movwf	_me_2_us3_h
   7973                           
-  7974                           ;PROYECTO.c: 786:        }else if (RB7==0 && RB3==0 && RB4==0){
+  7974                           ;PROYECTO.c: 785:        }else if (RB7==0 && RB3==0 && RB4==0){
   7975  06DB  2EF0               	goto	l4857
   7976  06DC                     l455:
   7977  06DC  1B86               	btfsc	6,7	;volatile
@@ -8042,20 +8042,20 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   7996  06E8                     u5750:
   7997  06E8                     l4855:
   7998                           
-  7999                           ;PROYECTO.c: 787:            me_1_us3_m = minuto;
+  7999                           ;PROYECTO.c: 786:            me_1_us3_m = minuto;
   8000  06E8  0879               	movf	_minuto,w
   8001  06E9  00DD               	movwf	??_main
   8002  06EA  085D               	movf	??_main,w
   8003  06EB  00C4               	movwf	_me_1_us3_m
   8004                           
-  8005                           ;PROYECTO.c: 788:            me_1_us3_h = hora;
+  8005                           ;PROYECTO.c: 787:            me_1_us3_h = hora;
   8006  06EC  087A               	movf	_hora,w
   8007  06ED  00DD               	movwf	??_main
   8008  06EE  085D               	movf	??_main,w
   8009  06EF  00CD               	movwf	_me_1_us3_h
   8010  06F0                     l4857:
   8011                           
-  8012                           ;PROYECTO.c: 791:        if (RB6==0 && RB3==1 && RB4==0){
+  8012                           ;PROYECTO.c: 790:        if (RB6==0 && RB3==1 && RB4==0){
   8013  06F0  1B06               	btfsc	6,6	;volatile
   8014  06F1  2EF3               	goto	u5761
   8015  06F2  2EF4               	goto	u5760
@@ -8078,19 +8078,19 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   8032  06FC                     u5780:
   8033  06FC                     l4863:
   8034                           
-  8035                           ;PROYECTO.c: 792:            me_3_us2_m = minuto;
+  8035                           ;PROYECTO.c: 791:            me_3_us2_m = minuto;
   8036  06FC  0879               	movf	_minuto,w
   8037  06FD  00DD               	movwf	??_main
   8038  06FE  085D               	movf	??_main,w
   8039  06FF  00C5               	movwf	_me_3_us2_m
   8040                           
-  8041                           ;PROYECTO.c: 793:            me_3_us2_h = hora;
+  8041                           ;PROYECTO.c: 792:            me_3_us2_h = hora;
   8042  0700  087A               	movf	_hora,w
   8043  0701  00DD               	movwf	??_main
   8044  0702  085D               	movf	??_main,w
   8045  0703  00CE               	movwf	_me_3_us2_h
   8046                           
-  8047                           ;PROYECTO.c: 794:        }else if (RB6==0 && RB3==0 && RB4==1){
+  8047                           ;PROYECTO.c: 793:        }else if (RB6==0 && RB3==0 && RB4==1){
   8048  0704  2F2E               	goto	l4877
   8049  0705                     l458:
   8050  0705  1B06               	btfsc	6,6	;volatile
@@ -8115,19 +8115,19 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   8069  0711                     u5810:
   8070  0711                     l4869:
   8071                           
-  8072                           ;PROYECTO.c: 795:            me_2_us2_m = minuto;
+  8072                           ;PROYECTO.c: 794:            me_2_us2_m = minuto;
   8073  0711  0879               	movf	_minuto,w
   8074  0712  00DD               	movwf	??_main
   8075  0713  085D               	movf	??_main,w
   8076  0714  00C6               	movwf	_me_2_us2_m
   8077                           
-  8078                           ;PROYECTO.c: 796:            me_2_us2_h = hora;
+  8078                           ;PROYECTO.c: 795:            me_2_us2_h = hora;
   8079  0715  087A               	movf	_hora,w
   8080  0716  00DD               	movwf	??_main
   8081  0717  085D               	movf	??_main,w
   8082  0718  00CF               	movwf	_me_2_us2_h
   8083                           
-  8084                           ;PROYECTO.c: 797:        }else if (RB6==0 && RB3==0 && RB4==0){
+  8084                           ;PROYECTO.c: 796:        }else if (RB6==0 && RB3==0 && RB4==0){
   8085  0719  2F2E               	goto	l4877
   8086  071A                     l460:
   8087  071A  1B06               	btfsc	6,6	;volatile
@@ -8152,20 +8152,20 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   8106  0726                     u5840:
   8107  0726                     l4875:
   8108                           
-  8109                           ;PROYECTO.c: 798:            me_1_us2_m = minuto;
+  8109                           ;PROYECTO.c: 797:            me_1_us2_m = minuto;
   8110  0726  0879               	movf	_minuto,w
   8111  0727  00DD               	movwf	??_main
   8112  0728  085D               	movf	??_main,w
   8113  0729  00C7               	movwf	_me_1_us2_m
   8114                           
-  8115                           ;PROYECTO.c: 799:            me_1_us2_h = hora;
+  8115                           ;PROYECTO.c: 798:            me_1_us2_h = hora;
   8116  072A  087A               	movf	_hora,w
   8117  072B  00DD               	movwf	??_main
   8118  072C  085D               	movf	??_main,w
   8119  072D  00D0               	movwf	_me_1_us2_h
   8120  072E                     l4877:
   8121                           
-  8122                           ;PROYECTO.c: 802:        if (RB5==0 && RB3==0 && RB4==1){
+  8122                           ;PROYECTO.c: 801:        if (RB5==0 && RB3==0 && RB4==1){
   8123  072E  1A86               	btfsc	6,5	;volatile
   8124  072F  2F31               	goto	u5851
   8125  0730  2F32               	goto	u5850
@@ -8188,19 +8188,19 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   8142  073A                     u5870:
   8143  073A                     l4883:
   8144                           
-  8145                           ;PROYECTO.c: 803:            me_3_us1_m = minuto;
+  8145                           ;PROYECTO.c: 802:            me_3_us1_m = minuto;
   8146  073A  0879               	movf	_minuto,w
   8147  073B  00DD               	movwf	??_main
   8148  073C  085D               	movf	??_main,w
   8149  073D  00C8               	movwf	_me_3_us1_m
   8150                           
-  8151                           ;PROYECTO.c: 804:            me_3_us1_h = hora;
+  8151                           ;PROYECTO.c: 803:            me_3_us1_h = hora;
   8152  073E  087A               	movf	_hora,w
   8153  073F  00DD               	movwf	??_main
   8154  0740  085D               	movf	??_main,w
   8155  0741  00D1               	movwf	_me_3_us1_h
   8156                           
-  8157                           ;PROYECTO.c: 805:        }else if (RB5==0 && RB3==1 && RB4==0){
+  8157                           ;PROYECTO.c: 804:        }else if (RB5==0 && RB3==1 && RB4==0){
   8158  0742  2F6D               	goto	l464
   8159  0743                     l463:
   8160  0743  1A86               	btfsc	6,5	;volatile
@@ -8225,19 +8225,19 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   8179  074F                     u5900:
   8180  074F                     l4889:
   8181                           
-  8182                           ;PROYECTO.c: 806:            me_2_us1_m = minuto;
+  8182                           ;PROYECTO.c: 805:            me_2_us1_m = minuto;
   8183  074F  0879               	movf	_minuto,w
   8184  0750  00DD               	movwf	??_main
   8185  0751  085D               	movf	??_main,w
   8186  0752  00C9               	movwf	_me_2_us1_m
   8187                           
-  8188                           ;PROYECTO.c: 807:            me_2_us1_h = hora;
+  8188                           ;PROYECTO.c: 806:            me_2_us1_h = hora;
   8189  0753  087A               	movf	_hora,w
   8190  0754  00DD               	movwf	??_main
   8191  0755  085D               	movf	??_main,w
   8192  0756  00D2               	movwf	_me_2_us1_h
   8193                           
-  8194                           ;PROYECTO.c: 808:        }else if (RB5==0 && RB3==0 && RB4==0){
+  8194                           ;PROYECTO.c: 807:        }else if (RB5==0 && RB3==0 && RB4==0){
   8195  0757  2F6D               	goto	l464
   8196  0758                     l465:
   8197  0758  1A86               	btfsc	6,5	;volatile
@@ -8262,13 +8262,13 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   8216  0764                     u5930:
   8217  0764                     l4895:
   8218                           
-  8219                           ;PROYECTO.c: 809:            me_1_us1_m = minuto;
+  8219                           ;PROYECTO.c: 808:            me_1_us1_m = minuto;
   8220  0764  0879               	movf	_minuto,w
   8221  0765  00DD               	movwf	??_main
   8222  0766  085D               	movf	??_main,w
   8223  0767  00CA               	movwf	_me_1_us1_m
   8224                           
-  8225                           ;PROYECTO.c: 810:            me_1_us1_h = hora;
+  8225                           ;PROYECTO.c: 809:            me_1_us1_h = hora;
   8226  0768  087A               	movf	_hora,w
   8227  0769  00DD               	movwf	??_main
   8228  076A  085D               	movf	??_main,w
@@ -8472,7 +8472,7 @@ DATA                 0      0      4A      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Thu Jun 03 13:43:28 2021
+Symbol Table                                                                                   Mon Jun 28 19:33:53 2021
 
                       pc 0002                       fsr 0004                      l321 177B  
                     l313 1727                      l323 1769                      l315 1713  

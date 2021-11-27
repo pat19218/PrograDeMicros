@@ -3372,7 +3372,6 @@ void main(void) {
                SendCharH(medicamento3);
                USART_Cadena(" veces \r \r \n\n");
                break;
-
             }
 
        valor = '0';
@@ -3711,7 +3710,6 @@ void WriteToEEPROM(uint8_t dato, uint8_t addr){
     RCSTAbits.SPEN = 0;
     RCSTAbits.CREN = 0;
     TXSTAbits.TXEN = 0;
-
 
     EECON2 = 0x55;
     EECON2 = 0xAA;

@@ -20,6 +20,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>../../../../../Documents/GitHub/Electrónica Digital 2/LABORATORIOS.X/primer_proye/PROYECTO.X</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">

@@ -772,7 +772,6 @@ void main(void) {
                SendCharH(medicamento3);
                USART_Cadena(" veces \r \r \n\n");
                break;
-
             }
         
        valor = '0';
@@ -1112,7 +1111,6 @@ void WriteToEEPROM(uint8_t dato, uint8_t addr){ //Escribir EEPROM
     RCSTAbits.CREN = 0;     //activo recepción
     TXSTAbits.TXEN = 0;     //activo transmision 
 
-    
     EECON2 = 0x55;
     EECON2 = 0xAA;
     
